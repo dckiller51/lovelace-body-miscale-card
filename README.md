@@ -78,9 +78,9 @@ Define your model. miscale (181D) or miscale 2 (181B) (with to impedance)
 
 ## Screenshots
 
-![body-miscale-card](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/default.png)
+![body-miscale-card](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/default.jpg)
 
-![body-miscale-card-image](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/with-image.png)
+![body-miscale-card-image](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/with-image.jpg)
 
 ## Examples
 
@@ -171,6 +171,8 @@ Translations:
       label: Siham
       show: true
 ```
+## Acknowledgment
+The card is based on the work of Ben Tomlin https://github.com/benct/lovelace-xiaomi-vacuum-card
 
 ## Disclaimer
 
