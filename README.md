@@ -1,4 +1,4 @@
-# body-miscale-card
+# body-miscale-card (In progress)
 
 Card for data of Xiaomi scales in the Lovelace user interface of Home Assistant
 
