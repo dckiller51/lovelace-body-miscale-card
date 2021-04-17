@@ -87,7 +87,7 @@ Define your model. miscale (181D) or miscale 2 (181B) (with to impedance)
 Basic configuration:
 ```yaml
 - type: custom:body-miscale-card
-  entity: bodymisclae.name
+  entity: bodymiscale.name
 ```
 
 ```yaml
