@@ -155,6 +155,11 @@ Translations:
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
+  body:
+    water:
+      label: 'Eau: '
+	bmi:
+	  label: 'IMC: '
   attributes:
     weight:
       label: 'Poids: '
