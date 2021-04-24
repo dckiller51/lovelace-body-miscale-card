@@ -158,8 +158,8 @@ Translations:
   body:
     water:
       label: 'Eau: '
-	bmi:
-	  label: 'IMC: '
+    bmi:
+      label: 'IMC: '
   attributes:
     weight:
       label: 'Poids: '
