@@ -45,6 +45,9 @@ to `<config>/www/img/` or configure your own preferred path.
 
 Default bodymiscale attributes under each list:
 - `attributes` (**right list**) include `weight`, `impedance` (Optional), `height`, `age` and `gender`.
+- `body` (**left list**) include `water` (miscale 181B), `visceral_fat`, `body_fat` (miscale 181B), `bmi`, `muscle_mass` (miscale 181B), 
+                                 `protein` (miscale 181B), `basal_metabolism`, `bone_mass` (miscale 181B), `metabolic_age` (miscale 181B),
+								 `ideal`, `body_type`.
 
 See [examples](#examples) on how to customize, hide or add custom attributes.
 
@@ -171,7 +174,7 @@ Translations:
       label: Siham
       show: true
 ```
-## Acknowledgment
+## Credits
 The card is based on the work of Ben Tomlin https://github.com/benct/lovelace-xiaomi-vacuum-card
 
 ## Disclaimer

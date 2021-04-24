@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c BODYMISCALE-CARD %c 1.0.0 ',
+        '%c BODYMISCALE-CARD %c 1.0.1 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -8,27 +8,93 @@
     const attributes = {
         weight: {
             key: 'weight',
-            label: 'weight: ',
+            label: 'Weight: ',
             unit: ' kg',
         },
         impedance: {
             key: 'impedance',
-            label: 'impedance: ',
+            label: 'Impedance: ',
             unit: ' ohm',
         },
         height: {
             key: 'height',
-            label: 'height: ',
+            label: 'Height: ',
             unit: ' cm',
         },
         age: {
             key: 'age',
-            label: 'age: ',
+            label: 'Age: ',
             unit: ' years',
         },
         gender: {
             key: 'gender',
-            label: 'gender: ',
+            label: 'Gender: ',
+        },
+    };
+
+    const body = {
+        water: {
+            key: 'Water',
+            label: 'Water: ',
+            icon: 'file:water',
+            unit: ' %',
+        },
+        visceral_fat: {
+            key: 'Visceral fat',
+            label: 'Visceral fat: ',
+            icon: 'file:visceral_fat',
+        },
+        body_fat: {
+            key: 'Body fat',
+            label: 'Body fat: ',
+            icon: 'file:body_fat',
+            unit: ' %',
+        },
+        bmi: {
+            key: 'BMI',
+            label: 'BMI: ',
+            icon: 'file:bmi',
+        },
+        muscle_mass: {
+            key: 'Muscle mass',
+            label: 'Muscle mass: ',
+            icon: 'file:muscle_mass',
+            unit: ' kg',
+        },
+        protein: {
+            key: 'Protein',
+            label: 'Protein: ',
+            icon: 'file:protein',
+            unit: ' %',
+        },
+        basal_metabolism: {
+            key: 'Basal metabolism',
+            label: 'Basal metabolism: ',
+            icon: 'file:basal_metabolism',
+            unit: ' kcal',
+        },
+        bone_mass: {
+            key: 'Bone mass',
+            label: 'Bone mass: ',
+            icon: 'file:bone_mass',
+            unit: ' kg',
+        },
+        metabolic_age: {
+            key: 'Metabolic age',
+            label: 'Metabolic age: ',
+            icon: 'file:metabolic_age',
+            unit: ' years',
+        },
+        ideal: {
+            key: 'Ideal',
+            label: 'Ideal: ',
+            icon: 'file:ideal',
+            unit: ' kg',
+        },
+        body_type: {
+            key: 'Body type',
+            label: 'Body type: ',
+            icon: 'file:body_type',
         },
     };
 
@@ -85,6 +151,19 @@
                 age: {key: 'age'},
                 gender: {key: 'gender'},
             },
+            body: {
+                water: false,
+                visceral_fat: {key: 'Visceral fat'},
+                body_fat: false,
+                bmi: {key: 'BMI'},
+                muscle_mass: false,
+                protein: false,
+                basal_metabolism: {key: 'Basal metabolism'},
+                bone_mass: false,
+                metabolic_age: false,
+                ideal: {key: 'Ideal'},
+                body_type: {key: 'Body type'},
+            },
         },
         '181B': {
             attributes: {
@@ -93,6 +172,19 @@
                 height: {key: 'height'},
                 age: {key: 'age'},
                 gender: {key: 'gender'},
+            },
+            body: {
+                water: {key: 'Water'},
+                visceral_fat: {key: 'Visceral fat'},
+                body_fat: {key: 'Body fat'},
+                bmi: {key: 'BMI'},
+                muscle_mass: {key: 'Muscle mass'},
+                protein: {key: 'Protein'},
+                basal_metabolism: {key: 'Basal metabolism'},
+                bone_mass: {key: 'Bone mass'},
+                metabolic_age: {key: 'Metabolic age'},
+                ideal: {key: 'Ideal'},
+                body_type: {key: 'Body type'},
             },
         },
     };
@@ -127,18 +219,24 @@
 }
 .flex {
   display: flex;
-  align-items: right;
+  align-items: center;
   justify-content: space-evenly;
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(1, auto);
+  grid-template-columns: repeat(2, auto);
   cursor: pointer;
 }
 .grid-content {
   display: grid;
-  align-content: right;
+  align-content: space-between;
   grid-row-gap: 6px;
+}
+.grid-left {
+  text-align: left;
+  font-size: 110%;
+  padding-left: 10px;
+  border-left: 2px solid var(--primary-color);
 }
 .grid-right {
   text-align: right;
@@ -153,8 +251,12 @@
               ${this.config.show.name ?
                 html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
                 : null}
-              ${(this.config.show.attributes) ? html`
+              ${(this.config.show.body || this.config.show.attributes) ? html`
               <div class="grid" style="${this.config.styles.content}" @click="${() => this.fireEvent('hass-more-info')}">
+                ${this.config.show.body ? html`
+                <div class="grid-content grid-left">
+                  ${Object.values(this.config.body).filter(v => v).map(this.renderAttribute.bind(this))}
+                </div>` : null}
                 ${this.config.show.attributes ? html`
                 <div class="grid-content grid-right">
                   ${Object.values(this.config.attributes).filter(v => v).map(this.renderAttribute.bind(this))}
@@ -170,6 +272,7 @@
         renderAttribute(data) {
             const computeFunc = data.compute || (v => v);
             const isValidAttribute = data && data.key in this.stateObj.attributes;
+            const isValidEntityData = data && data.key in this.stateObj;
 
             const value = isValidAttribute
                 ? computeFunc(this.stateObj.attributes[data.key]) + (data.unit || '')
@@ -180,14 +283,14 @@
 
             const hasDropdown = `${data.key}_list` in this.stateObj.attributes;
 
-            return (hasDropdown && (isValidAttribute))
+            return (hasDropdown && (isValidAttribute || isValidEntityData))
                 ? this.renderDropdown(attribute, data.key)
                 : attribute;
         }
 
         renderIcon(data) {
-            const icon = (this.stateObj.attributes)
-                ? this.stateObj.attributes
+            const icon = (data.key === 'Water' && 'water_icon' in this.stateObj.attributes)
+                ? this.stateObj.attributes.water_icon
                 : data.icon;
             return html`<ha-icon icon="${icon}" style="margin-right: 10px; ${this.config.styles.icon}"></ha-icon>`;
         }
@@ -238,10 +341,12 @@
                 entity: config.entity,
                 show: {
                     name: config.name !== false,
+                    body: config.body !== false,
                     attributes: config.attributes !== false,
                     buttons: config.buttons !== false,
                 },
                 buttons: this.deepMerge(buttons, model.buttons, config.buttons),
+                body: this.deepMerge(body, model.body, config.body),
                 attributes: this.deepMerge(attributes, model.attributes, config.attributes),
                 styles: {
                     background: config.image ? `background-image: url('${config.image}'); color: white; text-shadow: 0 0 10px black;` : '',
