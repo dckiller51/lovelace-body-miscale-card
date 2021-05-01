@@ -1,9 +1,19 @@
 ((LitElement) => {
     console.info(
-        '%c BODYMISCALE-CARD %c 1.0.1 ',
+        '%c BODYMISCALE-CARD %c 2.0.0 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
+    const state = {
+        status: {
+            key: 'status',
+            icon: 'mdi:scale-bathroom',
+        },
+        problem: {
+            key: 'problem',
+            icon: 'mdi:alert',
+        },
+    };
 
     const attributes = {
         weight: {
@@ -35,65 +45,65 @@
     const body = {
         water: {
             key: 'Water',
-            label: 'Water: ',
+            label: 'Water',
             icon: 'file:water',
             unit: ' %',
         },
         visceral_fat: {
             key: 'Visceral fat',
-            label: 'Visceral fat: ',
+            label: 'Visceral fat',
             icon: 'file:visceral_fat',
         },
         body_fat: {
             key: 'Body fat',
-            label: 'Body fat: ',
+            label: 'Body fat',
             icon: 'file:body_fat',
             unit: ' %',
         },
         bmi: {
             key: 'BMI',
-            label: 'BMI: ',
+            label: 'BMI',
             icon: 'file:bmi',
         },
         muscle_mass: {
             key: 'Muscle mass',
-            label: 'Muscle mass: ',
+            label: 'Muscle mass',
             icon: 'file:muscle_mass',
             unit: ' kg',
         },
         protein: {
             key: 'Protein',
-            label: 'Protein: ',
+            label: 'Protein',
             icon: 'file:protein',
             unit: ' %',
         },
         basal_metabolism: {
             key: 'Basal metabolism',
-            label: 'Basal metabolism: ',
+            label: 'Basal metabolism',
             icon: 'file:basal_metabolism',
             unit: ' kcal',
         },
         bone_mass: {
             key: 'Bone mass',
-            label: 'Bone mass: ',
+            label: 'Bone mass',
             icon: 'file:bone_mass',
             unit: ' kg',
         },
         metabolic_age: {
             key: 'Metabolic age',
-            label: 'Metabolic age: ',
+            label: 'Metabolic age',
             icon: 'file:metabolic_age',
             unit: ' years',
         },
         ideal: {
             key: 'Ideal',
-            label: 'Ideal: ',
+            label: 'Ideal',
             icon: 'file:ideal',
             unit: ' kg',
         },
         body_type: {
             key: 'Body type',
-            label: 'Body type: ',
+            label: 'Body type',
             icon: 'file:body_type',
         },
     };
@@ -102,31 +112,26 @@
         user1: {
             label: 'User1',
             icon: 'mdi:alpha-u-circle',
-            service: 'input_boolean.toggle',
         },
         user2: {
             show: false,
             label: 'User2',
             icon: 'mdi:alpha-u-circle',
-            service: 'input_boolean.toggle',
         },
         user3: {
             show: false,
             label: 'User3',
             icon: 'mdi:alpha-u-circle',
-            service: 'input_boolean.toggle',
         },
         user4: {
             show: false,
             label: 'User4',
             icon: 'mdi:alpha-u-circle',
-            service: 'input_boolean.toggle',
         },
         user5: {
             show: false,
             label: 'User5',
             icon: 'mdi:alpha-u-circle',
-            service: 'input_boolean.toggle',
         },
     };
 
@@ -144,6 +149,11 @@
             },
         },
         '181D': {
+            state: {
+                status: {
+                    key: 'state',
+                },
+            },
             attributes: {
                 weight: {key: 'weight'},
                 impedance: false,
@@ -166,6 +176,11 @@
             },
         },
         '181B': {
+            state: {
+                status: {
+                    key: 'state',
+                },
+            },
             attributes: {
                 weight: {key: 'weight'},
                 impedance: {key: 'impedance'},
@@ -204,6 +219,13 @@
 
         static get styles() {
             return css`
+.contenair {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#hidden-score {
+}
 .background {
   background-repeat: no-repeat;
   background-position: center center;
@@ -229,7 +251,7 @@
 }
 .grid-content {
   display: grid;
-  align-content: space-between;
+  align-content: flex-start;
   grid-row-gap: 6px;
 }
 .grid-left {
@@ -242,30 +264,67 @@
   text-align: right;
   padding-right: 10px;
   border-right: 2px solid var(--primary-color);
+}
+.score {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+.score-div {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.score-icon {
+  margin-left: 24px;
+  flex-basis: 40px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.score-label {
+  flex-basis: 30%;
+  flex-shrink: 1;
+  flex-grow: 1;
+  margin-right: 8px;
+}
+.score-value {
+  margin-right: 24px;
+  flex-direction: row;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }`;
         }
 
         render() {
             return this.stateObj ? html`
-            <ha-card class="background" style="${this.config.styles.background}">
-              ${this.config.show.name ?
-                html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
-                : null}
-              ${(this.config.show.body || this.config.show.attributes) ? html`
-              <div class="grid" style="${this.config.styles.content}" @click="${() => this.fireEvent('hass-more-info')}">
+            <ha-card class="contenair">
+              <ha-scale class="background" style="${this.config.styles.background}">
+                ${this.config.show.name ?
+                  html`<div class="title">${this.config.name || this.stateObj.attributes.friendly_name}</div>`
+                  : null}
+                ${(this.config.show.state || this.config.show.attributes) ? html`
+                <div class="grid" style="${this.config.styles.content}" @click="${() => this.fireEvent('hass-more-info')}">
+                  ${this.config.show.state ? html`
+                  <div class="grid-content grid-left">
+                    ${Object.values(this.config.state).filter(v => v).map(this.renderAttribute.bind(this))}
+                  </div>` : null}
+                  ${this.config.show.attributes ? html`
+                  <div class="grid-content grid-right">
+                    ${Object.values(this.config.attributes).filter(v => v).map(this.renderAttribute.bind(this))}
+                  </div>` : null}
+                </div>` : null}
+                ${this.config.show.buttons ? html`
+                <div class="flex">
+                  ${Object.values(this.config.buttons).filter(v => v).map(this.renderButton.bind(this))}
+                </div>` : null}
+              </ha-scale>
+              <ha-score>
                 ${this.config.show.body ? html`
-                <div class="grid-content grid-left">
-                  ${Object.values(this.config.body).filter(v => v).map(this.renderAttribute.bind(this))}
+                <div id="hiddenscore" class="score">
+                  ${Object.values(this.config.body).filter(v => v).map(this.renderBody.bind(this))}
                 </div>` : null}
-                ${this.config.show.attributes ? html`
-                <div class="grid-content grid-right">
-                  ${Object.values(this.config.attributes).filter(v => v).map(this.renderAttribute.bind(this))}
-                </div>` : null}
-              </div>` : null}
-              ${this.config.show.buttons ? html`
-              <div class="flex">
-                ${Object.values(this.config.buttons).filter(v => v).map(this.renderButton.bind(this))}
-              </div>` : null}
+              </ha-score>
             </ha-card>` : html`<ha-card style="padding: 8px 16px">Entity '${this.config.entity}' not available...</ha-card>`;
         }
 
@@ -280,6 +339,35 @@
                     ? computeFunc(this.stateObj[data.key]) + (data.unit || '')
                     : this._hass.localize('state.default.unavailable');
             const attribute = html`<div>${data.icon && this.renderIcon(data)}${(data.label || '') + value}</div>`;
+
+            const hasDropdown = `${data.key}_list` in this.stateObj.attributes;
+
+            return (hasDropdown && (isValidAttribute || isValidEntityData))
+                ? this.renderDropdown(attribute, data.key)
+                : attribute;
+        }
+
+        renderBody(data) {
+            const computeFunc = data.compute || (v => v);
+            const isValidAttribute = data && data.key in this.stateObj.attributes;
+            const isValidEntityData = data && data.key in this.stateObj;
+
+            const value = isValidAttribute
+                ? computeFunc(this.stateObj.attributes[data.key]) + (data.unit || '')
+                : isValidEntityData
+                    ? computeFunc(this.stateObj[data.key]) + (data.unit || '')
+                    : this._hass.localize('state.default.unavailable');
+            const attribute = html`<div class="score-div">
+                                     <div class="score-icon">
+                                         ${data.icon && this.renderIcon(data)}
+                                     </div>
+                                     <div class="score-label">
+                                         ${(data.label || '')}
+                                     </div>
+                                     <div class="score-value">
+                                         ${value}
+                                     </div>
+                                   </div>`;
 
             const hasDropdown = `${data.key}_list` in this.stateObj.attributes;
 
@@ -341,11 +429,13 @@
                 entity: config.entity,
                 show: {
                     name: config.name !== false,
+                    state: config.state !== false,
                     body: config.body !== false,
                     attributes: config.attributes !== false,
                     buttons: config.buttons !== false,
                 },
                 buttons: this.deepMerge(buttons, model.buttons, config.buttons),
+                state: this.deepMerge(state, model.state, config.state),
                 body: this.deepMerge(body, model.body, config.body),
                 attributes: this.deepMerge(attributes, model.attributes, config.attributes),
                 styles: {
