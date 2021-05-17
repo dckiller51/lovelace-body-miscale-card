@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.1.0
+- Click on the icon to show or hide your score
+
 ## 2.0.0
 - add the states (on the left)
 - move the attributes of the body score "body" (on the bottom)

@@ -1,6 +1,6 @@
 ((LitElement) => {
     console.info(
-        '%c BODYMISCALE-CARD %c 2.0.0 ',
+        '%c BODYMISCALE-CARD %c 2.1.0 ',
         'color: cyan; background: black; font-weight: bold;',
         'color: darkblue; background: white; font-weight: bold;',
     );
@@ -224,8 +224,6 @@
   flex-direction: column;
   height: 100%;
 }
-#hidden-score {
-}
 .background {
   background-repeat: no-repeat;
   background-position: center center;
@@ -293,6 +291,15 @@
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+}
+input.divcheck { 
+  display:none;
+}
+input.divcheck + div { 
+  display:none;
+}
+input.divcheck:checked + div {
+  display:block;
 }`;
         }
 
@@ -315,16 +322,17 @@
                   </div>` : null}
                 </div>` : null}
                 ${this.config.show.buttons ? html`
-                <div class="flex">
+                <label class="flex divcheck" for="hiddenscore">
                   ${Object.values(this.config.buttons).filter(v => v).map(this.renderButton.bind(this))}
-                </div>` : null}
+                </label>` : null}
               </ha-scale>
-              <ha-score>
+              <input type="checkbox" class="divcheck" id="hiddenscore"/>
+              <div class="hiddenscore">
                 ${this.config.show.body ? html`
-                <div id="hiddenscore" class="score">
+                <div class="score">
                   ${Object.values(this.config.body).filter(v => v).map(this.renderBody.bind(this))}
                 </div>` : null}
-              </ha-score>
+              </div>
             </ha-card>` : html`<ha-card style="padding: 8px 16px">Entity '${this.config.entity}' not available...</ha-card>`;
         }
 
