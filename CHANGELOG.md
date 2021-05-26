@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.0.1
+- fix 
+
 ## 3.0.0
 - added card configuration support
 - added automatic translation EN/FR (please contribute to add your language)
