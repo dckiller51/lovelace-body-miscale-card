@@ -181,6 +181,7 @@ Translations:
 ```
 ## Credits
 The card is based on the work of Ben Tomlin https://github.com/benct/lovelace-xiaomi-vacuum-card
+The card is based on the work of Denys Dovhan https://github.com/denysdovhan/purifier-card
 
 ## Disclaimer
 

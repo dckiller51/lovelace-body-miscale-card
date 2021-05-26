@@ -1,0 +1,64 @@
+{
+  "common": {
+    "name": "Carte Bodymiscale",
+    "description": "La carte bodymiscale vous permet d'afficher votre score de corps.",
+    "not_available": "Bodymiscale n'est pas disponible",
+    "toggle_power": "Afficher le score/Cacher le score"
+  },
+  "state": {
+    "ok": "OK",
+    "problem": "Problème",
+    "none": "Aucun",
+    "weight unavailable": "Poids indisponible",
+    "impedance unavailable": "Impédance indisponible",
+    "weight unavailable, impedance unavailable": "Poids indisponible, impédance indisponible"
+  },
+  "attributes": {
+    "Weight: ": "Poids: ",
+    "Impedance: ": "Impédance: ",
+    "Height: ": "Taille: ",
+    "Age: ": "Age: ",
+    "Gender: ": "Genre: "
+  },
+  "body": {
+    "Water": "Eau",
+    "Visceral fat": "Graisse viscérale",
+    "Body fat": "Graisse corporelle",
+    "BMI": "IMC",
+    "Muscle mass": "Muscle",
+    "Protein": "Protéine",
+    "Basal metabolism": "Métabolisme de base",
+    "Bone mass": "Masse osseuse",
+    "Metabolic age": "Age corporel",
+    "Ideal": "Poids idéal",
+    "Body type": "Corpulence"
+  },
+  "unit": {
+    " years": " ans"
+  },
+  "error": {
+    "missing_entity": "Il est obligatoire de spécifier une entité!"
+  },
+  "editor": {
+    "entity": "Entité (obligatoire)",
+    "show_name": "Afficher le nom",
+    "show_name_aria_label_on": "Activer affichage du nom",
+    "show_name_aria_label_off": "Désactiver affichage du nom",
+    "show_state": "Afficher l'état",
+    "show_state_aria_label_on": "Activer l'affichage de l'état",
+    "show_state_aria_label_off": "Désactiver l'affichage de l'état",
+    "show_attributes": "Afficher les attributs",
+    "show_attributes_aria_label_on": "Activer l'affichage des attributs",
+    "show_attributes_aria_label_off": "Désactiver l'affichage des attributs",
+    "show_body": "Afficher le score du corps",
+    "show_body_aria_label_on": "Activer l'affichage du score du corps",
+    "show_body_aria_label_off": "Désactiver l'affichage du score du corps",
+    "show_buttons": "Afficher les bouttons",
+    "show_buttons_aria_label_on": "Activer l'affichage des bouttons",
+    "show_buttons_aria_label_off": "Désactiver l'affichage des bouttons",
+    "show_toolbar": "Afficher la barre d'outils",
+    "show_toolbar_aria_label_on": "Activer l'affichage de la barre d'outils",
+    "show_toolbar_aria_label_off": "Désactiver l'affichage de la barre d'outils",
+    "code_only_note": "Remarque: Les options de réglage des actions et statistiques sont disponibles exclusivement en utilisant l'éditeur de code."
+  }
+}

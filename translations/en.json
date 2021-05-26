@@ -1,0 +1,64 @@
+{
+  "common": {
+    "name": "Bodymiscale Card",
+    "description": "The bodymiscale card allows you to display your body score.",
+    "not_available": "Bodymiscale is not avaialable",
+    "toggle_power": "Show score/Hide score"
+  },
+  "state": {
+    "ok": "OK",
+    "problem": "Problem",
+    "none": "None",
+    "weight unavailable": "Weight unavailable",
+    "impedance unavailable": "Impedance unavailable",
+    "weight unavailable, impedance unavailable": "Weight unavailable, impedance unavailable"
+  },
+  "attributes": {
+    "Weight: ": "Weight: ",
+    "Impedance: ": "Impedance: ",
+    "Height: ": "Height: ",
+    "Age: ": "Age: ",
+    "Gender: ": "Gender: "
+  },
+  "body": {
+    "Water": "Water",
+    "Visceral fat": "Visceral fat",
+    "Body fat": "Body fat",
+    "BMI": "BMI",
+    "Muscle mass": "Muscle mass",
+    "Protein": "Protein",
+    "Basal metabolism": "Basal metabolism",
+    "Bone mass": "Bone mass",
+    "Metabolic age": "Metabolic age",
+    "Ideal": "Ideal",
+    "Body type": "Body type"
+  },
+  "unit": {
+    " years": " years"
+  },
+  "error": {
+    "missing_entity": "Specifying entity is required!"
+  },
+  "editor": {
+    "entity": "Entity (Required)",
+    "show_name": "Show Name",
+    "show_name_aria_label_on": "Toggle display name on",
+    "show_name_aria_label_off": "Toggle display name off",
+    "show_state": "Show State",
+    "show_state_aria_label_on": "Toggle display state on",
+    "show_state_aria_label_off": "Toggle display state off",
+    "show_attributes": "Show Attributes",
+    "show_attributes_aria_label_on": "Toggle display attributes on",
+    "show_attributes_aria_label_off": "Toggle display attributes off",
+    "show_body": "Show Body Score",
+    "show_body_aria_label_on": "Toggle display body score on",
+    "show_body_aria_label_off": "Toggle display body score off",
+    "show_buttons": "Show Buttons",
+    "show_buttons_aria_label_on": "Toggle display buttons on",
+    "show_buttons_aria_label_off": "Toggle display buttons off",
+    "show_toolbar": "Show Toolbar",
+    "show_toolbar_aria_label_on": "Toggle display toolbar on",
+    "show_toolbar_aria_label_off": "Toggle display toolbar off",
+    "code_only_note": "Note: Setting actions and stats options are available exclusively using Code Editor."
+  }
+}
