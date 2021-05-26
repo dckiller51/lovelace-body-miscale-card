@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v3.0.3
+- fix
+
 ## v3.0.2
 - rename the version with 'v'
 
