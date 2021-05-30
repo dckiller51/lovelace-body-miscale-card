@@ -1,0 +1,81 @@
+{
+  "common": {
+    "name": "Bodymiscale Card",
+    "description": "O cartão bodymiscale permite que você exiba a pontuação do seu corpo.",
+    "not_available": "Bodymiscale não é avaialável",
+    "toggle_power": "Pontuação do show/Ocultar pontuação"
+  },
+  "state": {
+    "ok": "OK",
+    "problem": "Problema",
+    "none": "Nenhum",
+    "weight unavailable": "Peso indisponível",
+    "impedance unavailable": "Impedance indisponível",
+    "weight unavailable, impedance unavailable": "Peso indisponível, impedance indisponível"
+  },
+  "attributes": {
+    "Weight: ": "Peso: ",
+    "Impedance: ": "Impedance: ",
+    "Height: ": "Cintura: ",
+    "Age: ": "Idade: ",
+    "Gender: ": "Gênero: "
+  },
+  "attributes_value": {
+    "male": "macho",
+    "female": "fêmea",
+    "unavailable kg": "indisponível",
+    "unavailable ohm": "indisponível"
+  },
+  "body": {
+    "Water": "Água",
+    "Visceral fat": "Gordura visceral",
+    "Body fat": "Gordura corporal",
+    "BMI": "IMC",
+    "Muscle mass": "Massa muscular",
+    "Protein": "Proteína",
+    "Basal metabolism": "Metabolismo basal",
+    "Bone mass": "Massa óssea",
+    "Metabolic age": "Idade metabólica",
+    "Ideal": "Ideal",
+    "Body type": "Tipo de corpo"
+  },
+  "body_value": {
+    "Skinny": "Magro",
+    "Balanced-skinny": "Magro equilibrado",
+    "Skinny-muscular": "Magro musculoso",
+    "Balanced": "Equilibrado",
+    "Balanced-muscular": "Musculoso equilibrado",
+    "Lack-exerscise": "Falta de exercício",
+    "Thick-set": "Grosso-conjunto",
+    "Obese": "Obeso",
+    "Overweight": "Sobrepeso"
+  },
+  "unit": {
+    " years": " Anos"
+  },
+  "error": {
+    "missing_entity": "Especificar entidade é necessário!"
+  },
+  "editor": {
+    "entity": "Entidade (Obrigatório)",
+    "show_name": "Nome do show",
+    "show_name_aria_label_on": "Alternar o nome da exibição",
+    "show_name_aria_label_off": "Alternar o nome da exibição",
+    "show_state": "Mostrar Estado",
+    "show_state_aria_label_on": "Alternar estado de exibição ligado",
+    "show_state_aria_label_off": "Alternar estado de exibição fora",
+    "show_attributes": "Atributos do show",
+    "show_attributes_aria_label_on": "Alternar atributos de exibição em",
+    "show_attributes_aria_label_off": "Alternar atributos de exibição fora",
+    "show_body": "Mostrar pontuação corporal",
+    "show_body_aria_label_on": "Alternar a pontuação do corpo do display em",
+    "show_body_aria_label_off": "Alternar a pontuação do corpo do display fora",
+    "show_buttons": "Mostrar botões",
+    "show_buttons_aria_label_on": "Alternar botões de exibição",
+    "show_buttons_aria_label_off": "Alternar botões de exibição desligados",
+    "show_toolbar": "Mostrar barra de ferramentas",
+    "show_toolbar_aria_label_on": "Alternar a barra de ferramentas do display em",
+    "show_toolbar_aria_label_off": "Alternar barra de ferramentas de exibição fora",
+    "code_only_note": "Nota: As opções de configuração de ações e estatísticas estão disponíveis exclusivamente usando o Editor de Código."
+  }
+}

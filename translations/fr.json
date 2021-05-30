@@ -20,6 +20,12 @@
     "Age: ": "Age: ",
     "Gender: ": "Genre: "
   },
+  "attributes_value": {
+    "male": "homme",
+    "female": "femme",
+    "unavailable kg": "indisponible",
+    "unavailable ohm": "indisponible"
+  },
   "body": {
     "Water": "Eau",
     "Visceral fat": "Graisse viscérale",
@@ -32,6 +38,17 @@
     "Metabolic age": "Age corporel",
     "Ideal": "Poids idéal",
     "Body type": "Corpulence"
+  },
+  "body_value": {
+    "Skinny": "Maigre",
+    "Balanced-skinny": "Équilibré maigre",
+    "Skinny-muscular": "Maigre musclé",
+    "Balanced": "Équilibré",
+    "Balanced-muscular": "Musclé équilibré",
+    "Lack-exerscise": "Manque d'exercice",
+    "Thick-set": "Trapu",
+    "Obese": "Obèse",
+    "Overweight": "Surpoids"
   },
   "unit": {
     " years": " ans"

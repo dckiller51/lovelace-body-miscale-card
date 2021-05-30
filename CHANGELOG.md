@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v3.1.0
+- Complete translation of card elements
+- Added pt-BR language
+
 ## v3.0.3
 - fix
 
