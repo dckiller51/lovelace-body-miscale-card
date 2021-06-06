@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v4.0.0
+- Use snake_case format for attribute names (thanks to Pavel Popov https://github.com/dckiller51/bodymiscale/pull/13)
+- Replace custom icons with materialdesignicons icons
+- Add a toolbar for score and service icons
+
+
 ## v3.1.0
 - Complete translation of card elements
 - Added pt-BR language

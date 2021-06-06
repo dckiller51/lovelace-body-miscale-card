@@ -14,11 +14,11 @@
     "weight unavailable, impedance unavailable": "Weight unavailable, impedance unavailable"
   },
   "attributes": {
-    "Weight: ": "Weight: ",
-    "Impedance: ": "Impedance: ",
-    "Height: ": "Height: ",
-    "Age: ": "Age: ",
-    "Gender: ": "Gender: "
+    "weight: ": "Weight: ",
+    "impedance: ": "Impedance: ",
+    "height: ": "Height: ",
+    "age: ": "Age: ",
+    "gender: ": "Gender: "
   },
   "attributes_value": {
     "male": "male",
@@ -27,17 +27,17 @@
     "unavailable ohm": "unavailable"
   },
   "body": {
-    "Water": "Water",
-    "Visceral fat": "Visceral fat",
-    "Body fat": "Body fat",
-    "BMI": "BMI",
-    "Muscle mass": "Muscle mass",
-    "Protein": "Protein",
-    "Basal metabolism": "Basal metabolism",
-    "Bone mass": "Bone mass",
-    "Metabolic age": "Metabolic age",
-    "Ideal": "Ideal",
-    "Body type": "Body type"
+    "water": "Water",
+    "visceral_fat": "Visceral fat",
+    "body_fat": "Body fat",
+    "bmi": "BMI",
+    "muscle_mass": "Muscle mass",
+    "protein": "Protein",
+    "basal_metabolism": "Basal metabolism",
+    "bone_mass": "Bone mass",
+    "metabolic_age": "Metabolic age",
+    "ideal": "Ideal",
+    "body_type": "Body type"
   },
   "body_value": {
     "Skinny": "Skinny",
@@ -54,7 +54,9 @@
     " years": " years"
   },
   "error": {
-    "missing_entity": "Specifying entity is required!"
+    "missing_entity": "Please define an entity.",
+    "missing_enttity_bodymiscale": "Please define a bodymiscale entity.",
+    "missing_model": "Please define a valid scale model."
   },
   "editor": {
     "entity": "Entity (Required)",

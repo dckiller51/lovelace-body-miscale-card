@@ -14,11 +14,11 @@
     "weight unavailable, impedance unavailable": "Poids indisponible, impédance indisponible"
   },
   "attributes": {
-    "Weight: ": "Poids: ",
-    "Impedance: ": "Impédance: ",
-    "Height: ": "Taille: ",
-    "Age: ": "Age: ",
-    "Gender: ": "Genre: "
+    "weight: ": "Poids: ",
+    "impedance: ": "Impédance: ",
+    "height: ": "Taille: ",
+    "age: ": "Age: ",
+    "gender: ": "Genre: "
   },
   "attributes_value": {
     "male": "homme",
@@ -27,17 +27,17 @@
     "unavailable ohm": "indisponible"
   },
   "body": {
-    "Water": "Eau",
-    "Visceral fat": "Graisse viscérale",
-    "Body fat": "Graisse corporelle",
-    "BMI": "IMC",
-    "Muscle mass": "Muscle",
-    "Protein": "Protéine",
-    "Basal metabolism": "Métabolisme de base",
-    "Bone mass": "Masse osseuse",
-    "Metabolic age": "Age corporel",
-    "Ideal": "Poids idéal",
-    "Body type": "Corpulence"
+    "water": "Eau",
+    "visceral_fat": "Graisse viscérale",
+    "body_fat": "Graisse corporelle",
+    "bmi": "IMC",
+    "muscle_mass": "Muscle",
+    "protein": "Protéine",
+    "basal_metabolism": "Métabolisme de base",
+    "bone_mass": "Masse osseuse",
+    "metabolic_age": "Age corporel",
+    "ideal": "Poids idéal",
+    "body_type": "Corpulence"
   },
   "body_value": {
     "Skinny": "Maigre",
@@ -54,7 +54,9 @@
     " years": " ans"
   },
   "error": {
-    "missing_entity": "Il est obligatoire de spécifier une entité!"
+    "missing_entity": "Veuillez définir une entité.",
+    "missing_enttity_bodymiscale": "Veuillez définir une entité Bodymiscale.",
+    "missing_model": "Veuillez définir un modèle de balance valide."
   },
   "editor": {
     "entity": "Entité (obligatoire)",

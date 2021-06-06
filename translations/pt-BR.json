@@ -14,11 +14,11 @@
     "weight unavailable, impedance unavailable": "Peso indisponível, impedance indisponível"
   },
   "attributes": {
-    "Weight: ": "Peso: ",
-    "Impedance: ": "Impedance: ",
-    "Height: ": "Cintura: ",
-    "Age: ": "Idade: ",
-    "Gender: ": "Gênero: "
+    "weight: ": "Peso: ",
+    "impedance: ": "Impedance: ",
+    "height: ": "Cintura: ",
+    "age: ": "Idade: ",
+    "gender: ": "Gênero: "
   },
   "attributes_value": {
     "male": "macho",
@@ -27,17 +27,17 @@
     "unavailable ohm": "indisponível"
   },
   "body": {
-    "Water": "Água",
-    "Visceral fat": "Gordura visceral",
-    "Body fat": "Gordura corporal",
-    "BMI": "IMC",
-    "Muscle mass": "Massa muscular",
-    "Protein": "Proteína",
-    "Basal metabolism": "Metabolismo basal",
-    "Bone mass": "Massa óssea",
-    "Metabolic age": "Idade metabólica",
-    "Ideal": "Ideal",
-    "Body type": "Tipo de corpo"
+    "water": "Água",
+    "visceral_fat": "Gordura visceral",
+    "body_fat": "Gordura corporal",
+    "bmi": "IMC",
+    "muscle_mass": "Massa muscular",
+    "protein": "Proteína",
+    "basal_metabolism": "Metabolismo basal",
+    "bone_mass": "Massa óssea",
+    "metabolic_age": "Idade metabólica",
+    "ideal": "Ideal",
+    "body_type": "Tipo de corpo"
   },
   "body_value": {
     "Skinny": "Magro",
@@ -54,7 +54,9 @@
     " years": " Anos"
   },
   "error": {
-    "missing_entity": "Especificar entidade é necessário!"
+    "missing_entity": "Por favor, defina uma entidade.",
+    "missing_enttity_bodymiscale": "Por favor, defina uma entidade bodymiscale.",
+    "missing_model": "Por favor, defina um modelo de escala válido."
   },
   "editor": {
     "entity": "Entidade (Obrigatório)",

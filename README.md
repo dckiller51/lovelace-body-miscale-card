@@ -129,11 +129,11 @@ Add custom attributes:
 - type: custom:body-miscale-card
   entity: bodymiscale.name
   attributes:
-    Body type:
-      key: Body type
+    body_type:
+      key: body_type
       label: 'Body type: '
-    Water:
-      key: Water
+    water:
+      key: water
       label: 'Eau: '
       unit: '%'
 ```
