@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v4.1.0
+- Added DE language
+- Replace the icons of materialdesignicons by the official "mifit" icons for the score body
+
 ## v4.0.0
 - Use snake_case format for attribute names (thanks to Pavel Popov https://github.com/dckiller51/bodymiscale/pull/13)
 - Replace custom icons with materialdesignicons icons

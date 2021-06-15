@@ -27,8 +27,12 @@ The above configuration can be managed directly in the Configuration -> Lovelace
 or added by clicking the "Add to lovelace" button on the HACS dashboard after installing the plugin.
 
 If you want to use the scales background image, download and add
-[img/miscale2.jpg](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/img/miscale2.jpg)
+[img/miscale2.jpg](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/images/miscale2.jpg)
 to `<config>/www/img/` or configure your own preferred path.
+
+For body score icons, download and add
+[images/bodyscoreIcon/*.webp](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/images/bodyscoreIcon)
+to `<config>/www/images/bodyscoreIcon/`.
 
 ## Configuration
 

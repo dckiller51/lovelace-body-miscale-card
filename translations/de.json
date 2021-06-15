@@ -1,0 +1,83 @@
+{
+    "common": {
+      "name": "Bodymiscale Card",
+      "description": "Mit der bodymiscal-Karte können Sie Ihren Körperwert anzeigen.",
+      "not_available": "Bodymiscale ist nicht verfügbar",
+      "toggle_power": "Punktzahl anzeigen / Punktzahl ausblenden"
+    },
+    "state": {
+      "ok": "OK",
+      "problem": "Problem",
+      "none": "Nein",
+      "weight unavailable": "Nicht verfügbares Gewicht",
+      "impedance unavailable": "Impedanz nicht verfügbar",
+      "weight unavailable, impedance unavailable": "Gewicht nicht verfügbar, Impedanz nicht verfügbar"
+    },
+    "attributes": {
+      "weight: ": "Gewicht: ",
+      "impedance: ": "Impedanz: ",
+      "height: ": "Schnitt: ",
+      "age: ": "Alter: ",
+      "gender: ": "Nett: "
+    },
+    "attributes_value": {
+      "male": "Mann",
+      "female": "Frauen",
+      "unavailable kg": "nicht verfügbar",
+      "unavailable ohm": "nicht verfügbar"
+    },
+    "body": {
+      "water": "Wasser",
+      "visceral_fat": "Bauchfett",
+      "body_fat": "Körperfett",
+      "bmi": "BMI",
+      "muscle_mass": "Muskelmasse",
+      "protein": "Protein",
+      "basal_metabolism": "Grundumsatz",
+      "bone_mass": "Knochenmasse",
+      "metabolic_age": "Körperalter",
+      "ideal": "Ideal",
+      "body_type": "Körpertyp"
+    },
+    "body_value": {
+      "Skinny": "Dünn",
+      "Balanced-skinny": "Balanced-dünn",
+      "Skinny-muscular": "Skinny-muskulös",
+      "Balanced": "Ausgeglichen",
+      "Balanced-muscular": "Ausgewogen-muskulös",
+      "Lack-exerscise": "Bewegungsmangel",
+      "Thick-set": "Stämmig",
+      "Obese": "Fettleibig",
+      "Overweight": "Übergewicht"
+    },
+    "unit": {
+      " years": " jahre"
+    },
+    "error": {
+      "missing_entity": "Bitte definieren Sie eine Entity.",
+      "missing_enttity_bodymiscale": "Bitte definieren Sie eine bodymiscale Entity.",
+      "missing_model": "Bitte definieren Sie ein gültiges Maßstabsmodell."
+    },
+    "editor": {
+      "entity": "Entity (erforderlich)",
+      "show_name": "Name anzeigen",
+      "show_name_aria_label_on": "Namen anzeigen anschalten",
+      "show_name_aria_label_off": "Namen anzeigen ausschalten",
+      "show_state": "Status anzeigen",
+      "show_state_aria_label_on": "Status anzeigen anschalten",
+      "show_state_aria_label_off": "Status anzeigen ausschalten",
+      "show_attributes": "Attribute anzeigen anschalten",
+      "show_attributes_aria_label_on": "Attribute anzeigen anschalten",
+      "show_attributes_aria_label_off": "Attribute anzeigen ausschalten",
+      "show_body": "Körperwert anzeigen",
+      "show_body_aria_label_on": "Körperwert anzeigen anschalten",
+      "show_body_aria_label_off": "Körperwert anzeigen ausschalten",
+      "show_buttons": "Taste anzeigen anschalten",
+      "show_buttons_aria_label_on": "Taste anzeigen anschalten",
+      "show_buttons_aria_label_off": "Taste anzeigen ausschalten",
+      "show_toolbar": "Symbolleiste anzeigen",
+      "show_toolbar_aria_label_on": "Symbolleiste anzeigen anschalten",
+      "show_toolbar_aria_label_off": "Symbolleiste anzeigen ausschalten",
+      "code_only_note": "Bitte beachten: Aktionen und Status Optionen sind nur im Code Editor verfügbar."
+    }
+  }
