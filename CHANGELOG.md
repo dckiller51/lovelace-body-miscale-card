@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v4.1.1
+- fix
+
+
 ## v4.1.0
 - Added DE language
 - Replace the icons of materialdesignicons by the official "mifit" icons for the score body
