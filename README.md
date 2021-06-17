@@ -1,5 +1,11 @@
 # body-miscale-card (In progress)
 
+[![GH-release](https://img.shields.io/github/v/release/dckiller51/lovelace-body-miscale-card.svg?style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card/releases)
+[![GH-downloads](https://img.shields.io/github/downloads/dckiller51/lovelace-body-miscale-card/total?style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card/releases)
+[![GH-last-commit](https://img.shields.io/github/last-commit/dckiller51/lovelace-body-miscale-card.svg?style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card/commits/main)
+[![GH-code-size](https://img.shields.io/github/languages/code-size/dckiller51/lovelace-body-miscale-card.svg?color=red&style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=flat-square)](https://github.com/hacs)
+
 Card for data of Xiaomi scales in the Lovelace user interface of Home Assistant
 
 The card is linked to the Bodymiscale custom components for Xiaomi scales. https://github.com/dckiller51/bodymiscale
