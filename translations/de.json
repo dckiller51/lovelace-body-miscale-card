@@ -31,6 +31,7 @@
       "visceral_fat": "Bauchfett",
       "body_fat": "Körperfett",
       "bmi": "BMI",
+      "bmi_label": "BMI-Label",
       "muscle_mass": "Muskelmasse",
       "protein": "Protein",
       "basal_metabolism": "Grundumsatz",
@@ -48,7 +49,13 @@
       "Lack-exerscise": "Bewegungsmangel",
       "Thick-set": "Stämmig",
       "Obese": "Fettleibig",
-      "Overweight": "Übergewicht"
+      "Overweight": "Übergewicht",
+      "Underweight": "Untergewicht",
+      "Normal or Healthy Weight": "Normal",
+      "Slight overweight": "Leichtes Übergewicht",
+      "Moderate obesity": "Moderate Fettleibigkeit",
+      "Severe obesity": "Schwere Fettleibigkeit",
+      "Massive obesity": "Massive Fettleibigkeit"
     },
     "unit": {
       " years": " jahre"

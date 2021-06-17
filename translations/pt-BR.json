@@ -31,6 +31,7 @@
     "visceral_fat": "Gordura visceral",
     "body_fat": "Gordura corporal",
     "bmi": "IMC",
+    "bmi_label": "Etiqueta IMC",
     "muscle_mass": "Massa muscular",
     "protein": "Proteína",
     "basal_metabolism": "Metabolismo basal",
@@ -48,7 +49,13 @@
     "Lack-exerscise": "Falta de exercício",
     "Thick-set": "Grosso-conjunto",
     "Obese": "Obeso",
-    "Overweight": "Sobrepeso"
+    "Overweight": "Sobrepeso",
+    "Underweight": "Underweight",
+    "Normal or Healthy Weight": "Normal",
+    "Slight overweight": "Ligeiro acima do peso",
+    "Moderate obesity": "Obesidade moderada",
+    "Severe obesity": "Obesidade severa",
+    "Massive obesity": "Obesidade maciça"
   },
   "unit": {
     " years": " Anos"

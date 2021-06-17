@@ -1,9 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v4.5.0
+- add BMI Label
+
 ## v4.1.1
 - fix
-
 
 ## v4.1.0
 - Added DE language

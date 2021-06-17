@@ -8,12 +8,13 @@
 
 Card for data of Xiaomi scales in the Lovelace user interface of Home Assistant
 
-The card is linked to the Bodymiscale custom components for Xiaomi scales. https://github.com/dckiller51/bodymiscale
+The card is linked to the Bodymiscale custom components for Xiaomi scales. <https://github.com/dckiller51/bodymiscale>
 
 ## Installation
 
 Manually add [body-miscale-card.js](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/body-miscale-card.js)
 to your `<config>/www/` folder and add the following to the `configuration.yaml` file:
+
 ```yaml
 lovelace:
   resources:
@@ -22,6 +23,7 @@ lovelace:
 ```
 
 _OR_ install using [HACS](https://hacs.xyz/) and add this (if in YAML mode):
+
 ```yaml
 lovelace:
   resources:
@@ -54,10 +56,11 @@ to `<config>/www/images/bodyscoreIcon/`.
 ### Entity Data
 
 Default bodymiscale attributes under each list:
+
 - `attributes` (**right list**) include `weight`, `impedance` (Optional), `height`, `age` and `gender`.
-- `body` (**left list**) include `water` (miscale 181B), `visceral_fat`, `body_fat` (miscale 181B), `bmi`, `muscle_mass` (miscale 181B), 
+- `body` (**left list**) include `water` (miscale 181B), `visceral_fat`, `body_fat` (miscale 181B), `bmi`, `muscle_mass` (miscale 181B),
                                  `protein` (miscale 181B), `basal_metabolism`, `bone_mass` (miscale 181B), `metabolic_age` (miscale 181B),
-								 `ideal`, `body_type`.
+                                 `ideal`, `body_type`.
 
 See [examples](#examples) on how to customize, hide or add custom attributes.
 
@@ -98,6 +101,7 @@ Define your model. miscale (181D) or miscale 2 (181B) (with to impedance)
 ## Examples
 
 Basic configuration:
+
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
@@ -112,6 +116,7 @@ Basic configuration:
 ```
 
 Hide specific attributes and/or buttons:
+
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
@@ -120,9 +125,10 @@ Hide specific attributes and/or buttons:
     gender: false
   buttons:
     user1: false
-``` 
+```
 
 Customize specific buttons:
+
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
@@ -135,6 +141,7 @@ Customize specific buttons:
 ```
 
 Add custom attributes:
+
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
@@ -149,6 +156,7 @@ Add custom attributes:
 ```
 
 Add custom buttons and service calls:
+
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
@@ -162,6 +170,7 @@ Add custom buttons and service calls:
 ```
 
 Translations:
+
 ```yaml
 - type: custom:body-miscale-card
   entity: bodymiscale.name
@@ -189,11 +198,13 @@ Translations:
       label: Siham
       show: true
 ```
+
 ## Credits
-The card is based on the work of Ben Tomlin https://github.com/benct/lovelace-xiaomi-vacuum-card
-The card is based on the work of Denys Dovhan https://github.com/denysdovhan/purifier-card
+
+The card is based on the work of Ben Tomlin <https://github.com/benct/lovelace-xiaomi-vacuum-card>
+The card is based on the work of Denys Dovhan <https://github.com/denysdovhan/purifier-card>
 
 ## Disclaimer
 
 This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Xiaomi Corporation,
-or any of its subsidiaries or its affiliates. The official Xiaomi website can be found at https://www.mi.com/global/.
+or any of its subsidiaries or its affiliates. The official Xiaomi website can be found at <https://www.mi.com/global/>.
