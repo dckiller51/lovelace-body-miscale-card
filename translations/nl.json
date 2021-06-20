@@ -1,0 +1,90 @@
+{
+  "common": {
+    "name": "Bodymiscale Card",
+    "description": "De bodymiscale card maakt het mogelijk om je body score weer te geven.",
+    "not_available": "Bodymiscale is niet beschikbaar",
+    "toggle_power": "Laat score zien/verberg score"
+  },
+  "state": {
+    "ok": "OK",
+    "problem": "Probleem",
+    "none": "Geen",
+    "weight unavailable": "Gewicht niet beschikbar",
+    "impedance unavailable": "Impedantie niet beschikbaar",
+    "weight unavailable, impedance unavailable": "Gewicht niet beschikbaar, impedantie niet beschikbaar"
+  },
+  "attributes": {
+    "weight: ": "Gewicht: ",
+    "impedance: ": "Impedantie: ",
+    "height: ": "Lengte: ",
+    "age: ": "Leeftijd: ",
+    "gender: ": "Geslacht: "
+  },
+  "attributes_value": {
+    "male": "man",
+    "female": "vrouw",
+    "unavailable kg": "niet beschikbaar",
+    "unavailable ohm": "niet beschikbaar"
+  },
+  "body": {
+    "water": "Water",
+    "visceral_fat": "Visceraal vet",
+    "body_fat": "Lichaamsvet",
+    "bmi": "BMI",
+    "bmi_label": "BMI label",
+    "muscle_mass": "Spiermassa",
+    "protein": "Proteine",
+    "basal_metabolism": "Basaal metabolisme",
+    "bone_mass": "Botgewicht",
+    "metabolic_age": "Metabolistische leeftijd",
+    "ideal": "Ideaal",
+    "body_type": "Lichaamstype"
+  },
+  "body_value": {
+    "Skinny": "Mager",
+    "Balanced-skinny": "Gebalanceerd-mager",
+    "Skinny-muscular": "Mager-gespierd",
+    "Balanced": "Gebalanceerd",
+    "Balanced-muscular": "Gebalanceerd-gespierd",
+    "Lack-exerscise": "Weinig-beweging",
+    "Thick-set": "Dik",
+    "Obese": "Obesitas",
+    "Overweight": "Overgewicht",
+    "Underweight": "Ondergewicht",
+    "Normal or Healthy Weight": "Normaal of gezond gewicht",
+    "Slight overweight": "Licht overgewicht",
+    "Moderate obesity": "Gemiddeld overgewicht",
+    "Severe obesity": "Ruim overgewicht",
+    "Massive obesity": "Enorm overgewicht"
+  },
+  "unit": {
+    " years": " jaren"
+  },
+  "error": {
+    "missing_entity": "Geef een entiteit in.",
+    "missing_enttity_bodymiscale": "Geef een bodymiscale entiteit in.",
+    "missing_model": "Geef een juist weegschaalmodel in."
+  },
+  "editor": {
+    "entity": "Entiteit (verplicht)",
+    "show_name": "Geef naam weer",
+    "show_name_aria_label_on": "Zet naam aan",
+    "show_name_aria_label_off": "Zet naam uit",
+    "show_state": "Geef status weer",
+    "show_state_aria_label_on": "Zet status aan",
+    "show_state_aria_label_off": "Zet status uit",
+    "show_attributes": "Geef attributen weer",
+    "show_attributes_aria_label_on": "Zet attributen aan",
+    "show_attributes_aria_label_off": "Zet attributen uit",
+    "show_body": "Geef lichaamsscore weer",
+    "show_body_aria_label_on": "Zet lichaamsscore aan",
+    "show_body_aria_label_off": "Zet lichaamsscore uit",
+    "show_buttons": "Geef knoppen weer",
+    "show_buttons_aria_label_on": "Zet knoppen aan",
+    "show_buttons_aria_label_off": "Zet knoppen uit",
+    "show_toolbar": "Geef knoppenbalk weer",
+    "show_toolbar_aria_label_on": "Zet knoppenbalk aan",
+    "show_toolbar_aria_label_off": "Zet knoppenbalk uit",
+    "code_only_note": "Opmerking: Wijzigen van acties and statistieken opties zijn alleen beschikbaar in Code Editor."
+  }
+}
