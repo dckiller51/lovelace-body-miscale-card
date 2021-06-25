@@ -58,7 +58,7 @@ to `<config>/www/images/bodyscoreIcon/`.
 Default bodymiscale attributes under each list:
 
 - `attributes` (**right list**) include `weight`, `impedance` (Optional), `height`, `age` and `gender`.
-- `body` (**left list**) include `water` (miscale 181B), `visceral_fat`, `body_fat` (miscale 181B), `bmi`, `muscle_mass` (miscale 181B),
+- `body` (**below list**) include `water` (miscale 181B), `visceral_fat`, `body_fat` (miscale 181B), `bmi`, `muscle_mass` (miscale 181B),
                                  `protein` (miscale 181B), `basal_metabolism`, `bone_mass` (miscale 181B), `metabolic_age` (miscale 181B),
                                  `ideal`, `body_type`.
 
@@ -86,17 +86,17 @@ See [examples](#examples) on how to customize, hide or add custom buttons/action
 
 ### Other models
 
-Define your model. miscale (181D) or miscale 2 (181B) (with to impedance)
+Define your model. `false` (181D) or `true` (181B) (with to impedance)
 
 | Name | Type | Default | Description
 | ---- | ---- | ------- | -----------
-| model | string | `miscale` | Supported models: `miscale`, `181D`, `181B`
+| model | bool | `false` | Supported models: with or without impedance
 
 ## Screenshots
 
-![body-miscale-card](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/default.jpg)
+![body-miscale-card](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/add-card.png)
 
-![body-miscale-card-image](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/with-image.jpg)
+![body-miscale-card-image](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/examples/card-configuration.png)
 
 ## Examples
 
@@ -112,7 +112,7 @@ Basic configuration:
   entity: bodymiscale.name
   image: /local/custom/folder/background.jpg
   name: My Bodymiscale
-  model: '181D'
+  model: false
 ```
 
 Hide specific attributes and/or buttons:
@@ -169,7 +169,8 @@ Add custom buttons and service calls:
         entity_id: light.living_room
 ```
 
-Translations:
+Translations: Automatic (setting of your homeassistant) or manual
+Currently the languages available are `DE`,`EN`,`FR`,`NL`,`PT-BR`, you can contact me to integrate your native language 
 
 ```yaml
 - type: custom:body-miscale-card

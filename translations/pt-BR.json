@@ -1,12 +1,13 @@
 {
   "common": {
-    "name": "Bodymiscale Card",
-    "description": "O cartão bodymiscale permite que você exiba a pontuação do seu corpo.",
+    "name": "BodyMiScale Card",
+    "description": "O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",
     "not_available": "Bodymiscale não é avaialável",
     "toggle_power": "Pontuação do show/Ocultar pontuação"
   },
   "state": {
-    "ok": "OK",
+    "ok": "MEDIÇÃO: OK",
+    "unknown": "ESTATUTO: desconhecido",
     "problem": "Problema",
     "none": "Nenhum",
     "weight unavailable": "Peso indisponível",
@@ -27,18 +28,19 @@
     "unavailable ohm": "indisponível"
   },
   "body": {
-    "water": "Água",
-    "visceral_fat": "Gordura visceral",
-    "body_fat": "Gordura corporal",
     "bmi": "IMC",
     "bmi_label": "Etiqueta IMC",
-    "muscle_mass": "Massa muscular",
+    "visceral_fat": "Gordura visceral",
+    "body_fat": "Gordura corporal",
     "protein": "Proteína",
-    "basal_metabolism": "Metabolismo basal",
+    "water": "Água",
+    "muscle_mass": "Massa muscular",
     "bone_mass": "Massa óssea",
-    "metabolic_age": "Idade metabólica",
+    "weight": "Peso",
     "ideal": "Ideal",
-    "body_type": "Tipo de corpo"
+    "basal_metabolism": "Metabolismo basal",
+    "body_type": "Tipo de corpo",
+    "metabolic_age": "Idade metabólica"
   },
   "body_value": {
     "Skinny": "Magro",
@@ -66,25 +68,34 @@
     "missing_model": "Por favor, defina um modelo de escala válido."
   },
   "editor": {
-    "entity": "Entidade (Obrigatório)",
-    "show_name": "Nome do show",
+    "entity": "Por favor, escolha uma conta na escala (obrigatório) !",
+    "model": "Ligue se sua balança tiver 4 círculos cinzas de 5 cm Ø em cima dela (modelo 181B) !",
+    "model_impedance_on": "Alternar o modelo impedância em",
+    "model_impedance_off": "Alternar o modelo impedância desligado",
+    "image": "Imagem de fundo (opcional)",
+    "show_name": "Mostrar o nome da conta como título ?",
     "show_name_aria_label_on": "Alternar o nome da exibição",
     "show_name_aria_label_off": "Alternar o nome da exibição",
     "show_state": "Mostrar Estado",
     "show_state_aria_label_on": "Alternar estado de exibição ligado",
     "show_state_aria_label_off": "Alternar estado de exibição fora",
-    "show_attributes": "Atributos do show",
+    "show_attributes": "Mostrar dados mestres pessoais (canto superior direito)",
     "show_attributes_aria_label_on": "Alternar atributos de exibição em",
     "show_attributes_aria_label_off": "Alternar atributos de exibição fora",
-    "show_body": "Mostrar pontuação corporal",
+    "show_body": "Opções avançadas (mais detalhes de medição e mudança de conta)",
+    "show_body1": "(parte inferior - pressione o botão de energia para mostrar)",
     "show_body_aria_label_on": "Alternar a pontuação do corpo do display em",
     "show_body_aria_label_off": "Alternar a pontuação do corpo do display fora",
-    "show_buttons": "Mostrar botões",
+    "show_buttons": "Permitir a troca de conta",
     "show_buttons_aria_label_on": "Alternar botões de exibição",
     "show_buttons_aria_label_off": "Alternar botões de exibição desligados",
-    "show_toolbar": "Mostrar barra de ferramentas",
+    "show_toolbar": "Mostrar barra de ferramentas (botão de ligar e interruptor)",
     "show_toolbar_aria_label_on": "Alternar a barra de ferramentas do display em",
     "show_toolbar_aria_label_off": "Alternar barra de ferramentas de exibição fora",
-    "code_only_note": "Nota: As opções de configuração de ações e estatísticas estão disponíveis exclusivamente usando o Editor de Código."
+    "code_information": "AS MUDANÇAS SÓ APARECERÃO DEPOIS DE TEREM SIDO SALVAS.",
+    "header_options": "1. Opções do cabeçalho do cartão",
+    "body_options": "2. Mais opções de placas",
+    "warning": "CUIDADO:",
+    "code_only_note": "Opções adicionais estão disponíveis apenas no editor de código."
   }
 }

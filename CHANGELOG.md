@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v4.6.0
+- added NL language (thanks to @llewy)
+- update of the elements and translation of the configuration map
+- replace the model choice with a switch (Warning: if you upgrade from 4.5.0 to 4.6.0, you must activate a return trip to take into account )
+
+**special thanks to @typxxi for his help in developing the new update and for his extensive testing.**
+
 ## v4.5.0
 - add BMI Label
 
@@ -8,18 +15,18 @@ All notable changes to this project will be documented in this file.
 - fix
 
 ## v4.1.0
-- Added DE language
-- Replace the icons of materialdesignicons by the official "mifit" icons for the score body
+- added DE language
+- replace the icons of materialdesignicons by the official "mifit" icons for the score body
 
 ## v4.0.0
-- Use snake_case format for attribute names (thanks to Pavel Popov https://github.com/dckiller51/bodymiscale/pull/13)
-- Replace custom icons with materialdesignicons icons
-- Add a toolbar for score and service icons
+- use snake_case format for attribute names (thanks to Pavel Popov https://github.com/dckiller51/bodymiscale/pull/13)
+- replace custom icons with materialdesignicons icons
+- add a toolbar for score and service icons
 
 
 ## v3.1.0
-- Complete translation of card elements
-- Added pt-BR language
+- complete translation of card elements
+- added pt-BR language
 
 ## v3.0.3
 - fix

@@ -1,0 +1,101 @@
+{
+  "common": {
+    "name": "BodyMiScale Card",
+    "description": "De bodymiscale kaart toont u uw gewicht / gerelateerde lichaamsstatus.",
+    "not_available": "Bodymiscale is niet beschikbaar",
+    "toggle_power": "Laat score zien/verberg score"
+  },
+  "state": {
+    "ok": "METING: OK",
+    "unknown": "STATUS: onbekend",
+    "problem": "Probleem",
+    "none": "Geen",
+    "weight unavailable": "Gewicht niet beschikbar",
+    "impedance unavailable": "Impedantie niet beschikbaar",
+    "weight unavailable, impedance unavailable": "Gewicht niet beschikbaar, impedantie niet beschikbaar"
+  },
+  "attributes": {
+    "weight: ": "Gewicht: ",
+    "impedance: ": "Impedantie: ",
+    "height: ": "Lengte: ",
+    "age: ": "Leeftijd: ",
+    "gender: ": "Geslacht: "
+  },
+  "attributes_value": {
+    "male": "man",
+    "female": "vrouw",
+    "unavailable kg": "niet beschikbaar",
+    "unavailable ohm": "niet beschikbaar"
+  },
+  "body": {
+    "bmi": "BMI",
+    "bmi_label": "BMI label",
+    "visceral_fat": "Visceraal vet",
+    "body_fat": "Lichaamsvet",
+    "protein": "Proteine",
+    "water": "Water",
+    "muscle_mass": "Spiermassa",
+    "bone_mass": "Botgewicht",
+    "weight": "Gewicht",
+    "ideal": "Ideaal",
+    "basal_metabolism": "Basaal metabolisme",
+    "body_type": "Lichaamstype",
+    "metabolic_age": "Metabolistische leeftijd"
+  },
+  "body_value": {
+    "Skinny": "Mager",
+    "Balanced-skinny": "Gebalanceerd-mager",
+    "Skinny-muscular": "Mager-gespierd",
+    "Balanced": "Gebalanceerd",
+    "Balanced-muscular": "Gebalanceerd-gespierd",
+    "Lack-exerscise": "Weinig-beweging",
+    "Thick-set": "Dik",
+    "Obese": "Obesitas",
+    "Overweight": "Overgewicht",
+    "Underweight": "Ondergewicht",
+    "Normal or Healthy Weight": "Normaal of gezond gewicht",
+    "Slight overweight": "Licht overgewicht",
+    "Moderate obesity": "Gemiddeld overgewicht",
+    "Severe obesity": "Ruim overgewicht",
+    "Massive obesity": "Enorm overgewicht"
+  },
+  "unit": {
+    " years": " jaren"
+  },
+  "error": {
+    "missing_entity": "Geef een entiteit in.",
+    "missing_enttity_bodymiscale": "Geef een bodymiscale entiteit in.",
+    "missing_model": "Geef een juist weegschaalmodel in."
+  },
+  "editor": {
+    "entity": "Kies een account op de schaal (verplicht) !",
+    "model": "Zet aan als uw weegschaal 4 grijze cirkels van 5 cm Ø op de bovenkant heeft (model 181B) !",
+    "model_impedance_on": "Model impedantiemeting inschakelen",
+    "model_impedance_off": "Model impedantiemeting uitschakelen",
+    "image": "Achtergrondafbeelding (facultatief)",
+    "show_name": "Toon de naam van de rekening als titel ?",
+    "show_name_aria_label_on": "Zet naam aan",
+    "show_name_aria_label_off": "Zet naam uit",
+    "show_state": "Geef status weer",
+    "show_state_aria_label_on": "Zet status aan",
+    "show_state_aria_label_off": "Zet status uit",
+    "show_attributes": "Persoonlijke stamgegevens weergeven (rechtsboven)",
+    "show_attributes_aria_label_on": "Zet attributen aan",
+    "show_attributes_aria_label_off": "Zet attributen uit",
+    "show_body": "Geavanceerde opties (meer meetdetails en accountwijzigingen)",
+    "show_body1": "(onderste deel - druk op de aan/uit-knop om te tonen)",
+    "show_body_aria_label_on": "Zet lichaamsscore aan",
+    "show_body_aria_label_off": "Zet lichaamsscore uit",
+    "show_buttons": "Accountwissel toestaan",
+    "show_buttons_aria_label_on": "Zet knoppen aan",
+    "show_buttons_aria_label_off": "Zet knoppen uit",
+    "show_toolbar": "Toon werkbalk (aan/uit-knop en schakelaar)",
+    "show_toolbar_aria_label_on": "Zet knoppenbalk aan",
+    "show_toolbar_aria_label_off": "Zet knoppenbalk uit",
+    "code_information": "WIJZIGINGEN VERSCHIJNEN PAS NADAT ZE ZIJN OPGESLAGEN.",
+    "header_options": "1. Kaart koptekst opties",
+    "body_options": "2. Meer boordopties",
+    "warning": "LET OP:",
+    "code_only_note": "Extra opties zijn alleen beschikbaar in de code editor."
+  }
+}
