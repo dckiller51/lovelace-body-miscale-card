@@ -1,4 +1,4 @@
-# body-miscale-card (In progress)
+# body-miscale-card
 
 [![GH-release](https://img.shields.io/github/v/release/dckiller51/lovelace-body-miscale-card.svg?style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card/releases)
 [![GH-downloads](https://img.shields.io/github/downloads/dckiller51/lovelace-body-miscale-card/total?style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card/releases)

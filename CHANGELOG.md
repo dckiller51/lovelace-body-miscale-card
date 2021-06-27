@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v4.6.1
+- fix
+
 ## v4.6.0
 - added NL language (thanks to @llewy)
 - update of the elements and translation of the configuration map
