@@ -73,6 +73,9 @@
     "model1": "( = modelo 181B) !",
     "model_aria_label_on": "Alternar o modelo impedância em",
     "model_aria_label_off": "Alternar o modelo impedância desligado",
+    "model": "ATIVAR se a escala tiver 4 círculos cinzentos de 5 cm Ø no topo ( = modelo 181B) !",
+    "model_impedance_on": "Alternar o modelo impedância em",
+    "model_impedance_off": "Alternar o modelo impedância desligado",
     "image": "Imagem de fundo (opcional)",
     "show_name": "Mostrar o nome da conta como título ?",
     "show_name_aria_label_on": "Alternar o nome da exibição",
@@ -97,6 +100,6 @@
     "header_options": "1. Opções do cabeçalho do cartão",
     "body_options": "2. Mais opções de placas",
     "warning": "CUIDADO:",
-    "code_only_note": "Opções adicionais estão disponíveis apenas no editor de código."
+    "code_only_note": "Opções adicionais estão disponíveis apenas no editor de código. [0626-09]"
   }
 }

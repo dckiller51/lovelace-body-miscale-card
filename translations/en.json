@@ -73,6 +73,9 @@
     "model1": "( = model 181B) !",
     "model_aria_label_on": "Toggle model impedance on",
     "model_aria_label_off": "Toggle model impedance off",
+    "model": "ACTIVATE if the scale has 4 grey circles of 5 cm Ø on top ( = model 181B) !",
+    "model_impedance_on": "Toggle model impedance on",
+    "model_impedance_off": "Toggle model impedance off",
     "image": "Background image (optional)",
     "show_name": "Show the name of the account as title ?",
     "show_name_aria_label_on": "Toggle display name on",
@@ -97,6 +100,6 @@
     "header_options": "1. Card header options",
     "body_options": "2. More card options",
     "warning": "ATTENTION:",
-    "code_only_note": "Additional options are only available in the code editor."
+    "code_only_note": "Additional options are only available in the code editor. [0626-09]"
   }
 }

@@ -73,6 +73,9 @@
       "model1": "( = Modell 181B) !",
       "model_aria_label_on": "Umschalten von Modell Impedanzmessung ein",
       "model_aria_label_off": "Modell Impedanzmessung ausschalten",
+      "model": "AKTIVIEREN, wenn auf der Waage 4 graue, 5 cm Ø Kreise sind ( = Modell 181B) !",
+      "model_impedance_on": "Umschalten von Modell Impedanzmessung ein",
+      "model_impedance_off": "Modell Impedanzmessung ausschalten",
       "image": "Hintergrundbild (optional)",
       "show_name": "Namen des Konto als Titel anzeigen ?",
       "show_name_aria_label_on": "Namensanzeige einschalten",
@@ -97,6 +100,6 @@
       "header_options": "1. Kartenkopf Optionen",
       "body_options": "2. mehr Kartenoptionen",
       "warning": "ACHTUNG:",
-      "code_only_note": "Weitere Optionen sind nur im Code Editor verfügbar."
+      "code_only_note": "Weitere Optionen sind nur im Code Editor verfügbar. [0626-09]"
     }
   }

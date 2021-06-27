@@ -73,6 +73,9 @@
     "model1": "aan de bovenkant heeft ( = model 181B) !",
     "model_aria_label_on": "Model impedantiemeting inschakelen",
     "model_aria_label_off": "Model impedantiemeting uitschakelen",
+    "model": "ACTIVEREN indien de weegschaal 4 grijze cirkels van 5 cm Ø aan de bovenkant heeft ( = model 181B) !",
+    "model_impedance_on": "Model impedantiemeting inschakelen",
+    "model_impedance_off": "Model impedantiemeting uitschakelen",
     "image": "Achtergrondafbeelding (facultatief)",
     "show_name": "Toon de naam van de rekening als titel ?",
     "show_name_aria_label_on": "Zet naam aan",
@@ -97,6 +100,6 @@
     "header_options": "1. Kaart koptekst opties",
     "body_options": "2. Meer boordopties",
     "warning": "LET OP:",
-    "code_only_note": "Extra opties zijn alleen beschikbaar in de code editor."
+    "code_only_note": "Extra opties zijn alleen beschikbaar in de code editor. [0626-09]"
   }
 }
