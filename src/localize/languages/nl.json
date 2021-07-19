@@ -1,18 +1,27 @@
 {
   "common": {
+    "version": "Versie",
     "name": "BodyMiScale Card",
     "description": "De bodymiscale kaart toont u uw gewicht / gerelateerde lichaamsstatus.",
     "not_available": "Bodymiscale is niet beschikbaar",
-    "toggle_power": "Laat score zien/verberg score"
+    "toggle_power": "Meer details zoals BMI kCal tonen / verbergen"
   },
-  "state": {
+  "states": {
     "ok": "METING: OK",
     "unknown": "STATUS: onbekend",
     "problem": "Probleem",
     "none": "Geen",
     "weight unavailable": "Gewicht niet beschikbar",
     "impedance unavailable": "Impedantie niet beschikbaar",
-    "weight unavailable, impedance unavailable": "Gewicht niet beschikbaar, impedantie niet beschikbaar"
+    "weight unavailable, impedance unavailable": "Gewicht niet beschikbaar, impedantie niet beschikbaar",
+    "weight low": "Gewicht laag",
+    "impedance low": "Impedantie laag",
+    "weight low, impedance low": "Gewicht laag, impedantie laag",
+    "weight high": "Gewicht hoog",
+    "impedance high": "Impedantie hoog",
+    "weight high, impedance high": "Gewicht hoog, impedantie hoog",
+    "weight high, impedance low": "Gewicht hoog, impedantie laag",
+    "weight low, impedance high": "Gewicht laag, impedantie hoog"
   },
   "attributes": {
     "weight: ": "Gewicht: ",
@@ -64,25 +73,21 @@
   },
   "error": {
     "missing_entity": "Geef een entiteit in.",
-    "missing_entity_bodymiscale": "Geef een bodymiscale entiteit in.",
-    "missing_model": "Geef een juist weegschaalmodel in."
+    "missing_entity_bodymiscale": "Geef een bodymiscale entiteit in."
   },
   "editor": {
     "entity": "Kies een account op de schaal (verplicht) !",
+    "image": "Achtergrondafbeelding (facultatief)",
     "model": "ACTIVEREN indien de weegschaal 4 grijze cirkels van 5 cm Ø",
     "model1": "aan de bovenkant heeft ( = model 181B) !",
     "model_aria_label_on": "Model impedantiemeting inschakelen",
     "model_aria_label_off": "Model impedantiemeting uitschakelen",
-    "model": "ACTIVEREN indien de weegschaal 4 grijze cirkels van 5 cm Ø aan de bovenkant heeft ( = model 181B) !",
-    "model_impedance_on": "Model impedantiemeting inschakelen",
-    "model_impedance_off": "Model impedantiemeting uitschakelen",
-    "image": "Achtergrondafbeelding (facultatief)",
     "show_name": "Toon de naam van de rekening als titel ?",
     "show_name_aria_label_on": "Zet naam aan",
     "show_name_aria_label_off": "Zet naam uit",
-    "show_state": "Geef status weer ?",
-    "show_state_aria_label_on": "Zet status aan",
-    "show_state_aria_label_off": "Zet status uit",
+    "show_states": "Geef status weer ?",
+    "show_states_aria_label_on": "Zet status aan",
+    "show_states_aria_label_off": "Zet status uit",
     "show_attributes": "Persoonlijke stamgegevens weergeven (rechtsboven) ?",
     "show_attributes_aria_label_on": "Zet attributen aan",
     "show_attributes_aria_label_off": "Zet attributen uit",
@@ -90,7 +95,7 @@
     "show_toolbar_aria_label_on": "Zet knoppenbalk aan",
     "show_toolbar_aria_label_off": "Zet knoppenbalk uit",
     "show_body": "Bieden verdere meting details",
-    "show_body1": "(onderste helft - aan/uit knop zal die laten zien) ?",
+    "show_body1": "(onderste helft - pictogram chevron naar beneden zal tonen die) ?",
     "show_body_aria_label_on": "Zet lichaamsscore aan",
     "show_body_aria_label_off": "Zet lichaamsscore uit",
     "show_buttons": "Accountwissel toestaan ?",
@@ -100,6 +105,6 @@
     "header_options": "1. Kaart koptekst opties",
     "body_options": "2. Meer boordopties",
     "warning": "LET OP:",
-    "code_only_note": "Extra opties zijn alleen beschikbaar in de code editor. [0626-09]"
+    "code_only_note": "Extra opties zijn alleen beschikbaar in de code editor."
   }
 }

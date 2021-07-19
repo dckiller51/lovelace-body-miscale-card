@@ -1,18 +1,27 @@
 {
   "common": {
+    "version": "Versão",
     "name": "BodyMiScale Card",
     "description": "O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",
     "not_available": "Bodymiscale não é avaialável",
-    "toggle_power": "Pontuação do show/Ocultar pontuação"
+    "toggle_power": "Mais detalhes como o kCal show / hide da BMI"
   },
-  "state": {
+  "states": {
     "ok": "MEDIÇÃO: OK",
     "unknown": "ESTATUTO: desconhecido",
     "problem": "Problema",
     "none": "Nenhum",
     "weight unavailable": "Peso indisponível",
     "impedance unavailable": "Impedance indisponível",
-    "weight unavailable, impedance unavailable": "Peso indisponível, impedance indisponível"
+    "weight unavailable, impedance unavailable": "Peso indisponível, impedance indisponível",
+    "weight low": "Peso baixo",
+    "impedance low": "Impedância baixa",
+    "weight low, impedance low": "Peso baixo, impedância baixa",
+    "weight high": "Peso alto",
+    "impedance high": "Impedância alta",
+    "weight high, impedance high": "Peso alto, impedância alta",
+    "weight high, impedance low": "Peso alto, impedância baixa",
+    "weight low, impedance high": "Peso baixo, impedância alta"
   },
   "attributes": {
     "weight: ": "Peso: ",
@@ -64,25 +73,21 @@
   },
   "error": {
     "missing_entity": "Por favor, defina uma entidade.",
-    "missing_entity_bodymiscale": "Por favor, defina uma entidade bodymiscale.",
-    "missing_model": "Por favor, defina um modelo de escala válido."
+    "missing_entity_bodymiscale": "Por favor, defina uma entidade bodymiscale."
   },
   "editor": {
     "entity": "Por favor, escolha uma conta na escala (obrigatório) !",
+    "image": "Imagem de fundo (opcional)",
     "model": "ATIVAR se a escala tiver 4 círculos cinzentos de 5 cm Ø no topo",
     "model1": "( = modelo 181B) !",
     "model_aria_label_on": "Alternar o modelo impedância em",
     "model_aria_label_off": "Alternar o modelo impedância desligado",
-    "model": "ATIVAR se a escala tiver 4 círculos cinzentos de 5 cm Ø no topo ( = modelo 181B) !",
-    "model_impedance_on": "Alternar o modelo impedância em",
-    "model_impedance_off": "Alternar o modelo impedância desligado",
-    "image": "Imagem de fundo (opcional)",
     "show_name": "Mostrar o nome da conta como título ?",
     "show_name_aria_label_on": "Alternar o nome da exibição",
     "show_name_aria_label_off": "Alternar o nome da exibição",
-    "show_state": "Mostrar Estado ?",
-    "show_state_aria_label_on": "Alternar estado de exibição ligado",
-    "show_state_aria_label_off": "Alternar estado de exibição fora",
+    "show_states": "Mostrar Estado ?",
+    "show_states_aria_label_on": "Alternar estado de exibição ligado",
+    "show_states_aria_label_off": "Alternar estado de exibição fora",
     "show_attributes": "Mostrar dados mestres pessoais (canto superior direito) ?",
     "show_attributes_aria_label_on": "Alternar atributos de exibição em",
     "show_attributes_aria_label_off": "Alternar atributos de exibição fora",
@@ -90,7 +95,7 @@
     "show_toolbar_aria_label_on": "Alternar a barra de ferramentas do display em",
     "show_toolbar_aria_label_off": "Alternar barra de ferramentas de exibição fora",
     "show_body": "Oferecer mais detalhes de medição",
-    "show_body1": "(parte inferior - botão de energia mostrará esses) ?",
+    "show_body1": "(parte inferior - ícone chevron down mostrará aqueles) ?",
     "show_body_aria_label_on": "Alternar a pontuação do corpo do display em",
     "show_body_aria_label_off": "Alternar a pontuação do corpo do display fora",
     "show_buttons": "Permitir a troca de conta ?",
@@ -100,6 +105,6 @@
     "header_options": "1. Opções do cabeçalho do cartão",
     "body_options": "2. Mais opções de placas",
     "warning": "CUIDADO:",
-    "code_only_note": "Opções adicionais estão disponíveis apenas no editor de código. [0626-09]"
+    "code_only_note": "Opções adicionais estão disponíveis apenas no editor de código."
   }
 }
