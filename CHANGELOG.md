@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.5.0
+
+- Partial integration of bar card options for the body part. (thanks to the contributors of bar-card <https://github.com/custom-cards/bar-card> )
+  Options = Partial (Does not work = animation, columns, decimal, complementary, direction)
+                    (work = color, height, max, min, positions, severity, target, width)
+  Severity Options = OK (from, to, color)
+  Positions Options = OK (icon, name, minmax, value (inside, outside, off))
+  
+  To know the start, destination, color and target values, open your Mi Fit app on your smartphone.
+
 ## v5.0.0
 
 - Conversion to Typescript language (Lit 2)

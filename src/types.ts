@@ -1,24 +1,32 @@
 import { LovelaceCardConfig } from 'custom-card-helpers';
 export interface BodyMiScaleCardConfig extends LovelaceCardConfig {
-  type: string;
-  image?: string;
-  models?: boolean;
+  clickable?: boolean;
+  color: string;
   entity: string;
+  height: string | number;
+  image?: string;
+  max: number;
+  min: number;
+  models?: boolean;
   name?: string | boolean;
+  open: boolean;
+  positions: any;
+  severity: any;
   show_name?: boolean;
   show_states?: boolean;
   show_attributes?: boolean;
   show_body?: boolean;
   show_buttons?: boolean;
   show_toolbar?: boolean;
-  clickable?: boolean;
-  open: boolean;
   styles: {
     background: string;
     icon: string;
     iconbody: string;
     content: string;
   }
+  target: any;
+  type: string;
+  width: string;
 }
 
 export enum NumberFormat {

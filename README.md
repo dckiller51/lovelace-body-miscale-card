@@ -169,8 +169,80 @@ Add custom buttons and service calls:
         entity_id: light.living_room
 ```
 
+Add custom bar options (To know the start, destination, color and target values, open your Mi Fit app on your smartphone.)
+
+## Options
+
+| Name | Type | Default | Description
+| ---- | ---- | ------- | -----------
+| color | string | var(--score-card-color, var(--ha-card-background)) | Color of the bar.
+| height | string | 30px | Defines the height of the bar.
+| max | number | 100 | Defines maximum value of the bar.
+| min | number | 0 | Defines minimum value of the bar.
+| positions | object | none | Defines the positions of the card elements. See [Positions Options](#positions-options).
+| severity | object | none | A list of severity values. See [Severity Options](#severity-options).
+| target | number | none | Defines and enables target marker value.
+| width | string | 100% | Defines the width of the bar (**Required** the name must be on `outside`).
+
+## Severity Options
+
+| Name | Type | Default | Description
+| ---- | ---- | ------- | -----------
+| from | number | **Required** | Defines from which value the color should be displayed.
+| to | number | **Required** | Defines to which value the color should be displayed.
+| color | string | **Required** | Defines the color to be displayed.
+
+## Positions Options
+
+| Name | Type | Default | Description
+| ---- | ---- | ------- | -----------
+| icon | string | outside | `inside`, `outside`, `off`
+| name | string | inside | `inside`, `outside`, `off`
+| minmax | string | off | `inside`, `outside`, `off`
+| value | string | inside | `inside`, `outside`, `off`
+
+```yaml
+type: custom:body-miscale-card
+entity: bodymiscale.test
+model: false
+show_name: true
+show_states: true
+show_attributes: true
+show_toolbar: true
+show_body: true
+show_buttons: true
+entity_row: true
+buttons:
+  user1:
+    show: true
+body:
+  bmi:
+    positions:
+      name: outside
+      minmax: inside
+    width: 50%
+    target: 21
+  bmi_label:
+    color: blue
+    height: 40px
+  visceral_fat:
+    severity:
+      - from: 0
+        to: 4.99
+        color: blue
+      - from: 5
+        to: 10
+        color: green
+      - from: 10.01
+        to: 15
+        color: red
+    target: 15
+    min: 0
+    max: 25
+```
+
 Translations: Automatic (setting of your homeassistant) or manual
-Currently the languages available are `DE`,`EN`,`FR`,`NL`,`PT-BR`, you can contact me to integrate your native language 
+Currently the languages available are `DE`,`EN`,`FR`,`NL`,`PT-BR`, you can contact me to integrate your native language
 
 ```yaml
 - type: custom:body-miscale-card
