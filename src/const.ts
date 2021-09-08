@@ -13,7 +13,7 @@ export const states = {
   },
 };
 
-export const attributes = {
+export const attributes_kg = {
   weight: {
     key: 'weight',
     label: localize(`attributes.${'weight: '}`),
@@ -40,7 +40,34 @@ export const attributes = {
   },
 };
 
-export const body = {
+export const attributes_lb = {
+  weight: {
+    key: 'weight',
+    label: localize(`attributes.${'weight: '}`),
+    unit: ' lbs',
+  },
+  impedance: {
+    key: 'impedance',
+    label: localize(`attributes.${'impedance: '}`),
+    unit: ' ohm',
+  },
+  height: {
+    key: 'height',
+    label: localize(`attributes.${'height: '}`),
+    unit: ' cm',
+  },
+  age: {
+    key: 'age',
+    label: localize(`attributes.${'age: '}`),
+    unit: localize(`unit.${' years'}`),
+  },
+  gender: {
+    key: 'gender',
+    label: localize(`attributes.${'gender: '}`),
+  },
+};
+
+export const body_kg = {
   bmi: {
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
@@ -348,6 +375,314 @@ export const body = {
   },
 };
 
+export const body_lb = {
+  bmi: {
+    key: 'bmi',
+    label: localize(`body.${'bmi'}`),
+    icon: '/local/images/bodyscoreIcon/bmi.webp',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 40,
+    min: 0,
+    severity: [
+      { from: 0, to: 18.5, color: 'blue' },
+      { from: 18.51, to: 25, color: 'green' },
+      { from: 25.01, to: 28, color: 'orange' },
+      { from: 28.01, to: 32, color: 'orangered' },
+      { from: 32.01, to: Infinity, color: 'red' },
+    ],
+    target: 25,
+  },
+  bmi_label: {
+    key: 'bmi_label',
+    label: localize(`body.${'bmi_label'}`),
+    icon: '/local/images/bodyscoreIcon/body_type.webp',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+  },
+  visceral_fat: {
+    key: 'visceral_fat',
+    label: localize(`body.${'visceral_fat'}`),
+    icon: '/local/images/bodyscoreIcon/visceral_fat.webp',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 20,
+    min: 0,
+    severity: [
+      { from: 0, to: 10, color: 'green' },
+      { from: 10.01, to: 15, color: 'orange' },
+      { from: 15.01, to: Infinity, color: 'orangered' },
+    ],
+    target: 10,
+  },
+  body_fat: {
+    key: 'body_fat',
+    label: localize(`body.${'body_fat'}`),
+    icon: '/local/images/bodyscoreIcon/body_fat.webp',
+    unit: ' %',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 40,
+    min: 0,
+    severity: [
+      { from: 0, to: 12, color: 'blue' },
+      { from: 12.01, to: 18, color: 'royalblue' },
+      { from: 18.01, to: 23, color: 'green' },
+      { from: 23.01, to: 28, color: 'orange' },
+      { from: 28.01, to: Infinity, color: 'orangered' },
+    ],
+    target: 23,
+  },
+  protein: {
+    key: 'protein',
+    label: localize(`body.${'protein'}`),
+    icon: '/local/images/bodyscoreIcon/protein.webp',
+    unit: ' %',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 32,
+    min: 0,
+    severity: [
+      { from: 0, to: 16, color: 'orangered' },
+      { from: 16.01, to: 20, color: 'green' },
+      { from: 20.01, to: Infinity, color: 'darkgreen' },
+    ],
+    target: 20,
+  },
+  water: {
+    key: 'water',
+    label: localize(`body.${'water'}`),
+    icon: '/local/images/bodyscoreIcon/water.webp',
+    unit: ' %',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 80,
+    min: 0,
+    severity: [
+      { from: 0, to: 55, color: 'orangered' },
+      { from: 55.01, to: 65.1, color: 'green' },
+      { from: 65.11, to: Infinity, color: 'darkgreen' },
+    ],
+    target: 65.1,
+  },
+  muscle_mass: {
+    key: 'muscle_mass',
+    label: localize(`body.${'muscle_mass'}`),
+    icon: '/local/images/bodyscoreIcon/muscle_mass.webp',
+    unit: ' lbs',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 100,
+    min: 0,
+    severity: [
+      { from: 0, to: 49.4, color: 'orangered' },
+      { from: 49.41, to: 59.5, color: 'green' },
+      { from: 59.51, to: Infinity, color: 'darkgreen' },
+    ],
+    target: 59.5,
+  },
+  bone_mass: {
+    key: 'bone_mass',
+    label: localize(`body.${'bone_mass'}`),
+    icon: '/local/images/bodyscoreIcon/bone_mass.webp',
+    unit: ' lbs',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 8,
+    min: 0,
+    severity: [
+      { from: 0, to: 2, color: 'orangered' },
+      { from: 2.01, to: 4.2, color: 'green' },
+      { from: 4.21, to: Infinity, color: 'darkgreen' },
+    ],
+    target: 4.2,
+  },
+  weight: {
+    key: 'weight',
+    label: localize(`body.${'weight'}`),
+    icon: '/local/images/bodyscoreIcon/ideal.webp',
+    unit: ' lbs',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 130,
+    min: 0,
+    severity: [
+      { from: 0, to: 57.3, color: 'blue' },
+      { from: 57.31, to: 77.4, color: 'green' },
+      { from: 77.41, to: 86.7, color: 'orange' },
+      { from: 86.71, to: 99.1, color: 'orangered' },
+      { from: 99.11, to: Infinity, color: 'red' },
+    ],
+    target: 77.4,
+  },
+  ideal: {
+    key: 'ideal',
+    label: localize(`body.${'ideal'}`),
+    icon: '/local/images/bodyscoreIcon/ideal.webp',
+    unit: ' lbs',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 130,
+    min: 0,
+    severity: [
+      { from: 0, to: 57.3, color: 'blue' },
+      { from: 57.31, to: 77.4, color: 'green' },
+      { from: 77.41, to: 86.7, color: 'orange' },
+      { from: 86.71, to: 99.1, color: 'orangered' },
+      { from: 99.11, to: Infinity, color: 'red' },
+    ],
+    target: 67.2,
+  },
+  basal_metabolism: {
+    key: 'basal_metabolism',
+    label: localize(`body.${'basal_metabolism'}`),
+    icon: '/local/images/bodyscoreIcon/basal_metabolism.webp',
+    unit: ' kcal',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      indicator: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: 3000,
+    min: 0,
+    severity: [
+      { from: 0, to: 1530, color: 'orangered' },
+      { from: 1530.01, to: Infinity, color: 'green' },
+    ],
+    target: 1530,
+  },
+  body_type: {
+    key: 'body_type',
+    label: localize(`body.${'body_type'}`),
+    icon: '/local/images/bodyscoreIcon/body_type.webp',
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+  },
+  metabolic_age: {
+    key: 'metabolic_age',
+    label: localize(`body.${'metabolic_age'}`),
+    icon: '/local/images/bodyscoreIcon/metabolic_age.webp',
+    unit: localize(`unit.${' years'}`),
+    direction: 'right',
+    height: '30px',
+    width: '100%',
+    positions: {
+      icon: 'outside',
+      name: 'inside',
+      minmax: 'off',
+      value: 'inside',
+    },
+    color: 'var(--score-card-color, var(--ha-card-background))',
+    max: '',
+    min: '',
+    severity: '',
+    target: '',
+  },
+};
+
 export const buttons = {
   user1: {
     show: false,
@@ -376,6 +711,10 @@ export const buttons = {
   },
 };
 
+const compute = {
+  convertkgtolb: (v: any) => Math.round((Number(v) * 2.20462) * 10) / 10,
+}
+
 export const models = {
   false: {
     states: {
@@ -383,14 +722,24 @@ export const models = {
         key: 'state',
       },
     },
-    attributes: {
+    attributes_kg: {
       weight: { key: 'weight' },
       impedance: false,
       height: { key: 'height' },
       age: { key: 'age' },
       gender: { key: 'gender' },
     },
-    body: {
+    attributes_lb: {
+      weight: { 
+        key: 'weight',
+        compute: compute.convertkgtolb,
+      },
+      impedance: false,
+      height: { key: 'height' },
+      age: { key: 'age' },
+      gender: { key: 'gender' },
+    },
+    body_kg: {
       bmi: { key: 'bmi' },
       bmi_label: { key: 'bmi_label' },
       visceral_fat: { key: 'visceral_fat' },
@@ -405,6 +754,27 @@ export const models = {
       body_type: false,
       metabolic_age: false,
     },
+    body_lb: {
+      bmi: { key: 'bmi' },
+      bmi_label: { key: 'bmi_label' },
+      visceral_fat: { key: 'visceral_fat' },
+      body_fat: false,
+      protein: false,
+      water: false,
+      muscle_mass: false,
+      bone_mass: false,
+      weight: {
+        key: 'weight',
+        compute: compute.convertkgtolb,
+      },
+      ideal: {
+        key: 'ideal',
+        compute: compute.convertkgtolb,
+      },
+      basal_metabolism: { key: 'basal_metabolism' },
+      body_type: false,
+      metabolic_age: false,
+    },
   },
   true: {
     states: {
@@ -412,14 +782,24 @@ export const models = {
         key: 'state',
       },
     },
-    attributes: {
+    attributes_kg: {
       weight: { key: 'weight' },
       impedance: { key: 'impedance' },
       height: { key: 'height' },
       age: { key: 'age' },
       gender: { key: 'gender' },
     },
-    body: {
+    attributes_lb: {
+      weight: { 
+        key: 'weight',
+        compute: compute.convertkgtolb,
+      },
+      impedance: { key: 'impedance' },
+      height: { key: 'height' },
+      age: { key: 'age' },
+      gender: { key: 'gender' },
+    },
+    body_kg: {
       bmi: { key: 'bmi' },
       bmi_label: { key: 'bmi_label' },
       visceral_fat: { key: 'visceral_fat' },
@@ -430,6 +810,33 @@ export const models = {
       bone_mass: { key: 'bone_mass' },
       weight: { key: 'weight' },
       ideal: { key: 'ideal' },
+      basal_metabolism: { key: 'basal_metabolism' },
+      body_type: { key: 'body_type' },
+      metabolic_age: { key: 'metabolic_age' },
+    },
+    body_lb: {
+      bmi: { key: 'bmi' },
+      bmi_label: { key: 'bmi_label' },
+      visceral_fat: { key: 'visceral_fat' },
+      body_fat: { key: 'body_fat' },
+      protein: { key: 'protein' },
+      water: { key: 'water' },
+      muscle_mass: {
+        key: 'muscle_mass',
+        compute: compute.convertkgtolb,
+      },
+      bone_mass: {
+        key: 'bone_mass',
+        compute: compute.convertkgtolb,
+      },
+      weight: {
+        key: 'weight',
+        compute: compute.convertkgtolb,
+      },
+      ideal: {
+        key: 'ideal',
+        compute: compute.convertkgtolb,
+      },
       basal_metabolism: { key: 'basal_metabolism' },
       body_type: { key: 'body_type' },
       metabolic_age: { key: 'metabolic_age' },

@@ -11,7 +11,7 @@ import {
 
 import './editor';
 import { BodyMiScaleCardConfig } from './types';
-import { CARD_VERSION, states, attributes, body, buttons, models } from './const';
+import { CARD_VERSION, states, attributes_kg, attributes_lb, body_kg, body_lb, buttons, models } from './const';
 import { styles } from './styles';
 import { localize } from './localize/localize';
 import { HassEntity } from 'home-assistant-js-websocket';
@@ -72,8 +72,8 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
       show_toolbar: config.show_toolbar,
       ...config,
       states: deepMerge(states, model.states, config.states),
-      attributes: deepMerge(attributes, model.attributes, config.attributes),
-      body: deepMerge(body, model.body, config.body),
+      attributes: config.unit ? deepMerge(attributes_lb, model.attributes_lb, config.attributes) : deepMerge(attributes_kg, model.attributes_kg, config.attributes),
+      body: config.unit ? deepMerge(body_lb, model.body_lb, config.body) : deepMerge(body_kg, model.body_kg, config.body),
       buttons: deepMerge(buttons, model.buttons, config.buttons),
       direction: 'right',
       styles: {
@@ -194,13 +194,14 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     }
     const stateObj = this.hass!.states[this.config!.entity];
 
+    const computeFunc = data.compute || ((v: any) => v);
     const isValidAttribute = data && data.key in stateObj.attributes;
     const isValidEntityData = data && data.key in stateObj;
 
     const value = isValidAttribute
-      ? stateObj.attributes[data.key]
+      ? computeFunc(stateObj.attributes[data.key])
       : isValidEntityData
-      ? stateObj[data.key]
+      ? computeFunc(stateObj[data.key])
       : this.hass!.localize('state.default.unavailable');
 
     const formatValue = formatNumber(value, this.hass!.locale);
@@ -225,13 +226,14 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
 
     const stateObj = this.hass!.states[this.config!.entity];
 
+    const computeFunc = data.compute || ((v: any) => v);
     const isValidAttribute = data && data.key in stateObj.attributes;
     const isValidEntityData = data && data.key in stateObj;
 
     const value = isValidAttribute
-      ? stateObj.attributes[data.key]
+      ? computeFunc(stateObj.attributes[data.key])
       : isValidEntityData
-      ? stateObj[data.key]
+      ? computeFunc(stateObj[data.key])
       : this.hass!.localize('state.default.unavailable');
     const formatValue = formatNumber(value, this.hass!.locale);
 

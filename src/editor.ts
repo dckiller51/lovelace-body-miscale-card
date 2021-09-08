@@ -39,6 +39,10 @@ export class BoilerplateCardEditor extends LitElement implements LovelaceCardEdi
     return this._config?.model || false;
   }
 
+  get _unit() {
+    return this._config?.unit || false;
+  }
+
   get _show_name(): boolean {
     return this._config?.show_name || false;
    }
@@ -118,6 +122,21 @@ export class BoilerplateCardEditor extends LitElement implements LovelaceCardEdi
           </ha-switch>
           ${localize('editor.model')}<br>
           ${localize('editor.model1')}
+        </p>
+
+        <p class="option">
+          <ha-switch
+            aria-label=${localize(
+              this._unit
+                ? 'editor.unit_aria_label_off'
+                : 'editor.unit_aria_label_on'
+            )}
+            .checked=${this._unit !== false}
+            .configValue=${'unit'}
+            @change=${this._valueChanged}
+          >
+          </ha-switch>
+          ${localize('editor.unit')}<br>
         </p>
 
         <strong style="font-size: large; line-height: 200%;">

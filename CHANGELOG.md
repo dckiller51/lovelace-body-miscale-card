@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.0
+
+- add a switch to convert kg to lbs
+
 ## v5.5.0
 
 - Partial integration of bar card options for the body part. (thanks to the contributors of bar-card <https://github.com/custom-cards/bar-card> )
