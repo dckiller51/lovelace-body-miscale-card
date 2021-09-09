@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.2
+
+- fix: Change of target for bone mass
+
 ## v5.6.1
 
 - fix: change default values for lbs

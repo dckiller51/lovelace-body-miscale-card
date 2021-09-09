@@ -258,7 +258,7 @@ export const body_kg = {
       { from: 2.01, to: 4.2, color: 'green' },
       { from: 4.21, to: Infinity, color: 'darkgreen' },
     ],
-    target: 2.1,
+    target: 3.1,
   },
   weight: {
     key: 'weight',
