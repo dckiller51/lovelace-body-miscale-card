@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.1
+
+- fix: change default values for lbs
+
 ## v5.6.0
 
-- add a switch to convert kg to lbs
+- Add a switch to convert kg to lbs
 
 ## v5.5.0
 
