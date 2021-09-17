@@ -1,18 +1,18 @@
-import * as cn from './languages/cn.json';
 import * as de from './languages/de.json';
 import * as en from './languages/en.json';
 import * as fr from './languages/fr.json';
 import * as nl from './languages/nl.json';
 import * as pt_BR from './languages/pt-BR.json';
+import * as zh_Hans from './languages/zh-Hans.json';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const languages: any = {
-  cn: cn,
   de: de,
   en: en,
   fr: fr,
   nl: nl,
   pt_BR: pt_BR,
+  zh_Hans: zh_Hans,
 };
 
 /**

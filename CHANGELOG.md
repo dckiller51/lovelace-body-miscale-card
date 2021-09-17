@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.4
+
+- fix CN language to zh-Hans
+
 ## v5.6.3
 
 - added CN language (thanks to @sasukebinbin)
