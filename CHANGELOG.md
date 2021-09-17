@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.3
+
+- added CN language (thanks to @sasukebinbin)
+
 ## v5.6.2
 
 - fix: Change of target for bone mass
