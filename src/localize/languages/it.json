@@ -1,0 +1,113 @@
+{
+  "common": {
+    "version": "Versione",
+    "name": "BodyMiScale Card",
+    "description": "La card bodymiscale ti mostra il tuo peso/stato corporeo relativo.",
+    "not_available": "BodyMiScale non è disponibile",
+    "toggle_power": "Più dettagli come BMI kCal mostra / nascondi"
+  },
+  "states": {
+    "ok": "MISURAZIONE: OK",
+    "unknown": "STATO: sconosciuto",
+    "problem": "Problema",
+    "none": "Nessuno",
+    "weight unavailable": "Peso non disponibile",
+    "impedance unavailable": "Impedenza non disponibile",
+    "weight unavailable, impedance unavailable": "Peso non disponibile, impedenza non disponibile",
+    "weight low": "Peso basso",
+    "impedance low": "Impedenza bassa",
+    "weight low, impedance low": "Peso basso, impedenza bassa",
+    "weight high": "Peso alto",
+    "impedance high": "Impedenza alta",
+    "weight high, impedance high": "Peso alto, impedenza alta",
+    "weight high, impedance low": "Peso alto, impedenza bassa",
+    "weight low, impedance high": "Peso basso, impedenza alta"
+  },
+  "attributes": {
+    "weight: ": "Peso: ",
+    "impedance: ": "Impedenza: ",
+    "height: ": "Altezza: ",
+    "age: ": "Età: ",
+    "gender: ": "Sesso: "
+  },
+  "attributes_value": {
+    "male": "uomo",
+    "female": "donna",
+    "unavailable kg": "non disponibile",
+    "unavailable ohm": "non disponibile"
+  },
+  "body": {
+    "bmi": "BMI",
+    "bmi_label": "BMI Categoria",
+    "visceral_fat": "Grasso viscerale",
+    "body_fat": "Grasso corporeo",
+    "protein": "Proteine",
+    "water": "Acqua",
+    "muscle_mass": "Massa muscolare",
+    "bone_mass": "Massa ossea",
+    "weight": "Peso",
+    "ideal": "Ideale",
+    "basal_metabolism": "Metabolismo base",
+    "body_type": "Tipo di corpo",
+    "metabolic_age": "Età metabolica"
+  },
+  "body_value": {
+    "Skinny": "Magro",
+    "Balanced-skinny": "Bilanciato-magro",
+    "Skinny-muscular": "Magro-muscoloso",
+    "Balanced": "Bilanciato",
+    "Balanced-muscular": "Bilanciato-muscoloso",
+    "Lack-exercise": "Manca-esercizio",
+    "Thick-set": "Spesso-impostato",
+    "Obese": "Obeso",
+    "Overweight": "Sovrappeso",
+    "Underweight": "Sottopeso",
+    "Normal or Healthy Weight": "Normale o Peso Sano",
+    "Slight overweight": "Leggermente in sovrappeso",
+    "Moderate obesity": "Obesità Moderata",
+    "Severe obesity": "Obesità Grave",
+    "Massive obesity": "Obesità Massiccia"
+  },
+  "unit": {
+    " years": " anni"
+  },
+  "error": {
+    "missing_entity": "Perfavore definisci un'entità.",
+    "missing_entity_bodymiscale": "Perfavore definisci un'entità di tipo bodymiscale."
+  },
+  "editor": {
+    "entity": "Perfavore seleziona un account sulla bilancia (richiesto) !",
+    "image": "Immagine di sfondo (opzionale)",
+    "model": "ATTIVA solo se la bilancia ha i 4 cerchi grigi di 5 cm Ø sulla parte superiore",
+    "model1": "( = modello 181B) !",
+    "model_aria_label_on": "Attiva l'impedenza",
+    "model_aria_label_off": "Disattiva l'impedenza",
+    "unit": "Converti da kg a lbs",
+    "unit_aria_label_on": "Attiva la conversione",
+    "unit_aria_label_off": "Disattiva la conversione",
+    "show_name": "Mostrare il nome dell'account come titolo  ?",
+    "show_name_aria_label_on": "Attiva la visione del nome",
+    "show_name_aria_label_off": "Disattiva la visione del nome",
+    "show_states": "Mostrare lo Stato ?",
+    "show_states_aria_label_on": "Attiva la visione dello stato",
+    "show_states_aria_label_off": "Disattiva la visione dello stato",
+    "show_attributes": "Mostrare i dati anagrafici personali (in alto a destra) ?",
+    "show_attributes_aria_label_on": "Attiva la visione degli attributi",
+    "show_attributes_aria_label_off": "Disattiva la visione degli attributi",
+    "show_toolbar": "Mostrare opzioni avanzate ?",
+    "show_toolbar_aria_label_on": "Attiva opzioni avanzate",
+    "show_toolbar_aria_label_off": "Disattiva opzioni avanzate",
+    "show_body": "Offrire ulteriori dettagli di misurazione",
+    "show_body1": "(metà inferiore - l'icona con la spunta ve li mostrerà) ?",
+    "show_body_aria_label_on": "Attiva la visione del punteggio del corpo",
+    "show_body_aria_label_off": "Disattiva la visione del punteggio del corpo",
+    "show_buttons": "Consenti il cambio di account ?",
+    "show_buttons_aria_label_on": "Attiva la visione dei pulsanti",
+    "show_buttons_aria_label_off": "Disattiva la visione dei pulsanti",
+    "code_information": "I CAMBIAMENTI APPARIRANNO SOLO DOPO AVER SALVATO LA CONFIGURAZIONE.",
+    "header_options": "1. Opzioni di intestazione della card",
+    "body_options": "2. Ulteriori opzioni della card",
+    "warning": "ATTENZIONE:",
+    "code_only_note": "Le opzioni aggiuntive sono disponibili solo nella modalità editor di codice."
+  }
+}

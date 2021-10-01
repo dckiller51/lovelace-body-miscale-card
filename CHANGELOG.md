@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.5
+
+- added IT language (thanks to @Altar82)
+
 ## v5.6.4
 
 - fix CN language to zh-Hans
