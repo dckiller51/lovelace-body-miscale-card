@@ -1,6 +1,6 @@
 import { localize } from './localize/localize';
 
-export const CARD_VERSION = '5.0.0';
+export const CARD_VERSION = '5.6.6';
 
 export const states = {
   status: {
@@ -71,7 +71,7 @@ export const body_kg = {
   bmi: {
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
-    icon: '/local/images/bodyscoreIcon/bmi.webp',
+    icon: '/local/images/bodyscoreIcon/bmi.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -97,7 +97,7 @@ export const body_kg = {
   bmi_label: {
     key: 'bmi_label',
     label: localize(`body.${'bmi_label'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.webp',
+    icon: '/local/images/bodyscoreIcon/body_type.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -112,7 +112,7 @@ export const body_kg = {
   visceral_fat: {
     key: 'visceral_fat',
     label: localize(`body.${'visceral_fat'}`),
-    icon: '/local/images/bodyscoreIcon/visceral_fat.webp',
+    icon: '/local/images/bodyscoreIcon/visceral_fat.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -136,7 +136,7 @@ export const body_kg = {
   body_fat: {
     key: 'body_fat',
     label: localize(`body.${'body_fat'}`),
-    icon: '/local/images/bodyscoreIcon/body_fat.webp',
+    icon: '/local/images/bodyscoreIcon/body_fat.png',
     unit: ' %',
     direction: 'right',
     height: '30px',
@@ -163,7 +163,7 @@ export const body_kg = {
   protein: {
     key: 'protein',
     label: localize(`body.${'protein'}`),
-    icon: '/local/images/bodyscoreIcon/protein.webp',
+    icon: '/local/images/bodyscoreIcon/protein.png',
     unit: ' %',
     direction: 'right',
     height: '30px',
@@ -188,7 +188,7 @@ export const body_kg = {
   water: {
     key: 'water',
     label: localize(`body.${'water'}`),
-    icon: '/local/images/bodyscoreIcon/water.webp',
+    icon: '/local/images/bodyscoreIcon/water.png',
     unit: ' %',
     direction: 'right',
     height: '30px',
@@ -213,7 +213,7 @@ export const body_kg = {
   muscle_mass: {
     key: 'muscle_mass',
     label: localize(`body.${'muscle_mass'}`),
-    icon: '/local/images/bodyscoreIcon/muscle_mass.webp',
+    icon: '/local/images/bodyscoreIcon/muscle_mass.png',
     unit: ' kg',
     direction: 'right',
     height: '30px',
@@ -238,7 +238,7 @@ export const body_kg = {
   bone_mass: {
     key: 'bone_mass',
     label: localize(`body.${'bone_mass'}`),
-    icon: '/local/images/bodyscoreIcon/bone_mass.webp',
+    icon: '/local/images/bodyscoreIcon/bone_mass.png',
     unit: ' kg',
     direction: 'right',
     height: '30px',
@@ -263,7 +263,7 @@ export const body_kg = {
   weight: {
     key: 'weight',
     label: localize(`body.${'weight'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.webp',
+    icon: '/local/images/bodyscoreIcon/ideal.png',
     unit: ' kg',
     direction: 'right',
     height: '30px',
@@ -290,7 +290,7 @@ export const body_kg = {
   ideal: {
     key: 'ideal',
     label: localize(`body.${'ideal'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.webp',
+    icon: '/local/images/bodyscoreIcon/ideal.png',
     unit: ' kg',
     direction: 'right',
     height: '30px',
@@ -317,7 +317,7 @@ export const body_kg = {
   basal_metabolism: {
     key: 'basal_metabolism',
     label: localize(`body.${'basal_metabolism'}`),
-    icon: '/local/images/bodyscoreIcon/basal_metabolism.webp',
+    icon: '/local/images/bodyscoreIcon/basal_metabolism.png',
     unit: ' kcal',
     direction: 'right',
     height: '30px',
@@ -341,7 +341,7 @@ export const body_kg = {
   body_type: {
     key: 'body_type',
     label: localize(`body.${'body_type'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.webp',
+    icon: '/local/images/bodyscoreIcon/body_type.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -356,7 +356,7 @@ export const body_kg = {
   metabolic_age: {
     key: 'metabolic_age',
     label: localize(`body.${'metabolic_age'}`),
-    icon: '/local/images/bodyscoreIcon/metabolic_age.webp',
+    icon: '/local/images/bodyscoreIcon/metabolic_age.png',
     unit: localize(`unit.${' years'}`),
     direction: 'right',
     height: '30px',
@@ -379,7 +379,7 @@ export const body_lb = {
   bmi: {
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
-    icon: '/local/images/bodyscoreIcon/bmi.webp',
+    icon: '/local/images/bodyscoreIcon/bmi.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -405,7 +405,7 @@ export const body_lb = {
   bmi_label: {
     key: 'bmi_label',
     label: localize(`body.${'bmi_label'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.webp',
+    icon: '/local/images/bodyscoreIcon/body_type.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -420,7 +420,7 @@ export const body_lb = {
   visceral_fat: {
     key: 'visceral_fat',
     label: localize(`body.${'visceral_fat'}`),
-    icon: '/local/images/bodyscoreIcon/visceral_fat.webp',
+    icon: '/local/images/bodyscoreIcon/visceral_fat.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -444,7 +444,7 @@ export const body_lb = {
   body_fat: {
     key: 'body_fat',
     label: localize(`body.${'body_fat'}`),
-    icon: '/local/images/bodyscoreIcon/body_fat.webp',
+    icon: '/local/images/bodyscoreIcon/body_fat.png',
     unit: ' %',
     direction: 'right',
     height: '30px',
@@ -471,7 +471,7 @@ export const body_lb = {
   protein: {
     key: 'protein',
     label: localize(`body.${'protein'}`),
-    icon: '/local/images/bodyscoreIcon/protein.webp',
+    icon: '/local/images/bodyscoreIcon/protein.png',
     unit: ' %',
     direction: 'right',
     height: '30px',
@@ -496,7 +496,7 @@ export const body_lb = {
   water: {
     key: 'water',
     label: localize(`body.${'water'}`),
-    icon: '/local/images/bodyscoreIcon/water.webp',
+    icon: '/local/images/bodyscoreIcon/water.png',
     unit: ' %',
     direction: 'right',
     height: '30px',
@@ -521,7 +521,7 @@ export const body_lb = {
   muscle_mass: {
     key: 'muscle_mass',
     label: localize(`body.${'muscle_mass'}`),
-    icon: '/local/images/bodyscoreIcon/muscle_mass.webp',
+    icon: '/local/images/bodyscoreIcon/muscle_mass.png',
     unit: ' lbs',
     direction: 'right',
     height: '30px',
@@ -546,7 +546,7 @@ export const body_lb = {
   bone_mass: {
     key: 'bone_mass',
     label: localize(`body.${'bone_mass'}`),
-    icon: '/local/images/bodyscoreIcon/bone_mass.webp',
+    icon: '/local/images/bodyscoreIcon/bone_mass.png',
     unit: ' lbs',
     direction: 'right',
     height: '30px',
@@ -571,7 +571,7 @@ export const body_lb = {
   weight: {
     key: 'weight',
     label: localize(`body.${'weight'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.webp',
+    icon: '/local/images/bodyscoreIcon/ideal.png',
     unit: ' lbs',
     direction: 'right',
     height: '30px',
@@ -598,7 +598,7 @@ export const body_lb = {
   ideal: {
     key: 'ideal',
     label: localize(`body.${'ideal'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.webp',
+    icon: '/local/images/bodyscoreIcon/ideal.png',
     unit: ' lbs',
     direction: 'right',
     height: '30px',
@@ -625,7 +625,7 @@ export const body_lb = {
   basal_metabolism: {
     key: 'basal_metabolism',
     label: localize(`body.${'basal_metabolism'}`),
-    icon: '/local/images/bodyscoreIcon/basal_metabolism.webp',
+    icon: '/local/images/bodyscoreIcon/basal_metabolism.png',
     unit: ' kcal',
     direction: 'right',
     height: '30px',
@@ -649,7 +649,7 @@ export const body_lb = {
   body_type: {
     key: 'body_type',
     label: localize(`body.${'body_type'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.webp',
+    icon: '/local/images/bodyscoreIcon/body_type.png',
     direction: 'right',
     height: '30px',
     width: '100%',
@@ -664,7 +664,7 @@ export const body_lb = {
   metabolic_age: {
     key: 'metabolic_age',
     label: localize(`body.${'metabolic_age'}`),
-    icon: '/local/images/bodyscoreIcon/metabolic_age.webp',
+    icon: '/local/images/bodyscoreIcon/metabolic_age.png',
     unit: localize(`unit.${' years'}`),
     direction: 'right',
     height: '30px',

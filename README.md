@@ -39,7 +39,7 @@ If you want to use the scales background image, download and add
 to `<config>/www/images/` or configure your own preferred path.
 
 For body score icons, download and add
-[src/images/bodyscoreIcon/*.webp](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/src/images/bodyscoreIcon)
+[src/images/bodyscoreIcon/*.png](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/src/images/bodyscoreIcon)
 to `<config>/www/images/bodyscoreIcon/`.
 
 ## Configuration
@@ -242,7 +242,7 @@ body:
 ```
 
 Translations: Automatic (setting of your homeassistant) or manual
-Currently the languages available are `DE`,`EN`,`FR`,`NL`,`PT-BR`, you can contact me to integrate your native language
+Currently the languages available are `DE`,`EN`,`FR`,`IT`,`NL`,`PT-BR`,`ZH-HANS`, you can contact me to integrate your native language
 
 ```yaml
 - type: custom:body-miscale-card

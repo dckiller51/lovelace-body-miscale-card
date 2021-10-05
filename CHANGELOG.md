@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.6
+
+- Break. Delete webp icons and replace them with png icons to make them compatible with IOS and Safari browser. Attention you must replace your library in www/images/bodyscoreIcon/*.png
+
 ## v5.6.5
 
 - added IT language (thanks to @Altar82)
