@@ -449,10 +449,10 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     return data && data.show !== false
       ? html`<ha-icon-button
           @click="${() => this.callService(data.service, data.service_data)}"
-          icon="${data.icon}"
           title="${data.label || ''}"
-          style="${this.config.styles.icon}"
-        ></ha-icon-button>`
+          style="${this.config.styles.icon}">
+            <ha-icon icon="${data.icon}"></ha-icon>
+          </ha-icon-button>`
       : null;
   }
 
@@ -464,10 +464,9 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
       <div class="toolbar" @ll-custom=${this._customEvent} ?open=${this.open}>
         <ha-icon-button
           @click=${this.toggle}
-          icon=${this.open ? 'mdi:chevron-up' : 'mdi:chevron-down'}
           title="${localize('common.toggle_power')}"
-          style="color: var(--primary-color);"
-        >
+          style="color: var(--primary-color);">
+            <ha-icon icon=${this.open ? 'mdi:chevron-up' : 'mdi:chevron-down'}></ha-icon>
         </ha-icon-button>
         <div class="fill-gap"></div>
         ${Object.values(this.config.buttons)
