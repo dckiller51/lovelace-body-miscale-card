@@ -1,0 +1,113 @@
+{
+  "common": {
+    "version": "Verze",
+    "name": "Karta BodyMiScale",
+    "description": "Karta bodymiscale ukazuje údaje ohledně váhy a tělesných proporcí",
+    "not_available": "BodyMiScale není dostupná",
+    "toggle_power": "Více podrobností jako například BMI kCal zobrazit / skrýt"
+  },
+  "states": {
+    "ok": "MĚŘENÍ: OK",
+    "unknown": "STAV: neznámý",
+    "problem": "Problém",
+    "none": "Žádný",
+    "weight unavailable": "Váha není dostupná",
+    "impedance unavailable": "Impedance není dostupná",
+    "weight unavailable, impedance unavailable": "Váha není dostupná, Impedance není dostupná",
+    "weight low": "nízká váha",
+    "impedance low": "nízká impedance",
+    "weight low, impedance low": "nízká váha, nízká impedance",
+    "weight high": "vysoká váha",
+    "impedance high": "vysoká impedance",
+    "weight high, impedance high": "vysoká váha, vysoká impedance",
+    "weight high, impedance low": "vysoká váha, nízká impedance",
+    "weight low, impedance high": "nízká váha, vysoká impedance"
+  },
+  "attributes": {
+    "weight: ": "Váha: ",
+    "impedance: ": "Impedance: ",
+    "height: ": "Výška: ",
+    "age: ": "Věk: ",
+    "gender: ": "Pohlaví: "
+  },
+  "attributes_value": {
+    "male": "muž",
+    "female": "žena",
+    "unavailable kg": "nedostupná",
+    "unavailable ohm": "nedostupná"
+  },
+  "body": {
+    "bmi": "BMI",
+    "bmi_label": "BMI popis",
+    "visceral_fat": "Viscerální tuk",
+    "body_fat": "Tělesný tuk",
+    "protein": "Protein",
+    "water": "Voda",
+    "muscle_mass": "Svalová hmota",
+    "bone_mass": "Kostní hmota",
+    "weight": "Váha",
+    "ideal": "Ideální",
+    "basal_metabolism": "Základní metabolismus",
+    "body_type": "Tělesný typ",
+    "metabolic_age": "Metabolický věk"
+  },
+  "body_value": {
+    "Skinny": "štíhlý",
+    "Balanced-skinny": "štíhlý-vyvážený",
+    "Skinny-muscular": "štíhlý-svalnatý",
+    "Balanced": "vyvážený",
+    "Balanced-muscular": "vyvážený-svalnatý",
+    "Lack-exercise": "nedostatek cvičení",
+    "Thick-set": "pevné",
+    "Obese": "obézní",
+    "Overweight": "nadváha",
+    "Underweight": "podváha",
+    "Normal or Healthy Weight": "normální či zdravá váha",
+    "Slight overweight": "lehká nadváha",
+    "Moderate obesity": "menší obezita",
+    "Severe obesity": "vážná obezita",
+    "Massive obesity": "velká obezita"
+  },
+  "unit": {
+    " years": " roky"
+  },
+  "error": {
+    "missing_entity": "Prosím definujte entitu.",
+    "missing_entity_bodymiscale": "Prosím definujte entitu bodymiscale."
+  },
+  "editor": {
+    "entity": "Prosím definujte účet váhy (povinné) !",
+    "image": "Obrázek pozadí (volitelné)",
+    "model": "AKTIVUJTE pokud má váha na sobě 4 čtyři šedé kruhy o průměru 5 centimetrů",
+    "model1": "( = model 181B) !",
+    "model_aria_label_on": "Impedance zapnutá",
+    "model_aria_label_off": "Impedance vypnutá",
+    "unit": "Převést kilogramy na libry",
+    "unit_aria_label_on": "Zapnout konverzi",
+    "unit_aria_label_off": "Vypnout konverzi",
+    "show_name": "Zobrazovat jméno účtu jako titulek ?",
+    "show_name_aria_label_on": "Zapnout zobrazování jména",
+    "show_name_aria_label_off": "Vypnout zobrazování jména",
+    "show_states": "Zobrazit stav ?",
+    "show_states_aria_label_on": "Zapnout zobrazování stavu",
+    "show_states_aria_label_off": "Vypnout zobrazování stavu",
+    "show_attributes": "Show hlavní osobní data (vpravo nahoře) ?",
+    "show_attributes_aria_label_on": "Zapnout zobrazování atributů",
+    "show_attributes_aria_label_off": "Vypnout zobrazování atributů",
+    "show_toolbar": "Zobrazit pokročilá nastavení ?",
+    "show_toolbar_aria_label_on": "Zapnout zobrazení pokročilých nastavení",
+    "show_toolbar_aria_label_off": "Vypnout zobrazení pokročilých nastavení",
+    "show_body": "Nabízet další detaily měření",
+    "show_body1": "(spodní polovina - zobrazí se po klepnutí na ikonu šipky dolů) ?",
+    "show_body_aria_label_on": "Zapnout zobrazování tělesného skóre",
+    "show_body_aria_label_off": "Vypnout zobrazování tělesného skóre",
+    "show_buttons": "Povolit změnu účtu ?",
+    "show_buttons_aria_label_on": "Zapnout zobrazování tlačítek",
+    "show_buttons_aria_label_off": "Vypnout zobrazování tlačítek",
+    "code_information": "ZMĚNY SE PROJEVÍ TEPRVE PO TÉ CO BUDOU ULOŽENY.",
+    "header_options": "1. Možnosti záhlaví karty",
+    "body_options": "2. Více možností karty",
+    "warning": "POZOR:",
+    "code_only_note": "Další možnosti jsou dostupné pouze v editor kódu."
+  }
+}
