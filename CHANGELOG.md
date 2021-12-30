@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.8
+
+- added Czech language (thanks to @xpavli44)
+
 ## v5.6.7
 
 - fix: Icons not working in HA 2021.11
