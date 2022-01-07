@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.6.9
+
+- added Portuguese language (thanks to @jonhdimagio)
+- Minor correction in Czech translation
+
 ## v5.6.8
 
 - added Czech language (thanks to @xpavli44)

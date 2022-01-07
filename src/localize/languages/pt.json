@@ -1,0 +1,114 @@
+{
+    "common": {
+      "version": "Versão",
+      "name": "BodyMiScale Card",
+      "description": "O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",
+      "not_available": "Bodymiscale não está disponível",
+      "toggle_power": "Mostrando/escondendo mais detalhes tal como o kCal,IMC"
+    },
+    "states": {
+      "ok": "MEDIÇÃO: OK",
+      "unknown": "ESTATUTO: desconhecido",
+      "problem": "Problema",
+      "none": "Nenhum",
+      "weight unavailable": "Peso indisponível",
+      "impedance unavailable": "Impedância indisponível",
+      "weight unavailable, impedance unavailable": "Peso indisponível, impedância indisponível",
+      "weight low": "Peso baixo",
+      "impedance low": "Impedância baixa",
+      "weight low, impedance low": "Peso baixo, impedância baixa",
+      "weight high": "Peso alto",
+      "impedance high": "Impedância alta",
+      "weight high, impedance high": "Peso alto, impedância alta",
+      "weight high, impedance low": "Peso alto, impedância baixa",
+      "weight low, impedance high": "Peso baixo, impedância alta"
+    },
+    "attributes": {
+      "weight: ": "Peso: ",
+      "impedance: ": "Impedância: ",
+      "height: ": "Altura: ",
+      "age: ": "Idade: ",
+      "gender: ": "Gênero: "
+    },
+    "attributes_value": {
+      "male": "masculino",
+      "female": "femenino",
+      "unavailable kg": "indisponível",
+      "unavailable ohm": "indisponível"
+    },
+    "body": {
+      "bmi": "IMC",
+      "bmi_label": "Etiqueta IMC",
+      "visceral_fat": "Gordura visceral",
+      "body_fat": "Gordura corporal",
+      "protein": "Proteína",
+      "water": "Água",
+      "muscle_mass": "Massa muscular",
+      "bone_mass": "Massa óssea",
+      "weight": "Peso",
+      "ideal": "Ideal",
+      "basal_metabolism": "Metabolismo basal",
+      "body_type": "Tipo de corpo",
+      "metabolic_age": "Idade metabólica"
+    },
+    "body_value": {
+      "Skinny": "Magro",
+      "Balanced-skinny": "Magro equilibrado",
+      "Skinny-muscular": "Magro musculoso",
+      "Balanced": "Equilibrado",
+      "Balanced-muscular": "Musculoso equilibrado",
+      "Lack-exercise": "Falta de exercício",
+      "Thick-set": "Estatura sólida",
+      "Obese": "Obeso",
+      "Overweight": "Acima do peso normal",
+      "Underweight": "Abaixo do peso normal",
+      "Normal or Healthy Weight": "Normal",
+      "Slight overweight": "Ligeiramente acima do peso",
+      "Moderate obesity": "Obesidade moderada",
+      "Severe obesity": "Obesidade severa",
+      "Massive obesity": "Obesidade maciça"
+    },
+    "unit": {
+      " years": " Anos"
+    },
+    "error": {
+      "missing_entity": "Por favor, defina uma entidade.",
+      "missing_entity_bodymiscale": "Por favor, defina uma entidade bodymiscale."
+    },
+    "editor": {
+      "entity": "Por favor, escolha a entidade da balança com o nome da pessoa (obrigatório) !",
+      "image": "Imagem de fundo (opcional)",
+      "model": "ATIVAR se a balança tiver 4 círculos cinzentos de 5 cm Ø no topo",
+      "model1": "( = modelo 181B) !",
+      "model_aria_label_on": "Mostrar o modelo com impedância",
+      "model_aria_label_off": "Esconder o modelo com impedância",
+      "unit": "Converter kg em libras",
+      "unit_aria_label_on": "Ativar a conversão kg para lbs",
+      "unit_aria_label_off": "Desativar a conversão kg para lbs",
+      "show_name": "Mostrar o nome da conta como título ?",
+      "show_name_aria_label_on": "Mostrar o nome como título",
+      "show_name_aria_label_off": "Esconder o nome como título",
+      "show_states": "Mostrar Estado da balança ?",
+      "show_states_aria_label_on": "Mostrar o estado da balança",
+      "show_states_aria_label_off": "Esconder o estado da balança",
+      "show_attributes": "Mostrar os dados do perfil pessoal (canto superior direito) ?",
+      "show_attributes_aria_label_on": "Mostrar atributos",
+      "show_attributes_aria_label_off": "Esconder atributos",
+      "show_toolbar": "Mostrar opções avançadas ?",
+      "show_toolbar_aria_label_on": "Mostrar a barra de ferramentas",
+      "show_toolbar_aria_label_off": "Esconder a barra de ferramentas",
+      "show_body": "Mostrar mais detalhes da medição",
+      "show_body1": "(parte inferior - clicar na seta para mostrar) ?",
+      "show_body_aria_label_on": "Mostrar mais detalhes no corpo",
+      "show_body_aria_label_off": "Esconder mais detalhes no corpo",
+      "show_buttons": "Permitir a troca de conta ?",
+      "show_buttons_aria_label_on": "Mostrar botões das contas",
+      "show_buttons_aria_label_off": "Esconder botões das contas",
+      "code_information": "AS MUDANÇAS SÓ APARECERÃO DEPOIS DE TEREM SIDO SALVAS.",
+      "header_options": "1. Opções do cabeçalho do cartão",
+      "body_options": "2. Mais opções do corpo do cartão",
+      "warning": "CUIDADO:",
+      "code_only_note": "Opções adicionais estão disponíveis apenas no editor de código."
+    }
+  }
+  
