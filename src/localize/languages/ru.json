@@ -1,0 +1,114 @@
+{
+  "common": {
+    "version": "Версия",
+    "name": "Карточка BodyMiScale",
+    "description": "Карточка BodyMiScale отображает показатели тела, рассчитанные на основе результатов измерения веса и биоимпеданса.",
+    "not_available": "Компонент BodyMiScale не доступен",
+    "toggle_power": "Показать/скрыть дополнительные сведения о BMI"
+  },
+  "states": {
+    "ok": "Измерение: OK",
+    "unknown": "Состояние: неизвестно",
+    "problem": "Проблема",
+    "none": "Нет",
+    "weight unavailable": "Вес недоступен",
+    "impedance unavailable": "Биоимпеданс недоступен",
+    "weight unavailable, impedance unavailable": "Вес и биоимпеданс недоступны",
+    "weight low": "Низкий вес",
+    "impedance low": "Низкий биоимпеданс",
+    "weight low, impedance low": "Низкие вес и биоимпеданс",
+    "weight high": "Высокий вес",
+    "impedance high": "Высокий биоимпеданс",
+    "weight high, impedance high": "Высокие вес и биоимпеданс",
+    "weight high, impedance low": "Высокий вес, низкий биоимпеданс",
+    "weight low, impedance high": "Низкий вес, высокий биоимпеданс"
+  },
+  "attributes": {
+    "weight: ": "Вес: ",
+    "impedance: ": "Импеданс: ",
+    "height: ": "Рост: ",
+    "age: ": "Возраст: ",
+    "gender: ": "Пол: "
+  },
+  "attributes_value": {
+    "male": "мужской",
+    "female": "женский",
+    "unavailable kg": "вес недоступен",
+    "unavailable ohm": "биоимпеданс недоступен"
+  },
+  "body": {
+    "bmi": "Индекс BMI",
+    "bmi_label": "Интерпретация BMI",
+    "visceral_fat": "Висцеральный жир",
+    "body_fat": "Жировая ткань",
+    "protein": "Белки",
+    "water": "Воода",
+    "muscle_mass": "Мышечная масса",
+    "bone_mass": "Костная масса",
+    "weight": "Вес",
+    "ideal": "Идеальный вес",
+    "basal_metabolism": "Базальный метаболизм",
+    "body_type": "Тип тела",
+    "metabolic_age": "Метаболический возраст"
+  },
+
+  "body_value": {
+    "Skinny": "Тощий",
+    "Balanced-skinny": "Худощавый",
+    "Skinny-muscular": "Подтянуто-мускулистый",
+    "Balanced": "Оптимальный",
+    "Balanced-muscular": "Мускулистый",
+    "Lack-exercise": "Недостаток упражнений",
+    "Thick-set": "Коренастый",
+    "Obese": "Ожирение",
+    "Overweight": "Лишний вес",
+    "Underweight": "Недостаточный вес",
+    "Normal or Healthy Weight": "Нормальный вес",
+    "Slight overweight": "Избыточный вес",
+    "Moderate obesity": "Ожирение 1й степени",
+    "Severe obesity": "Ожирение 2й степени",
+    "Massive obesity": "Ожирение 3й степени"
+  },
+  "unit": {
+    " years": " года(лет)"
+  },
+  "error": {
+    "missing_entity": "Определите сущность.",
+    "missing_entity_bodymiscale": "Определите сущность BodyMiScale."
+  },
+  "editor": {
+    "entity": "Сущность BodyMiScale (обязательно)",
+    "image": "Фоновое изображение (опционально)",
+    "model": "Измерение биоимпеданса",
+    "model1": "(модель весов 181B)",
+    "model_aria_label_on": "Измерять биоимпеданс",
+    "model_aria_label_off": "Не измерять биоимпеданс",
+    "unit": "Преобразование кг в фунты",
+    "unit_aria_label_on": "Преобразовать кг в фунты",
+    "unit_aria_label_off": "Не преобразовывать кг в фунты",
+    "show_name": "Отображение имени пользователя",
+    "show_name_aria_label_on": "Отображать имя пользователя",
+    "show_name_aria_label_off": "Не отображать имя пользователя",
+    "show_states": "Отображение состояния",
+    "show_states_aria_label_on": "Отображать состояние",
+    "show_states_aria_label_off": "Не отображать состояние",
+    "show_attributes": "Отображение персональных данных",
+    "show_attributes_aria_label_on": "Отображать персональные данные",
+    "show_attributes_aria_label_off": "Не отображать персональные данные",
+    "show_toolbar": "Отображение панели дополнительных параметров",
+    "show_toolbar_aria_label_on": "Отображать панель дополнительных параметров",
+    "show_toolbar_aria_label_off": "Не отображать панель дополнительных параметров",
+    "show_body": "Отображение дополнительных параметров",
+    "show_body1": "(по нажатию кнопки со стрелкой вниз)",
+    "show_body_aria_label_on": "Отображать дополнительные параметры",
+    "show_body_aria_label_off": "Не отображать дополнительные параметры",
+    "show_buttons": "Переключение аккаунтов",
+    "show_buttons_aria_label_on": "Отображать кнопки",
+    "show_buttons_aria_label_off": "Не отображать кнопки",
+    "code_information": "Изменения будет применены только после их сохранения.",
+    "header_options": "1. Настройки заголовка карточки",
+    "body_options": "2. Дополнительные настройки карточки",
+    "warning": "ВНИМАНИЕ:",
+    "code_only_note": "Дополнительные настройки отображаются только в редакторе кода."
+  }
+}

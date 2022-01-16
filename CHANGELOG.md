@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.7.0
+
+- added Russian language (thanks to @BrainFixer)
+
 ## v5.6.9
 
 - added Portuguese language (thanks to @jonhdimagio)
