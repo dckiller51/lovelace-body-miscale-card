@@ -13,7 +13,7 @@
     "none": "keine",
     "weight unavailable": "Gewichtsmessung nicht verfügbar",
     "impedance unavailable": "Bioelektrische Impedanzmessung (Körperzusammensetzung) nicht verfügbar",
-    "weight unavailable, impedance unavailable": "Gewichts- und bioelektrische Impedanz,messung (Körperzusammensetzung) nicht verfügbar."
+    "weight unavailable, impedance unavailable": "Gewichts- und bioelektrische Impedanzmessung (Körperzusammensetzung) nicht verfügbar."
   },
   "attributes": {
     "weight: ": "Gewicht: ",
