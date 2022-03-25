@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.7.1
+
+- fixed de/en syntax (thanks to @tispokes)
+- fixed syntax error in Russian (thanks to @dmamontov)
+
 ## v5.7.0
 
 - added Russian language (thanks to @BrainFixer)
