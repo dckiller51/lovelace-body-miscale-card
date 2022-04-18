@@ -33,8 +33,7 @@
   "attributes_value": {
     "male": "мужской",
     "female": "женский",
-    "unavailable kg": "вес недоступен",
-    "unavailable ohm": "биоимпеданс недоступен"
+    "unavailable": "недоступен"
   },
   "body": {
     "bmi": "Индекс BMI",
@@ -67,7 +66,8 @@
     "Slight overweight": "Избыточный вес",
     "Moderate obesity": "Ожирение 1й степени",
     "Severe obesity": "Ожирение 2й степени",
-    "Massive obesity": "Ожирение 3й степени"
+    "Massive obesity": "Ожирение 3й степени",
+    "unavailable": "недоступен"
   },
   "unit": {
     " years": " года(лет)"

@@ -33,8 +33,7 @@
     "attributes_value": {
       "male": "muž",
       "female": "žena",
-      "unavailable kg": "nedostupná",
-      "unavailable ohm": "nedostupná"
+      "unavailable": "nedostupná"
     },
     "body": {
       "bmi": "BMI",
@@ -66,7 +65,8 @@
       "Slight overweight": "lehká nadváha",
       "Moderate obesity": "menší obezita",
       "Severe obesity": "vážná obezita",
-      "Massive obesity": "velká obezita"
+      "Massive obesity": "velká obezita",
+      "unavailable": "nedostupná"
     },
     "unit": {
       " years": " let"

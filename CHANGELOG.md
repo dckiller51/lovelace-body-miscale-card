@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.8.1
+
+- fix error report [[#28](https://github.com/dckiller51/lovelace-body-miscale-card/issues/28)]
+
 ## v5.8.0
 
 - update card editor to MWC

@@ -33,8 +33,7 @@
   "attributes_value": {
     "male": "uomo",
     "female": "donna",
-    "unavailable kg": "non disponibile",
-    "unavailable ohm": "non disponibile"
+    "unavailable": "non disponibile"
   },
   "body": {
     "bmi": "BMI",
@@ -66,7 +65,8 @@
     "Slight overweight": "Leggermente in sovrappeso",
     "Moderate obesity": "Obesità Moderata",
     "Severe obesity": "Obesità Grave",
-    "Massive obesity": "Obesità Massiccia"
+    "Massive obesity": "Obesità Massiccia",
+    "unavailable": "non disponibile"
   },
   "unit": {
     " years": " anni"

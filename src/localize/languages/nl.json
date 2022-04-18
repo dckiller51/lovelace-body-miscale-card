@@ -33,8 +33,7 @@
   "attributes_value": {
     "male": "man",
     "female": "vrouw",
-    "unavailable kg": "niet beschikbaar",
-    "unavailable ohm": "niet beschikbaar"
+    "unavailable": "niet beschikbaar"
   },
   "body": {
     "bmi": "BMI",
@@ -66,7 +65,8 @@
     "Slight overweight": "Licht overgewicht",
     "Moderate obesity": "Gemiddeld overgewicht",
     "Severe obesity": "Ruim overgewicht",
-    "Massive obesity": "Enorm overgewicht"
+    "Massive obesity": "Enorm overgewicht",
+    "unavailable": "niet beschikbaar"
   },
   "unit": {
     " years": " jaren"

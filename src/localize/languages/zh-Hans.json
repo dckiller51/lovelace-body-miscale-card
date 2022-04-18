@@ -33,8 +33,7 @@
   "attributes_value": {
     "male": "男",
     "female": "女",
-    "unavailable kg": "不可用",
-    "unavailable ohm": "不可用"
+    "unavailable": "不可用"
   },
   "body": {
     "bmi": "BMI",
@@ -66,7 +65,8 @@
     "Slight overweight": "轻微超重",
     "Moderate obesity": "中度肥胖",
     "Severe obesity": "过度肥胖",
-    "Massive obesity": "严重肥胖"
+    "Massive obesity": "严重肥胖",
+    "unavailable": "不可用"
   },
   "unit": {
     " years": " 岁"

@@ -25,8 +25,7 @@
   "attributes_value": {
     "male": "männl.",
     "female": "weibl.",
-    "unavailable kg": "Gewichtsmessung momentan nicht verfügbar",
-    "unavailable ohm": "Bio Impedanzmessung momentan nicht verfügbar"
+    "unavailable": "Nicht verfügbar"
   },
   "body": {
     "bmi": "BMI",
@@ -58,7 +57,8 @@
     "Slight overweight": "leichtes Übergewicht",
     "Moderate obesity": "moderate Fettleibigkeit",
     "Severe obesity": "schwere Fettleibigkeit",
-    "Massive obesity": "massive Fettleibigkeit"
+    "Massive obesity": "massive Fettleibigkeit",
+    "unavailable": "Nicht verfügbar"
   },
   "unit": {
     " years": " Jahre"
