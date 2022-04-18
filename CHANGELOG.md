@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.8.0
+
+- update card editor to MWC
+
 ## v5.7.1
 
 - fixed de/en syntax (thanks to @tispokes)

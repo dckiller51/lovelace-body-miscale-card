@@ -184,7 +184,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     const hasDropdown = `${data.key}_list` in stateObj.attributes;
 
     return hasDropdown && (isValidAttribute || isValidEntityData)
-      ? this.renderDropdown(attribute, data.key)
+      ? this.renderDropdown(attribute, data.key, data.service)
       : attribute;
   }
 
@@ -215,7 +215,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     const hasDropdown = `${data.key}_list` in stateObj.attributes;
 
     return hasDropdown && (isValidAttribute || isValidEntityData)
-      ? this.renderDropdown(attribute, data.key)
+      ? this.renderDropdown(attribute, data.key, data.service)
       : attribute;
   }
 
@@ -414,7 +414,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     const hasDropdown = `${data.key}_list` in stateObj.attributes;
 
     return hasDropdown && (isValidAttribute || isValidEntityData)
-      ? this.renderDropdown(attribute, data.key)
+      ? this.renderDropdown(attribute, data.key, data.service)
       : attribute;
   }
 
@@ -476,10 +476,9 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     `;
   }
 
-  private handleChange(e: any, key: any): void {
+  private handleChange(mode: any, key: any, service: any): void {
     const stateObj = this.hass!.states[this.config!.entity];
-    const mode = e.target.getAttribute('value');
-    this.callService(`bodymiscale.set_${key}`, { entity_id: stateObj.entity_id, [key]: mode });
+    this.callService(service ||`bodymiscale.set_${key}`, { entity_id: stateObj.entity_id, [key]: mode });
   }
 
   private callService(service: any, data = { entity_id: this.stateObj.entity_id }): void {
@@ -487,26 +486,31 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     this.hass!.callService(domain, name, data);
   }
 
-  private renderDropdown(attribute: any, key: any) {
+  private renderDropdown(attribute: any, key: any, service: any) {
     if (!this.hass || !this.config) {
       return html``;
     }
     const stateObj = this.hass.states[this.config!.entity];
-    const selected = stateObj.attributes[key];
     const list = stateObj.attributes[`${key}_list`];
 
     return html`
-      <paper-menu-button slot="dropdown-trigger" @click="${(e: any) => e.stopPropagation()}" style="padding: 0">
-        <paper-button slot="dropdown-trigger">${attribute}</paper-button>
-        <paper-listbox
-          slot="dropdown-content"
-          selected="${list.indexOf(selected)}"
-          @click="${(e: any) => this.handleChange(e, key)}"
-        >
-          ${list.map((item: any) => html`<paper-item value="${item}" style="text-shadow: none;">${item}</paper-item>`)}
-        </paper-listbox>
-      </paper-menu-button>
-    `;
+      <div style="position: relative" @click=${e => e.stopPropagation()}>
+        <ha-button @click=${() => this.toggleMenu(key)}>
+          ${attribute}
+        </ha-button>
+        <mwc-menu
+        @selected=${e => this.handleChange(list[e.detail.index], key, service)}
+          id=${`bmc-menu-${key}`}
+          activatable
+          corner="BOTTOM_START">
+            ${list.map(item => html`<mwc-list-item value=${item}>${item}</mwc-list-item>`)}
+        </mwc-menu>
+      </div>`;
+  }
+
+  toggleMenu(key: any) {
+    const menu: any = this.shadowRoot!.querySelector(`#bmc-menu-${key}`);
+    menu.open = !menu.open;
   }
 
   static get styles(): CSSResultGroup {
