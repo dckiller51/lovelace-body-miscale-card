@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.9.0
+
+- add the choice of the theme of your system. (Dark or light)
+- added Spanish language (thanks to @luisetex84)
+
 ## v5.8.1
 
 - fix error report [[#28](https://github.com/dckiller51/lovelace-body-miscale-card/issues/28)]

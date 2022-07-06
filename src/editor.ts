@@ -51,17 +51,21 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
     return this._config?.image || '';
   }
 
-  get _model() {
+  get _model(): boolean {
     return this._config?.model || false;
   }
 
-  get _unit() {
+  get _unit(): boolean {
     return this._config?.unit || false;
+  }
+
+  get _theme(): boolean {
+    return this._config?.theme || false;
   }
 
   get _show_name(): boolean {
     return this._config?.show_name || false;
-   }
+  }
 
   get _show_states(): boolean {
     return this._config?.show_states || false;
@@ -98,9 +102,9 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 
     return html`
       <div class="card-config">
-        <strong>
+        <p>
           ${localize('editor.code_information')}
-        </strong>
+        </p>
 
         <mwc-select
           naturalMenuWidth
@@ -148,9 +152,21 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
           ></mwc-switch>
         </mwc-formfield>
 
-        <strong style="font-size: large; line-height: 200%;">
+        ${localize('editor.theme')}<br>
+        <mwc-formfield class="option" .label=${localize(this._theme 
+          ? 'editor.theme_aria_label_off' 
+          : 'editor.theme_aria_label_on'
+          )}>
+          <mwc-switch
+            .checked=${this._theme !== false}
+            .configValue=${'theme'}
+            @change=${this._valueChanged}
+          ></mwc-switch>
+        </mwc-formfield>
+
+        <p style="font-size: large; line-height: 200%;">
           <U>${localize('editor.header_options')}</U>
-        </strong><br>
+        </p><br>
 
         ${localize('editor.show_name')}<br>
         <mwc-formfield class="option" .label=${localize(this._show_name 
@@ -188,9 +204,9 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
           ></mwc-switch>
         </mwc-formfield>
 
-        <strong style="font-size: large; line-height: 200%;">
+        <p style="font-size: large; line-height: 200%;">
           <U>${localize('editor.body_options')}</U>
-        </strong><br>
+        </p><br>
 
         ${localize('editor.show_toolbar')}<br>
         <mwc-formfield class="option" .label=${localize(this._show_toolbar 
@@ -204,12 +220,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
           ></mwc-switch>
         </mwc-formfield>
 
-        <strong style="padding:0 0 0 45px">
+        <div style="padding:0 0 0 45px">
           ${localize('editor.show_body')}<br>
-        </strong>
-        <strong style="padding:0 0 0 45px">
           ${localize('editor.show_body1')}<br>
-        </strong>
+        </div>
         <mwc-formfield class="option" style="padding:0 0 0 45px" .label=${localize(this._show_body 
           ? 'editor.show_body_aria_label_off' 
           : 'editor.show_body_aria_label_on'
@@ -221,9 +235,9 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
           ></mwc-switch>
         </mwc-formfield>
 
-        <strong style="padding:0 0 0 45px">
-        ${localize('editor.show_buttons')}<br>
-        </strong>
+        <div style="padding:0 0 0 45px">
+          ${localize('editor.show_buttons')}<br>
+        </div>
         <mwc-formfield class="option" style="padding:0 0 0 45px" .label=${localize(this._show_buttons 
           ? 'editor.show_buttons_aria_label_off' 
           : 'editor.show_buttons_aria_label_on'

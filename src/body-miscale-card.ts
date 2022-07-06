@@ -81,7 +81,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
           ? `background-image: url('${config.image}'); color: white; text-shadow: 0 0 10px black;`
           : '',
         icon: `color: ${config.image ? 'white' : 'var(--paper-item-icon-color)'};`,
-        iconbody: `background-color: white;`,
+        iconbody: `background-color: ${config.theme !== false ? 'var(--paper-item-icon-color)' : 'white'};`,
         content: `padding: ${config.name !== false ? '8px' : '16px'} ${config.buttons !== false ? '8px' : '16px'};`,
       },
     };
