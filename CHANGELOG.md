@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.9.1
+
+- added romania language support (thank you @18rrs)
+
 ## v5.9.0
 
 - add the choice of the theme of your system. (Dark or light)

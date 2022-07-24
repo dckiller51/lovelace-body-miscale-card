@@ -7,6 +7,7 @@ import * as it from './languages/it.json';
 import * as nl from './languages/nl.json';
 import * as pt from './languages/pt.json';
 import * as pt_BR from './languages/pt-BR.json';
+import * as ro from './languages/ro.json';
 import * as ru from './languages/ru.json';
 import * as zh_Hans from './languages/zh-Hans.json';
 
@@ -21,6 +22,7 @@ const languages: any = {
   nl: nl,
   pt: pt,
   pt_BR: pt_BR,
+  ro: ro,
   ru: ru,
   zh_Hans: zh_Hans,
 };
