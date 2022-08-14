@@ -12,7 +12,7 @@ The card is linked to the Bodymiscale custom components for Xiaomi scales. <http
 
 ## Installation
 
-Manually add [body-miscale-card.js](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/body-miscale-card.js)
+Manually add [body-miscale-card.js](https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/dist/body-miscale-card.js)
 to your `<config>/www/` folder and add the following to the `configuration.yaml` file:
 
 ```yaml
