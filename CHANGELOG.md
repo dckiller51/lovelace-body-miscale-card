@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.9.2
+
+- added Polish language support (thank you @LukaszP2)
+
 ## v5.9.1
 
-- added romania language support (thank you @18rrs)
+- added Romania language support (thank you @18rrs)
 
 ## v5.9.0
 

@@ -5,6 +5,7 @@ import * as es from './languages/es.json';
 import * as fr from './languages/fr.json';
 import * as it from './languages/it.json';
 import * as nl from './languages/nl.json';
+import * as pl from './languages/pl.json';
 import * as pt from './languages/pt.json';
 import * as pt_BR from './languages/pt-BR.json';
 import * as ro from './languages/ro.json';
@@ -20,6 +21,7 @@ const languages: any = {
   fr: fr,
   it: it,
   nl: nl,
+  pl: pl,
   pt: pt,
   pt_BR: pt_BR,
   ro: ro,
