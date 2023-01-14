@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.9.3
+
+- added always show details
+
 ## v5.9.2
 
 - added Polish language support (thank you @LukaszP2)

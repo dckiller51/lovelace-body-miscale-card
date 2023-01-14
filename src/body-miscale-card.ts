@@ -70,6 +70,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
       show_body: config.show_body,
       show_buttons: config.show_buttons,
       show_toolbar: config.show_toolbar,
+      always_show_details: config.always_show_details,
       ...config,
       states: deepMerge(states, model.states, config.states),
       attributes: config.unit ? deepMerge(attributes_lb, model.attributes_lb, config.attributes) : deepMerge(attributes_kg, model.attributes_kg, config.attributes),
@@ -140,7 +141,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
         </div>
       </div>
       ${this.renderToolbar()}
-      <div id="items" ?open=${this.open}>
+      <div id="items" ?open=${this.open || this.config.always_show_details}>
         <div id="score" class="card-content" style="${this.config.direction == 'up' ? '' : 'flex-grow: 0;'}">
           ${Object.values(this.config.body)
             .filter((v) => v)
@@ -466,7 +467,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
           @click=${this.toggle}
           title="${localize('common.toggle_power')}"
           style="color: var(--primary-color);">
-            <ha-icon icon=${this.open ? 'mdi:chevron-up' : 'mdi:chevron-down'}></ha-icon>
+            <ha-icon icon=${this.config.always_show_details ? '' : this.open ? 'mdi:chevron-up' : 'mdi:chevron-down'}></ha-icon>
         </ha-icon-button>
         <div class="fill-gap"></div>
         ${Object.values(this.config.buttons)

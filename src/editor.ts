@@ -89,6 +89,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
     return this._config?.show_buttons || false;
   }
 
+  get _always_show_details(): boolean {
+    return this._config?.always_show_details || false;    
+  }
+
   get _show_toolbar(): boolean {
     return this._config?.show_toolbar || false;    
   }
@@ -207,6 +211,18 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
         <p style="font-size: large; line-height: 200%;">
           <U>${localize('editor.body_options')}</U>
         </p><br>
+
+        ${localize('editor.always_show_details')}<br>
+        <mwc-formfield class="option" .label=${localize(this._always_show_details 
+          ? 'editor.always_show_details_aria_label_off' 
+          : 'editor.always_show_details_aria_label_on'
+          )}>
+          <mwc-switch
+            .checked=${this._always_show_details !== false}
+            .configValue=${'always_show_details'}
+            @change=${this._valueChanged}
+          ></mwc-switch>
+        </mwc-formfield>
 
         ${localize('editor.show_toolbar')}<br>
         <mwc-formfield class="option" .label=${localize(this._show_toolbar 
