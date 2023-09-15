@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.9.4
+
+- added Hungarian language support (thank you @v1k70rk4)
+
 ## v5.9.3
 
 - added always show details

@@ -1,6 +1,6 @@
 import { localize } from './localize/localize';
 
-export const CARD_VERSION = '5.9.3';
+export const CARD_VERSION = '5.9.4';
 
 export const states = {
   status: {
