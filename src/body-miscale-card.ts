@@ -438,7 +438,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
         : data.icon;
     return html`<ha-icon
       class="image"
-      style="-webkit-mask-box-image: url('${icon}'); ${this.config.styles.iconbody}"
+      style="-webkit-mask-image: url('${icon}');-webkit-mask-size: 24px; ${this.config.styles.iconbody}"
     ></ha-icon>`;
   }
 
