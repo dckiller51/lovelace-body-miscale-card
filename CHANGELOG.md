@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v5.9.6
+
+- translation update for compatibility with the Bodymiscale v3.1.1 component
+
 ## v5.9.5
 
 - Fix the icons problem in Firefox [[#45](https://github.com/dckiller51/lovelace-body-miscale-card/issues/45)]
