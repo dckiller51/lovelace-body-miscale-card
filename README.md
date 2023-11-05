@@ -39,7 +39,7 @@ If you want to use the scales background image, download and add
 to `<config>/www/images/` or configure your own preferred path.
 
 For body score icons, download and add
-[src/images/bodyscoreIcon/*.png]([https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/src/images/bodyscoreIcon](https://github.com/dckiller51/lovelace-body-miscale-card/tree/main/src/images/bodyscoreIcon))
+[src/images/bodyscoreIcon/*.png]<https://raw.githubusercontent.com/dckiller51/lovelace-body-miscale-card/master/src/images/bodyscoreIcon](https://github.com/dckiller51/lovelace-body-miscale-card/tree/main/src/images/bodyscoreIcon>
 to `<config>/www/images/bodyscoreIcon/`.
 
 ## Configuration
