@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2023.11.0
+
+- added Traditional Chinese language support (thank you @yauyauwind)
+- Change of version number. Calendar version management, consisting of year, month and patch number.
+
 ## v5.9.6
 
 - translation update for compatibility with the Bodymiscale v3.1.1 component

@@ -12,6 +12,7 @@ import * as pt_BR from './languages/pt-BR.json';
 import * as ro from './languages/ro.json';
 import * as ru from './languages/ru.json';
 import * as zh_Hans from './languages/zh-Hans.json';
+import * as zh_Hant from './languages/zh-Hant.json';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const languages: any = {
@@ -29,6 +30,7 @@ const languages: any = {
   ro: ro,
   ru: ru,
   zh_Hans: zh_Hans,
+  zh_Hant: zh_Hant,
 };
 
 /**
