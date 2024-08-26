@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2024.08.0
+
+- added Vietnamese language support (thank you ngdaihoc)
+- fixed syntax error in Polish (thanks to @kuduacz)
+
 ## 2023.11.0
 
 - added Traditional Chinese language support (thank you @yauyauwind)
