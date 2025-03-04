@@ -1,6 +1,7 @@
-import { localize } from './localize/localize';
+import localize from './localize';
+import { BodymiscaleCardConfig } from './types';
 
-export const CARD_VERSION = '2024.08.0';
+export const CARD_VERSION = '2025.2.0';
 
 export const states = {
   status: {
@@ -10,6 +11,11 @@ export const states = {
   problem: {
     key: 'problem',
     icon: 'mdi:alert',
+  },
+  last_measurement_time: {
+    key: 'last_measurement_time',
+    icon: 'mdi:calendar-clock'
+
   },
 };
 
@@ -368,10 +374,10 @@ export const body_kg = {
       value: 'inside',
     },
     color: 'var(--score-card-color, var(--ha-card-background))',
-    max: '',
-    min: '',
-    severity: '',
-    target: '',
+    max: null,
+    min: null,
+    severity: null,
+    target: null,
   },
 };
 
@@ -676,10 +682,10 @@ export const body_lb = {
       value: 'inside',
     },
     color: 'var(--score-card-color, var(--ha-card-background))',
-    max: '',
-    min: '',
-    severity: '',
-    target: '',
+    max: null,
+    min: null,
+    severity: null,
+    target: null,
   },
 };
 
@@ -716,7 +722,7 @@ const compute = {
 }
 
 export const models = {
-  false: {
+  no_impedance: {
     states: {
       status: {
         key: 'state',
@@ -775,8 +781,9 @@ export const models = {
       body_type: false,
       metabolic_age: false,
     },
+    buttons: {},
   },
-  true: {
+  with_impedance: {
     states: {
       status: {
         key: 'state',
@@ -841,5 +848,21 @@ export const models = {
       body_type: { key: 'body_type' },
       metabolic_age: { key: 'metabolic_age' },
     },
+    buttons: {},
   },
+};
+
+export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
+  entity: '',
+  image: '',
+  model: false,
+  unit: false,
+  theme: true,
+  show_name: true,
+  show_states: true,
+  show_attributes: true,
+  show_always_details: false,
+  show_toolbar: true,
+  show_body: true,
+  show_buttons: false,
 };

@@ -1,246 +1,293 @@
-import { LitElement, html, CSSResultGroup, TemplateResult, PropertyValues } from 'lit';
-
+import { CSSResultGroup, LitElement, PropertyValues, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import {
   HomeAssistant,
   hasConfigOrEntityChanged,
-  LovelaceCardEditor,
-  LovelaceCard,
   fireEvent,
-} from 'custom-card-helpers'; // This is a community maintained npm module with common helper functions/types
-
-import './editor';
-import { BodyMiScaleCardConfig } from './types';
-import { CARD_VERSION, states, attributes_kg, attributes_lb, body_kg, body_lb, buttons, models } from './const';
-import { styles } from './styles';
-import { localize } from './localize/localize';
+  formatDate,
+  formatNumber,
+  formatTime
+} from 'custom-card-helpers';
+import localize from './localize';
+import styles from './styles.css';
 import { HassEntity } from 'home-assistant-js-websocket';
-import { deepMerge } from './helpers';
-import { formatNumber } from './format_number';
+import { Template, BodymiscaleCardConfig, BodymiscaleEntity } from './types';
+import buildConfig from './config';
+import { defaultCardConfig } from './const';
 
-/* eslint no-console: 0 */
+// String in the right side will be replaced by Rollup
+const PKG_VERSION = 'PKG_VERSION_VALUE';
+
 console.info(
-  `%c  Body-miscale-card \n%c  ${localize('common.version')} ${CARD_VERSION}    `,
+  `%c Body-miscale-card \n%c  ${localize('common.version')} ${PKG_VERSION} `,
   'color: cyan; background: black; font-weight: bold;',
   'color: darkblue; background: white; font-weight: bold;',
 );
 
-// This puts your card into the UI card picker dialog
-(window as any).customCards = (window as any).customCards || [];
-(window as any).customCards.push({
-  type: 'body-miscale-card',
-  name: localize('common.name'),
-  description: localize('common.description'),
-});
-
 @customElement('body-miscale-card')
-export class BodyMiScaleCard extends LitElement implements LovelaceCard {
-  @property({ attribute: false }) public hass?: HomeAssistant;
-  @state() private config!: BodyMiScaleCardConfig;
-  @state() private _configArray: BodyMiScaleCardConfig[] = [];
-  @state() open: boolean = false;
-  stateObj: any;
+export class BodymiscaleCard extends LitElement {
+  @property({ attribute: false }) public hass!: HomeAssistant;
 
-  public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    return document.createElement('body-miscale-card-editor') as LovelaceCardEditor;
+  @state() private config!: BodymiscaleCardConfig;
+  @state() open = false;
+
+  static get styles(): CSSResultGroup {
+    return styles;
   }
 
-  public static getStubConfig(): object {
-    return {};
+  public static async getConfigElement() {
+    import('./editor');
+    return document.createElement('body-miscale-card-editor');
+  }
+
+  static getStubConfig(_: unknown, entities: string[]) {
+    const [bodymiscaleEntity] = entities.filter((eid) => eid.startsWith('bodymiscale'));
+
+    return {
+        ...defaultCardConfig,
+        entity: bodymiscaleEntity ?? '',
+    };
+  }
+
+  get entity(): BodymiscaleEntity {
+    return this.hass.states[this.config.entity] as BodymiscaleEntity;
+  }
+
+  public setConfig(config: BodymiscaleCardConfig): void {
+    this.config = buildConfig(config);
   }
 
   public getCardSize(): number {
-    if (this.config.show_name && this.config.show_buttons) return 4;
-    if (this.config.show_name || this.config.show_buttons) return 3;
-    return 2;
+    return this.config.show_name && this.config.show_buttons ? 4 
+         : this.config.show_name || this.config.show_buttons ? 3 
+         : 2;
   }
 
-  setConfig(config: BodyMiScaleCardConfig): void {
-    if (!config.entity) throw new Error(localize('error.missing_entity'));
-    if (config.entity.split('.')[0] !== 'bodymiscale') throw new Error(localize('error.missing_entity_bodymiscale'));
-    if (config.model && !(config.model in models)) throw new Error(localize('error.missing_model'));
-
-    const model = models[config.model] || models.false;
-
-    this.config = {
-      name: config.name,
-      show_name: config.show_name,
-      show_states: config.show_states,
-      show_attributes: config.show_attributes,
-      show_body: config.show_body,
-      show_buttons: config.show_buttons,
-      show_toolbar: config.show_toolbar,
-      always_show_details: config.always_show_details,
-      ...config,
-      states: deepMerge(states, model.states, config.states),
-      attributes: config.unit ? deepMerge(attributes_lb, model.attributes_lb, config.attributes) : deepMerge(attributes_kg, model.attributes_kg, config.attributes),
-      body: config.unit ? deepMerge(body_lb, model.body_lb, config.body) : deepMerge(body_kg, model.body_kg, config.body),
-      buttons: deepMerge(buttons, model.buttons, config.buttons),
-      direction: 'right',
-      styles: {
-        background: config.image
-          ? `background-image: url('${config.image}'); color: white; text-shadow: 0 0 10px black;`
-          : '',
-        icon: `color: ${config.image ? 'white' : 'var(--paper-item-icon-color)'};`,
-        iconbody: `background-color: ${config.theme !== false ? 'var(--paper-item-icon-color)' : 'white'};`,
-        content: `padding: ${config.name !== false ? '8px' : '16px'} ${config.buttons !== false ? '8px' : '16px'};`,
-      },
-    };
-    this.open = this.open || this.config.open;
+  shouldShowBackground() {
+    return !(
+      this.config.image === "" &&
+      this.config.show_states === false &&
+      this.config.show_attributes === false &&
+      this.config.show_always_details === true &&
+      this.config.show_body === true
+    );
   }
 
   protected shouldUpdate(changedProps: PropertyValues): boolean {
     return hasConfigOrEntityChanged(this, changedProps, false);
   }
 
-  private toggle(ev: Event) {
-    if (ev) ev.stopPropagation();
+  private toggle(event?: Event) {
+    event?.stopPropagation();
     this.open = !this.open;
   }
-
-  private _customEvent(ev: CustomEvent) {
-    const detail: any = ev.detail;
-    if (detail.fold_row) {
-      this.toggle(ev);
+  
+  private customEvent(event: CustomEvent) {
+    if (event.detail?.fold_row) {
+      this.toggle(event);
+    }
+  }
+  
+  toggleMenu(key: string) {
+    const menu = this.shadowRoot?.querySelector<HTMLElement & { open?: boolean }>(`#bmc-menu-${key}`);
+    if (menu && 'open' in menu) {
+      menu.open = !menu.open;
     }
   }
 
-  protected render(): TemplateResult {
-    if (!this.hass || !this.config) {
-      return html``;
-    }
+  private handleChange(mode: string | number, key: any, service?: string): void {
+    if (!this.hass || !this.config?.entity) return;
+  
+    const stateObj = this.hass.states[this.config.entity];
+    if (!stateObj) return;
+  
+    this.callService(service ?? `bodymiscale.set_${key}`, {
+      entity_id: stateObj.entity_id,
+      [key]: mode,
+    });
+  }
 
-    const stateObj = this.hass.states[this.config!.entity];
-
+  private callService(service: string, data?: Record<string, unknown>): void {
+    if (!this.hass || !this.config?.entity) return;
+  
+    const stateObj = this.hass.states[this.config.entity];
     if (!stateObj) {
-      return html`
-        <ha-card>
-          <div class="preview not-available">
-            <div class="metadata">
-              <div class="not-available">${localize('common.not_available')}</div>
-            </div>
-          </div>
-        </ha-card>
-      `;
+      console.error("Entity not found:", this.config.entity);
+      return;
     }
-
-    return html` <ha-card>
-      <div class="background" style="${this.config.styles.background}">
-        <div>${this.renderName(stateObj)}</div>
-        <div class="grid" style="${this.config.styles.content}" @click="${this._moreInfo}" tabindex="0">
-          <div class="grid-content grid-left">
-            ${Object.values(this.config.states)
-              .filter((v) => v)
-              .map(this.renderState.bind(this))}
-          </div>
-          <div class="grid-content grid-right">
-            ${Object.values(this.config.attributes)
-              .filter((v) => v)
-              .map(this.renderAttribute.bind(this))}
-          </div>
-        </div>
-      </div>
-      ${this.renderToolbar()}
-      <div id="items" ?open=${this.open || this.config.always_show_details}>
-        <div id="score" class="card-content" style="${this.config.direction == 'up' ? '' : 'flex-grow: 0;'}">
-          ${Object.values(this.config.body)
-            .filter((v) => v)
-            .map(this.renderBody.bind(this))}
-          </score-card-row>
-        </div>
-      </div>
-    </ha-card>`;
+  
+    const [domain, name] = service.split(".");
+    const serviceData = { entity_id: stateObj.entity_id, ...data };
+  
+    this.hass.callService(domain, name, serviceData);
   }
 
-  private renderName(stateObj: HassEntity): TemplateResult {
+  private moreInfo(): void {
+    if (!this.config?.entity) {
+        console.warn("No entity defined in the config.");
+        return;
+    }
+
+    fireEvent(this, 'hass-more-info', {
+        entityId: this.config.entity,
+    });
+  }
+
+  private renderName(stateObj: HassEntity): Template {
     if (!this.config.show_name) {
-      return html``;
+      return nothing;
     }
     return html` <div class="title">${this.config.name || stateObj.attributes.friendly_name}</div> `;
   }
 
-  private renderState(data: any): TemplateResult {
+  private renderState(data: any): Template {
     if (!this.config.show_states) {
-      return html``;
+        return nothing;
+    }
+    if (!this.hass || !this.config?.entity) {
+        return html`<div>${localize('state.default.unavailable')}</div>`;
     }
 
-    const stateObj = this.hass!.states[this.config!.entity];
+    const stateObj = this.hass.states?.[this.config.entity];
 
-    const isValidAttribute = data && data.key in stateObj.attributes;
-    const isValidEntityData = data && data.key in stateObj;
+    if (!stateObj) {
+        return html`<div>${this.hass.localize('state.default.unavailable')}</div>`;
+    }
 
-    const value = isValidAttribute
+    const keyExists = data?.key && stateObj;
+    const isValidAttribute = keyExists && stateObj.attributes?.[data.key] !== undefined;
+    const isValidEntityData = keyExists && (stateObj as Record<string, any>)[data.key] !== undefined;
+
+    let value = isValidAttribute
       ? stateObj.attributes[data.key]
       : isValidEntityData
-      ? stateObj[data.key]
-      : this.hass!.localize('state.default.unavailable');
-    const formatValue = formatNumber(value, this.hass!.locale);
-    const attribute = html`<div class="state-div ${stateObj.state === 'ok' && data.icon === 'mdi:alert' ? 'ok' : ''}">
-      <div>${data.icon && this.renderIcon(data)}</div>
-      <div class="state-label">
-        ${(data.label || '') + (localize(`states.${value}`) || formatValue) + (data.unit || '')}
-      </div>
-    </div>`;
+      ? (stateObj as Record<string, any>)[data.key]
+      : this.hass.localize('state.default.unavailable');
+
+    if (data.key === "last_measurement_time" && typeof value === "string") {
+      try {
+        const parsedDate = new Date(value.replace(" ", "T"));
+    
+        const formattedDate = formatDate(parsedDate, this.hass.locale);
+        const formattedTime = formatTime(parsedDate, this.hass.locale);
+    
+        value = `${formattedDate} ${formattedTime}`;
+      } catch { /* empty */ }
+    }
+
+    const formatValue = typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
+    const localizedValue = localize(`states.${value}`) || formatValue;
+
+    const attribute =
+      stateObj.state === 'ok' && data.icon === 'mdi:alert'
+        ? nothing
+        : html` <div class="state-div">
+                  <div>${data.icon && this.renderIcon(data)}</div>
+                  <div class="state-label">
+                    ${data.label ?? ''}${localizedValue}${data.unit ?? ''}</div>
+                </div>`;
 
     const hasDropdown = `${data.key}_list` in stateObj.attributes;
 
-    return hasDropdown && (isValidAttribute || isValidEntityData)
+    return hasDropdown && (isValidAttribute || isValidEntityData) && data.service
       ? this.renderDropdown(attribute, data.key, data.service)
       : attribute;
   }
 
-  private renderAttribute(data: any): TemplateResult {
+  private renderAttribute(data: any): Template {
     if (!this.config.show_attributes) {
-      return html``;
+        return nothing;
     }
-    const stateObj = this.hass!.states[this.config!.entity];
+    if (!this.hass || !this.config?.entity) {
+      return html`<div>${localize('state.default.unavailable')}</div>`;
+    }
+    const stateObj = this.hass.states?.[this.config.entity];
+    
+    if (!stateObj) {
+      return html`<div>${this.hass.localize('state.default.unavailable')}</div>`;
+    }
 
-    const computeFunc = data.compute || ((v: any) => v);
-    const isValidAttribute = data && data.key in stateObj.attributes;
-    const isValidEntityData = data && data.key in stateObj;
+    const computeFunc = typeof data.compute === 'function' ? data.compute : (v: any) => v;
+    const keyExists = data?.key && stateObj;
+    const isValidAttribute = keyExists && stateObj.attributes?.[data.key] !== undefined;
+    const isValidEntityData = keyExists && (stateObj as Record<string, any>)[data.key] !== undefined;
 
-    const value = isValidAttribute
+    let value = isValidAttribute
       ? computeFunc(stateObj.attributes[data.key])
       : isValidEntityData
-      ? computeFunc(stateObj[data.key])
-      : this.hass!.localize('state.default.unavailable');
+      ? computeFunc((stateObj as Record<string, any>)[data.key])
+      : this.hass.localize('state.default.unavailable');
 
-    const formatValue = formatNumber(value, this.hass!.locale);
+    if (data.key === "last_measurement_time" && typeof value === "string") {
+      try {
+        const parsedDate = new Date(value.replace(" ", "T"));
+    
+        const formattedDate = formatDate(parsedDate, this.hass.locale);
+        const formattedTime = formatTime(parsedDate, this.hass.locale);
+    
+        value = `${formattedDate} ${formattedTime}`;
+      } catch { /* empty */ }
+    }
 
+    const formatValue = typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
+
+    const localizedValue = localize(`attributes_value.${value}`) || formatValue;
     const attribute = html`<div>
-      ${data.icon && this.renderIcon(data)}${(data.label || '') +
-      (localize(`attributes_value.${value}`) || formatValue) +
-      (data.unit || '')}
+      ${data.icon && this.renderIcon(data)}
+      ${data.label ?? ''}${localizedValue}${data.unit ?? ''}
     </div>`;
 
     const hasDropdown = `${data.key}_list` in stateObj.attributes;
 
-    return hasDropdown && (isValidAttribute || isValidEntityData)
+    return hasDropdown && (isValidAttribute || isValidEntityData) && data.service
       ? this.renderDropdown(attribute, data.key, data.service)
       : attribute;
   }
 
-  private renderBody(data: any): TemplateResult {
+  private renderBody(data: any): Template {
     if (!this.config.show_body) {
-      return html``;
+        return nothing;
+    }
+    if (!this.hass || !this.config?.entity) {
+      return html`<div>${localize('state.default.unavailable')}</div>`;
+    }
+    const stateObj = this.hass.states?.[this.config.entity];
+    
+    if (!stateObj) {
+      return html`<div>${this.hass.localize('state.default.unavailable')}</div>`;
     }
 
-    const stateObj = this.hass!.states[this.config!.entity];
+    const computeFunc = typeof data.compute === 'function' ? data.compute : (v: any) => v;
+    const keyExists = data?.key && stateObj;
+    const isValidAttribute = keyExists && stateObj.attributes?.[data.key] !== undefined;
+    const isValidEntityData = keyExists && (stateObj as Record<string, any>)[data.key] !== undefined;
 
-    const computeFunc = data.compute || ((v: any) => v);
-    const isValidAttribute = data && data.key in stateObj.attributes;
-    const isValidEntityData = data && data.key in stateObj;
-
-    const value = isValidAttribute
+    let value = isValidAttribute
       ? computeFunc(stateObj.attributes[data.key])
       : isValidEntityData
-      ? computeFunc(stateObj[data.key])
-      : this.hass!.localize('state.default.unavailable');
-    const formatValue = formatNumber(value, this.hass!.locale);
+      ? computeFunc((stateObj as Record<string, any>)[data.key])
+      : this.hass.localize('state.default.unavailable');
+
+    if (data.key === "last_measurement_time" && typeof value === "string") {
+      try {
+        const parsedDate = new Date(value.replace(" ", "T"));
+        
+        const formattedDate = formatDate(parsedDate, this.hass.locale);
+        const formattedTime = formatTime(parsedDate, this.hass.locale);
+        
+        value = `${formattedDate} ${formattedTime}`;
+      } catch { /* empty */ }
+    }
+
+    const formatValue = typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
+
 
     // Defined height and check for configured height.
     let barHeight: string | number = 30;
-    if (data.height) barHeight = data.height;
+    if (typeof data.height === 'number' || typeof data.height === 'string') {
+      barHeight = data.height;
+    }
 
     // Set style variables based on direction.
     let alignItems = 'stretch';
@@ -267,7 +314,9 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     // Set icon position html.
     let iconOutside;
     let iconInside;
-    switch (data.positions.icon) {
+
+    const positions = data.positions || {};
+    switch (positions.icon) {
       case 'outside':
         iconOutside = html` <score-card-iconbar> ${data.icon && this.renderIconbody(data)} </score-card-iconbar> `;
         break;
@@ -283,6 +332,7 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     // Set name html based on position.
     let nameOutside;
     let nameInside;
+
     switch (data.positions.name) {
       case 'outside':
         nameOutside = html`
@@ -292,13 +342,13 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
               : data.width
               ? `width: calc(100% - ${data.width});`
               : ''}"
-            >${data.label || ''}</score-card-name
+            >${data.label ?? ''}</score-card-name
           >
         `;
         backgroundMargin = '0px';
         break;
       case 'inside':
-        nameInside = html` <score-card-name>${data.label || ''}</score-card-name> `;
+        nameInside = html` <score-card-name>${data.label ?? ''}</score-card-name> `;
         break;
       case 'off':
         break;
@@ -307,21 +357,24 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     // Set min and max html based on position.
     let minMaxOutside;
     let minMaxInside;
+
+    const min = data.min ?? 0;
+    const max = data.max ?? 100;
     switch (data.positions.minmax) {
       case 'outside':
         minMaxOutside = html`
-          <score-card-min>${data.min + (data.unit || '')}</score-card-min>
+          <score-card-min>${min + (data.unit ?? '')}</score-card-min>
           <score-card-divider>/</score-card-divider>
-          <score-card-max>${data.max + (data.unit || '')}</score-card-max>
+          <score-card-max>${max + (data.unit ?? '')}</score-card-max>
         `;
         break;
       case 'inside':
         minMaxInside = html`
           <score-card-min class="${data.direction == 'up' ? 'min-direction-up' : 'min-direction-right'}"
-            >${data.min + (data.unit || '')}</score-card-min
+            >${min + (data.unit ?? '')}</score-card-min
           >
           <score-card-divider>/</score-card-divider>
-          <score-card-max> ${data.max + (data.unit || '')}</score-card-max>
+          <score-card-max> ${max + (data.unit ?? '')}</score-card-max>
         `;
         break;
       case 'off':
@@ -331,11 +384,13 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     // Set value html based on position.
     let valueOutside;
     let valueInside;
+    
     switch (data.positions.value) {
       case 'outside':
         valueOutside = html`
           <score-card-value class="${data.direction == 'up' ? 'value-direction-up' : 'value-direction-right'}"
-            >${(localize(`body_value.${value}`) || formatValue) + (data.unit || '')}</score-card-value
+            >${(localize(`body_value.${value}`) || formatValue)}
+             ${(data.unit ?? '')}</score-card-value
           >
         `;
         break;
@@ -347,7 +402,8 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
               : data.direction == 'up'
               ? 'value-direction-up'
               : 'value-direction-right'}"
-            >${(localize(`body_value.${value}`) || formatValue) + (data.unit || '')}</score-card-value
+            >${(localize(`body_value.${value}`) || formatValue)}
+             ${(data.unit ?? '')}</score-card-value
           >
         `;
         break;
@@ -357,13 +413,13 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
     }
 
     // Set bar color.
-    const barColor = this._computeBarColor(data, Number(value));
+    const barColor = this.computeBarColor(data, Number(value));
 
     // Set bar percent and marker percent based on value difference.
-    const barPercent = this._computePercent(data, Number(value));
-    const targetMarkerPercent = this._computePercent(data, data.target);
+    const barPercent = this.computePercent(data, Number(value));
+    const targetMarkerPercent = this.computePercent(data, data.target);
     let targetStartPercent = barPercent;
-    let targetEndPercent = this._computePercent(data, data.target);
+    let targetEndPercent = this.computePercent(data, data.target);
     if (targetEndPercent < targetStartPercent) {
       targetStartPercent = targetEndPercent;
       targetEndPercent = barPercent;
@@ -419,120 +475,143 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
       : attribute;
   }
 
-  private renderIcon(data: any): TemplateResult {
-    const stateObj = this.hass!.states[this.config!.entity];
-    const icon =
-      data.key === 'water' && 'water_icon' in this.stateObj.attributes
-        ? this.stateObj.attributes.water_icon
-        : data.icon;
-    if (stateObj.attributes.problem !== 'none' && icon === 'mdi:alert') {
-      return html`<ha-icon class="problem" icon="${icon}"></ha-icon>`;
-    }
-    return html`<ha-icon icon="${icon}" style="margin-right: 10px; ${this.config.styles.icon}"></ha-icon>`;
-  }
-
-  private renderIconbody(data: any): TemplateResult {
-    const icon =
-      data.key === 'Water' && 'water_icon' in this.stateObj.attributes
-        ? this.stateObj.attributes.water_icon
-        : data.icon;
-    return html`<ha-icon
-      class="image"
-      style="-webkit-mask-image: url('${icon}');-webkit-mask-size: 24px; ${this.config.styles.iconbody}"
-    ></ha-icon>`;
-  }
-
-  renderButton(data: any) {
-    if (!this.config.show_buttons) {
-      return html``;
+  private renderIcon(data: any): Template {
+    if (!this.hass || !this.config?.entity) {
+        return nothing;
     }
 
-    return data && data.show !== false
-      ? html`<ha-icon-button
-          @click="${() => this.callService(data.service, data.service_data)}"
-          title="${data.label || ''}"
-          style="${this.config.styles.icon}">
-            <ha-icon icon="${data.icon}"></ha-icon>
-          </ha-icon-button>`
-      : null;
+    const stateObj = this.hass.states[this.config.entity];
+    if (!stateObj) {
+        return nothing;
+    }
+
+    const icon =
+        data.key === 'water' && 'water_icon' in stateObj.attributes
+            ? stateObj.attributes.water_icon
+            : data.icon;
+
+    if (!icon) {
+        return nothing; // Évite un <ha-icon> inutile
+    }
+
+    const isProblem = stateObj.attributes.problem !== 'none' && icon === 'mdi:alert';
+    const iconClass = isProblem ? 'problem' : '';
+    
+    return html`
+      <ha-icon
+        class="${iconClass}"
+        icon="${icon}"
+        style="margin-right: 10px; ${this.config.styles?.icon || ''} ${isProblem ? 'color: var(--error-color) !important;' : ''}"
+      ></ha-icon>
+    `;
   }
 
-  private renderToolbar(): TemplateResult {
+  private renderIconbody(data: any): Template {
+    if (!this.hass || !this.config?.entity) {
+      return nothing;
+    }
+
+    const stateObj = this.hass.states[this.config.entity];
+    if (!stateObj) {
+      return nothing;
+    }
+
+    const icon = 
+      data.key === 'Water' && 'water_icon' in stateObj.attributes
+        ? stateObj.attributes.water_icon
+        : data.icon;
+
+    if (!icon) {
+      return nothing; // Évite un ha-icon inutile
+    }
+
+    return html`
+      <ha-icon
+        class="image"
+        style="-webkit-mask-image: url('${icon}'); -webkit-mask-size: 24px; 
+          ${this.config.styles?.iconbody || ''}"
+      ></ha-icon>
+    `;
+  }
+
+  private renderButton(data: any) {
+    if (!this.config.show_buttons || !data?.icon || data.show === false) {
+      return nothing;
+    }
+  
+    return html`
+      <ha-icon-button
+        @click=${() => this.callService(data.service, data.service_data)}
+        title=${ifDefined(data.label)}
+        style=${this.config.styles?.icon || ''}>
+        <ha-icon icon="${data.icon}"></ha-icon>
+      </ha-icon-button>
+    `;
+  }
+  
+  private renderToolbar(): Template {
     if (!this.config.show_toolbar) {
-      return html``;
+      return nothing;
     }
     return html`
-      <div class="toolbar" @ll-custom=${this._customEvent} ?open=${this.open}>
+      <div class="toolbar" @ll-custom=${this.customEvent} ?open=${this.open}>
         <ha-icon-button
           @click=${this.toggle}
-          title="${localize('common.toggle_power')}"
+          title=${ifDefined(localize('common.toggle_power') || undefined)}
           style="color: var(--primary-color);">
-            <ha-icon icon=${this.config.always_show_details ? '' : this.open ? 'mdi:chevron-up' : 'mdi:chevron-down'}></ha-icon>
+            <ha-icon icon=${this.config.show_always_details ? '' : this.open ? 'mdi:chevron-up' : 'mdi:chevron-down'}></ha-icon>
         </ha-icon-button>
         <div class="fill-gap"></div>
-        ${Object.values(this.config.buttons)
-          .filter((v) => v)
+        ${Object.values(this.config.buttons ?? {})
+          .filter(Boolean)
           .map(this.renderButton.bind(this))}
       </div>
     `;
   }
 
-  private handleChange(mode: any, key: any, service: any): void {
-    const stateObj = this.hass!.states[this.config!.entity];
-    this.callService(service ||`bodymiscale.set_${key}`, { entity_id: stateObj.entity_id, [key]: mode });
+  private renderDropdown(attribute: any, key: string, service: string) {
+  if (!this.hass || !this.config?.entity) {
+    return nothing;
   }
 
-  private callService(service: any, data = { entity_id: this.stateObj.entity_id }): void {
-    const [domain, name] = service.split('.');
-    this.hass!.callService(domain, name, data);
+  const stateObj = this.hass.states[this.config.entity];
+  if (!stateObj?.attributes) {
+    return nothing;
   }
 
-  private renderDropdown(attribute: any, key: any, service: any) {
-    if (!this.hass || !this.config) {
-      return html``;
-    }
-    const stateObj = this.hass.states[this.config!.entity];
-    const list = stateObj.attributes[`${key}_list`];
+  const list: string[] = stateObj.attributes[`${key}_list`] ?? [];
+  if (!Array.isArray(list) || list.length === 0) {
+    return nothing;
+  }
 
-    return html`
-      <div style="position: relative" @click=${e => e.stopPropagation()}>
-        <ha-button @click=${() => this.toggleMenu(key)}>
-          ${attribute}
-        </ha-button>
+  return html`
+    <div style="position: relative" @click=${(e: Event) => e.stopPropagation()}>
+      <ha-button @click=${() => this.toggleMenu(key)}>
+        ${attribute}
+      </ha-button>
         <mwc-menu
-        @selected=${e => this.handleChange(list[e.detail.index], key, service)}
-          id=${`bmc-menu-${key}`}
+          @selected=${(e: CustomEvent) => this.handleChange(list[e.detail.index], key, service)}
+          id=${ifDefined(`bmc-menu-${key}`)}
           activatable
           corner="BOTTOM_START">
-            ${list.map(item => html`<mwc-list-item value=${item}>${item}</mwc-list-item>`)}
+          ${list.map((item: string) => html`<mwc-list-item value=${item}>${item}</mwc-list-item>`)}
         </mwc-menu>
-      </div>`;
+    </div>`;
   }
 
-  toggleMenu(key: any) {
-    const menu: any = this.shadowRoot!.querySelector(`#bmc-menu-${key}`);
-    menu.open = !menu.open;
-  }
-
-  static get styles(): CSSResultGroup {
-    return styles;
-  }
-
-  private _computeBarColor(data: any, numberValue: number): string {
-    let BarColor;
+  private computeBarColor(data: any, numberValue: number): string {
     if (data.severity) {
-      BarColor = this._computeSeverityColor(data, numberValue);
-    } else if (data == 'unavailable') {
-      BarColor = `var(--score-card-disabled-color, ${data.color})`;
-    } else {
-      BarColor = data.color;
+      return this.computeSeverityColor(data, numberValue);
+    } 
+    if (data == 'unavailable') {
+      return `var(--score-card-disabled-color, ${data.color ?? 'gray'})`;
     }
-    return BarColor;
+    return data.color ?? 'gray';
   }
 
-  private _computeSeverityColor(data: any, numberValue: number): unknown {
+  private computeSeverityColor(data: any, numberValue: number): string {
     const sections = data.severity;
-    let color: undefined | string;
+    let color: string | undefined;
 
     if (isNaN(numberValue)) {
       sections.forEach((section: { text: any; color: string | undefined }) => {
@@ -548,28 +627,106 @@ export class BodyMiScaleCard extends LitElement implements LovelaceCard {
       });
     }
 
-    if (color == undefined) color = data.color;
-    return color;
+    return color ?? data.color ?? 'gray'; // Défaut à 'gray' si aucune couleur trouvée
   }
 
-  private _computePercent(data: any, numberValue: number): number {
-    if (data == 'unavailable') return 0;
+  private computePercent(data: any, numberValue: number): number {
+    if (data === 'unavailable') return 0;
     if (isNaN(numberValue)) return 100;
+
+    // Vérifier que min et max existent et sont bien des nombres
+    const min = typeof data.min === 'number' ? data.min : 0;
+    const max = typeof data.max === 'number' ? data.max : 100;
+
+    if (min >= max) return 0; // Évite une division par zéro ou un pourcentage incorrect
+
+    const percent = (100 * (numberValue - min)) / (max - min);
 
     switch (data.direction) {
       case 'right-reverse':
       case 'left-reverse':
       case 'up-reverse':
       case 'down-reverse':
-        return 100 - (100 * (numberValue - data.min)) / (data.max - data.min);
+        return 100 - percent;
       default:
-        return (100 * (numberValue - data.min)) / (data.max - data.min);
+        return percent;
     }
-  }
+ }
 
-  private _moreInfo(): void {
-    fireEvent(this, 'hass-more-info', {
-      entityId: this.config!.entity,
-    });
+  protected render(): Template {
+    if (!this.hass || !this.config?.entity) {
+      return nothing;
+    }
+  
+    const stateObj = this.hass.states[this.config.entity];
+  
+    if (!stateObj) {
+      return html`
+        <ha-card>
+          <div class="preview not-available">
+            <div class="metadata">
+              <div class="not-available">
+                ${localize('common.not_available')}
+              </div>
+            </div>
+          </div>
+        </ha-card>
+      `;
+    }
+  
+    return html`
+      <ha-card>
+        ${this.shouldShowBackground()
+          ? html`
+              <div class="background" 
+                style="
+                  ${this.config.styles?.background || ''};
+              ">
+                ${this.config.show_name ? html`<div class="title">${this.renderName(stateObj)}</div>` : ""}
+                <div class="grid" 
+                  style="${this.config.styles?.content || ''}" 
+                  @click="${this.moreInfo}" 
+                  tabindex="0">
+                  <div class="grid-left">
+                    ${(this.config.states ? Object.values(this.config.states) : [])
+                      .filter((v) => v)
+                      .map(this.renderState.bind(this))}
+                  </div>
+                  <div class="grid-right">
+                    ${(this.config.attributes ? Object.values(this.config.attributes) : [])
+                      .filter((v) => v)
+                      .map(this.renderAttribute.bind(this))}
+                  </div>
+                </div>
+              </div>
+            `
+          : this.config.show_name
+          ? html`<div class="title">${this.renderName(stateObj)}</div>`
+          : ""}
+        
+        ${this.renderToolbar()}
+        <div id="items" ?open=${this.open || this.config.show_always_details}>
+          <div id="score" class="card-content" style=${this.config.direction === 'up' ? '' : 'flex-grow: 0;'}>
+            ${(this.config.body ? Object.values(this.config.body) : [])
+              .filter(Boolean)
+              .map(this.renderBody.bind(this))}
+          </div>
+        </div>
+      </ha-card>
+    `;
   }
 }
+
+declare global {
+  interface Window {
+    customCards?: unknown[];
+  }
+}
+
+window.customCards = window.customCards || [];
+window.customCards.push({
+  preview: true,
+  type: 'body-miscale-card',
+  name: localize('common.name'),
+  description: localize('common.description'),
+});

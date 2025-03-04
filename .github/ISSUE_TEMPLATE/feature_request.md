@@ -1,19 +1,33 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Bug report
+about: Create a report to improve this project
 title: ''
-labels: feature request
+labels: bug
 assignees: ''
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Before submitting a bug**
+[ ] I updated to the latest version available
+[ ] I cleared the cache of my browser
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Steps to reproduce**:
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+1. Go to '...'
+2. Click on '....'
+3. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+For example, JavaScript errors are shown in the web inspector (if applicable).
+
+**Versions:**
+
+- Release: [e.g. 2025.2.0]
+- Browser: [e.g. chrome, safari]
+- HomeAssistant version: [e.g 2025.2.0]

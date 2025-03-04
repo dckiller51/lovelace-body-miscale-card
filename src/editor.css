@@ -1,0 +1,22 @@
+.card-config {
+    flex-direction: column;
+    display: flex;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .option ha-switch {
+    --mdc-theme-secondary: var(--switch-checked-color);
+  }
+  
+  .option ha-select,
+  .option ha-textfield {
+    width: 100%;
+  }
+
+  .option ha-formfield {
+    padding-bottom: 8px;
+  }

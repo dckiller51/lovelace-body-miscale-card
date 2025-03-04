@@ -2,193 +2,193 @@
 
 All notable changes to this project will be documented in this file.
 
+---
+
+## 2025.3.0
+
+- ➕ **Added** `buildStyles` function to centralize and simplify style logic in `buildConfig`.
+- ➕ **Added** default value management for `image`, `name`, `buttons`, and other configuration options.
+- ♻️ **Improved** refactored `buildConfig` for better readability and maintainability.
+- 🛠️ **Fixed** alignment and `border-radius` handling based on the presence of `show_toolbar`.
+- 🔧 **Fixed** minor CSS optimizations for button padding and background color management.
+- 🔧 **Fixed** reversed logic to remove content when `stateObj.state === 'ok'` and `data.icon === 'mdi:alert'` than hide rather.
+- ️ 🔧 **Fixed** Issue with Card Display in Section Mode When Sensors Are Unavailable [[#56](https://github.com/dckiller51/lovelace-body-miscale-card/issues/56)]
+- ➕ **Added** option to fully hide the card header [[#48](https://github.com/dckiller51/lovelace-body-miscale-card/issues/48)]
+- ➕ **Added** Last measurement time update information (introduced in Bodymiscale component 2025.2.19-beta pre-release).
+- ♻️ **Improved** code compatibility with recent Node.js versions.
+
 ## 2024.08.0
 
-- added Vietnamese language support (thank you ngdaihoc)
-- fixed syntax error in Polish (thanks to @kuduacz)
+- ✅ **Added** Vietnamese language support (thank you ngdaihoc)
+- 🔧 **Fixed** syntax error in Polish (thanks to @kuduacz)
 
 ## 2023.11.0
 
-- added Traditional Chinese language support (thank you @yauyauwind)
-- Change of version number. Calendar version management, consisting of year, month and patch number.
+- ✅ **Added** Traditional Chinese language support (thank you @yauyauwind)
+- 🔄 **Changed** versioning system to a calendar format (year.month.patch)
 
 ## v5.9.6
 
-- translation update for compatibility with the Bodymiscale v3.1.1 component
+- 🌍 **Updated** translations for compatibility with Bodymiscale v3.1.1
 
 ## v5.9.5
 
-- Fix the icons problem in Firefox [[#45](https://github.com/dckiller51/lovelace-body-miscale-card/issues/45)]
+- 🛠️ **Fixed** icons issue in Firefox [[#45](https://github.com/dckiller51/lovelace-body-miscale-card/issues/45)]
 
 ## v5.9.4
 
-- added Hungarian language support (thank you @v1k70rk4)
+- ✅ **Added** Hungarian language support (thank you @v1k70rk4)
 
 ## v5.9.3
 
-- added always show details
+- ➕ **Added** "Always show details" option
 
 ## v5.9.2
 
-- added Polish language support (thank you @LukaszP2)
+- ✅ **Added** Polish language support (thank you @LukaszP2)
 
 ## v5.9.1
 
-- added Romania language support (thank you @18rrs)
+- ✅ **Added** Romanian language support (thank you @18rrs)
 
 ## v5.9.0
 
-- add the choice of the theme of your system. (Dark or light)
-- added Spanish language (thanks to @luisetex84)
+- 🎨 **Added** system theme selection (Dark or Light mode)
+- ✅ **Added** Spanish language support (thanks to @luisetex84)
 
 ## v5.8.1
 
-- fix error report [[#28](https://github.com/dckiller51/lovelace-body-miscale-card/issues/28)]
+- 🛠️ **Fixed** error report [[#28](https://github.com/dckiller51/lovelace-body-miscale-card/issues/28)]
 
 ## v5.8.0
 
-- update card editor to MWC
+- 🆕 **Updated** card editor to MWC
 
 ## v5.7.1
 
-- fixed de/en syntax (thanks to @tispokes)
-- fixed syntax error in Russian (thanks to @dmamontov)
+- 🔧 **Fixed** syntax issues in German and English (thanks to @tispokes)
+- 🔧 **Fixed** syntax error in Russian (thanks to @dmamontov)
 
 ## v5.7.0
 
-- added Russian language (thanks to @BrainFixer)
+- ✅ **Added** Russian language support (thanks to @BrainFixer)
 
 ## v5.6.9
 
-- added Portuguese language (thanks to @jonhdimagio)
-- Minor correction in Czech translation
+- ✅ **Added** Portuguese language support (thanks to @jonhdimagio)
+- 🔄 **Updated** minor correction in Czech translation
 
 ## v5.6.8
 
-- added Czech language (thanks to @xpavli44)
+- ✅ **Added** Czech language support (thanks to @xpavli44)
 
 ## v5.6.7
 
-- fix: Icons not working in HA 2021.11
+- 🛠️ **Fixed**: Icons not working in HA 2021.11
 
 ## v5.6.6
 
-- Break. Delete webp icons and replace them with png icons to make them compatible with IOS and Safari browser. Attention you must replace your library in www/images/bodyscoreIcon/*.png
+- ⚠️ **Breaking Change**: Replaced webp icons with png icons for better iOS and Safari compatibility.
+  - **Action Required**: Replace your library in `www/images/bodyscoreIcon/*.png`
 
 ## v5.6.5
 
-- added IT language (thanks to @Altar82)
+- ✅ **Added** Italian language support (thanks to @Altar82)
 
 ## v5.6.4
 
-- fix CN language to zh-Hans
+- 🔄 **Updated** CN language to zh-Hans
 
 ## v5.6.3
 
-- added CN language (thanks to @sasukebinbin)
+- ✅ **Added** CN language support (thanks to @sasukebinbin)
 
 ## v5.6.2
 
-- fix: Change of target for bone mass
+- 🔧 **Fixed** target values for bone mass
 
 ## v5.6.1
 
-- fix: change default values for lbs
+- 🔧 **Fixed** default values for lbs
 
 ## v5.6.0
 
-- Add a switch to convert kg to lbs
+- ➕ **Added** a switch to convert kg to lbs
 
 ## v5.5.0
 
-- Partial integration of bar card options for the body part. (thanks to the contributors of bar-card <https://github.com/custom-cards/bar-card> )
-  Options = Partial (Does not work = animation, columns, decimal, complementary, direction)
-                    (work = color, height, max, min, positions, severity, target, width)
-  Severity Options = OK (from, to, color)
-  Positions Options = OK (icon, name, minmax, value (inside, outside, off))
+- 🔄 **Updated** partial integration of bar-card options for body measurements
+  - 🔹 **Supported Options**: color, height, max, min, positions, severity, target, width
+  - 🔹 **Unsupported Options**: animation, columns, decimal, complementary, direction
+  - 📌 **Severity Options**: from, to, color
+  - 📌 **Position Options**: icon, name, minmax, value (inside, outside, off)
   
-  To know the start, destination, color and target values, open your Mi Fit app on your smartphone.
+  *Tip*: Use the Mi Fit app to check start, destination, color, and target values.
 
 ## v5.0.0
 
-- Conversion to Typescript language (Lit 2)
-- Adding the number format according to your system language
-- In case of a sensor error the alert icon flashes red
-- If no sensor problem the alert icon disappears
-- Added chevron-up and chevron-down icons to show or hide measurement details
-
-## v4.6.1
-
-- fix
+- 🚀 **Converted** project to TypeScript (Lit 2)
+- 🌍 **Added** automatic number formatting based on system language
+- ⚠️ **Alert Icon Behavior**:
+  - Flashes red in case of a sensor error
+  - Disappears when no issue is detected
+- 🔼 **Added** chevron-up and chevron-down icons for measurement details
 
 ## v4.6.0
 
-- added NL language (thanks to @llewy)
-- update of the elements and translation of the configuration map
-- replace the model choice with a switch (Warning: if you upgrade from 4.5.0 to 4.6.0, you must activate a return trip to take into account )
+- ✅ **Added** Dutch language support (thanks to @llewy)
+- 🔄 **Updated** UI elements and translations
+- 🔄 **Changed** model selection to a switch (**Important**: If upgrading from 4.5.0, a return trip is required for settings to apply)
 
-**special thanks to @typxxi for his help in developing the new update and for his extensive testing.**
+📌 **Special thanks to @typxxi for his invaluable help and extensive testing!**
 
 ## v4.5.0
 
-- add BMI Label
-
-## v4.1.1
-
-- fix
+- ➕ **Added** BMI Label
 
 ## v4.1.0
 
-- added DE language
-- replace the icons of materialdesignicons by the official "mifit" icons for the score body
+- ✅ **Added** German language support
+- 🔄 **Updated** icons to official "Mi Fit" icons for the body score
 
 ## v4.0.0
 
-- use snake_case format for attribute names (thanks to Pavel Popov <https://github.com/dckiller51/bodymiscale/pull/13>)
-- replace custom icons with materialdesignicons icons
-- add a toolbar for score and service icons
+- 🔄 **Changed** attribute names to `snake_case` (thanks to [Pavel Popov](https://github.com/dckiller51/bodymiscale/pull/13))
+- 🔄 **Replaced** custom icons with materialdesignicons
+- ➕ **Added** toolbar for score and service icons
 
 ## v3.1.0
 
-- complete translation of card elements
-- added pt-BR language
+- 🌍 **Fully translated** all card elements
+- ✅ **Added** Portuguese (pt-BR) language support
 
-## v3.0.3
+## v3.0.0
 
-- fix
+- 🆕 **Added** card configuration support
+- 🌍 **Added** automatic EN/FR translation (contributions welcome for additional languages!)
 
-## v3.0.2
+## v2.1.0
 
-- rename the version with 'v'
+- 🔄 **Updated**: Click on icon to show/hide body score
 
-## 3.0.1
+## v2.0.0
 
-- fix
+- 🔄 **Updated** UI:
+  - Moved states to the left
+  - Moved body score attributes to the bottom
 
-## 3.0.0
+## v1.0.1
 
-- added card configuration support
-- added automatic translation EN/FR (please contribute to add your language)
+- ➕ **Added** body score attributes with customization options
 
-## 2.1.0
+  ```yaml
+  body:
+    water:
+      label: 'Water: '
+  ```
 
-- Click on the icon to show or hide your score
+- ➕ **Added** customizable icons
 
-## 2.0.0
+## v1.0.0
 
-- add the states (on the left)
-- move the attributes of the body score "body" (on the bottom)
-
-## 1.0.1
-
-- add the attributes of the body score "body" (for the moment on the left)
-example customize:
-body:
-  water:
-    label: 'Water: '
-  
-- add the customize icon
-
-## 1.0.0
-
-- **Initial release**
+- 🎉 **Initial Release**
