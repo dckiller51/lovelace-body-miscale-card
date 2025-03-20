@@ -73,10 +73,13 @@
     " years": " ans"
   },
   "error": {
+    "invalid_config": "Configuration invalide",
     "missing_entity": "Veuillez définir une entité.",
     "missing_entity_bodymiscale": "Veuillez définir une entité Bodymiscale."
   },
   "editor": {
+    "configuration": "Configuration",
+    "customization": "Personnalisation",
     "entity": "Veuillez choisir un compte de la balance (obligatoire) !",
     "image": "Image de fond (facultatif)",
     "model": "Vous avez un capteur d'impédance ?",
@@ -114,5 +117,50 @@
     "header_options": "1. Options d'en-tête de la carte",
     "body_options": "2. Plus d'options de la cartes",
     "code_only_note": "ATTENTION: Les options supplémentaires ne sont disponibles que dans l'éditeur de code."
+  },
+  "editor_body": {
+    "from": "De",
+    "height": "Hauteur de la barre",
+    "icon_position": "Position de l'icône",
+    "inside": "À l'intérieur",
+    "max": "Max",
+    "min": "Min",
+    "minmax_position": "Position Min/Max",
+    "name_position": "Position du nom",
+    "off": "Désactivé",
+    "outside": "À l'extérieur",
+    "target": "Cible",
+    "to": "À",
+    "value_position": "Position de la valeur"
+  },
+  "color_select": {
+    "color": "Couleur",
+    "disabled": "Désactivé",
+    "red": "Rouge",
+    "pink": "Rose",
+    "purple": "Violet",
+    "deep-purple": "Violet foncé",
+    "indigo": "Indigo",
+    "blue": "Bleu",
+    "light-blue": "Bleu clair",
+    "cyan": "Cyan",
+    "teal": "Turquoise",
+    "green": "Vert",
+    "light-green": "Vert clair",
+    "lime": "Vert citron",
+    "yellow": "Jaune",
+    "amber": "Ambre",
+    "orange": "Orange",
+    "orangered": "Rouge orange",
+    "deep-orange": "Orange foncé",
+    "brown": "Marron",
+    "light-grey": "Gris clair",
+    "grey": "Gris",
+    "dark-grey": "Gris foncé",
+    "blue-grey": "Bleu gris",
+    "darkgreen": "Vert foncé",
+    "royalblue": "Blue roi",
+    "black": "Noir",
+    "white": "Blanc"
   }
 }
