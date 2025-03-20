@@ -1,22 +1,79 @@
 .card-config {
-    flex-direction: column;
-    display: flex;
-  }
-  
-  .option {
-    display: flex;
-    align-items: center;
-  }
-  
-  .option ha-switch {
-    --mdc-theme-secondary: var(--switch-checked-color);
-  }
-  
-  .option ha-select,
-  .option ha-textfield {
-    width: 100%;
-  }
+  display: block;
+}
 
-  .option ha-formfield {
-    padding-bottom: 8px;
-  }
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.option ha-switch {
+  --mdc-theme-secondary: var(--switch-checked-color);
+}
+
+.option ha-select,
+.option ha-textfield {
+  width: 100%;
+}
+
+.option ha-select.small,
+.option ha-textfield.small {
+  width: 120px;
+}
+
+.option ha-textfield.full,
+.option ha-select.full {
+  flex-grow: 1;
+  width: auto;
+}
+
+.option ha-formfield {
+  padding-bottom: 8px;
+}
+
+.flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-title {
+  font-size: large;
+  line-height: 200%;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+}
+
+ha-icon-button {
+  color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+ha-icon {
+  display: inline-flex;
+}
+
+ha-form-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    var(--form-grid-column-count, auto-fit),
+    minmax(var(--form-grid-min-width, 200px), 1fr)
+  );
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.severity-row {
+  display: flex;
+  align-items: center;
+}
+
+.severity-row ha-textfield {
+  margin-right: 8px;
+}

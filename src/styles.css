@@ -1,19 +1,30 @@
 :host {
-  --vc-background: var(--ha-card-background, var(--card-background-color, white));
-  --vc-primary-text-color: var(--primary-text-color, #000);
-  --vc-secondary-text-color: var(--secondary-text-color, #555);
-  --vc-icon-color: var(--secondary-text-color);
-  --vc-toolbar-background: var(--vc-background);
-  --vc-toolbar-text-color: var(--vc-secondary-text-color);
-  --vc-toolbar-icon-color: var(--vc-secondary-text-color);
-  --vc-divider-color: var(--entities-divider-color, var(--divider-color, #ccc));
-  --vc-spacing: 10px;
+  --bc-background: var(
+    --ha-card-background,
+    var(--card-background-color, white)
+  );
+  --bc-primary-text-color: var(--primary-text-color, #000);
+  --bc-secondary-text-color: var(--secondary-text-color, #555);
+  --bc-icon-color: var(--secondary-text-color);
+  --bc-toolbar-background: var(--bc-background);
+  --bc-toolbar-text-color: var(--bc-secondary-text-color);
+  --bc-toolbar-icon-color: var(--bc-secondary-text-color);
+  --bc-divider-color: var(--entities-divider-color, var(--divider-color, #ccc));
+  --bc-spacing: 5px;
   --ha-card-border-radius: 12px;
   --ha-icon-size: 24px;
-  
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+
+  /* Couleurs spécifiques pour les éléments */
+  --bc-bar-height: 24px;
+  --bc-bar-background: #e0e0e0;
+  --bc-bar-current: #007bff; /* Couleur de la barre */
+  --bc-bar-target: rgba(255, 255, 255, 0.4); /* Couleur pour la cible */
+  --bc-bar-remaining: rgb(
+    25.5,
+    140.7,
+    25.5
+  ); /* Couleur pour la partie restante */
+  --bc-bar-marker: red;
 }
 
 ha-card {
@@ -38,7 +49,7 @@ ha-card {
 }
 
 .preview {
-  background-color: var(--primary-color, #008CBA);
+  background: var(--bc-background);
   cursor: pointer;
   position: relative;
 }
@@ -54,12 +65,11 @@ ha-card {
 }
 
 .metadata {
-  margin: var(--vc-spacing) auto;
+  margin: var(--bc-spacing) auto;
 }
 
-.title {
+.bodymiscale-name {
   font-size: 20px;
-  padding: 5px 16px;
   text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -73,9 +83,9 @@ ha-card {
 }
 
 .grid {
+  cursor: pointer;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  cursor: pointer;
 }
 
 .grid-left,
@@ -111,25 +121,22 @@ ha-card {
 }
 
 .toolbar {
+  background: var(--bc-toolbar-background);
   min-height: 30px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-}
-
-.toolbar ha-icon-button:first-child {
-  margin-left: var(--vc-spacing);
-}
-
-.toolbar ha-icon-button:last-child {
-  margin-right: var(--vc-spacing);
+  gap: 0px;
 }
 
 .toolbar ha-icon-button {
-  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fill-gap {
+  flex-grow: 1;
+  gap: 0px;
 }
 
 .toolbar ha-icon {
@@ -137,6 +144,7 @@ ha-card {
   height: var(--ha-icon-size);
   fill: currentColor;
   margin: 0;
+  font-size: 0px; /* Override font-size inheritance to fix icon alignment */
 }
 
 .image {
@@ -186,14 +194,13 @@ ha-card {
 }
 
 #score > :last-child {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #score > :first-child {
-  margin-top: 0;
+  margin-top: 0px;
 }
-
 score-card-row {
   display: flex;
   flex-grow: 1;
@@ -215,7 +222,7 @@ score-card-card {
 }
 
 score-card-card:last-child {
-  margin-right: 0;
+  margin-right: 0px;
 }
 
 score-card-background {
@@ -227,9 +234,11 @@ score-card-background {
 score-card-iconbar {
   color: var(--icon-color, var(--paper-item-icon-color));
   align-items: center;
+  align-self: center;
   display: flex;
   height: 30px;
   justify-content: center;
+  position: relative;
   width: 30px;
 }
 
@@ -254,10 +263,6 @@ score-card-contentbar {
   flex-direction: row;
 }
 
-.contentbar-direction-up {
-  flex-direction: column;
-}
-
 score-card-backgroundbar {
   background: var(--bar-color);
   filter: brightness(0.5);
@@ -268,18 +273,18 @@ score-card-currentbar {
   background: linear-gradient(
     to var(--bar-direction),
     var(--bar-color) var(--bar-percent),
-    transparent var(--bar-percent),
-    transparent var(--bar-percent)
+    #0000 var(--bar-percent),
+    #0000 var(--bar-percent)
   );
 }
 
 score-card-targetbar {
   background: linear-gradient(
     to var(--bar-direction),
-    transparent var(--bar-percent),
+    #0000 var(--bar-percent),
     var(--bar-color) var(--bar-percent),
     var(--bar-color) var(--bar-target-percent),
-    transparent var(--bar-target-percent)
+    #0000 var(--bar-target-percent)
   );
   display: var(--target-display);
   filter: brightness(0.66);
@@ -295,16 +300,13 @@ score-card-markerbar {
 
 score-card-name {
   align-items: center;
+  align-self: center;
   justify-content: center;
   margin: 4px;
   overflow: hidden;
   position: relative;
   text-align: left;
   text-overflow: ellipsis;
-}
-
-.name-outside {
-  margin-left: 16px;
 }
 
 score-card-value,
@@ -323,17 +325,13 @@ score-card-divider {
   opacity: 0.5;
 }
 
-.min-direction-up {
-  margin-top: auto;
-}
-
 .min-direction-right {
   margin-left: auto;
 }
 
 score-card-divider {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 score-card-value {
@@ -343,8 +341,4 @@ score-card-value {
 
 .value-direction-right {
   margin-left: auto;
-}
-
-.value-direction-up {
-  margin-top: auto;
 }

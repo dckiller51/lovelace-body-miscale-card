@@ -5,6 +5,7 @@ import * as es from './translations/es.json';
 import * as fr from './translations/fr.json';
 import * as hu from './translations/hu.json';
 import * as it from './translations/it.json';
+import * as ja from './translations/ja.json';
 import * as nl from './translations/nl.json';
 import * as pl from './translations/pl.json';
 import * as pt from './translations/pt.json';
@@ -19,7 +20,7 @@ interface Translations {
   [key: string]: {
     [key: string]: string;
   };
-};
+}
 
 const languages: Record<string, Translations> = {
   cs: cs,
@@ -29,6 +30,7 @@ const languages: Record<string, Translations> = {
   fr: fr,
   hu: hu,
   it: it,
+  ja: ja,
   nl: nl,
   pl: pl,
   pt: pt,
