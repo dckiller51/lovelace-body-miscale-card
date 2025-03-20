@@ -6,9 +6,9 @@
 [![GH-code-size](https://img.shields.io/github/languages/code-size/dckiller51/lovelace-body-miscale-card.svg?color=red&style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card)
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=flat-square)](https://github.com/hacs)
 
-Card for data of Xiaomi scales in the Lovelace user interface of Home Assistant
+Card for data of Bodymiscale component in the Lovelace user interface of Home Assistant
 
-The card is linked to the Bodymiscale custom components for Xiaomi scales. <https://github.com/dckiller51/bodymiscale>
+The card is linked to the Bodymiscale custom components. <https://github.com/dckiller51/bodymiscale>
 
 ## Installation
 
@@ -44,53 +44,75 @@ to `<config>/www/images/bodyscoreIcon/`.
 
 ## Configuration
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| type | string | **Required** | `custom:body-miscale-card`
-| entity | string | **Required** | `bodymiscale.name`
-| name | string/bool | `friendly_name` | Override friendly name (set to `false` to hide)
-| image | string/bool | `false` | Set path/filename of background image (i.e. `/local/img/miscale2.jpg`)
-| attributes | [Entity Data](#entity data) | *(see below)* | Set to `false` to hide all attributes
-| buttons | [Button Data](#button data) | *(see below)* | Set to `false` to hide button row
+| Name       | Type                        | Default         | Description                                                            |
+| ---------- | --------------------------- | --------------- | ---------------------------------------------------------------------- |
+| type       | string                      | **Required**    | `custom:body-miscale-card`                                             |
+| entity     | string                      | **Required**    | `bodymiscale.name`                                                     |
+| name       | string/bool                 | `friendly_name` | Override friendly name (set to `false` to hide)                        |
+| image      | string/bool                 | `false`         | Set path/filename of background image (i.e. `/local/img/miscale2.jpg`) |
+| attributes | [Entity Data](#entity data) | _(see below)_   | Set to `false` to hide all attributes                                  |
+| buttons    | [Button Data](#button data) | _(see below)_   | Set to `false` to hide button row                                      |
 
 ### Entity Data
 
-Default bodymiscale attributes under each list:
+Default Bodymiscale Attributes:
 
-- `attributes` (**right list**) include `weight`, `impedance` (Optional), `height`, `age` and `gender`.
-- `body` (**below list**) include `water` (miscale 181B), `visceral_fat`, `body_fat` (miscale 181B), `bmi`, `muscle_mass` (miscale 181B),
-                                 `protein` (miscale 181B), `basal_metabolism`, `bone_mass` (miscale 181B), `metabolic_age` (miscale 181B),
-                                 `ideal`, `body_type`.
+The card displays data in two main sections: "Attributes" (right list) and "Body" (below list). The availability of certain attributes depends on whether your scale supports impedance measurements (e.g., Mi Scale 181B).
 
-See [examples](#examples) on how to customize, hide or add custom attributes.
+- **Attributes (Right List):**
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| key | string | **Required** | Attribute key on bodymiscale entity
-| icon | string | | Optional icon
-| label | string | | Optional label text
-| unit | string | | Optional unit
+  - These attributes are generally user-specific and include:
+    - `weight`
+    - `height`
+    - `age`
+    - `gender`
+    - `impedance` (Displayed only for scales that support impedance measurements, such as the Mi Scale 181B)
+
+- **Body (Below List):**
+  - These attributes provide detailed body composition analysis.
+  - Attributes available for scales _without_ impedance measurement:
+    - `visceral_fat`
+    - `bmi`
+    - `ideal`
+    - `body_type`
+  - Attributes available for scales _with_ impedance measurement (e.g., Mi Scale 181B):
+    - `water`
+    - `body_fat`
+    - `muscle_mass`
+    - `protein`
+    - `basal_metabolism`
+    - `bone_mass`
+    - `metabolic_age`
+    - (Includes all attributes from scales without impedance, plus these additional ones)
+
+**Note:** You can customize which attributes are displayed, their labels, and units using the configuration options. Refer to the [Examples](#examples) section for details.
+
+| Name  | Type   | Default      | Description                         |
+| ----- | ------ | ------------ | ----------------------------------- |
+| key   | string | **Required** | Attribute key on bodymiscale entity |
+| icon  | string |              | Optional icon                       |
+| label | string |              | Optional label text                 |
+| unit  | string |              | Optional unit                       |
 
 ### Button Data
 
 Default buttons include `user1`, `user2`, `user3`, `user4` and `user5`.
 See [examples](#examples) on how to customize, hide or add custom buttons/actions.
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| icon | string | **Required** | Show or hide stop button
-| service | string | **Required** | Service to call (`input_boolean.toggle`)
-| show | bool | `true` | Show or hide button
-| label | string | | Optional label on hover
-| service_data | object | | entity_id: input_boolean.bodyscale_user1_info_toggle
+| Name   | Type   | Default      | Description                                                 |
+| ------ | ------ | ------------ | ----------------------------------------------------------- |
+| icon   | string |              | Replace the label with an icon when the icon is shown.      |
+| entity | string | **Required** | (`bodymiscale.user1`)                                       |
+| show   | bool   | `false`      | Show or hide button                                         |
+| label  | string | **Required** | User name or label displayed on hover if the icon is shown. |
 
 ### Other models
 
-Define your model. `false` (181D) or `true` (181B) (with to impedance)
+Define your model. `false` (without impedance) or `true` (with to impedance)
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| model | bool | `false` | Supported models: with or without impedance
+| Name  | Type | Default | Description                                 |
+| ----- | ---- | ------- | ------------------------------------------- |
+| model | bool | `false` | Supported models: with or without impedance |
 
 ## Screenshots
 
@@ -134,10 +156,15 @@ Customize specific buttons:
   entity: bodymiscale.name
   buttons:
     user1:
+      show: true
       icon: 'mdi:alpha-a-circle'
       label: Aurélien
-      service_data:
-        entity_id: input_boolean.bodyscale_aurelien_info_toggle
+      entity: bodymiscale.aurelien
+    user2:
+      show: true
+      icon: false
+      label: Siham
+      entity: bodymiscale.siham
 ```
 
 Add custom attributes:
@@ -155,51 +182,37 @@ Add custom attributes:
       unit: '%'
 ```
 
-Add custom buttons and service calls:
-
-```yaml
-- type: custom:body-miscale-card
-  entity: bodymiscale.name
-  buttons:
-    new_button:
-      icon: mdi:light-switch
-      label: Custom button!
-      service: light.turn_off
-      service_data:
-        entity_id: light.living_room
-```
-
 Add custom bar options (To know the start, destination, color and target values, open your Mi Fit app on your smartphone.)
 
 ## Options
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| color | string | var(--score-card-color, var(--ha-card-background)) | Color of the bar.
-| height | string | 30px | Defines the height of the bar.
-| max | number | 100 | Defines maximum value of the bar.
-| min | number | 0 | Defines minimum value of the bar.
-| positions | object | none | Defines the positions of the card elements. See [Positions Options](#positions-options).
-| severity | object | none | A list of severity values. See [Severity Options](#severity-options).
-| target | number | none | Defines and enables target marker value.
-| width | string | 100% | Defines the width of the bar (**Required** the name must be on `outside`).
+| Name      | Type   | Default                                            | Description                                                                              |
+| --------- | ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| color     | string | var(--score-card-color, var(--ha-card-background)) | Color of the bar.                                                                        |
+| height    | string | 30px                                               | Defines the height of the bar.                                                           |
+| max       | number | 100                                                | Defines maximum value of the bar.                                                        |
+| min       | number | 0                                                  | Defines minimum value of the bar.                                                        |
+| positions | object | none                                               | Defines the positions of the card elements. See [Positions Options](#positions-options). |
+| severity  | object | none                                               | A list of severity values. See [Severity Options](#severity-options).                    |
+| target    | number | none                                               | Defines and enables target marker value.                                                 |
+| width     | string | 100%                                               | Defines the width of the bar (**Required** the name must be on `outside`).               |
 
 ## Severity Options
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| from | number | **Required** | Defines from which value the color should be displayed.
-| to | number | **Required** | Defines to which value the color should be displayed.
-| color | string | **Required** | Defines the color to be displayed.
+| Name  | Type   | Default      | Description                                             |
+| ----- | ------ | ------------ | ------------------------------------------------------- |
+| from  | number | **Required** | Defines from which value the color should be displayed. |
+| to    | number | **Required** | Defines to which value the color should be displayed.   |
+| color | string | **Required** | Defines the color to be displayed.                      |
 
 ## Positions Options
 
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| icon | string | outside | `inside`, `outside`, `off`
-| name | string | inside | `inside`, `outside`, `off`
-| minmax | string | off | `inside`, `outside`, `off`
-| value | string | inside | `inside`, `outside`, `off`
+| Name   | Type   | Default | Description                |
+| ------ | ------ | ------- | -------------------------- |
+| icon   | string | outside | `inside`, `outside`, `off` |
+| name   | string | inside  | `inside`, `outside`, `off` |
+| minmax | string | off     | `inside`, `outside`, `off` |
+| value  | string | inside  | `inside`, `outside`, `off` |
 
 ```yaml
 type: custom:body-miscale-card

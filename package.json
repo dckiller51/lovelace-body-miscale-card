@@ -1,106 +1,106 @@
 {
-    "name": "body-miscale-card",
-    "version": "2025.3.0",
-    "type": "module",
-    "description": "Bodymiscale card for Home Assistant Lovelace UI",
-    "scripts": {
-        "start": "rollup -c --watch",
-        "lint": "eslint src",
-        "lint:fix": "eslint src --fix",
-        "format": "prettier --write .",
-        "build": "rollup -c",
-        "test": "npm run lint && npm run build",
-        "prepare": "npx husky install"
-    },
-    "keywords": [
-        "home-assistant",
-        "homeassistant",
-        "hass",
-        "automation",
-        "lovelace",
-        "custom-cards",
-        "bodymiscale"
+  "name": "body-miscale-card",
+  "version": "2025.3.1",
+  "type": "module",
+  "description": "Bodymiscale card for Home Assistant Lovelace UI",
+  "scripts": {
+    "start": "rollup -c --watch",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write .",
+    "build": "del /q dist\\*.* && rollup -c",
+    "test": "npm run lint && npm run build",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "home-assistant",
+    "homeassistant",
+    "hass",
+    "automation",
+    "lovelace",
+    "custom-cards",
+    "bodymiscale"
+  ],
+  "repository": "git@github.com:custom_cards/body-miscale-card.git",
+  "author": "Dckiller <dckillerpp@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "custom-card-helpers": "^1.9.0",
+    "home-assistant-js-websocket": "^9.1.0",
+    "lit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/plugin-transform-runtime": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "@eslint/js": "^9.21.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@semantic-release/git": "^10.0.1",
+    "@types/estree": "^1.0.6",
+    "@types/json-schema": "^7.0.15",
+    "@types/resolve": "^1.20.6",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "postcss-preset-env": "^10.1.5",
+    "prettier": "^3.5.3",
+    "rollup": "^4.34.9",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-postcss-lit": "^2.1.0",
+    "rollup-plugin-serve": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "semantic-release": "^24.2.3",
+    "typescript": "^5.8.2"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ],
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "release": {
+    "branches": [
+      "main"
     ],
-    "repository": "git@github.com:custom_cards/body-miscale-card.git",
-    "author": "Dckiller <dckillerpp@hotmail.com>",
-    "license": "MIT",
-    "dependencies": {
-        "custom-card-helpers": "^1.9.0",
-        "home-assistant-js-websocket": "^9.1.0",
-        "lit": "^2.7.6"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.26.9",
-        "@babel/plugin-transform-runtime": "^7.26.9",
-        "@babel/preset-env": "^7.26.9",
-        "@eslint/js": "^9.21.0",
-        "@rollup/plugin-babel": "^6.0.4",
-        "@rollup/plugin-commonjs": "^28.0.2",
-        "@rollup/plugin-json": "^6.1.0",
-        "@rollup/plugin-node-resolve": "^16.0.0",
-        "@rollup/plugin-replace": "^6.0.2",
-        "@rollup/plugin-terser": "^0.4.4",
-        "@semantic-release/git": "^10.0.1",
-        "@types/estree": "^1.0.6",
-        "@types/json-schema": "^7.0.15",
-        "@types/resolve": "^1.20.6",
-        "@typescript-eslint/eslint-plugin": "^8.26.0",
-        "@typescript-eslint/parser": "^8.26.0",
-        "eslint": "^9.21.0",
-        "eslint-config-prettier": "^10.0.2",
-        "eslint-plugin-import": "^2.31.0",
-        "globals": "^16.0.0",
-        "husky": "^9.1.7",
-        "lint-staged": "^15.4.3",
-        "postcss-preset-env": "^10.1.5",
-        "prettier": "^3.5.3",
-        "rollup": "^4.34.9",
-        "rollup-plugin-postcss": "^4.0.2",
-        "rollup-plugin-postcss-lit": "^2.1.0",
-        "rollup-plugin-serve": "^3.0.0",
-        "rollup-plugin-typescript2": "^0.36.0",
-        "semantic-release": "^24.2.3",
-        "typescript": "^5.8.2"
-    },
-    "browserslist": [
-        "last 2 versions",
-        "not dead"
-    ],
-    "lint-staged": {
-        "*.js": "eslint --fix",
-        "**/*": "prettier --write --ignore-unknown"
-    },
-    "prettier": {
-        "singleQuote": true
-    },
-    "release": {
-        "branches": [
-            "main"
-        ],
-        "plugins": [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/changelog",
-            [
-                "@semantic-release/github",
-                {
-                    "assets": [
-                        {
-                            "path": "dist/body-miscale-card.js",
-                            "label": "body-miscale-card.js"
-                        }
-                    ]
-                }
-            ],
-            "@semantic-release/git"
-        ],
-        "preset": "angular",
-        "releaseRules": [
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
             {
-                "type": "chore",
-                "scope": "deps",
-                "release": "patch"
+              "path": "dist/body-miscale-card.js",
+              "label": "body-miscale-card.js"
             }
-        ]
-    }
+          ]
+        }
+      ],
+      "@semantic-release/git"
+    ],
+    "preset": "angular",
+    "releaseRules": [
+      {
+        "type": "chore",
+        "scope": "deps",
+        "release": "patch"
+      }
+    ]
+  }
 }

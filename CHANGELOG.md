@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.3.1
+
+- ✅ **Added** Japanese language support (thank you @voidz777)
+- ✨ **Added** ability to switch accounts using buttons in the UI, allowing users to dynamically change the displayed entity.
+- ✨ **Added** page navigation to the editor, allowing users to switch between "Configuration" and "Customization" settings, enhancing the user experience and organization of settings.
+- 🚀 **Refactored** `renderIcon` and `renderIconbody` into a single method `renderIcon(data, type)`, reducing code duplication and improving maintainability.
+- 🔥 **Removed** the need for a service, simplifying the implementation and improving responsiveness.
+- 🔥 **Removed** support for the `up` direction across the application, simplifying the layout and logic to support only the `right` direction.
+- 🔧 **Fixed** icon alignment within toolbar buttons by setting `font-size: 0px` to prevent inherited font sizes from affecting layout.
+
 ## 2025.3.0
 
 - ➕ **Added** `buildStyles` function to centralize and simplify style logic in `buildConfig`.
@@ -19,7 +29,7 @@ All notable changes to this project will be documented in this file.
 
 ## 2024.08.0
 
-- ✅ **Added** Vietnamese language support (thank you ngdaihoc)
+- ✅ **Added** Vietnamese language support (thank you @ngdaihoc)
 - 🔧 **Fixed** syntax error in Polish (thanks to @kuduacz)
 
 ## 2023.11.0
@@ -118,12 +128,13 @@ All notable changes to this project will be documented in this file.
 ## v5.5.0
 
 - 🔄 **Updated** partial integration of bar-card options for body measurements
+
   - 🔹 **Supported Options**: color, height, max, min, positions, severity, target, width
   - 🔹 **Unsupported Options**: animation, columns, decimal, complementary, direction
   - 📌 **Severity Options**: from, to, color
   - 📌 **Position Options**: icon, name, minmax, value (inside, outside, off)
-  
-  *Tip*: Use the Mi Fit app to check start, destination, color, and target values.
+
+  _Tip_: Use the Mi Fit app to check start, destination, color, and target values.
 
 ## v5.0.0
 
