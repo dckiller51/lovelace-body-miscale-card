@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Types and interfaces for the Bodymiscale card configuration.
  * Used to structure the data displayed in the Home Assistant card.

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import localize from './localize';
 import { BodymiscaleCardConfig, RenderBodyData } from './types';
 

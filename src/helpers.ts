@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function deepMerge(...sources: any[]): Record<string, any> {
   const isObject = (obj: any): obj is Record<string, any> =>
     obj && typeof obj === 'object';
