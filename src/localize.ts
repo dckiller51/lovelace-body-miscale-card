@@ -2,6 +2,7 @@ import * as cs from './translations/cs.json';
 import * as de from './translations/de.json';
 import * as en from './translations/en.json';
 import * as es from './translations/es.json';
+import * as ca from './translations/ca.json';
 import * as fr from './translations/fr.json';
 import * as hu from './translations/hu.json';
 import * as it from './translations/it.json';
@@ -27,6 +28,7 @@ const languages: Record<string, Translations> = {
   de: de,
   en: en,
   es: es,
+  ca: ca,
   fr: fr,
   hu: hu,
   it: it,
