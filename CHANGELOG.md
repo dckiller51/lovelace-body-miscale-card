@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.0
+
+- ✅ **Added** Catalan language support (thank you @RmG152)
+
 ## 2025.3.1
 
 - ✅ **Added** Japanese language support (thank you @voidz777)
