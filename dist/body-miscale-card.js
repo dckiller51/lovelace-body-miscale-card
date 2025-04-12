@@ -567,6 +567,7 @@ score-card-value {
 .option {
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
 }
 
 .option ha-switch {
