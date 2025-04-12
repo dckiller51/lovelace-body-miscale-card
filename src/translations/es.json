@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Por favor, escoja una cuenta de la bácula (necesario)!",
     "image": "Imagen de fondo (opcional)",
+    "icons_body": "Ruta de los iconos (ej: /local/images/bodyscoreIcon)",
     "model": "¿Tiene un sensor de impedancia?",
     "model1": "Active esta función para mediciones precisas de la composición corporal.",
     "model_aria_label_on": "Activar impedancia",

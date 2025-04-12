@@ -605,6 +605,11 @@ export class BodymiscaleCard extends LitElement {
     return (100 * (numberValue - data.min)) / (data.max - data.min);
   }
 
+  private getIconUrl(iconName: string): string {
+    const basePath = this.config?.icons_body ?? '/local/images/bodyscoreIcon';
+    return `${basePath}/${iconName}`;
+  }
+
   private renderIcon(
     data: any,
     type: 'default' | 'body' = 'default',
@@ -627,13 +632,17 @@ export class BodymiscaleCard extends LitElement {
       return nothing;
     }
 
-    if (type === 'body') {
+    const iconUrl = this.getIconUrl(data.icon);
+
+    if (type === 'body'&& iconUrl ) {
       return html`
         <ha-icon
           class="image"
           style="
-              -webkit-mask-image: url('${icon}'); 
+              -webkit-mask-image: url('${iconUrl}');
+              mask-image: url('${iconUrl}');
               -webkit-mask-size: 24px;
+              mask-size: 24px;
               ${this.config.styles?.iconbody || ''}"
         ></ha-icon>
       `;

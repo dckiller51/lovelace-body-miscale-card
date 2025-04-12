@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Kies een account op de schaal (verplicht) !",
     "image": "Achtergrondafbeelding (facultatief)",
+    "icons_body": "Icoonpad (bijv. /local/images/bodyscoreIcon)",
     "model": "Heeft u een impedantie sensor?",
     "model1": "Activeer deze functie voor nauwkeurige metingen van de lichaamssamenstelling.",
     "model_aria_label_on": "Impedantie inschakelen",

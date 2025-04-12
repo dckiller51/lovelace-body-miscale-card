@@ -82,6 +82,7 @@
     "customization": "Personalització",
     "entity": "Si us plau, trieu un compte de la bàscula (necessari)!",
     "image": "Imatge de fons (opcional)",
+    "icons_body": "Camí de les icones (ex: /local/images/bodyscoreIcon)",
     "model": "Teniu un sensor d'impedància?",
     "model1": "Activeu aquesta funció per a mesures precises de la composició corporal.",
     "model_aria_label_on": "Activar impedància",

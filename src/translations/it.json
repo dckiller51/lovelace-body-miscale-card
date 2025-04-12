@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Perfavore seleziona un account sulla bilancia (richiesto) !",
     "image": "Immagine di sfondo (opzionale)",
+    "icons_body": "Percorso delle icone (es: /local/images/bodyscoreIcon)",
     "model": "Hai un sensore di impedenza?",
     "model1": "Attiva questa funzione per misurazioni accurate della composizione corporea.",
     "model_aria_label_on": "Abilita impedenza",

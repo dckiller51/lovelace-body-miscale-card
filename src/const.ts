@@ -82,7 +82,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   basal_metabolism: {
     key: 'basal_metabolism',
     label: localize(`body.${'basal_metabolism'}`),
-    icon: '/local/images/bodyscoreIcon/basal_metabolism.png',
+    icon: 'basal_metabolism.png',
     unit: ' kcal',
     min: 0,
     max: 3000,
@@ -105,7 +105,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   bmi: {
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
-    icon: '/local/images/bodyscoreIcon/bmi.png',
+    icon: 'bmi.png',
     min: 0,
     max: 40,
     color: 'var(--score-card-color, var(--ha-card-background))',
@@ -130,7 +130,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   bmi_label: {
     key: 'bmi_label',
     label: localize(`body.${'bmi_label'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.png',
+    icon: 'body_type.png',
     min: null,
     max: null,
     color: 'var(--score-card-color, var(--ha-card-background))',
@@ -149,7 +149,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   body_fat: {
     key: 'body_fat',
     label: localize(`body.${'body_fat'}`),
-    icon: '/local/images/bodyscoreIcon/body_fat.png',
+    icon: 'body_fat.png',
     unit: ' %',
     min: 0,
     max: 40,
@@ -175,7 +175,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   body_type: {
     key: 'body_type',
     label: localize(`body.${'body_type'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.png',
+    icon: 'body_type.png',
     color: 'var(--score-card-color, var(--ha-card-background))',
     min: null,
     max: null,
@@ -194,7 +194,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   bone_mass: {
     key: 'bone_mass',
     label: localize(`body.${'bone_mass'}`),
-    icon: '/local/images/bodyscoreIcon/bone_mass.png',
+    icon: 'bone_mass.png',
     unit: ' kg',
     min: 0,
     max: 8,
@@ -218,7 +218,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   ideal: {
     key: 'ideal',
     label: localize(`body.${'ideal'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.png',
+    icon: 'ideal.png',
     unit: ' kg',
     min: 0,
     max: 130,
@@ -244,7 +244,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   metabolic_age: {
     key: 'metabolic_age',
     label: localize(`body.${'metabolic_age'}`),
-    icon: '/local/images/bodyscoreIcon/metabolic_age.png',
+    icon: 'metabolic_age.png',
     unit: localize(`unit.${' years'}`),
     min: null,
     max: null,
@@ -264,7 +264,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   muscle_mass: {
     key: 'muscle_mass',
     label: localize(`body.${'muscle_mass'}`),
-    icon: '/local/images/bodyscoreIcon/muscle_mass.png',
+    icon: 'muscle_mass.png',
     unit: ' kg',
     min: 0,
     max: 100,
@@ -288,7 +288,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   protein: {
     key: 'protein',
     label: localize(`body.${'protein'}`),
-    icon: '/local/images/bodyscoreIcon/protein.png',
+    icon: 'protein.png',
     unit: ' %',
     min: 0,
     max: 32,
@@ -312,7 +312,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   visceral_fat: {
     key: 'visceral_fat',
     label: localize(`body.${'visceral_fat'}`),
-    icon: '/local/images/bodyscoreIcon/visceral_fat.png',
+    icon: 'visceral_fat.png',
     min: 0,
     max: 20,
     color: 'var(--score-card-color, var(--ha-card-background))',
@@ -335,7 +335,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   water: {
     key: 'water',
     label: localize(`body.${'water'}`),
-    icon: '/local/images/bodyscoreIcon/water.png',
+    icon: 'water.png',
     unit: ' %',
     min: 0,
     max: 80,
@@ -359,7 +359,7 @@ export const body_kg: Record<string, RenderBodyData> = {
   weight: {
     key: 'weight',
     label: localize(`body.${'weight'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.png',
+    icon: 'ideal.png',
     unit: ' kg',
     min: 0,
     max: 130,
@@ -387,7 +387,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   basal_metabolism: {
     key: 'basal_metabolism',
     label: localize(`body.${'basal_metabolism'}`),
-    icon: '/local/images/bodyscoreIcon/basal_metabolism.png',
+    icon: 'basal_metabolism.png',
     unit: ' kcal',
     min: 0,
     max: 3000,
@@ -410,7 +410,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   bmi: {
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
-    icon: '/local/images/bodyscoreIcon/bmi.png',
+    icon: 'bmi.png',
     min: 0,
     max: 40,
     color: 'var(--score-card-color, var(--ha-card-background))',
@@ -435,7 +435,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   bmi_label: {
     key: 'bmi_label',
     label: localize(`body.${'bmi_label'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.png',
+    icon: 'body_type.png',
     min: null,
     max: null,
     color: 'var(--score-card-color, var(--ha-card-background))',
@@ -454,7 +454,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   body_fat: {
     key: 'body_fat',
     label: localize(`body.${'body_fat'}`),
-    icon: '/local/images/bodyscoreIcon/body_fat.png',
+    icon: 'body_fat.png',
     unit: ' %',
     min: 0,
     max: 40,
@@ -480,7 +480,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   body_type: {
     key: 'body_type',
     label: localize(`body.${'body_type'}`),
-    icon: '/local/images/bodyscoreIcon/body_type.png',
+    icon: 'body_type.png',
     color: 'var(--score-card-color, var(--ha-card-background))',
     min: null,
     max: null,
@@ -499,7 +499,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   bone_mass: {
     key: 'bone_mass',
     label: localize(`body.${'bone_mass'}`),
-    icon: '/local/images/bodyscoreIcon/bone_mass.png',
+    icon: 'bone_mass.png',
     unit: ' lbs',
     compute: compute.convertkgtolb,
     min: 0,
@@ -524,7 +524,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   ideal: {
     key: 'ideal',
     label: localize(`body.${'ideal'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.png',
+    icon: 'ideal.png',
     unit: ' lbs',
     compute: compute.convertkgtolb,
     min: 0,
@@ -551,7 +551,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   metabolic_age: {
     key: 'metabolic_age',
     label: localize(`body.${'metabolic_age'}`),
-    icon: '/local/images/bodyscoreIcon/metabolic_age.png',
+    icon: 'metabolic_age.png',
     unit: localize(`unit.${' years'}`),
     min: null,
     max: null,
@@ -571,7 +571,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   muscle_mass: {
     key: 'muscle_mass',
     label: localize(`body.${'muscle_mass'}`),
-    icon: '/local/images/bodyscoreIcon/muscle_mass.png',
+    icon: 'muscle_mass.png',
     unit: ' lbs',
     compute: compute.convertkgtolb,
     min: 0,
@@ -596,7 +596,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   protein: {
     key: 'protein',
     label: localize(`body.${'protein'}`),
-    icon: '/local/images/bodyscoreIcon/protein.png',
+    icon: 'protein.png',
     unit: ' %',
     min: 0,
     max: 32,
@@ -620,7 +620,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   visceral_fat: {
     key: 'visceral_fat',
     label: localize(`body.${'visceral_fat'}`),
-    icon: '/local/images/bodyscoreIcon/visceral_fat.png',
+    icon: 'visceral_fat.png',
     min: 0,
     max: 20,
     color: 'var(--score-card-color, var(--ha-card-background))',
@@ -643,7 +643,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   water: {
     key: 'water',
     label: localize(`body.${'water'}`),
-    icon: '/local/images/bodyscoreIcon/water.png',
+    icon: 'water.png',
     unit: ' %',
     min: 0,
     max: 80,
@@ -667,7 +667,7 @@ export const body_lb: Record<string, RenderBodyData> = {
   weight: {
     key: 'weight',
     label: localize(`body.${'weight'}`),
-    icon: '/local/images/bodyscoreIcon/ideal.png',
+    icon: 'ideal.png',
     unit: ' lbs',
     compute: compute.convertkgtolb,
     min: 0,

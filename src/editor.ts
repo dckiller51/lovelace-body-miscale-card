@@ -128,6 +128,15 @@ export class BodymiscaleCardEditor
         ></ha-textfield>
       </div>
 
+      <div class="option">
+        <ha-textfield
+          .label=${localize('editor.icons_body')}
+          .value=${config.icons_body || ''}
+          .configValue=${'icons_body'}
+          @input=${this.valueChanged}
+        ></ha-textfield>
+      </div>
+
       ${this.renderSwitch('model', config)} ${this.renderSwitch('unit', config)}
       ${this.renderSwitch('theme', config)}
 

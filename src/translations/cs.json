@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Prosím definujte účet váhy (povinné) !",
     "image": "Obrázek pozadí (volitelné)",
+    "icons_body": "Cesta k ikonám (např. /local/images/bodyscoreIcon)",
     "model": "Máte senzor impedance?",
     "model1": "Aktivujte tuto funkci pro přesné měření složení těla.",
     "model_aria_label_on": "Aktivovat impedanci",

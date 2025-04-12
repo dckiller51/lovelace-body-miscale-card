@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.1
+
+- ✨ **Feature** Added the ability to customize the icons directory.
+- 🛠️ **Improved** Icon rendering with cross-browser `mask-image` support for better compatibility
+
 ## 2025.4.0
 
 - ✅ **Added** Catalan language support (thank you @RmG152)

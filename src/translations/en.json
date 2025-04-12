@@ -82,6 +82,7 @@
     "customization": "Customization",
     "entity": "Please select an account on the scale (required)!",
     "image": "Background image (optional)",
+    "icons_body": "Icons path (e.g., /local/images/bodyscoreIcon)",
     "model": "Do you have an impedance sensor?",
     "model1": "Enable this feature for accurate body composition measurements.",
     "model_aria_label_on": "Enable impedance",

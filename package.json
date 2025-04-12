@@ -1,6 +1,6 @@
 {
   "name": "body-miscale-card",
-  "version": "2025.4.0",
+  "version": "2025.4.1",
   "type": "module",
   "description": "Bodymiscale card for Home Assistant Lovelace UI",
   "scripts": {

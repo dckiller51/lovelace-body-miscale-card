@@ -54,6 +54,7 @@ export default function buildConfig(
   return {
     entity: config.entity ?? '',
     image: config.image ?? '',
+    icons_body: config.icons_body ?? '',
     model: config.model ?? false,
     impedance_required: config.impedance_required ?? false,
     unit: config.unit ?? false,

@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Kérjük, válasszon egy fiókot a mérlegen (kötelező)!",
     "image": "Háttérkép (opcionális)",
+    "icons_body": "Ikonok útvonala (pl.: /local/images/bodyscoreIcon)",
     "model": "Rendelkezik impedancia érzékelővel?",
     "model1": "A pontos testösszetétel mérésekhez aktiválja ezt a funkciót.",
     "model_aria_label_on": "Impedancia engedélyezése",

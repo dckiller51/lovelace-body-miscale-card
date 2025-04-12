@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Vă rugăm să selectați un cont de cântar (obligatoriu)!",
     "image": "Imagine de fundal (opțional)",
+    "icons_body": "Calea pictogramelor (ex: /local/images/bodyscoreIcon)",
     "model": "Aveți un senzor de impedanță?",
     "model1": "Activați această funcție pentru măsurători precise ale compoziției corporale.",
     "model_aria_label_on": "Activare impedanță",

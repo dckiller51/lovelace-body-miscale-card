@@ -1,4 +1,3622 @@
-function e(e,a,o,i){var t,n=arguments.length,r=n<3?a:null===i?i=Object.getOwnPropertyDescriptor(a,o):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)r=Reflect.decorate(e,a,o,i);else for(var s=e.length-1;s>=0;s--)(t=e[s])&&(r=(n<3?t(r):n>3?t(a,o,r):t(a,o))||r);return n>3&&r&&Object.defineProperty(a,o,r),r}"function"==typeof SuppressedError&&SuppressedError;const a=globalThis,o=a.ShadowRoot&&(void 0===a.ShadyCSS||a.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,i=Symbol(),t=new WeakMap;let n=class{constructor(e,a,o){if(this._$cssResult$=!0,o!==i)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=e,this.t=a}get styleSheet(){let e=this.o;const a=this.t;if(o&&void 0===e){const o=void 0!==a&&1===a.length;o&&(e=t.get(a)),void 0===e&&((this.o=e=new CSSStyleSheet).replaceSync(this.cssText),o&&t.set(a,e))}return e}toString(){return this.cssText}};const r=(e,...a)=>{const o=1===e.length?e[0]:a.reduce(((a,o,i)=>a+(e=>{if(!0===e._$cssResult$)return e.cssText;if("number"==typeof e)return e;throw Error("Value passed to 'css' function must be a 'css' function result: "+e+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(o)+e[i+1]),e[0]);return new n(o,e,i)},s=o?e=>e:e=>e instanceof CSSStyleSheet?(e=>{let a="";for(const o of e.cssRules)a+=o.cssText;return(e=>new n("string"==typeof e?e:e+"",void 0,i))(a)})(e):e,{is:l,defineProperty:d,getOwnPropertyDescriptor:c,getOwnPropertyNames:_,getOwnPropertySymbols:h,getPrototypeOf:m}=Object,u=globalThis,b=u.trustedTypes,g=b?b.emptyScript:"",p=u.reactiveElementPolyfillSupport,y=(e,a)=>e,f={toAttribute(e,a){switch(a){case Boolean:e=e?g:null;break;case Object:case Array:e=null==e?e:JSON.stringify(e)}return e},fromAttribute(e,a){let o=e;switch(a){case Boolean:o=null!==e;break;case Number:o=null===e?null:Number(e);break;case Object:case Array:try{o=JSON.parse(e)}catch(e){o=null}}return o}},v=(e,a)=>!l(e,a),w={attribute:!0,type:String,converter:f,reflect:!1,hasChanged:v};Symbol.metadata??=Symbol("metadata"),u.litPropertyMetadata??=new WeakMap;let k=class extends HTMLElement{static addInitializer(e){this._$Ei(),(this.l??=[]).push(e)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(e,a=w){if(a.state&&(a.attribute=!1),this._$Ei(),this.elementProperties.set(e,a),!a.noAccessor){const o=Symbol(),i=this.getPropertyDescriptor(e,o,a);void 0!==i&&d(this.prototype,e,i)}}static getPropertyDescriptor(e,a,o){const{get:i,set:t}=c(this.prototype,e)??{get(){return this[a]},set(e){this[a]=e}};return{get(){return i?.call(this)},set(a){const n=i?.call(this);t.call(this,a),this.requestUpdate(e,n,o)},configurable:!0,enumerable:!0}}static getPropertyOptions(e){return this.elementProperties.get(e)??w}static _$Ei(){if(this.hasOwnProperty(y("elementProperties")))return;const e=m(this);e.finalize(),void 0!==e.l&&(this.l=[...e.l]),this.elementProperties=new Map(e.elementProperties)}static finalize(){if(this.hasOwnProperty(y("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(y("properties"))){const e=this.properties,a=[..._(e),...h(e)];for(const o of a)this.createProperty(o,e[o])}const e=this[Symbol.metadata];if(null!==e){const a=litPropertyMetadata.get(e);if(void 0!==a)for(const[e,o]of a)this.elementProperties.set(e,o)}this._$Eh=new Map;for(const[e,a]of this.elementProperties){const o=this._$Eu(e,a);void 0!==o&&this._$Eh.set(o,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(e){const a=[];if(Array.isArray(e)){const o=new Set(e.flat(1/0).reverse());for(const e of o)a.unshift(s(e))}else void 0!==e&&a.push(s(e));return a}static _$Eu(e,a){const o=a.attribute;return!1===o?void 0:"string"==typeof o?o:"string"==typeof e?e.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((e=>this.enableUpdating=e)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((e=>e(this)))}addController(e){(this._$EO??=new Set).add(e),void 0!==this.renderRoot&&this.isConnected&&e.hostConnected?.()}removeController(e){this._$EO?.delete(e)}_$E_(){const e=new Map,a=this.constructor.elementProperties;for(const o of a.keys())this.hasOwnProperty(o)&&(e.set(o,this[o]),delete this[o]);e.size>0&&(this._$Ep=e)}createRenderRoot(){const e=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return((e,i)=>{if(o)e.adoptedStyleSheets=i.map((e=>e instanceof CSSStyleSheet?e:e.styleSheet));else for(const o of i){const i=document.createElement("style"),t=a.litNonce;void 0!==t&&i.setAttribute("nonce",t),i.textContent=o.cssText,e.appendChild(i)}})(e,this.constructor.elementStyles),e}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((e=>e.hostConnected?.()))}enableUpdating(e){}disconnectedCallback(){this._$EO?.forEach((e=>e.hostDisconnected?.()))}attributeChangedCallback(e,a,o){this._$AK(e,o)}_$EC(e,a){const o=this.constructor.elementProperties.get(e),i=this.constructor._$Eu(e,o);if(void 0!==i&&!0===o.reflect){const t=(void 0!==o.converter?.toAttribute?o.converter:f).toAttribute(a,o.type);this._$Em=e,null==t?this.removeAttribute(i):this.setAttribute(i,t),this._$Em=null}}_$AK(e,a){const o=this.constructor,i=o._$Eh.get(e);if(void 0!==i&&this._$Em!==i){const e=o.getPropertyOptions(i),t="function"==typeof e.converter?{fromAttribute:e.converter}:void 0!==e.converter?.fromAttribute?e.converter:f;this._$Em=i,this[i]=t.fromAttribute(a,e.type),this._$Em=null}}requestUpdate(e,a,o){if(void 0!==e){if(o??=this.constructor.getPropertyOptions(e),!(o.hasChanged??v)(this[e],a))return;this.P(e,a,o)}!1===this.isUpdatePending&&(this._$ES=this._$ET())}P(e,a,o){this._$AL.has(e)||this._$AL.set(e,a),!0===o.reflect&&this._$Em!==e&&(this._$Ej??=new Set).add(e)}async _$ET(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}const e=this.scheduleUpdate();return null!=e&&await e,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[e,a]of this._$Ep)this[e]=a;this._$Ep=void 0}const e=this.constructor.elementProperties;if(e.size>0)for(const[a,o]of e)!0!==o.wrapped||this._$AL.has(a)||void 0===this[a]||this.P(a,this[a],o)}let e=!1;const a=this._$AL;try{e=this.shouldUpdate(a),e?(this.willUpdate(a),this._$EO?.forEach((e=>e.hostUpdate?.())),this.update(a)):this._$EU()}catch(a){throw e=!1,this._$EU(),a}e&&this._$AE(a)}willUpdate(e){}_$AE(e){this._$EO?.forEach((e=>e.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(e)),this.updated(e)}_$EU(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(e){return!0}update(e){this._$Ej&&=this._$Ej.forEach((e=>this._$EC(e,this[e]))),this._$EU()}updated(e){}firstUpdated(e){}};k.elementStyles=[],k.shadowRootOptions={mode:"open"},k[y("elementProperties")]=new Map,k[y("finalized")]=new Map,p?.({ReactiveElement:k}),(u.reactiveElementVersions??=[]).push("2.0.4");const x=globalThis,z=x.trustedTypes,$=z?z.createPolicy("lit-html",{createHTML:e=>e}):void 0,A="$lit$",M=`lit$${Math.random().toFixed(9).slice(2)}$`,P="?"+M,C=`<${P}>`,S=document,I=()=>S.createComment(""),T=e=>null===e||"object"!=typeof e&&"function"!=typeof e,O=Array.isArray,j="[ \t\n\f\r]",B=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,E=/-->/g,N=/>/g,D=RegExp(`>|${j}(?:([^\\s"'>=/]+)(${j}*=${j}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),V=/'/g,G=/"/g,q=/^(?:script|style|textarea|title)$/i,U=(e=>(a,...o)=>({_$litType$:e,strings:a,values:o}))(1),W=Symbol.for("lit-noChange"),L=Symbol.for("lit-nothing"),R=new WeakMap,K=S.createTreeWalker(S,129);function H(e,a){if(!O(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==$?$.createHTML(a):a}const Z=(e,a)=>{const o=e.length-1,i=[];let t,n=2===a?"<svg>":3===a?"<math>":"",r=B;for(let a=0;a<o;a++){const o=e[a];let s,l,d=-1,c=0;for(;c<o.length&&(r.lastIndex=c,l=r.exec(o),null!==l);)c=r.lastIndex,r===B?"!--"===l[1]?r=E:void 0!==l[1]?r=N:void 0!==l[2]?(q.test(l[2])&&(t=RegExp("</"+l[2],"g")),r=D):void 0!==l[3]&&(r=D):r===D?">"===l[0]?(r=t??B,d=-1):void 0===l[1]?d=-2:(d=r.lastIndex-l[2].length,s=l[1],r=void 0===l[3]?D:'"'===l[3]?G:V):r===G||r===V?r=D:r===E||r===N?r=B:(r=D,t=void 0);const _=r===D&&e[a+1].startsWith("/>")?" ":"";n+=r===B?o+C:d>=0?(i.push(s),o.slice(0,d)+A+o.slice(d)+M+_):o+M+(-2===d?a:_)}return[H(e,n+(e[o]||"<?>")+(2===a?"</svg>":3===a?"</math>":"")),i]};class F{constructor({strings:e,_$litType$:a},o){let i;this.parts=[];let t=0,n=0;const r=e.length-1,s=this.parts,[l,d]=Z(e,a);if(this.el=F.createElement(l,o),K.currentNode=this.el.content,2===a||3===a){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(i=K.nextNode())&&s.length<r;){if(1===i.nodeType){if(i.hasAttributes())for(const e of i.getAttributeNames())if(e.endsWith(A)){const a=d[n++],o=i.getAttribute(e).split(M),r=/([.?@])?(.*)/.exec(a);s.push({type:1,index:t,name:r[2],strings:o,ctor:"."===r[1]?ee:"?"===r[1]?ae:"@"===r[1]?oe:Q}),i.removeAttribute(e)}else e.startsWith(M)&&(s.push({type:6,index:t}),i.removeAttribute(e));if(q.test(i.tagName)){const e=i.textContent.split(M),a=e.length-1;if(a>0){i.textContent=z?z.emptyScript:"";for(let o=0;o<a;o++)i.append(e[o],I()),K.nextNode(),s.push({type:2,index:++t});i.append(e[a],I())}}}else if(8===i.nodeType)if(i.data===P)s.push({type:2,index:t});else{let e=-1;for(;-1!==(e=i.data.indexOf(M,e+1));)s.push({type:7,index:t}),e+=M.length-1}t++}}static createElement(e,a){const o=S.createElement("template");return o.innerHTML=e,o}}function J(e,a,o=e,i){if(a===W)return a;let t=void 0!==i?o._$Co?.[i]:o._$Cl;const n=T(a)?void 0:a._$litDirective$;return t?.constructor!==n&&(t?._$AO?.(!1),void 0===n?t=void 0:(t=new n(e),t._$AT(e,o,i)),void 0!==i?(o._$Co??=[])[i]=t:o._$Cl=t),void 0!==t&&(a=J(e,t._$AS(e,a.values),t,i)),a}class X{constructor(e,a){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=a}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:a},parts:o}=this._$AD,i=(e?.creationScope??S).importNode(a,!0);K.currentNode=i;let t=K.nextNode(),n=0,r=0,s=o[0];for(;void 0!==s;){if(n===s.index){let a;2===s.type?a=new Y(t,t.nextSibling,this,e):1===s.type?a=new s.ctor(t,s.name,s.strings,this,e):6===s.type&&(a=new ie(t,this,e)),this._$AV.push(a),s=o[++r]}n!==s?.index&&(t=K.nextNode(),n++)}return K.currentNode=S,i}p(e){let a=0;for(const o of this._$AV)void 0!==o&&(void 0!==o.strings?(o._$AI(e,o,a),a+=o.strings.length-2):o._$AI(e[a])),a++}}class Y{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,a,o,i){this.type=2,this._$AH=L,this._$AN=void 0,this._$AA=e,this._$AB=a,this._$AM=o,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const a=this._$AM;return void 0!==a&&11===e?.nodeType&&(e=a.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,a=this){e=J(this,e,a),T(e)?e===L||null==e||""===e?(this._$AH!==L&&this._$AR(),this._$AH=L):e!==this._$AH&&e!==W&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>O(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==L&&T(this._$AH)?this._$AA.nextSibling.data=e:this.T(S.createTextNode(e)),this._$AH=e}$(e){const{values:a,_$litType$:o}=e,i="number"==typeof o?this._$AC(e):(void 0===o.el&&(o.el=F.createElement(H(o.h,o.h[0]),this.options)),o);if(this._$AH?._$AD===i)this._$AH.p(a);else{const e=new X(i,this),o=e.u(this.options);e.p(a),this.T(o),this._$AH=e}}_$AC(e){let a=R.get(e.strings);return void 0===a&&R.set(e.strings,a=new F(e)),a}k(e){O(this._$AH)||(this._$AH=[],this._$AR());const a=this._$AH;let o,i=0;for(const t of e)i===a.length?a.push(o=new Y(this.O(I()),this.O(I()),this,this.options)):o=a[i],o._$AI(t),i++;i<a.length&&(this._$AR(o&&o._$AB.nextSibling,i),a.length=i)}_$AR(e=this._$AA.nextSibling,a){for(this._$AP?.(!1,!0,a);e&&e!==this._$AB;){const a=e.nextSibling;e.remove(),e=a}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class Q{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,a,o,i,t){this.type=1,this._$AH=L,this._$AN=void 0,this.element=e,this.name=a,this._$AM=i,this.options=t,o.length>2||""!==o[0]||""!==o[1]?(this._$AH=Array(o.length-1).fill(new String),this.strings=o):this._$AH=L}_$AI(e,a=this,o,i){const t=this.strings;let n=!1;if(void 0===t)e=J(this,e,a,0),n=!T(e)||e!==this._$AH&&e!==W,n&&(this._$AH=e);else{const i=e;let r,s;for(e=t[0],r=0;r<t.length-1;r++)s=J(this,i[o+r],a,r),s===W&&(s=this._$AH[r]),n||=!T(s)||s!==this._$AH[r],s===L?e=L:e!==L&&(e+=(s??"")+t[r+1]),this._$AH[r]=s}n&&!i&&this.j(e)}j(e){e===L?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}let ee=class extends Q{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===L?void 0:e}};class ae extends Q{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==L)}}class oe extends Q{constructor(e,a,o,i,t){super(e,a,o,i,t),this.type=5}_$AI(e,a=this){if((e=J(this,e,a,0)??L)===W)return;const o=this._$AH,i=e===L&&o!==L||e.capture!==o.capture||e.once!==o.once||e.passive!==o.passive,t=e!==L&&(o===L||i);i&&this.element.removeEventListener(this.name,this,o),t&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class ie{constructor(e,a,o){this.element=e,this.type=6,this._$AN=void 0,this._$AM=a,this.options=o}get _$AU(){return this._$AM._$AU}_$AI(e){J(this,e)}}const te=x.litHtmlPolyfillSupport;te?.(F,Y),(x.litHtmlVersions??=[]).push("3.2.1");let ne=class extends k{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const e=super.createRenderRoot();return this.renderOptions.renderBefore??=e.firstChild,e}update(e){const a=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(e),this._$Do=((e,a,o)=>{const i=o?.renderBefore??a;let t=i._$litPart$;if(void 0===t){const e=o?.renderBefore??null;i._$litPart$=t=new Y(a.insertBefore(I(),e),e,void 0,o??{})}return t._$AI(e),t})(a,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return W}};ne._$litElement$=!0,ne.finalized=!0,globalThis.litElementHydrateSupport?.({LitElement:ne});const re=globalThis.litElementPolyfillSupport;re?.({LitElement:ne}),(globalThis.litElementVersions??=[]).push("4.1.1");const se=e=>(a,o)=>{void 0!==o?o.addInitializer((()=>{customElements.define(e,a)})):customElements.define(e,a)},le={attribute:!0,type:String,converter:f,reflect:!1,hasChanged:v},de=(e=le,a,o)=>{const{kind:i,metadata:t}=o;let n=globalThis.litPropertyMetadata.get(t);if(void 0===n&&globalThis.litPropertyMetadata.set(t,n=new Map),n.set(o.name,e),"accessor"===i){const{name:i}=o;return{set(o){const t=a.get.call(this);a.set.call(this,o),this.requestUpdate(i,t,e)},init(a){return void 0!==a&&this.P(i,void 0,e),a}}}if("setter"===i){const{name:i}=o;return function(o){const t=this[i];a.call(this,o),this.requestUpdate(i,t,e)}}throw Error("Unsupported decorator location: "+i)};function ce(e){return(a,o)=>"object"==typeof o?de(e,a,o):((e,a,o)=>{const i=a.hasOwnProperty(o);return a.constructor.createProperty(o,i?{...e,wrapped:!0}:e),i?Object.getOwnPropertyDescriptor(a,o):void 0})(e,a,o)}function _e(e){return ce({...e,state:!0,attribute:!1})}const he=e=>e??L;var me,ue,be=function(e,a){return ge(a).format(e)},ge=function(e){return new Intl.DateTimeFormat(e.language,{year:"numeric",month:"long",day:"numeric"})};!function(e){e.language="language",e.system="system",e.comma_decimal="comma_decimal",e.decimal_comma="decimal_comma",e.space_comma="space_comma",e.none="none"}(me||(me={})),function(e){e.language="language",e.system="system",e.am_pm="12",e.twenty_four="24"}(ue||(ue={}));var pe=function(e){if(e.time_format===ue.language||e.time_format===ue.system){var a=e.time_format===ue.language?e.language:void 0,o=(new Date).toLocaleString(a);return o.includes("AM")||o.includes("PM")}return e.time_format===ue.am_pm},ye=function(e,a){return fe(a).format(e)},fe=function(e){return new Intl.DateTimeFormat(e.language,{hour:"numeric",minute:"2-digit",hour12:pe(e)})};function ve(){return(ve=Object.assign||function(e){for(var a=1;a<arguments.length;a++){var o=arguments[a];for(var i in o)Object.prototype.hasOwnProperty.call(o,i)&&(e[i]=o[i])}return e}).apply(this,arguments)}var we=function(e,a,o){var i=a?function(e){switch(e.number_format){case me.comma_decimal:return["en-US","en"];case me.decimal_comma:return["de","es","it"];case me.space_comma:return["fr","sv","cs"];case me.system:return;default:return e.language}}(a):void 0;if(Number.isNaN=Number.isNaN||function e(a){return"number"==typeof a&&e(a)},(null==a?void 0:a.number_format)!==me.none&&!Number.isNaN(Number(e))&&Intl)try{return new Intl.NumberFormat(i,ke(e,o)).format(Number(e))}catch(a){return console.error(a),new Intl.NumberFormat(void 0,ke(e,o)).format(Number(e))}return"string"==typeof e?e:function(e,a){return void 0===a&&(a=2),Math.round(e*Math.pow(10,a))/Math.pow(10,a)}(e,void 0).toString()+""},ke=function(e,a){var o=ve({maximumFractionDigits:2},a);if("string"!=typeof e)return o;var i=e.indexOf(".")>-1?e.split(".")[1].length:0;return o.minimumFractionDigits=i,o.maximumFractionDigits=i,o},xe=function(e,a,o,i){i=i||{},o=null==o?{}:o;var t=new Event(a,{bubbles:void 0===i.bubbles||i.bubbles,cancelable:Boolean(i.cancelable),composed:void 0===i.composed||i.composed});return t.detail=o,e.dispatchEvent(t),t};function ze(...e){const a=e=>e&&"object"==typeof e,o={};return e.filter((e=>a(e))).forEach((e=>{Object.keys(e).forEach((i=>{const t=o[i],n=e[i];Array.isArray(t)&&Array.isArray(n)?o[i]=t.concat(n):a(t)&&a(n)?o[i]=ze(Object.assign({},t),n):o[i]=n}))})),o}function $e(e,a){return Object.values(e).filter((e=>a||!e.impedance_required))}var Ae={version:"Verze",name:"Karta Bodymiscale",description:"Karta bodymiscale ukazuje údaje ohledně váhy a tělesných proporcí",not_available:"Bodymiscale není dostupná",toggle_power:"Více podrobností jako například BMI kCal zobrazit / skrýt"},Me={ok:"MĚŘENÍ: OK",unknown:"STAV: neznámý",problem:"Problém",none:"Žádný",weight_unavailable:"Váha není dostupná",impedance_unavailable:"Impedance není dostupná",weight_unavailable_and_impedance_unavailable:"Váha a impedance není dostupná",weight_low:"nízká váha",impedance_low:"nízká impedance",weight_low_and_impedance_low:"nízká Váha a impedance",impedance_low_and_weight_low:"nízká Impedance a váha",weight_high:"vysoká váha",impedance_high:"vysoká impedance",weight_high_and_impedance_high:"vysoká Váha a impedance",weight_high_and_impedance_low:"vysoká váha, nízká impedance",weight_low_and_impedance_high:"nízká váha, vysoká impedance"},Pe={"weight: ":"Váha: ","impedance: ":"Impedance: ","height: ":"Výška: ","age: ":"Věk: ","gender: ":"Pohlaví: "},Ce={male:"muž",female:"žena",unavailable:"nedostupná"},Se={bmi:"BMI",bmi_label:"BMI popis",visceral_fat:"Viscerální tuk",body_fat:"Tělesný tuk",protein:"Protein",water:"Voda",muscle_mass:"Svalová hmota",bone_mass:"Kostní hmota",weight:"Váha",ideal:"Ideální",basal_metabolism:"Základní metabolismus",body_type:"Tělesný typ",metabolic_age:"Metabolický věk"},Ie={skinny:"štíhlý",balanced_skinny:"štíhlý-vyvážený",skinny_muscular:"štíhlý-svalnatý",balanced:"vyvážený",balanced_muscular:"vyvážený-svalnatý",lack_exercise:"nedostatek cvičení",thick_set:"pevné",obese:"obézní",overweight:"nadváha",underweight:"podváha",normal_or_healthy_weight:"normální či zdravá váha",slight_overweight:"lehká nadváha",moderate_obesity:"menší obezita",severe_obesity:"vážná obezita",massive_obesity:"velká obezita",unavailable:"nedostupná"},Te={" years":" let"},Oe={missing_entity:"Prosím definujte entitu.",missing_entity_bodymiscale:"Prosím definujte entitu bodymiscale."},je={entity:"Prosím definujte účet váhy (povinné) !",image:"Obrázek pozadí (volitelné)",model:"Máte senzor impedance?",model1:"Aktivujte tuto funkci pro přesné měření složení těla.",model_aria_label_on:"Aktivovat impedanci",model_aria_label_off:"Deaktivovat impedanci",unit:"Převést kilogramy na libry",unit_aria_label_on:"Zapnout konverzi",unit_aria_label_off:"Vypnout konverzi",show_name:"Zobrazovat jméno účtu jako titulek ?",show_name_aria_label_on:"Zapnout zobrazování jména",show_name_aria_label_off:"Vypnout zobrazování jména",show_states:"Zobrazit stav ?",show_states_aria_label_on:"Zapnout zobrazování stavu",show_states_aria_label_off:"Vypnout zobrazování stavu",show_attributes:"Show hlavní osobní data (vpravo nahoře) ?",show_attributes_aria_label_on:"Zapnout zobrazování atributů",show_attributes_aria_label_off:"Vypnout zobrazování atributů",show_always_details:"Vždy zobrazovat detaily",show_always_details_aria_label_on:"Zapnout výchozí zobrazení podrobností",show_always_details_aria_label_off:"Vypnout výchozí zobrazení podrobností",show_toolbar:"Zobrazit pokročilá nastavení ?",show_toolbar_aria_label_on:"Zapnout zobrazení pokročilých nastavení",show_toolbar_aria_label_off:"Vypnout zobrazení pokročilých nastavení",show_body:"Nabízet další detaily měření",show_body1:"(spodní polovina - zobrazí se po klepnutí na ikonu šipky dolů) ?",show_body_aria_label_on:"Zapnout zobrazování tělesného skóre",show_body_aria_label_off:"Vypnout zobrazování tělesného skóre",show_buttons:"Povolit změnu účtu ?",show_buttons_aria_label_on:"Zapnout zobrazování tlačítek",show_buttons_aria_label_off:"Vypnout zobrazování tlačítek",header_options:"1. Možnosti záhlaví karty",body_options:"2. Více možností karty",code_only_note:"POZOR: Další možnosti jsou dostupné pouze v editor kódu."},Be={from:"Od",height:"Výška lišty",icon_position:"Pozice ikony",inside:"Uvnitř",max:"Max",min:"Min",minmax_position:"Pozice Min/Max",name_position:"Pozice názvu",off:"Vypnuto",outside:"Vně",target:"Cíl",to:"Do",value_position:"Pozice hodnoty"},Ee={color:"Barva",disabled:"Zakázáno",red:"Červená",pink:"Růžová",purple:"Fialová","deep-purple":"Tmavě fialová",indigo:"Indigo",blue:"Modrá","light-blue":"Světle modrá",cyan:"Azurová",teal:"Tyrkysová",green:"Zelená","light-green":"Světle zelená",lime:"Limetková",yellow:"Žlutá",amber:"Jantarová",orange:"Oranžová",orangered:"Červenooranžová","deep-orange":"Tmavě oranžová",brown:"Hnědá","light-grey":"Světle šedá",grey:"Šedá","dark-grey":"Tmavě šedá","blue-grey":"Modrošedá",darkgreen:"Tmavě zelená",royalblue:"Královská modrá",black:"Černá",white:"Bílá"},Ne={common:Ae,states:Me,attributes:Pe,attributes_value:Ce,body:Se,body_value:Ie,unit:Te,error:Oe,editor:je,editor_body:Be,color_select:Ee},De=Object.freeze({__proto__:null,attributes:Pe,attributes_value:Ce,body:Se,body_value:Ie,color_select:Ee,common:Ae,default:Ne,editor:je,editor_body:Be,error:Oe,states:Me,unit:Te}),Ve={version:"Version",name:"Bodymiscale Karte",description:"Die bodymiscale Karte zeigt Ihren gewichtsmäßigen Körperstatus an.",not_available:"Bodymiscale ist momenatan nicht verfügbar",toggle_power:"Weitere Details wie BMI kCal anzeigen / ausblenden"},Ge={ok:"MESSUNG: OK",unknown:"STATUS: unbekannt",problem:"Problem",none:"keine",weight_unavailable:"Gewichtsmessung nicht verfügbar",impedance_unavailable:"Bioelektrische Impedanzmessung (Körperzusammensetzung) nicht verfügbar",weight_unavailable_and_impedance_unavailable:"Gewichts- und bioelektrische Impedanzmessung (Körperzusammensetzung) nicht verfügbar."},qe={"weight: ":"Gewicht: ","impedance: ":"Zusammensetzung: ","height: ":"Körpergröße: ","age: ":"Alter: ","gender: ":"Geschlecht: "},Ue={male:"männl.",female:"weibl.",unavailable:"Nicht verfügbar"},We={bmi:"BMI",bmi_label:"BMI Klassifikation",visceral_fat:"Bauchfett",body_fat:"Körperfett",protein:"Protein",water:"Wasser",muscle_mass:"Muskelmasse",bone_mass:"Knochenmasse",weight:"Gewicht",ideal:"Idealgewicht",basal_metabolism:"Grundumsatz",body_type:"Körperbau",metabolic_age:"stoffwechselbedingtes Körperalter"},Le={skinny:"schlank",balanced_skinny:"ausgeglichen schlank",skinny_muscular:"muskulös schlank",balanced:"ausgewogen",balanced_muscular:"ausgewogen muskulös",lack_exercise:"Bewegungsmangel",thick_set:"stämmig",obese:"fettleibig",overweight:"Übergewicht",underweight:"Untergewicht",normal_or_healthy_weight:"Normal - gesundes Gewicht",slight_overweight:"leichtes Übergewicht",moderate_obesity:"moderate Fettleibigkeit",severe_obesity:"schwere Fettleibigkeit",massive_obesity:"massive Fettleibigkeit",unavailable:"Nicht verfügbar"},Re={" years":" Jahre"},Ke={missing_entity:"Bitte definieren Sie eine Entität in der Konfiguration.",missing_entity_bodymiscale:'Bitte definieren Sie "bodymiscale" als Entität in der Konfiguration.'},He={entity:"Bitte ein Konto auf der Waage wählen (erforderlich)!",image:"Hintergrundbild (optional)",model:"Haben Sie einen Impedanzsensor?",model1:"Aktivieren Sie diese Funktion für genaue Körperzusammensetzungsmessungen.",model_aria_label_on:"Impedanz aktivieren",model_aria_label_off:"Impedanz deaktivieren",unit:"kg in lbs umrechnen",unit_aria_label_on:"Konvertierung einschalten",unit_aria_label_off:"Umwandlung deaktivieren",show_name:"Namen des Konto als Titel anzeigen?",show_name_aria_label_on:"Namensanzeige einschalten",show_name_aria_label_off:"Namesanzeige ausschalten",show_states:"Status anzeigen (Symbole links oben)?",show_states_aria_label_on:"Statusanzeige einschalten",show_states_aria_label_off:"Statusanzeige ausschalten",show_attributes:"Persönliche Stammdaten anzeigen (rechts oben)?",show_attributes_aria_label_on:"Basis Daten einblenden (rechts oben) einschalten",show_attributes_aria_label_off:"Basis Daten einblenden (rechts oben) ausschalten",show_always_details:"Details immer anzeigen",show_always_details_aria_label_on:"Schalten Sie die standardmäßige Detailansicht ein",show_always_details_aria_label_off:"Schaltet die standardmäßige Detailansicht aus",show_toolbar:"Fortgeschrittene Optionen anzeigen ?",show_toolbar_aria_label_on:"Symbolleiste anzeigen einschalten",show_toolbar_aria_label_off:"Symbolleiste anzeigen ausschalten",show_body:"Weitere Messergebnisse anbieten",show_body1:"(untere Hälfte - per Chevron-Symbol einblenden)?",show_body_aria_label_on:"Körperwertanzeige einschalten",show_body_aria_label_off:"Körperwertanzeige ausschalten",show_buttons:"Kontowechsel erlauben?",show_buttons_aria_label_on:"Schaltfläche anzeigen einschalten",show_buttons_aria_label_off:"Schaltfläche anzeigen ausschalten",header_options:"1. Kartenkopf Optionen",body_options:"2. mehr Kartenoptionen",code_only_note:"ACHTUNG: Weitere Optionen sind nur im Code Editor verfügbar."},Ze={from:"Von",height:"Leistenhöhe",icon_position:"Symbolposition",inside:"Innen",max:"Max",min:"Min",minmax_position:"Min/Max Position",name_position:"Name Position",off:"Aus",outside:"Außen",target:"Ziel",to:"Zu",value_position:"Wert Position"},Fe={color:"Farbe",disabled:"Deaktiviert",red:"Rot",pink:"Rosa",purple:"Lila","deep-purple":"Dunkellila",indigo:"Indigo",blue:"Blau","light-blue":"Hellblau",cyan:"Cyan",teal:"Türkis",green:"Grün","light-green":"Hellgrün",lime:"Limette",yellow:"Gelb",amber:"Bernstein",orange:"Orange",orangered:"Rotorange","deep-orange":"Dunkelorange",brown:"Braun","light-grey":"Hellgrau",grey:"Grau","dark-grey":"Dunkelgrau","blue-grey":"Blaugrau",darkgreen:"Dunkelgrün",royalblue:"Königsblau",black:"Schwarz",white:"Weiß"},Je={common:Ve,states:Ge,attributes:qe,attributes_value:Ue,body:We,body_value:Le,unit:Re,error:Ke,editor:He,editor_body:Ze,color_select:Fe},Xe=Object.freeze({__proto__:null,attributes:qe,attributes_value:Ue,body:We,body_value:Le,color_select:Fe,common:Ve,default:Je,editor:He,editor_body:Ze,error:Ke,states:Ge,unit:Re}),Ye={version:"Version",name:"Bodymiscale Card",description:"The bodymiscale card shows you your weight wise / related body status.",not_available:"Bodymiscale is not available",toggle_power:"More details like BMI kCal show / hide"},Qe={ok:"MEASUREMENT: OK",unknown:"STATE: unknown",problem:"Problem",none:"None",weight_unavailable:"Weight unavailable",impedance_unavailable:"Impedance unavailable",weight_unavailable_and_impedance_unavailable:"Weight and impedance unavailable",weight_low:"Weight low",impedance_low:"Impedance low",weight_low_and_impedance_low:"Weight and impedance low",impedance_low_and_weight_low:"Impedance and weight low",weight_high:"Weight high",impedance_high:"Impedance high",weight_high_and_impedance_high:"Weight and impedance high",weight_high_and_impedance_low:"Weight high, impedance low",weight_low_and_impedance_high:"Weight low, impedance high"},ea={"weight: ":"Weight: ","impedance: ":"Impedance: ","height: ":"Height: ","age: ":"Age: ","gender: ":"Gender: "},aa={male:"male",female:"female",unavailable:"unavailable"},oa={bmi:"BMI",bmi_label:"BMI label",visceral_fat:"Visceral fat",body_fat:"Body fat",protein:"Protein",water:"Water",muscle_mass:"Muscle mass",bone_mass:"Bone mass",weight:"Weight",ideal:"Ideal",basal_metabolism:"Basal metabolism",body_type:"Body type",metabolic_age:"Metabolic age"},ia={skinny:"Skinny",balanced_skinny:"Balanced-skinny",skinny_muscular:"Skinny-muscular",balanced:"Balanced",balanced_muscular:"Balanced-muscular",lack_exercise:"Lack-exercise",thick_set:"Thick-set",obese:"Obese",overweight:"Overweight",underweight:"Underweight",normal_or_healthy_weight:"Normal or Healthy Weight",slight_overweight:"Slight overweight",moderate_obesity:"Moderate obesity",severe_obesity:"Severe obesity",massive_obesity:"Massive obesity",unavailable:"unavailable"},ta={" years":" years"},na={invalid_config:"Invalid configuration",missing_entity:"Please define an entity.",missing_entity_bodymiscale:"Please define a bodymiscale entity."},ra={configuration:"Configuration",customization:"Customization",entity:"Please select an account on the scale (required)!",image:"Background image (optional)",model:"Do you have an impedance sensor?",model1:"Enable this feature for accurate body composition measurements.",model_aria_label_on:"Enable impedance",model_aria_label_off:"Disable impedance",unit:"Convert kg to lbs",unit_aria_label_on:"Toggle the conversion on",unit_aria_label_off:"Toggle the conversion off",theme:"Configure the theme you use.",theme_aria_label_on:"Toggle theme light on",theme_aria_label_off:"Toggle theme dark off",show_name:"Show the name of the account as title?",show_name_aria_label_on:"Toggle display name on",show_name_aria_label_off:"Toggle display name off",show_states:"Show State?",show_states_aria_label_on:"Toggle display state on",show_states_aria_label_off:"Toggle display state off",show_attributes:"Show personal master data (top right)?",show_attributes_aria_label_on:"Toggle display attributes on",show_attributes_aria_label_off:"Toggle display attributes off",show_always_details:"Always show details",show_always_details_aria_label_on:"Toggle default detail view on",show_always_details_aria_label_off:"Toggle default detail view off",show_toolbar:"Show advanced options?",show_toolbar_aria_label_on:"Toggle display advanced options on",show_toolbar_aria_label_off:"Toggle display advanced options off",show_body:"Offer further measurement details",show_body1:"(lower half - icon chevron down will show those)?",show_body_aria_label_on:"Toggle display body score on",show_body_aria_label_off:"Toggle display body score off",show_buttons:"Allow account switch?",show_buttons_aria_label_on:"Toggle display buttons on",show_buttons_aria_label_off:"Toggle display buttons off",header_options:"1. Card header options",body_options:"2. More card options",code_only_note:"ATTENTION: Additional options are only available in the code editor."},sa={from:"From",height:"Bar height",icon_position:"Icon Position",inside:"Inside",max:"Max",min:"Min",minmax_position:"Min/Max Position",name_position:"Name Position",off:"Off",outside:"Outside",target:"Target",to:"To",value_position:"Value Position"},la={color:"Color",disabled:"Disabled",red:"Red",pink:"Pink",purple:"Purple","deep-purple":"Deep purple",indigo:"Indigo",blue:"Blue","light-blue":"Light blue",cyan:"Cyan",teal:"Teal",green:"Green","light-green":"Light green",lime:"Lime",yellow:"Yellow",amber:"Amber",orange:"Orange",orangered:"Red orange","deep-orange":"Deep orange",brown:"Brown","light-grey":"Light grey",grey:"Grey","dark-grey":"Dark grey","blue-grey":"Blue grey",darkgreen:"Dark green",royalblue:"Royal blue",black:"Black",white:"White"},da={common:Ye,states:Qe,attributes:ea,attributes_value:aa,body:oa,body_value:ia,unit:ta,error:na,editor:ra,editor_body:sa,color_select:la},ca={version:"Versión",name:"Tarjeta Bodymiscale",description:"La tarjeta bodymiscale muestra el estado de tu cuerpo en relación a tu peso.",not_available:"Bodymiscale no está disponible",toggle_power:"Mostrar / ocultar más detalles como IMC,kCal"},_a={ok:"MEDICIÓN: OK",unknown:"ESTADO: desconocido",problem:"Problema",none:"Ninguno",weight_unavailable:"Peso no disponible",impedance_unavailable:"Impedancia no disponible",weight_unavailable_and_impedance_unavailable:"Peso e impedancia no disponibles",weight_low:"Peso bajo",impedance_low:"Impedancia baja",weight_low_and_impedance_low:"Peso e impedancia bajos",impedance_low_and_weight_low:"Impedancia y peso bajos",weight_high:"Peso alto",impedance_high:"Impedancia alta",weight_high_and_impedance_high:"Peso e impedancia altos",weight_high_and_impedance_low:"Peso alto, impedancia baja",weight_low_and_impedance_high:"Peso bajo, impedancia alta"},ha={"weight: ":"Peso: ","impedance: ":"Impedancia: ","height: ":"Altura: ","age: ":"Edad: ","gender: ":"Sexo: "},ma={male:"masculino",female:"femenino",unavailable:"no disponible"},ua={bmi:"IMC",bmi_label:"Etiqueta IMC",visceral_fat:"Grasa visceral",body_fat:"Grasa corporal",protein:"Proteína",water:"Agua",muscle_mass:"Masa muscular",bone_mass:"Masa ósea",weight:"Peso",ideal:"Ideal",basal_metabolism:"Metabolismo basal",body_type:"Tipo de cuerpo",metabolic_age:"Edad metabólica"},ba={skinny:"Flaco",balanced_skinny:"Flaco equilibrado",skinny_muscular:"Flaco musculoso",balanced:"Equilibrado",balanced_muscular:"Musculuso equilibrado",lack_exercise:"Falto de ejercicio",thick_set:"Rechoncho",obese:"Obeso",overweight:"Sobrepeso",underweight:"Por debajo del peso normal",normal_or_healthy_weight:"Normal",slight_overweight:"Ligero sobrepeso",moderate_obesity:"Obesidad moderada",severe_obesity:"Obesidad severa",massive_obesity:"Obesidad masiva",unavailable:"no disponible"},ga={" years":" años"},pa={missing_entity:"Por favor, defina una entidad.",missing_entity_bodymiscale:"Por favor, defina una entidad bodymiscale."},ya={entity:"Por favor, escoja una cuenta de la bácula (necesario)!",image:"Imagen de fondo (opcional)",model:"¿Tiene un sensor de impedancia?",model1:"Active esta función para mediciones precisas de la composición corporal.",model_aria_label_on:"Activar impedancia",model_aria_label_off:"Desactivar impedancia",unit:"Convertir kg a lbs",unit_aria_label_on:"Activar conversión",unit_aria_label_off:"Desactivar conversión",show_name:"¿Mostrar el nombre de la cuenta como título?",show_name_aria_label_on:"Mostrar nombre como título",show_name_aria_label_off:"Ocultar nombre como título",show_states:"¿Mostrar estado de la báscula?",show_states_aria_label_on:"Mostrar estado de la báscula",show_states_aria_label_off:"Ocultar estado de la báscula",show_attributes:"¿Mostrar datos de perfil personal (esquina superior derecha)?",show_attributes_aria_label_on:"Mostrar atributos",show_attributes_aria_label_off:"Ocultar atributos",show_always_details:"Mostrar siempre los detalles",show_always_details_aria_label_on:"Mostrar la vista de detalles predeterminada",show_always_details_aria_label_off:"Ocultar la vista de detalles predeterminada",show_toolbar:"¿Mostrar opciones avanzadas?",show_toolbar_aria_label_on:"Mostrar opciones avanzadas",show_toolbar_aria_label_off:"Ocultar opciones avanzadas",show_body:"Mostrar más detalles de la medición",show_body1:"¿(parte inferior - pulsar en la fecha para mostrar)?",show_body_aria_label_on:"Mostrar puntuación corporal",show_body_aria_label_off:"Ocultar puntuación corporal",show_buttons:"¿Permitir cambio de cuenta?",show_buttons_aria_label_on:"Mostrar botones de cuenta",show_buttons_aria_label_off:"Ocultar botones de cuenta",header_options:"1. Opciones de cabecera de tarjeta",body_options:"2. Más opciones de tarjeta",code_only_note:"ATENCIÓN: Opciones adicionales sólo están disponibles en el editor de código."},fa={from:"De",height:"Altura de la barra",icon_position:"Posición del ícono",inside:"Dentro",max:"Máx",min:"Mín",minmax_position:"Posición Mín/Máx",name_position:"Posición del nombre",off:"Apagar",outside:"Fuera",target:"Objetivo",to:"A",value_position:"Posición del valor"},va={color:"Color",disabled:"Deshabilitado",red:"Rojo",pink:"Rosa",purple:"Púrpura","deep-purple":"Púrpura oscuro",indigo:"Índigo",blue:"Azul","light-blue":"Azul claro",cyan:"Cian",teal:"Azul verdoso",green:"Verde","light-green":"Verde claro",lime:"Limón",yellow:"Amarillo",amber:"Ámbar",orange:"Naranja",orangered:"Naranja rojizo","deep-orange":"Naranja oscuro",brown:"Marrón","light-grey":"Gris claro",grey:"Gris","dark-grey":"Gris oscuro","blue-grey":"Gris azulado",darkgreen:"Verde oscuro",royalblue:"Azul real",black:"Negro",white:"Blanco"},wa={common:ca,states:_a,attributes:ha,attributes_value:ma,body:ua,body_value:ba,unit:ga,error:pa,editor:ya,editor_body:fa,color_select:va},ka={version:"Versió",name:"Targeta Bodymiscale",description:"La targeta Bodymiscale mostra l'estat del teu cos en relació amb el teu pes.",not_available:"Bodymiscale no està disponible",toggle_power:"Mostra / amaga més detalls com IMC, kCal"},xa={ok:"MESURA: OK",unknown:"ESTAT: desconegut",problem:"Problema",none:"Cap",weight_unavailable:"Pes no disponible",impedance_unavailable:"Impedància no disponible",weight_unavailable_and_impedance_unavailable:"Pes i impedància no disponibles",weight_low:"Pes baix",impedance_low:"Impedància baixa",weight_low_and_impedance_low:"Pes i impedància baixos",impedance_low_and_weight_low:"Impedància i pes baixos",weight_high:"Pes alt",impedance_high:"Impedància alta",weight_high_and_impedance_high:"Pes i impedància alts",weight_high_and_impedance_low:"Pes alt, impedància baixa",weight_low_and_impedance_high:"Pes baix, impedància alta"},za={"weight: ":"Pes: ","impedance: ":"Impedància: ","height: ":"Alçada: ","age: ":"Edat: ","gender: ":"Sexe: "},$a={male:"masculí",female:"femení",unavailable:"no disponible"},Aa={bmi:"IMC",bmi_label:"Etiqueta IMC",visceral_fat:"Greix visceral",body_fat:"Greix corporal",protein:"Proteïna",water:"Aigua",muscle_mass:"Massa muscular",bone_mass:"Massa òssia",weight:"Pes",ideal:"Ideal",basal_metabolism:"Metabolisme basal",body_type:"Tipus de cos",metabolic_age:"Edat metabòlica"},Ma={skinny:"Prim",balanced_skinny:"Prim equilibrat",skinny_muscular:"Prim musculós",balanced:"Equilibrat",balanced_muscular:"Musculós equilibrat",lack_exercise:"Manca d'exercici",thick_set:"Corpulent",obese:"Obès",overweight:"Sobrepès",underweight:"Per sota del pes normal",normal_or_healthy_weight:"Normal",slight_overweight:"Lleuger sobrepès",moderate_obesity:"Obesitat moderada",severe_obesity:"Obesitat severa",massive_obesity:"Obesitat massiva",unavailable:"no disponible"},Pa={" years":" anys"},Ca={invalid_config:"Configuració no vàlida",missing_entity:"Si us plau, definiu una entitat.",missing_entity_bodymiscale:"Si us plau, definiu una entitat Bodymiscale."},Sa={configuration:"Configuració",customization:"Personalització",entity:"Si us plau, trieu un compte de la bàscula (necessari)!",image:"Imatge de fons (opcional)",model:"Teniu un sensor d'impedància?",model1:"Activeu aquesta funció per a mesures precises de la composició corporal.",model_aria_label_on:"Activar impedància",model_aria_label_off:"Desactivar impedància",unit:"Converteix kg a lbs",unit_aria_label_on:"Activar conversió",unit_aria_label_off:"Desactivar conversió",theme:"Configureu el tema que utilitzeu.",theme_aria_label_on:"Activa el tema clar",theme_aria_label_off:"Desactiva el tema fosc",show_name:"Mostrar el nom del compte com a títol?",show_name_aria_label_on:"Mostrar nom com a títol",show_name_aria_label_off:"Amagar nom com a títol",show_states:"Mostrar l'estat de la bàscula?",show_states_aria_label_on:"Mostrar estat de la bàscula",show_states_aria_label_off:"Amagar estat de la bàscula",show_attributes:"Mostrar dades de perfil personal (cantonada superior dreta)?",show_attributes_aria_label_on:"Mostrar atributs",show_attributes_aria_label_off:"Amagar atributs",show_always_details:"Mostrar sempre els detalls",show_always_details_aria_label_on:"Mostrar la vista de detalls predeterminada",show_always_details_aria_label_off:"Amagar la vista de detalls predeterminada",show_toolbar:"Mostrar opcions avançades?",show_toolbar_aria_label_on:"Mostrar opcions avançades",show_toolbar_aria_label_off:"Amagar opcions avançades",show_body:"Mostrar més detalls de la mesura",show_body1:"(part inferior - prémer la data per mostrar)?",show_body_aria_label_on:"Mostrar puntuació corporal",show_body_aria_label_off:"Amagar puntuació corporal",show_buttons:"Permetre canvi de compte?",show_buttons_aria_label_on:"Mostrar botons de compte",show_buttons_aria_label_off:"Amagar botons de compte",header_options:"1. Opcions de capçalera de targeta",body_options:"2. Més opcions de targeta",code_only_note:"ATENCIÓ: Opcions addicionals només estan disponibles a l'editor de codi."},Ia={from:"De",height:"Alçada de la barra",icon_position:"Posició de la icona",inside:"Dins",max:"Màx",min:"Mín",minmax_position:"Posició Mín/Màx",name_position:"Posició del nom",off:"Apagar",outside:"Fora",target:"Objectiu",to:"A",value_position:"Posició del valor"},Ta={color:"Color",disabled:"Deshabilitat",red:"Vermell",pink:"Rosa",purple:"Porpra","deep-purple":"Porpra fosc",indigo:"Índigo",blue:"Blau","light-blue":"Blau clar",cyan:"Cian",teal:"Blau verdós",green:"Verd","light-green":"Verd clar",lime:"Llimona",yellow:"Groc",amber:"Ambre",orange:"Taronja",orangered:"Taronja vermellós","deep-orange":"Taronja fosc",brown:"Marró","light-grey":"Gris clar",grey:"Gris","dark-grey":"Gris fosc","blue-grey":"Gris blavós",darkgreen:"Verd fosc",royalblue:"Blau reial",black:"Negre",white:"Blanc"},Oa={common:ka,states:xa,attributes:za,attributes_value:$a,body:Aa,body_value:Ma,unit:Pa,error:Ca,editor:Sa,editor_body:Ia,color_select:Ta},ja={version:"Version",name:"Carte Bodymiscale",description:"La carte bodymiscale corporelle vous indique votre poids et votre état corporel.",not_available:"Bodymiscale n'est pas disponible",toggle_power:"Plus de détails comme IMC kCal afficher / cacher"},Ba={ok:"MESURE : OK",unknown:"ÉTAT : inconnu",problem:"Problème",none:"Aucun",weight_unavailable:"Poids indisponible",impedance_unavailable:"Impédance indisponible",weight_unavailable_and_impedance_unavailable:"Poids et impédance indisponibles",weight_low:"Poids faible",impedance_low:"Impédance faible",weight_low_and_impedance_low:"Poids et impédance faibles",impedance_low_and_weight_low:"Impédance et poids faibles",weight_high:"Poids élevé",impedance_high:"Impédance élevée",weight_high_and_impedance_high:"Poids et impédance élevés",weight_high_and_impedance_low:"Poids élevé, impédance faible",weight_low_and_impedance_high:"Poids faible, impédance élevée"},Ea={"weight: ":"Poids: ","impedance: ":"Impédance: ","height: ":"Taille: ","age: ":"Age: ","gender: ":"Genre: "},Na={male:"homme",female:"femme",unavailable:"indisponible"},Da={bmi:"IMC",bmi_label:"Étiquette IMC",visceral_fat:"Graisse viscérale",body_fat:"Graisse corporelle",protein:"Protéine",water:"Eau",muscle_mass:"Masse musculaire",bone_mass:"Masse osseuse",weight:"Poids",ideal:"Poids idéal",basal_metabolism:"Métabolisme de base",body_type:"Corpulence",metabolic_age:"Age corporel"},Va={skinny:"Maigre",balanced_skinny:"Équilibré maigre",skinny_muscular:"Maigre musclé",balanced:"Équilibré",balanced_muscular:"Musclé équilibré",lack_exercise:"Manque d'exercice",thick_set:"Trapu",obese:"Obèse",overweight:"Surpoids",underweight:"Insuffisance pondérale",normal_or_healthy_weight:"Normal - poids de santé",slight_overweight:"Léger surpoids",moderate_obesity:"Obésité modérée",severe_obesity:"Obésité sévère",massive_obesity:"Obésité massive",unavailable:"indisponible"},Ga={" years":" ans"},qa={invalid_config:"Configuration invalide",missing_entity:"Veuillez définir une entité.",missing_entity_bodymiscale:"Veuillez définir une entité Bodymiscale."},Ua={configuration:"Configuration",customization:"Personnalisation",entity:"Veuillez choisir un compte de la balance (obligatoire) !",image:"Image de fond (facultatif)",model:"Vous avez un capteur d'impédance ?",model1:"Activez cette fonctionnalité pour des mesures corporelle précises.",model_aria_label_on:"Activez l'impédance",model_aria_label_off:"Désactiver l'impédance",unit:"Convertir les kg en lbs",unit_aria_label_on:"Activer la conversion",unit_aria_label_off:"Désactiver la conversion",theme:"Configurer le thème que vous utilisez.",theme_aria_label_on:"Activer thème clair",theme_aria_label_off:"Désactiver thème sombre",show_name:"Afficher le nom du compte comme titre ?",show_name_aria_label_on:"Activer affichage du nom",show_name_aria_label_off:"Désactiver affichage du nom",show_states:"Afficher l'état ?",show_states_aria_label_on:"Activer l'affichage de l'état",show_states_aria_label_off:"Désactiver l'affichage de l'état",show_attributes:"Afficher les données personnelles de base (en haut à droite) ?",show_attributes_aria_label_on:"Activer l'affichage des données personnelles de base",show_attributes_aria_label_off:"Désactiver l'affichage des données personnelles de base",show_always_details:"Toujours afficher les détails",show_always_details_aria_label_on:"Activer l'affichage des détails par défaut",show_always_details_aria_label_off:"Désactiver l'affichage des détails par défaut",show_toolbar:"Afficher les options avancées ?",show_toolbar_aria_label_on:"Activer l'affichage des options avancées",show_toolbar_aria_label_off:"Désactiver l'affichage des options avancées",show_body:"Offrir d'autres détails de mesure",show_body1:"(partie inférieure - affichage via l'icone chevron bas) ?",show_body_aria_label_on:"Activer l'affichage des autres détails de mesure",show_body_aria_label_off:"Désactiver l'affichage des autres détails de mesure",show_buttons:"Autoriser le changement de compte ?",show_buttons_aria_label_on:"Activer le changement de compte",show_buttons_aria_label_off:"Désactiver le changement de compte",header_options:"1. Options d'en-tête de la carte",body_options:"2. Plus d'options de la cartes",code_only_note:"ATTENTION: Les options supplémentaires ne sont disponibles que dans l'éditeur de code."},Wa={from:"De",height:"Hauteur de la barre",icon_position:"Position de l'icône",inside:"À l'intérieur",max:"Max",min:"Min",minmax_position:"Position Min/Max",name_position:"Position du nom",off:"Désactivé",outside:"À l'extérieur",target:"Cible",to:"À",value_position:"Position de la valeur"},La={color:"Couleur",disabled:"Désactivé",red:"Rouge",pink:"Rose",purple:"Violet","deep-purple":"Violet foncé",indigo:"Indigo",blue:"Bleu","light-blue":"Bleu clair",cyan:"Cyan",teal:"Turquoise",green:"Vert","light-green":"Vert clair",lime:"Vert citron",yellow:"Jaune",amber:"Ambre",orange:"Orange",orangered:"Rouge orange","deep-orange":"Orange foncé",brown:"Marron","light-grey":"Gris clair",grey:"Gris","dark-grey":"Gris foncé","blue-grey":"Bleu gris",darkgreen:"Vert foncé",royalblue:"Blue roi",black:"Noir",white:"Blanc"},Ra={common:ja,states:Ba,attributes:Ea,attributes_value:Na,body:Da,body_value:Va,unit:Ga,error:qa,editor:Ua,editor_body:Wa,color_select:La},Ka={version:"Verzió",name:"Bodymiscale Kártya",description:"A BodyMiScale kártya megmutatja az ön súlyhoz viszonyított testi állapotát.",not_available:"A Bodymiscale nem elérhető",toggle_power:"További részletek, például a BMI, kCal megjelenítése / elrejtése"},Ha={ok:"MÉRÉS: RENDBEN",unknown:"ÁLLAPOT: ismeretlen",problem:"Probléma",none:"Nincs",weight_unavailable:"Súly nem elérhető",impedance_unavailable:"Impedancia nem elérhető",weight_unavailable_and_impedance_unavailable:"Súly és impedancia nem elérhető",weight_low:"Alacsony súly",impedance_low:"Alacsony impedancia",weight_low_and_impedance_low:"Alacsony súly és impedancia",impedance_low_and_weight_low:"Alacsony impedancia és súly",weight_high:"Magas súly",impedance_high:"Magas impedancia",weight_high_and_impedance_high:"Magas súly és impedancia",weight_high_and_impedance_low:"Magas súly, alacsony impedancia",weight_low_and_impedance_high:"Alacsony súly, magas impedancia"},Za={"weight: ":"Súly: ","impedance: ":"Impedancia: ","height: ":"Magasság: ","age: ":"Kor: ","gender: ":"Nem: "},Fa={male:"férfi",female:"nő",unavailable:"nem elérhető"},Ja={bmi:"BMI",bmi_label:"BMI címke",visceral_fat:"Zsigeri zsír",body_fat:"Testzsír",protein:"Fehérje",water:"Víz",muscle_mass:"Izomtömeg",bone_mass:"Csonttömeg",weight:"Súly",ideal:"Ideális",basal_metabolism:"Alapanyagcsere",body_type:"Testtípus",metabolic_age:"Anyagcsere kor"},Xa={skinny:"Sovány",balanced_skinny:"Kiegyensúlyozott-sovány",skinny_muscular:"Sovány-izmos",balanced:"Kiegyensúlyozott",balanced_muscular:"Kiegyensúlyozott-izmos",lack_exercise:"Mozgáshiányos",thick_set:"Közepesen molett",obese:"Kórosan elhízott",overweight:"Túlsúlyos",underweight:"Súlyhiányos",normal_or_healthy_weight:"Normál vagy egészséges testsúly",slight_overweight:"Enyhe túlsúly",moderate_obesity:"Közepes elhízottság",severe_obesity:"Súlyos elhízottság",massive_obesity:"Masszív elhízottság",unavailable:"nem elérhető"},Ya={" years":" év"},Qa={missing_entity:"Kérjük, definiáljon egy entitást.",missing_entity_bodymiscale:"Kérjük, definiáljon egy BodyMiScale entitást."},eo={entity:"Kérjük, válasszon egy fiókot a mérlegen (kötelező)!",image:"Háttérkép (opcionális)",model:"Rendelkezik impedancia érzékelővel?",model1:"A pontos testösszetétel mérésekhez aktiválja ezt a funkciót.",model_aria_label_on:"Impedancia engedélyezése",model_aria_label_off:"Impedancia letiltása",unit:"Kg átszámítása fonttá",unit_aria_label_on:"Átszámítás bekapcsolása",unit_aria_label_off:"Átszámítás kikapcsolása",theme:"Állítsa be a használt témát.",theme_aria_label_on:"Világos téma bekapcsolása",theme_aria_label_off:"Sötét téma kikapcsolása",show_name:"Mutassa a fiók nevét címként?",show_name_aria_label_on:"Név megjelenítésének bekapcsolása",show_name_aria_label_off:"Név megjelenítésének kikapcsolása",show_states:"Állapot mutatása?",show_states_aria_label_on:"Állapot megjelenítésének bekapcsolása",show_states_aria_label_off:"Állapot megjelenítésének kikapcsolása",show_attributes:"Személyes adatok mutatása (jobb felső sarokban)?",show_attributes_aria_label_on:"Személyes adatok megjelenítésének bekapcsolása",show_attributes_aria_label_off:"Személyes adatok megjelenítésének kikapcsolása",show_always_details:"Mindig mutassa a részleteket",show_always_details_aria_label_on:"Alapértelmezett részletes nézet bekapcsolása",show_always_details_aria_label_off:"Alapértelmezett részletes nézet kikapcsolása",show_toolbar:"Mutassa a haladó beállításokat?",show_toolbar_aria_label_on:"Haladó beállítások megjelenítésének bekapcsolása",show_toolbar_aria_label_off:"Haladó beállítások megjelenítésének kikapcsolása",show_body:"Kínáljon további mérési részleteket",show_body1:"(alsó rész - a lefelé mutató nyíl ikonra kattintva megjeleníthető)?",show_body_aria_label_on:"Test pontszám megjelenítésének bekapcsolása",show_body_aria_label_off:"Test pontszám megjelenítésének kikapcsolása",show_buttons:"Fiókváltás engedélyezése?",show_buttons_aria_label_on:"Gombok megjelenítésének bekapcsolása",show_buttons_aria_label_off:"Gombok megjelenítésének kikapcsolása",header_options:"1. Kártya fejléc beállítások",body_options:"2. További kártya beállítások",code_only_note:"FIGYELEM: További beállítások csak a kód szerkesztőben érhetők el."},ao={from:"Tól",height:"Sáv magassága",icon_position:"Ikon pozíció",inside:"Belső",max:"Max",min:"Min",minmax_position:"Min/Max pozíció",name_position:"Név pozíció",off:"Kikapcsolva",outside:"Külső",target:"Cél",to:"Tovább",value_position:"Érték pozíció"},oo={color:"Szín",disabled:"Letiltva",red:"Piros",pink:"Rózsaszín",purple:"Lila","deep-purple":"Sötét lila",indigo:"Indigó",blue:"Kék","light-blue":"Világoskék",cyan:"Cián",teal:"Türkiz",green:"Zöld","light-green":"Világoszöld",lime:"Lime",yellow:"Sárga",amber:"Borostyán",orange:"Narancs",orangered:"Narancsvörös","deep-orange":"Sötét narancs",brown:"Barna","light-grey":"Világosszürke",grey:"Szürke","dark-grey":"Sötétszürke","blue-grey":"Kékszürke",darkgreen:"Sötétzöld",royalblue:"Királykék",black:"Fekete",white:"Fehér"},io={common:Ka,states:Ha,attributes:Za,attributes_value:Fa,body:Ja,body_value:Xa,unit:Ya,error:Qa,editor:eo,editor_body:ao,color_select:oo},to={version:"Versione",name:"Bodymiscale Card",description:"La card bodymiscale ti mostra il tuo peso/stato corporeo relativo.",not_available:"Bodymiscale non è disponibile",toggle_power:"Più dettagli come BMI kCal mostra / nascondi"},no={ok:"MISURAZIONE: OK",unknown:"STATO: sconosciuto",problem:"Problema",none:"Nessuno",weight_unavailable:"Peso non disponibile",impedance_unavailable:"Impedenza non disponibile",weight_unavailable_and_impedance_unavailable:"Peso e impedenza non disponibili",weight_low:"Peso basso",impedance_low:"Impedenza bassa",weight_low_and_impedance_low:"Peso e impedenza bassi",impedance_low_and_weight_low:"Impedenza e peso bassi",weight_high:"Peso alto",impedance_high:"Impedenza alta",weight_high_and_impedance_high:"Peso e impedenza alti",weight_high_and_impedance_low:"Peso alto, impedenza bassa",weight_low_and_impedance_high:"Peso basso, impedenza alta"},ro={"weight: ":"Peso: ","impedance: ":"Impedenza: ","height: ":"Altezza: ","age: ":"Età: ","gender: ":"Sesso: "},so={male:"uomo",female:"donna",unavailable:"non disponibile"},lo={bmi:"BMI",bmi_label:"BMI Categoria",visceral_fat:"Grasso viscerale",body_fat:"Grasso corporeo",protein:"Proteine",water:"Acqua",muscle_mass:"Massa muscolare",bone_mass:"Massa ossea",weight:"Peso",ideal:"Ideale",basal_metabolism:"Metabolismo base",body_type:"Tipo di corpo",metabolic_age:"Età metabolica"},co={skinny:"Magro",balanced_skinny:"Bilanciato-magro",skinny_muscular:"Magro-muscoloso",balanced:"Bilanciato",balanced_muscular:"Bilanciato-muscoloso",lack_exercise:"Manca-esercizio",thick_set:"Spesso-impostato",obese:"Obeso",overweight:"Sovrappeso",underweight:"Sottopeso",normal_or_healthy_weight:"Normale o Peso Sano",slight_overweight:"Leggermente in sovrappeso",moderate_obesity:"Obesità Moderata",severe_obesity:"Obesità Grave",massive_obesity:"Obesità Massiccia",unavailable:"non disponibile"},_o={" years":" anni"},ho={missing_entity:"Perfavore definisci un'entità.",missing_entity_bodymiscale:"Perfavore definisci un'entità di tipo bodymiscale."},mo={entity:"Perfavore seleziona un account sulla bilancia (richiesto) !",image:"Immagine di sfondo (opzionale)",model:"Hai un sensore di impedenza?",model1:"Attiva questa funzione per misurazioni accurate della composizione corporea.",model_aria_label_on:"Abilita impedenza",model_aria_label_off:"Disabilita impedenza",unit:"Converti da kg a lbs",unit_aria_label_on:"Attiva la conversione",unit_aria_label_off:"Disattiva la conversione",show_name:"Mostrare il nome dell'account come titolo  ?",show_name_aria_label_on:"Attiva la visione del nome",show_name_aria_label_off:"Disattiva la visione del nome",show_states:"Mostrare lo Stato ?",show_states_aria_label_on:"Attiva la visione dello stato",show_states_aria_label_off:"Disattiva la visione dello stato",show_attributes:"Mostrare i dati anagrafici personali (in alto a destra) ?",show_attributes_aria_label_on:"Attiva la visione degli attributi",show_attributes_aria_label_off:"Disattiva la visione degli attributi",show_always_details:"Mostra sempre i dettagli",show_always_details_aria_label_on:"Attiva la visualizzazione dettagliata predefinita",show_always_details_aria_label_off:"Disattiva la visualizzazione dettagliata predefinita",show_toolbar:"Mostrare opzioni avanzate ?",show_toolbar_aria_label_on:"Attiva opzioni avanzate",show_toolbar_aria_label_off:"Disattiva opzioni avanzate",show_body:"Offrire ulteriori dettagli di misurazione",show_body1:"(metà inferiore - l'icona con la spunta ve li mostrerà) ?",show_body_aria_label_on:"Attiva la visione del punteggio del corpo",show_body_aria_label_off:"Disattiva la visione del punteggio del corpo",show_buttons:"Consenti il cambio di account ?",show_buttons_aria_label_on:"Attiva la visione dei pulsanti",show_buttons_aria_label_off:"Disattiva la visione dei pulsanti",header_options:"1. Opzioni di intestazione della card",body_options:"2. Ulteriori opzioni della card",code_only_note:"ATTENZIONE: Le opzioni aggiuntive sono disponibili solo nella modalità editor di codice."},uo={from:"Da",height:"Altezza barra",icon_position:"Posizione icona",inside:"Dentro",max:"Max",min:"Min",minmax_position:"Posizione Min/Max",name_position:"Posizione nome",off:"Spento",outside:"Fuori",target:"Destinazione",to:"A",value_position:"Posizione valore"},bo={color:"Colore",disabled:"Disabilitato",red:"Rosso",pink:"Rosa",purple:"Viola","deep-purple":"Viola scuro",indigo:"Indaco",blue:"Blu","light-blue":"Azzurro",cyan:"Ciano",teal:"Verde acqua",green:"Verde","light-green":"Verde chiaro",lime:"Lime",yellow:"Giallo",amber:"Ambra",orange:"Arancione",orangered:"Arancione rosso","deep-orange":"Arancione scuro",brown:"Marrone","light-grey":"Grigio chiaro",grey:"Grigio","dark-grey":"Grigio scuro","blue-grey":"Blu grigio",darkgreen:"Verde scuro",royalblue:"Blu reale",black:"Nero",white:"Bianco"},go={common:to,states:no,attributes:ro,attributes_value:so,body:lo,body_value:co,unit:_o,error:ho,editor:mo,editor_body:uo,color_select:bo},po={version:"Version",name:"Bodymiscale Card",description:"ボディミスケール カードは、体重や関連する身体の状態を表示します。",not_available:"Bodymiscale は利用できません",toggle_power:"BMI kCal などの詳細を表示/非表示"},yo={ok:"測定: OK",unknown:"状態: 不明",problem:"問題",none:"なし",weight_unavailable:"体重が利用できません",impedance_unavailable:"インピーダンスが利用できません",weight_unavailable_and_impedance_unavailable:"体重とインピーダンスが利用できません",weight_low:"体重が低い",impedance_low:"インピーダンスが低い",weight_low_and_impedance_low:"体重とインピーダンスが低い",impedance_low_and_weight_low:"インピーダンスと体重が低い",weight_high:"体重が高い",impedance_high:"インピーダンス高",weight_high_and_impedance_high:"体重とインピーダンスが高い",weight_high_and_impedance_low:"体重は高いが、インピーダンスは低い",weight_low_and_impedance_high:"体重は低く、インピーダンスは高い"},fo={"weight: ":"体重: ","impedance: ":"インピーダンス: ","height: ":"高さ: ","age: ":"年齢: ","gender: ":"性別: "},vo={male:"男性",female:"女性",unavailable:"利用不可"},wo={bmi:"BMI",bmi_label:"BMI ラベル",visceral_fat:"内臓脂肪",body_fat:"体脂肪",protein:"タンパク質",water:"水分",muscle_mass:"筋肉量",bone_mass:"骨量",weight:"体重",ideal:"理想",basal_metabolism:"基礎代謝",body_type:"体型",metabolic_age:"代謝年齢"},ko={skinny:"痩せすぎ",balanced_skinny:"バランスの取れた瘦せ型",skinny_muscular:"細身筋肉質",balanced:"バランスの取れた",balanced_muscular:"バランスの取れた筋肉質",lack_exercise:"運動不足",thick_set:"がっしり体型",obese:"肥満",overweight:"太りすぎ",underweight:"低体重",normal_or_healthy_weight:"正常または健康的な体重",slight_overweight:"少し太りすぎ",moderate_obesity:"中程度の肥満",severe_obesity:"重度の肥満",massive_obesity:"極度の肥満",unavailable:"利用不可"},xo={" years":" 年齢"},zo={invalid_config:"無効な設定です",missing_entity:"エンティティを設定して下さい。",missing_entity_bodymiscale:"bodymiscale エンティティを定義してください。"},$o={entity:"スケール上のアカウントを選択してください (必須)!",image:"背景画像（オプション）",model:"インピーダンスセンサーはありますか?",model1:"正確な体組成測定のためにこの機能を有効にしてください。",model_aria_label_on:"インピーダンスを有効にする",model_aria_label_off:"インピーダンスを無効にする",unit:"kg を lbs に変換する",unit_aria_label_on:"変換をオンに切り替えます",unit_aria_label_off:"変換をオフに切り替えます",theme:"使用するテーマを設定します。",theme_aria_label_on:"テーマライトをオンに切り替えます",theme_aria_label_off:"テーマダークをオフに切り替えます",show_name:"アカウント名をタイトルとして表示しますか?",show_name_aria_label_on:"表示名をオンに切り替えます",show_name_aria_label_off:"表示名をオフに切り替えます",show_states:"状態を表示しますか?",show_states_aria_label_on:"表示状態をオンに切り替えます",show_states_aria_label_off:"表示状態をオフに切り替えます",show_attributes:"個人マスターデータを表示しますか (右上)?",show_attributes_aria_label_on:"表示属性をオンに切り替えます",show_attributes_aria_label_off:"表示属性をオフに切り替えます",show_always_details:"常に詳細を表示する",show_always_details_aria_label_on:"デフォルトの詳細ビューをオンに切り替えます",show_always_details_aria_label_off:"デフォルトの詳細ビューをオフに切り替えます",show_toolbar:"詳細オプションを表示しますか?",show_toolbar_aria_label_on:"詳細オプションの表示をオンに切り替えます",show_toolbar_aria_label_off:"詳細オプションの表示をオフに切り替えます",show_body:"測定の詳細をさらに表示する",show_body1:"(下半分 - 下向きの矢印アイコンが表示されます)?",show_body_aria_label_on:"ボディスコアの表示をオンに切り替えます",show_body_aria_label_off:"ボディスコアの表示をオフに切り替えます",show_buttons:"アカウントの切り替えを許可しますか?",show_buttons_aria_label_on:"表示ボタンをオンに切り替えます",show_buttons_aria_label_off:"表示ボタンをオフに切り替えます",header_options:"1. カード ヘッダー オプション",body_options:"2. その他のカードオプション",code_only_note:"注意: 追加オプションはコード エディターでのみ使用できます。"},Ao={from:"から",height:"バーの高さ",icon_position:"アイコンの位置",inside:"内側",max:"最大",min:"最小",minmax_position:"最小/最大の位置",name_position:"名前の位置",off:"オフ",outside:"外側",target:"ターゲット",to:"へ",value_position:"値の位置"},Mo={color:"色",disabled:"無効",red:"赤",pink:"ピンク",purple:"紫","deep-purple":"濃い紫",indigo:"インディゴ",blue:"青","light-blue":"水色",cyan:"シアン",teal:"ティール",green:"緑","light-green":"薄緑",lime:"ライム",yellow:"黄色",amber:"アンバー",orange:"オレンジ",orangered:"赤橙色","deep-orange":"濃いオレンジ",brown:"茶色","light-grey":"ライトグレー",grey:"グレー","dark-grey":"ダークグレー","blue-grey":"青灰色",darkgreen:"ダークグリーン",royalblue:"ロイヤルブルー",black:"黒",white:"白"},Po={common:po,states:yo,attributes:fo,attributes_value:vo,body:wo,body_value:ko,unit:xo,error:zo,editor:$o,editor_body:Ao,color_select:Mo},Co={version:"Versie",name:"Bodymiscale Card",description:"De bodymiscale kaart toont u uw gewicht / gerelateerde lichaamsstatus.",not_available:"Bodymiscale is niet beschikbaar",toggle_power:"Meer details zoals BMI kCal tonen / verbergen"},So={ok:"METING: OK",unknown:"STATUS: onbekend",problem:"Probleem",none:"Geen",weight_unavailable:"Gewicht niet beschikbar",impedance_unavailable:"Impedantie niet beschikbaar",weight_unavailable_and_impedance_unavailable:"Gewicht en impedantie niet beschikbaar",weight_low:"Gewicht laag",impedance_low:"Impedantie laag",weight_low_and_impedance_low:"Laag gewicht en impedantie",impedance_low_and_weight_low:"Lage impedantie en gewicht",weight_high:"Gewicht hoog",impedance_high:"Impedantie hoog",weight_high_and_impedance_high:"Hoog gewicht en impedantie",weight_high_and_impedance_low:"Gewicht hoog, impedantie laag",weight_low_and_impedance_high:"Gewicht laag, impedantie hoog"},Io={"weight: ":"Gewicht: ","impedance: ":"Impedantie: ","height: ":"Lengte: ","age: ":"Leeftijd: ","gender: ":"Geslacht: "},To={male:"man",female:"vrouw",unavailable:"niet beschikbaar"},Oo={bmi:"BMI",bmi_label:"BMI label",visceral_fat:"Visceraal vet",body_fat:"Lichaamsvet",protein:"Proteine",water:"Water",muscle_mass:"Spiermassa",bone_mass:"Botgewicht",weight:"Gewicht",ideal:"Ideaal",basal_metabolism:"Basaal metabolisme",body_type:"Lichaamstype",metabolic_age:"Metabolistische leeftijd"},jo={skinny:"Mager",balanced_skinny:"Gebalanceerd-mager",skinny_muscular:"Mager-gespierd",balanced:"Gebalanceerd",balanced_muscular:"Gebalanceerd-gespierd",lack_exercise:"Weinig-beweging",thick_set:"Dik",obese:"Obesitas",overweight:"Overgewicht",underweight:"Ondergewicht",normal_or_healthy_weight:"Normaal of gezond gewicht",slight_overweight:"Licht overgewicht",moderate_obesity:"Gemiddeld overgewicht",severe_obesity:"Ruim overgewicht",massive_obesity:"Enorm overgewicht",unavailable:"niet beschikbaar"},Bo={" years":" jaren"},Eo={missing_entity:"Geef een entiteit in.",missing_entity_bodymiscale:"Geef een bodymiscale entiteit in."},No={entity:"Kies een account op de schaal (verplicht) !",image:"Achtergrondafbeelding (facultatief)",model:"Heeft u een impedantie sensor?",model1:"Activeer deze functie voor nauwkeurige metingen van de lichaamssamenstelling.",model_aria_label_on:"Impedantie inschakelen",model_aria_label_off:"Impedantie uitschakelen",unit:"Converteer kg naar lbs",unit_aria_label_on:"Activeer conversie",unit_aria_label_off:"Conversie deactiveren",show_name:"Toon de naam van de rekening als titel ?",show_name_aria_label_on:"Zet naam aan",show_name_aria_label_off:"Zet naam uit",show_states:"Geef status weer ?",show_states_aria_label_on:"Zet status aan",show_states_aria_label_off:"Zet status uit",show_attributes:"Persoonlijke stamgegevens weergeven (rechtsboven) ?",show_attributes_aria_label_on:"Zet attributen aan",show_attributes_aria_label_off:"Zet attributen uit",show_always_details:"Toon altijd details",show_always_details_aria_label_on:"Zet standaard detailweergave aan",show_always_details_aria_label_off:"Zet standaard detailweergave uit",show_toolbar:"Toon geavanceerde opties ?",show_toolbar_aria_label_on:"Zet knoppenbalk aan",show_toolbar_aria_label_off:"Zet knoppenbalk uit",show_body:"Bieden verdere meting details",show_body1:"(onderste helft - pictogram chevron naar beneden zal tonen die) ?",show_body_aria_label_on:"Zet lichaamsscore aan",show_body_aria_label_off:"Zet lichaamsscore uit",show_buttons:"Accountwissel toestaan ?",show_buttons_aria_label_on:"Zet knoppen aan",show_buttons_aria_label_off:"Zet knoppen uit",header_options:"1. Kaart koptekst opties",body_options:"2. Meer boordopties",code_only_note:"LET OP: Extra opties zijn alleen beschikbaar in de code editor."},Do={from:"Van",height:"Balkhoogte",icon_position:"Pictogrampositie",inside:"Binnen",max:"Max",min:"Min",minmax_position:"Min/Max Positie",name_position:"Naam Positie",off:"Uit",outside:"Buiten",target:"Doel",to:"Naar",value_position:"Waarde Positie"},Vo={color:"Kleur",disabled:"Uitgeschakeld",red:"Rood",pink:"Roze",purple:"Paars","deep-purple":"Dieppaars",indigo:"Indigo",blue:"Blauw","light-blue":"Lichtblauw",cyan:"Cyaan",teal:"Blauwgroen",green:"Groen","light-green":"Lichtgroen",lime:"Limoen",yellow:"Geel",amber:"Amber",orange:"Oranje",orangered:"Rood-oranje","deep-orange":"Dieporanje",brown:"Bruin","light-grey":"Lichtgrijs",grey:"Grijs","dark-grey":"Donkergrijs","blue-grey":"Blauwgrijs",darkgreen:"Donkergroen",royalblue:"Koningsblauw",black:"Zwart",white:"Wit"},Go={common:Co,states:So,attributes:Io,attributes_value:To,body:Oo,body_value:jo,unit:Bo,error:Eo,editor:No,editor_body:Do,color_select:Vo},qo={version:"Wersja",name:"Karta Bodymiscale",description:"Karta BodyMiScale pokazuje Twoją wagę oraz parametry ciała.",not_available:"Bodymiscale jest niedostępna",toggle_power:"Więcej szczegółów jak BMI kCal - pokaż / ukryj"},Uo={ok:"POMIAR: OK",unknown:"STATUS: nieznany",problem:"Problem",none:"Brak",weight_unavailable:"Waga niedostępna",impedance_unavailable:"Impedancja niedostępna",weight_unavailable_and_impedance_unavailable:"Waga i impedancja niedostępne",weight_low:"Niska waga",impedance_low:"Niska impedancja",weight_low_and_impedance_low:"Niska waga i impedancja",impedance_low_and_weight_low:"Niska impedancja i waga",weight_high:"Waga wysoka",impedance_high:"Impedancja wysoka",weight_high_and_impedance_high:"Wysoka waga i impedancja",weight_high_and_impedance_low:"Waga wysoka a impedancja niska",weight_low_and_impedance_high:"Waga nizska a impedancja wysoka"},Wo={"weight: ":"Waga: ","impedance: ":"Impedancja: ","height: ":"Wzrost: ","age: ":"Wiek: ","gender: ":"Płeć: "},Lo={male:"męska",female:"żeńska",unavailable:"niedstępna"},Ro={bmi:"BMI",bmi_label:"BMI label",visceral_fat:"Tłuszcz brzuszny",body_fat:"Tłuszcz Ciała",protein:"Białko",water:"Woda",muscle_mass:"Masa mięśniowa",bone_mass:"Masa kostna",weight:"Waga",ideal:"Idealna",basal_metabolism:"Metabolizm podstawowy",body_type:"Typ sylwetki",metabolic_age:"Wiek metaboliczny"},Ko={skinny:"Chudy",balanced_skinny:"Umiarkowanie chudy",skinny_muscular:"Chudy muskularny",balanced:"Zrównoważony",balanced_muscular:"Zrównoważony muskularny",lack_exercise:"Mało aktywny",thick_set:"Gruby",obese:"Otyły",overweight:"Nadwaga",underweight:"Niedowaga",normal_or_healthy_weight:"Normalna lub zdrowa waga",slight_overweight:"Lekka nadwaga",moderate_obesity:"Lekka otyłość",severe_obesity:"Średnia otyłość",massive_obesity:"Poważna otyłość",unavailable:"niedostępny"},Ho={" years":" lat"},Zo={missing_entity:"Proszę zdefiniuj encje.",missing_entity_bodymiscale:"Proszę zdefiniuj encję bodymiscale."},Fo={entity:"Proszę wybierz konto na wadze (wymagane)!",image:"Obraz tła (opcjonalne)",model:"Czy masz czujnik impedancji?",model1:"Włącz tę funkcję, aby uzyskać dokładne pomiary składu ciała.",model_aria_label_on:"Włącz impedancję",model_aria_label_off:"Wyłącz impedancję",unit:"Zamień kg na lbs",unit_aria_label_on:"Włącz opcję konwersji",unit_aria_label_off:"Włącz opcję konwersji",theme:"Wybierz rodza motywu.",theme_aria_label_on:"Włącz jasny motyw",theme_aria_label_off:"Włącz ciemny motyw",show_name:"Użyć imienia jako tytułu karty?",show_name_aria_label_on:"Włącz opcję imienia jako tytułu",show_name_aria_label_off:"Wyłącz opcję imienia jako tytułu",show_states:"Wyświetlić stan?",show_states_aria_label_on:"Włącz wyświetlanie stanu",show_states_aria_label_off:"Wyłącz wyświetlanie stanu",show_attributes:"Show personal master data (gora po prawej)?",show_attributes_aria_label_on:"Toggle display attributes on",show_attributes_aria_label_off:"Toggle display attributes off",show_always_details:"Zawsze pokazuj szczegóły",show_always_details_aria_label_on:"Włącz domyślny widok szczegółów",show_always_details_aria_label_off:"Wyłącz domyślny widok szczegółów",show_toolbar:"Pokazać zaawansowane opcje?",show_toolbar_aria_label_on:"Włącz zaawansowane opcje",show_toolbar_aria_label_off:"Wyłącz zaawansowane opcje",show_body:"Offer further measurement details",show_body1:"(lower half - icon chevron down will show those)?",show_body_aria_label_on:"Toggle display body score on",show_body_aria_label_off:"Toggle display body score off",show_buttons:"Allow account switch?",show_buttons_aria_label_on:"Toggle display buttons on",show_buttons_aria_label_off:"Toggle display buttons off",header_options:"1. Opcje nagłówka",body_options:"2. Więcej opcji karty",code_only_note:"UWAGA: Dodatkowe opcje dostępne są tylko poprzez edycje kodu."},Jo={from:"Od",height:"Wysokość paska",icon_position:"Pozycja ikony",inside:"Wewnątrz",max:"Max",min:"Min",minmax_position:"Pozycja Min/Max",name_position:"Pozycja nazwy",off:"Wyłącz",outside:"Na zewnątrz",target:"Cel",to:"Do",value_position:"Pozycja wartości"},Xo={color:"Kolor",disabled:"Wyłączone",red:"Czerwony",pink:"Różowy",purple:"Fioletowy","deep-purple":"Ciemnofioletowy",indigo:"Indygo",blue:"Niebieski","light-blue":"Jasnoniebieski",cyan:"Błękitny",teal:"Nadmorskizielony",green:"Zielony","light-green":"Jasnozielony",lime:"Limonkowy",yellow:"Żółty",amber:"Bursztynowy",orange:"Pomarańczowy",orangered:"Czerwono-pomarańczowy","deep-orange":"Ciemnopomarańczowy",brown:"Brązowy","light-grey":"Jasnoszary",grey:"Szary","dark-grey":"Ciemnoszary","blue-grey":"Niebieskoszary",darkgreen:"Ciemnozielony",royalblue:"Królestwo Niebieskie",black:"Czarny",white:"Biały"},Yo={common:qo,states:Uo,attributes:Wo,attributes_value:Lo,body:Ro,body_value:Ko,unit:Ho,error:Zo,editor:Fo,editor_body:Jo,color_select:Xo},Qo={version:"Versão",name:"Bodymiscale Card",description:"O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",not_available:"Bodymiscale não está disponível",toggle_power:"Mostrando/escondendo mais detalhes tal como o kCal,IMC"},ei={ok:"MEDIÇÃO: OK",unknown:"ESTATUTO: desconhecido",problem:"Problema",none:"Nenhum",weight_unavailable:"Peso indisponível",impedance_unavailable:"Impedância indisponível",weight_unavailable_and_impedance_unavailable:"Peso e impedância indisponíveis",weight_low:"Peso baixo",impedance_low:"Impedância baixa",weight_low_and_impedance_low:"Peso e impedância baixos",impedance_low_and_weight_low:"Impedância e peso baixos",weight_high:"Peso alto",impedance_high:"Impedância alta",weight_high_and_impedance_high:"Peso e impedância altos",weight_high_and_impedance_low:"Peso alto, impedância baixa",weight_low_and_impedance_high:"Peso baixo, impedância alta"},ai={"weight: ":"Peso: ","impedance: ":"Impedância: ","height: ":"Altura: ","age: ":"Idade: ","gender: ":"Gênero: "},oi={male:"masculino",female:"femenino",unavailable:"indisponível"},ii={bmi:"IMC",bmi_label:"Etiqueta IMC",visceral_fat:"Gordura visceral",body_fat:"Gordura corporal",protein:"Proteína",water:"Água",muscle_mass:"Massa muscular",bone_mass:"Massa óssea",weight:"Peso",ideal:"Ideal",basal_metabolism:"Metabolismo basal",body_type:"Tipo de corpo",metabolic_age:"Idade metabólica"},ti={skinny:"Magro",balanced_skinny:"Magro equilibrado",skinny_muscular:"Magro musculoso",balanced:"Equilibrado",balanced_muscular:"Musculoso equilibrado",lack_exercise:"Falta de exercício",thick_set:"Estatura sólida",obese:"Obeso",overweight:"Acima do peso normal",underweight:"Abaixo do peso normal",normal_or_healthy_weight:"Normal",slight_overweight:"Ligeiramente acima do peso",moderate_obesity:"Obesidade moderada",severe_obesity:"Obesidade severa",massive_obesity:"Obesidade maciça",unavailable:"indisponível"},ni={" years":" Anos"},ri={missing_entity:"Por favor, defina uma entidade.",missing_entity_bodymiscale:"Por favor, defina uma entidade bodymiscale."},si={entity:"Por favor, escolha a entidade da balança com o nome da pessoa (obrigatório) !",image:"Imagem de fundo (opcional)",model:"Tem um sensor de impedância?",model1:"Ative esta função para medições precisas da composição corporal.",model_aria_label_on:"Ativar impedância",model_aria_label_off:"Desativar impedância",unit:"Converter kg em libras",unit_aria_label_on:"Ativar a conversão kg para lbs",unit_aria_label_off:"Desativar a conversão kg para lbs",show_name:"Mostrar o nome da conta como título ?",show_name_aria_label_on:"Mostrar o nome como título",show_name_aria_label_off:"Esconder o nome como título",show_states:"Mostrar Estado da balança ?",show_states_aria_label_on:"Mostrar o estado da balança",show_states_aria_label_off:"Esconder o estado da balança",show_attributes:"Mostrar os dados do perfil pessoal (canto superior direito) ?",show_attributes_aria_label_on:"Mostrar atributos",show_attributes_aria_label_off:"Esconder atributos",show_always_details:"Mostrar sempre detalhes",show_always_details_aria_label_on:"Alternar a vista de detalhe por defeito em",show_always_details_aria_label_off:"Alternar a vista de detalhe por defeito",show_toolbar:"Mostrar opções avançadas ?",show_toolbar_aria_label_on:"Mostrar a barra de ferramentas",show_toolbar_aria_label_off:"Esconder a barra de ferramentas",show_body:"Mostrar mais detalhes da medição",show_body1:"(parte inferior - clicar na seta para mostrar) ?",show_body_aria_label_on:"Mostrar mais detalhes no corpo",show_body_aria_label_off:"Esconder mais detalhes no corpo",show_buttons:"Permitir a troca de conta ?",show_buttons_aria_label_on:"Mostrar botões das contas",show_buttons_aria_label_off:"Esconder botões das contas",header_options:"1. Opções do cabeçalho do cartão",body_options:"2. Mais opções do corpo do cartão",code_only_note:"CUIDADO: Opções adicionais estão disponíveis apenas no editor de código."},li={from:"De",height:"Altura da barra",icon_position:"Posição do ícone",inside:"Dentro",max:"Máximo",min:"Mínimo",minmax_position:"Posição Min/Max",name_position:"Posição do nome",off:"Desligado",outside:"Fora",target:"Alvo",to:"Para",value_position:"Posição do valor"},di={color:"Cor",disabled:"Desativado",red:"Vermelho",pink:"Rosa",purple:"Roxo","deep-purple":"Roxo escuro",indigo:"Índigo",blue:"Azul","light-blue":"Azul claro",cyan:"Ciano",teal:"Azul esverdeado",green:"Verde","light-green":"Verde claro",lime:"Lima",yellow:"Amarelo",amber:"Âmbar",orange:"Laranja",orangered:"Laranja avermelhado","deep-orange":"Laranja escuro",brown:"Marrom","light-grey":"Cinza claro",grey:"Cinza","dark-grey":"Cinza escuro","blue-grey":"Cinza azulado",darkgreen:"Verde escuro",royalblue:"Azul real",black:"Preto",white:"Branco"},ci={common:Qo,states:ei,attributes:ai,attributes_value:oi,body:ii,body_value:ti,unit:ni,error:ri,editor:si,editor_body:li,color_select:di},_i={version:"Versão",name:"Bodymiscale Card",description:"O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",not_available:"Bodymiscale não é avaialável",toggle_power:"Mais detalhes como o kCal show / hide da BMI"},hi={ok:"MEDIÇÃO: OK",unknown:"ESTATUTO: desconhecido",problem:"Problema",none:"Nenhum",weight_unavailable:"Peso indisponível",impedance_unavailable:"Impedance indisponível",weight_unavailable_and_impedance_unavailable:"Peso e impedância indisponíveis",weight_low:"Peso baixo",impedance_low:"Impedância baixa",weight_low_and_impedance_low:"Peso e impedância baixos",impedance_low_and_weight_low:"Impedância e peso baixos",weight_high:"Peso alto",impedance_high:"Impedância alta",weight_high_and_impedance_high:"Peso e impedância altos",weight_high_and_impedance_low:"Peso alto, impedância baixa",weight_low_and_impedance_high:"Peso baixo, impedância alta"},mi={"weight: ":"Peso: ","impedance: ":"Impedance: ","height: ":"Cintura: ","age: ":"Idade: ","gender: ":"Gênero: "},ui={male:"macho",female:"fêmea",unavailable:"indisponível"},bi={bmi:"IMC",bmi_label:"Etiqueta IMC",visceral_fat:"Gordura visceral",body_fat:"Gordura corporal",protein:"Proteína",water:"Água",muscle_mass:"Massa muscular",bone_mass:"Massa óssea",weight:"Peso",ideal:"Ideal",basal_metabolism:"Metabolismo basal",body_type:"Tipo de corpo",metabolic_age:"Idade metabólica"},gi={skinny:"Magro",balanced_skinny:"Magro equilibrado",skinny_muscular:"Magro musculoso",balanced:"Equilibrado",balanced_muscular:"Musculoso equilibrado",lack_exercise:"Falta de exercício",thick_set:"Grosso-conjunto",obese:"Obeso",overweight:"Sobrepeso",underweight:"Underweight",normal_or_healthy_weight:"Normal",slight_overweight:"Ligeiro acima do peso",moderate_obesity:"Obesidade moderada",severe_obesity:"Obesidade severa",massive_obesity:"Obesidade maciça",unavailable:"indisponível"},pi={" years":" Anos"},yi={missing_entity:"Por favor, defina uma entidade.",missing_entity_bodymiscale:"Por favor, defina uma entidade bodymiscale."},fi={entity:"Por favor, escolha uma conta na escala (obrigatório) !",image:"Imagem de fundo (opcional)",model:"Você tem um sensor de impedância?",model1:"Ative esta função para medições precisas da composição corporal.",model_aria_label_on:"Ativar impedância",model_aria_label_off:"Desativar impedância",unit:"Converter kg em libras",unit_aria_label_on:"Ativar a conversão",unit_aria_label_off:"Desativar a conversão",show_name:"Mostrar o nome da conta como título ?",show_name_aria_label_on:"Alternar o nome da exibição",show_name_aria_label_off:"Alternar o nome da exibição",show_states:"Mostrar Estado ?",show_states_aria_label_on:"Alternar estado de exibição ligado",show_states_aria_label_off:"Alternar estado de exibição fora",show_attributes:"Mostrar dados mestres pessoais (canto superior direito) ?",show_attributes_aria_label_on:"Alternar atributos de exibição em",show_attributes_aria_label_off:"Alternar atributos de exibição fora",show_always_details:"Mostrar sempre detalhes",show_always_details_aria_label_on:"Alternar a visualização de detalhes padrão em",show_always_details_aria_label_off:"Alternar a visualização de detalhes padrão fora",show_toolbar:"Mostrar opções avançadas ?",show_toolbar_aria_label_on:"Alternar a barra de ferramentas do display em",show_toolbar_aria_label_off:"Alternar barra de ferramentas de exibição fora",show_body:"Oferecer mais detalhes de medição",show_body1:"(parte inferior - ícone chevron down mostrará aqueles) ?",show_body_aria_label_on:"Alternar a pontuação do corpo do display em",show_body_aria_label_off:"Alternar a pontuação do corpo do display fora",show_buttons:"Permitir a troca de conta ?",show_buttons_aria_label_on:"Alternar botões de exibição",show_buttons_aria_label_off:"Alternar botões de exibição desligados",header_options:"1. Opções do cabeçalho do cartão",body_options:"2. Mais opções de placas",code_only_note:"CUIDADO: Opções adicionais estão disponíveis apenas no editor de código."},vi={from:"De",height:"Altura da barra",icon_position:"Posição do ícone",inside:"Dentro",max:"Máximo",min:"Mínimo",minmax_position:"Posição Min/Max",name_position:"Posição do nome",off:"Desligado",outside:"Fora",target:"Alvo",to:"Para",value_position:"Posição do valor"},wi={color:"Cor",disabled:"Desativado",red:"Vermelho",pink:"Rosa",purple:"Roxo","deep-purple":"Roxo escuro",indigo:"Índigo",blue:"Azul","light-blue":"Azul claro",cyan:"Ciano",teal:"Azul esverdeado",green:"Verde","light-green":"Verde claro",lime:"Lima",yellow:"Amarelo",amber:"Âmbar",orange:"Laranja",orangered:"Laranja avermelhado","deep-orange":"Laranja escuro",brown:"Marrom","light-grey":"Cinza claro",grey:"Cinza","dark-grey":"Cinza escuro","blue-grey":"Cinza azulado",darkgreen:"Verde escuro",royalblue:"Azul real",black:"Preto",white:"Branco"},ki={common:_i,states:hi,attributes:mi,attributes_value:ui,body:bi,body_value:gi,unit:pi,error:yi,editor:fi,editor_body:vi,color_select:wi},xi={version:"Versiune",name:"Bodymiscale Card",description:"Cardul bodymiscale îți arată starea ta în funcție de greutate/corespunzătoare corpului.",not_available:"Bodymiscale nu este disponibil",toggle_power:"Mai multe detalii precum BMI kCal arată/ascunde"},zi={ok:"MĂSURARE: OK",unknown:"Stare: unknown",problem:"Problemă",none:"Nimic",weight_unavailable:"Greutate indisponibilă",impedance_unavailable:"Impedanță indisponibilă",weight_unavailable_and_impedance_unavailable:"Greutate și impedanță indisponibile",weight_low:"Greutate redusă",impedance_low:"Impedanță scăzută",weight_low_and_impedance_low:"Greutate și impedanță scăzute",impedance_low_and_weight_low:"Impedanță și greutate scăzute",weight_high:"Greutate mare",impedance_high:"Impedanță mare",weight_high_and_impedance_high:"Greutate și impedanță ridicate",weight_high_and_impedance_low:"Greutate mare, impedanță scăzută",weight_low_and_impedance_high:"Greutate redusă, impedanță ridicată"},$i={"weight: ":"Greutate: ","impedance: ":"Impedanță: ","height: ":"Înălţime: ","age: ":"Vârstă: ","gender: ":"Gen: "},Ai={male:"masculin",female:"feminin",unavailable:"indisponibil"},Mi={bmi:"IMC",bmi_label:"Eticheta IMC",visceral_fat:"Grasime viscerala",body_fat:"Grăsime corporală",protein:"Proteină",water:"Apă",muscle_mass:"Masă musculară",bone_mass:"Masă osoasă",weight:"Greutate",ideal:"Ideal",basal_metabolism:"Metabolismul bazal",body_type:"Tipul corpului",metabolic_age:"Vârsta metabolică"},Pi={skinny:"Slab",balanced_skinny:"Slab-echilibrat",skinny_muscular:"Slab-muscular",balanced:"Echilibrat",balanced_muscular:"Balanced-muscular",lack_exercise:"Lipsa-exercițiu",thick_set:"Îndesat",obese:"Obez",overweight:"Supraponderal",underweight:"Subponderal",normal_or_healthy_weight:"Greutate normală sau sănătoasă",slight_overweight:"Ușor supraponderal",moderate_obesity:"Obezitate moderată",severe_obesity:"Obezitate severă",massive_obesity:"Obezitate masivă",unavailable:"indisponibil"},Ci={" years":" ani"},Si={missing_entity:"Vă rugăm să definiți o entitate.",missing_entity_bodymiscale:"Definiți o entitate bodymiscale."},Ii={entity:"Vă rugăm să selectați un cont de cântar (obligatoriu)!",image:"Imagine de fundal (opțional)",model:"Aveți un senzor de impedanță?",model1:"Activați această funcție pentru măsurători precise ale compoziției corporale.",model_aria_label_on:"Activare impedanță",model_aria_label_off:"Dezactivare impedanță",unit:"Convertiți kg în lbs",unit_aria_label_on:"Activați conversia",unit_aria_label_off:"Dezactivați conversia",theme:"Configurați tema pe care o utilizați.",theme_aria_label_on:"Activează lumina temei",theme_aria_label_off:"Dezactivați tema întunecată",show_name:"Afișați numele contului ca titlu?",show_name_aria_label_on:"Activează numele afișat",show_name_aria_label_off:"Dezactivați numele afișat",show_states:"Arată starea?",show_states_aria_label_on:"Comutați starea afișajului",show_states_aria_label_off:"Dezactivați starea afișajului",show_attributes:"Afișați datele de bază personale (dreapta sus)?",show_attributes_aria_label_on:"Activați/dezactivați atributele de afișare",show_attributes_aria_label_off:"Dezactivați atributele de afișare",show_always_details:"Afișați întotdeauna detalii",show_always_details_aria_label_on:"Activați vizualizarea implicită a detaliilor",show_always_details_aria_label_off:"Dezactivați vizualizarea implicită a detaliilor",show_toolbar:"Arată opțiuni avansate?",show_toolbar_aria_label_on:"Comutați afișarea opțiunilor avansate",show_toolbar_aria_label_off:"Dezactivați afișarea opțiunilor avansate",show_body:"Oferiți detalii suplimentare de măsurare",show_body1:"(Jumătatea inferioară - pictograma chevron în jos le va arăta)?",show_body_aria_label_on:"Comutați afișarea scorului corporal",show_body_aria_label_off:"Dezactivați scorul pentru corpul afișat",show_buttons:"Permiteți schimbarea contului?",show_buttons_aria_label_on:"Activați butoanele afișajului",show_buttons_aria_label_off:"Dezactivați butoanele de afișare",header_options:"1. Opțiuni pentru antetul cardului",body_options:"2. Mai multe opțiuni de card",code_only_note:"ATENŢIE: Opțiuni suplimentare sunt disponibile numai în editorul de cod."},Ti={from:"De la",height:"Înălțimea barei",icon_position:"Poziția pictogramei",inside:"Interior",max:"Maxim",min:"Minim",minmax_position:"Poziția Min/Max",name_position:"Poziția numelui",off:"Oprit",outside:"Exterior",target:"Țintă",to:"La",value_position:"Poziția valorii"},Oi={color:"Culoare",disabled:"Dezactivat",red:"Roșu",pink:"Roz",purple:"Violet","deep-purple":"Violet închis",indigo:"Indigo",blue:"Albastru","light-blue":"Albastru deschis",cyan:"Cian",teal:"Albastru-verde",green:"Verde","light-green":"Verde deschis",lime:"Lămâie",yellow:"Galben",amber:"Chihlimbar",orange:"Portocaliu",orangered:"Portocaliu-roșu","deep-orange":"Portocaliu închis",brown:"Maro","light-grey":"Gri deschis",grey:"Gri","dark-grey":"Gri închis","blue-grey":"Gri-albastru",darkgreen:"Verde închis",royalblue:"Albastru regal",black:"Negru",white:"Alb"},ji={common:xi,states:zi,attributes:$i,attributes_value:Ai,body:Mi,body_value:Pi,unit:Ci,error:Si,editor:Ii,editor_body:Ti,color_select:Oi},Bi={version:"Версия",name:"Карточка Bodymiscale",description:"Карточка BodyMiScale отображает показатели тела, рассчитанные на основе результатов измерения веса и биоимпеданса.",not_available:"Компонент Bodymiscale не доступен",toggle_power:"Показать/скрыть дополнительные сведения о BMI"},Ei={ok:"Измерение: OK",unknown:"Состояние: неизвестно",problem:"Проблема",none:"Нет",weight_unavailable:"Вес недоступен",impedance_unavailable:"Биоимпеданс недоступен",weight_unavailable_and_impedance_unavailable:"Вес и импеданс недоступны",weight_low:"Низкий вес",impedance_low:"Низкий биоимпеданс",weight_low_and_impedance_low:"Низкий вес и импеданс",impedance_low_and_weight_low:"Низкий импеданс и вес",weight_high:"Высокий вес",impedance_high:"Высокий биоимпеданс",weight_high_and_impedance_high:"Высокий вес и импеданс",weight_high_and_impedance_low:"Высокий вес, низкий биоимпеданс",weight_low_and_impedance_high:"Низкий вес, высокий биоимпеданс"},Ni={"weight: ":"Вес: ","impedance: ":"Импеданс: ","height: ":"Рост: ","age: ":"Возраст: ","gender: ":"Пол: "},Di={male:"мужской",female:"женский",unavailable:"недоступен"},Vi={bmi:"Индекс BMI",bmi_label:"Интерпретация BMI",visceral_fat:"Висцеральный жир",body_fat:"Жировая ткань",protein:"Белки",water:"Вода",muscle_mass:"Мышечная масса",bone_mass:"Костная масса",weight:"Вес",ideal:"Идеальный вес",basal_metabolism:"Базальный метаболизм",body_type:"Тип тела",metabolic_age:"Метаболический возраст"},Gi={skinny:"Тощий",balanced_skinny:"Худощавый",skinny_muscular:"Подтянуто-мускулистый",balanced:"Оптимальный",balanced_muscular:"Мускулистый",lack_exercise:"Недостаток упражнений",thick_set:"Коренастый",obese:"Ожирение",overweight:"Лишний вес",underweight:"Недостаточный вес",normal_or_healthy_weight:"Нормальный вес",slight_overweight:"Избыточный вес",moderate_obesity:"Ожирение 1й степени",severe_obesity:"Ожирение 2й степени",massive_obesity:"Ожирение 3й степени",unavailable:"недоступен"},qi={" years":" года(лет)"},Ui={missing_entity:"Определите сущность.",missing_entity_bodymiscale:"Определите сущность BodyMiScale."},Wi={entity:"Сущность BodyMiScale (обязательно)",image:"Фоновое изображение (опционально)",model:"У вас есть датчик импеданса?",model1:"Включите эту функцию для точных измерений состава тела.",model_aria_label_on:"Включить импеданс",model_aria_label_off:"Выключить импеданс",unit:"Преобразование кг в фунты",unit_aria_label_on:"Преобразовать кг в фунты",unit_aria_label_off:"Не преобразовывать кг в фунты",show_name:"Отображение имени пользователя",show_name_aria_label_on:"Отображать имя пользователя",show_name_aria_label_off:"Не отображать имя пользователя",show_states:"Отображение состояния",show_states_aria_label_on:"Отображать состояние",show_states_aria_label_off:"Не отображать состояние",show_attributes:"Отображение персональных данных",show_attributes_aria_label_on:"Отображать персональные данные",show_attributes_aria_label_off:"Не отображать персональные данные",show_always_details:"Всегда показывать детали",show_always_details_aria_label_on:"Постоянное отображение деталей",show_always_details_aria_label_off:"Не отображайте данные на постоянной основе",show_toolbar:"Отображение панели дополнительных параметров",show_toolbar_aria_label_on:"Отображать панель дополнительных параметров",show_toolbar_aria_label_off:"Не отображать панель дополнительных параметров",show_body:"Отображение дополнительных параметров",show_body1:"(по нажатию кнопки со стрелкой вниз)",show_body_aria_label_on:"Отображать дополнительные параметры",show_body_aria_label_off:"Не отображать дополнительные параметры",show_buttons:"Переключение аккаунтов",show_buttons_aria_label_on:"Отображать кнопки",show_buttons_aria_label_off:"Не отображать кнопки",header_options:"1. Настройки заголовка карточки",body_options:"2. Дополнительные настройки карточки",code_only_note:"ВНИМАНИЕ: Дополнительные настройки отображаются только в редакторе кода."},Li={from:"От",height:"Высота панели",icon_position:"Позиция иконки",inside:"Внутри",max:"Макс",min:"Мин",minmax_position:"Позиция Min/Max",name_position:"Позиция имени",off:"Выключено",outside:"Снаружи",target:"Цель",to:"К",value_position:"Позиция значения"},Ri={color:"Цвет",disabled:"Отключено",red:"Красный",pink:"Розовый",purple:"Фиолетовый","deep-purple":"Темно-фиолетовый",indigo:"Индиго",blue:"Синий","light-blue":"Голубой",cyan:"Циан",teal:"Бирюзовый",green:"Зеленый","light-green":"Светло-зеленый",lime:"Лайм",yellow:"Желтый",amber:"Янтарный",orange:"Оранжевый",orangered:"Красно-оранжевый","deep-orange":"Темно-оранжевый",brown:"Коричневый","light-grey":"Светло-серый",grey:"Серый","dark-grey":"Темно-серый","blue-grey":"Серый синий",darkgreen:"Темно-зеленый",royalblue:"Королевский синий",black:"Черный",white:"Белый"},Ki={common:Bi,states:Ei,attributes:Ni,attributes_value:Di,body:Vi,body_value:Gi,unit:qi,error:Ui,editor:Wi,editor_body:Li,color_select:Ri},Hi={version:"Version",name:"Bodymiscale Card",description:"The bodymiscale card shows you your weight wise / related body status.",not_available:"Bodymiscale is not available",toggle_power:"More details like BMI kCal show / hide"},Zi={ok:"MEASUREMENT: OK",unknown:"STATE: unknown",problem:"Problem",none:"None",weight_unavailable:"Weight unavailable",impedance_unavailable:"Impedance unavailable",weight_unavailable_and_impedance_unavailable:"Weight and impedance unavailable",weight_low:"Weight low",impedance_low:"Impedance low",weight_low_and_impedance_low:"Weight and impedance low",impedance_low_and_weight_low:"Impedance and weight low",weight_high:"Weight high",impedance_high:"Impedance high",weight_high_and_impedance_high:"Weight and impedance high",weight_high_and_impedance_low:"Weight high, impedance low",weight_low_and_impedance_high:"Weight low, impedance high"},Fi={"weight: ":"Weight: ","impedance: ":"Impedance: ","height: ":"Height: ","age: ":"Age: ","gender: ":"Gender: "},Ji={male:"male",female:"female",unavailable:"unavailable"},Xi={bmi:"BMI",bmi_label:"BMI label",visceral_fat:"Mỡ nội tạng",body_fat:"Mỡ cơ thể",protein:"Chất đạm",water:"Nước",muscle_mass:"Khối lượng cơ",bone_mass:"Khối lượng xương",weight:"Cân nặng",ideal:"Lý tưởng",basal_metabolism:"Trao đổi chất cơ bản",body_type:"Kiểu cơ thể",metabolic_age:"Tuổi chuyển hóa"},Yi={skinny:"Gầy",balanced_skinny:"Cân đối - gầy",skinny_muscular:"Gầy - cơ bắp",balanced:"Cân bằng",balanced_muscular:"Cơ bắp cân bằng",lack_exercise:"Thiếu tập thể dục",thick_set:"Thick-set",obese:"Béo phì",overweight:"Thừa cân",underweight:"Thiếu cân",normal_or_healthy_weight:"Cân nặng bình thường hoặc khỏe mạnh",slight_overweight:"Hơi thừa cân",moderate_obesity:"Béo phì vừa phải",severe_obesity:"Béo phì nghiêm trọng",massive_obesity:"Massive obesity",unavailable:"Không có sẵn"},Qi={" years":" years"},et={missing_entity:"Please define an entity.",missing_entity_bodymiscale:"Please define a bodymiscale entity."},at={entity:"Please select an account on the scale (required)!",image:"Background image (optional)",model:"Do you have an impedance sensor?",model1:"Enable this feature for accurate body composition measurements.",model_aria_label_on:"Enable impedance",model_aria_label_off:"Disable impedance",unit:"Convert kg to lbs",unit_aria_label_on:"Toggle the conversion on",unit_aria_label_off:"Toggle the conversion off",theme:"Configure the theme you use.",theme_aria_label_on:"Toggle theme light on",theme_aria_label_off:"Toggle theme dark off",show_name:"Show the name of the account as title?",show_name_aria_label_on:"Toggle display name on",show_name_aria_label_off:"Toggle display name off",show_states:"Show State?",show_states_aria_label_on:"Toggle display state on",show_states_aria_label_off:"Toggle display state off",show_attributes:"Show personal master data (top right)?",show_attributes_aria_label_on:"Toggle display attributes on",show_attributes_aria_label_off:"Toggle display attributes off",show_always_details:"Always show details",show_always_details_aria_label_on:"Toggle default detail view on",show_always_details_aria_label_off:"Toggle default detail view off",show_toolbar:"Show advanced options?",show_toolbar_aria_label_on:"Toggle display advanced options on",show_toolbar_aria_label_off:"Toggle display advanced options off",show_body:"Offer further measurement details",show_body1:"(lower half - icon chevron down will show those)?",show_body_aria_label_on:"Toggle display body score on",show_body_aria_label_off:"Toggle display body score off",show_buttons:"Allow account switch?",show_buttons_aria_label_on:"Toggle display buttons on",show_buttons_aria_label_off:"Toggle display buttons off",header_options:"1. Card header options",body_options:"2. More card options",code_only_note:"ATTENTION: Additional options are only available in the code editor."},ot={from:"Từ",height:"Chiều cao thanh",icon_position:"Vị trí biểu tượng",inside:"Bên trong",max:"Tối đa",min:"Tối thiểu",minmax_position:"Vị trí Min/Max",name_position:"Vị trí tên",off:"Tắt",outside:"Bên ngoài",target:"Mục tiêu",to:"Đến",value_position:"Vị trí giá trị"},it={color:"Màu sắc",disabled:"Tắt",red:"Đỏ",pink:"Hồng",purple:"Tím","deep-purple":"Tím đậm",indigo:"Chàm",blue:"Xanh dương","light-blue":"Xanh nhạt",cyan:"Cyan",teal:"Lục lam",green:"Xanh lá","light-green":"Xanh lá nhạt",lime:"Chanh",yellow:"Vàng",amber:"Hổ phách",orange:"Cam",orangered:"Cam đỏ","deep-orange":"Cam đậm",brown:"Nâu","light-grey":"Xám nhạt",grey:"Xám","dark-grey":"Xám đậm","blue-grey":"Xám xanh dương",darkgreen:"Xanh lá đậm",royalblue:"Xanh dương hoàng gia",black:"Đen",white:"Trắng"},tt={common:Hi,states:Zi,attributes:Fi,attributes_value:Ji,body:Xi,body_value:Yi,unit:Qi,error:et,editor:at,editor_body:ot,color_select:it},nt={version:"版本",name:"米家体脂称卡片",description:"米家体脂称卡片会显示你的体重以及相关身体状态",not_available:"Bodymiscale 不可用",toggle_power:"显示/隐藏更多详情,例如: BMI, kCal"},rt={ok:"测量: OK",unknown:"状态: 未知",problem:"故障",none:"无",weight_unavailable:"体重不可用",impedance_unavailable:"阻抗不可用",weight_unavailable_and_impedance_unavailable:"体重和阻抗均不可用",weight_low:"体重过轻",impedance_low:"阻抗低",weight_low_and_impedance_low:"体重和阻抗均偏低",impedance_low_and_weight_low:"阻抗和体重均偏低",weight_high:"体重过重",impedance_high:"阻抗高",weight_high_and_impedance_high:"体重和阻抗均偏高",weight_high_and_impedance_low:"体重过重, 阻抗低",weight_low_and_impedance_high:"体重过轻, 阻抗高"},st={"weight: ":"重量: ","impedance: ":"阻抗: ","height: ":"身高: ","age: ":"年龄: ","gender: ":"性别: "},lt={male:"男",female:"女",unavailable:"不可用"},dt={bmi:"BMI",bmi_label:"BMI 标签",visceral_fat:"内脏脂肪",body_fat:"体脂",protein:"蛋白质",water:"水分",muscle_mass:"肌肉量",bone_mass:"骨量",weight:"体重",ideal:"理想体重",basal_metabolism:"基本代谢",body_type:"身体类型",metabolic_age:"代谢年龄"},ct={skinny:"偏瘦",balanced_skinny:"健美型",skinny_muscular:"偏瘦肌肉",balanced:"标准型",balanced_muscular:"标准肌肉",lack_exercise:"缺乏运动",thick_set:"结实型偏胖",obese:"偏胖型",overweight:"肥胖型",underweight:"过轻",normal_or_healthy_weight:"正常或健康",slight_overweight:"轻微超重",moderate_obesity:"中度肥胖",severe_obesity:"过度肥胖",massive_obesity:"严重肥胖",unavailable:"不可用"},_t={" years":" 岁"},ht={missing_entity:"Please define an entity.",missing_entity_bodymiscale:"Please define a bodymiscale entity."},mt={entity:"Please select an account on the scale (required) !",image:"Background image (optional)",model:"Do you have an impedance sensor?",model1:"Enable this feature for accurate body composition measurements.",model_aria_label_on:"Enable impedance",model_aria_label_off:"Disable impedance",unit:"Convert kg to lbs",unit_aria_label_on:"Toggle the conversion on",unit_aria_label_off:"Toggle the conversion off",show_name:"Show the name of the account as title ?",show_name_aria_label_on:"Toggle display name on",show_name_aria_label_off:"Toggle display name off",show_states:"Show State ?",show_states_aria_label_on:"Toggle display state on",show_states_aria_label_off:"Toggle display state off",show_attributes:"Show personal master data (top right) ?",show_attributes_aria_label_on:"Toggle display attributes on",show_attributes_aria_label_off:"Toggle display attributes off",show_always_details:"Always show details",show_always_details_aria_label_on:"Toggle default detail view on",show_always_details_aria_label_off:"Toggle default detail view off",show_toolbar:"Show advanced options ?",show_toolbar_aria_label_on:"Toggle display advanced options on",show_toolbar_aria_label_off:"Toggle display advanced options off",show_body:"Offer further measurement details",show_body1:"(lower half - icon chevron down will show those) ?",show_body_aria_label_on:"Toggle display body score on",show_body_aria_label_off:"Toggle display body score off",show_buttons:"Allow account switch ?",show_buttons_aria_label_on:"Toggle display buttons on",show_buttons_aria_label_off:"Toggle display buttons off",header_options:"1. Card header options",body_options:"2. More card options",code_only_note:"ATTENTION: Additional options are only available in the code editor."},ut={from:"从",height:"条形高度",icon_position:"图标位置",inside:"内部",max:"最大",min:"最小",minmax_position:"最小/最大位置",name_position:"名称位置",off:"关闭",outside:"外部",target:"目标",to:"到",value_position:"值的位置"},bt={color:"颜色",disabled:"禁用",red:"红色",pink:"粉色",purple:"紫色","deep-purple":"深紫色",indigo:"靛蓝",blue:"蓝色","light-blue":"浅蓝色",cyan:"青色",teal:"蓝绿色",green:"绿色","light-green":"浅绿色",lime:"石灰色",yellow:"黄色",amber:"琥珀色",orange:"橙色",orangered:"红橙色","deep-orange":"深橙色",brown:"棕色","light-grey":"浅灰色",grey:"灰色","dark-grey":"深灰色","blue-grey":"蓝灰色",darkgreen:"深绿色",royalblue:"皇家蓝",black:"黑色",white:"白色"},gt={common:nt,states:rt,attributes:st,attributes_value:lt,body:dt,body_value:ct,unit:_t,error:ht,editor:mt,editor_body:ut,color_select:bt},pt={version:"版本",name:"米家體脂計卡片",description:"米家體脂計卡片會顯示你的體重以及相關身體狀態",not_available:"Bodymiscale 不可用",toggle_power:"顯示/隱藏更多詳情,例如: BMI, kCal"},yt={ok:"測量: OK",unknown:"狀態: 未知",problem:"故障",none:"無",weight_unavailable:"體重不可用",impedance_unavailable:"阻抗不可用",weight_unavailable_and_impedance_unavailable:"體重和阻抗均不可用",weight_low:"體重過輕",impedance_low:"阻抗低",weight_low_and_impedance_low:"體重和阻抗均偏低",impedance_low_and_weight_low:"阻抗和體重均偏低",weight_high:"體重過重",impedance_high:"阻抗高",weight_high_and_impedance_high:"體重和阻抗均偏高",weight_high_and_impedance_low:"體重過重, 阻抗低",weight_low_and_impedance_high:"體重過輕, 阻抗高"},ft={"weight: ":"重量: ","impedance: ":"阻抗: ","height: ":"身高: ","age: ":"年齡: ","gender: ":"性別: "},vt={male:"男",female:"女",unavailable:"不可用"},wt={bmi:"BMI",bmi_label:"BMI 標籤",visceral_fat:"內臟脂肪",body_fat:"體脂",protein:"蛋白質",water:"水分",muscle_mass:"肌肉量",bone_mass:"骨量",weight:"體重",ideal:"理想體重",basal_metabolism:"基本代謝",body_type:"身體類型",metabolic_age:"代謝年齡"},kt={skinny:"偏瘦",balanced_skinny:"健美型",skinny_muscular:"偏瘦肌肉",balanced:"標準型",balanced_muscular:"標準肌肉",lack_exercise:"缺乏運動",thick_set:"結實型偏胖",obese:"偏胖型",overweight:"肥胖型",underweight:"過輕",normal_or_healthy_weight:"正常或健康",slight_overweight:"輕微超重",moderate_obesity:"中度肥胖",severe_obesity:"過度肥胖",massive_obesity:"嚴重肥胖",unavailable:"不可用"},xt={" years":" 歲"},zt={missing_entity:"Please define an entity.",missing_entity_bodymiscale:"Please define a bodymiscale entity."},$t={entity:"Please select an account on the scale (required) !",image:"Background image (optional)",model:"Do you have an impedance sensor?",model1:"Enable this feature for accurate body composition measurements.",model_aria_label_on:"Enable impedance",model_aria_label_off:"Disable impedance",unit:"Convert kg to lbs",unit_aria_label_on:"Toggle the conversion on",unit_aria_label_off:"Toggle the conversion off",show_name:"Show the name of the account as title ?",show_name_aria_label_on:"Toggle display name on",show_name_aria_label_off:"Toggle display name off",show_states:"Show State ?",show_states_aria_label_on:"Toggle display state on",show_states_aria_label_off:"Toggle display state off",show_attributes:"Show personal master data (top right) ?",show_attributes_aria_label_on:"Toggle display attributes on",show_attributes_aria_label_off:"Toggle display attributes off",show_always_details:"Always show details",show_always_details_aria_label_on:"Toggle default detail view on",show_always_details_aria_label_off:"Toggle default detail view off",show_toolbar:"Show advanced options ?",show_toolbar_aria_label_on:"Toggle display advanced options on",show_toolbar_aria_label_off:"Toggle display advanced options off",show_body:"Offer further measurement details",show_body1:"(lower half - icon chevron down will show those) ?",show_body_aria_label_on:"Toggle display body score on",show_body_aria_label_off:"Toggle display body score off",show_buttons:"Allow account switch ?",show_buttons_aria_label_on:"Toggle display buttons on",show_buttons_aria_label_off:"Toggle display buttons off",header_options:"1. Card header options",body_options:"2. More card options",code_only_note:"ATTENTION: Additional options are only available in the code editor."},At={from:"從",height:"條形高度",icon_position:"圖示位置",inside:"內部",max:"最大",min:"最小",minmax_position:"最小/最大位置",name_position:"名稱位置",off:"關閉",outside:"外部",target:"目標",to:"到",value_position:"數值位置"},Mt={color:"顏色",disabled:"禁用",red:"紅色",pink:"粉色",purple:"紫色","deep-purple":"深紫色",indigo:"靛藍",blue:"藍色","light-blue":"淺藍色",cyan:"青色",teal:"藍綠色",green:"綠色","light-green":"淺綠色",lime:"酸橙色",yellow:"黃色",amber:"琥珀色",orange:"橙色",orangered:"紅橙色","deep-orange":"深橙色",brown:"棕色","light-grey":"淺灰色",grey:"灰色","dark-grey":"深灰色","blue-grey":"藍灰色",darkgreen:"深綠色",royalblue:"皇家藍",black:"黑色",white:"白色"},Pt={common:pt,states:yt,attributes:ft,attributes_value:vt,body:wt,body_value:kt,unit:xt,error:zt,editor:$t,editor_body:At,color_select:Mt};const Ct={cs:De,de:Xe,en:Object.freeze({__proto__:null,attributes:ea,attributes_value:aa,body:oa,body_value:ia,color_select:la,common:Ye,default:da,editor:ra,editor_body:sa,error:na,states:Qe,unit:ta}),es:Object.freeze({__proto__:null,attributes:ha,attributes_value:ma,body:ua,body_value:ba,color_select:va,common:ca,default:wa,editor:ya,editor_body:fa,error:pa,states:_a,unit:ga}),ca:Object.freeze({__proto__:null,attributes:za,attributes_value:$a,body:Aa,body_value:Ma,color_select:Ta,common:ka,default:Oa,editor:Sa,editor_body:Ia,error:Ca,states:xa,unit:Pa}),fr:Object.freeze({__proto__:null,attributes:Ea,attributes_value:Na,body:Da,body_value:Va,color_select:La,common:ja,default:Ra,editor:Ua,editor_body:Wa,error:qa,states:Ba,unit:Ga}),hu:Object.freeze({__proto__:null,attributes:Za,attributes_value:Fa,body:Ja,body_value:Xa,color_select:oo,common:Ka,default:io,editor:eo,editor_body:ao,error:Qa,states:Ha,unit:Ya}),it:Object.freeze({__proto__:null,attributes:ro,attributes_value:so,body:lo,body_value:co,color_select:bo,common:to,default:go,editor:mo,editor_body:uo,error:ho,states:no,unit:_o}),ja:Object.freeze({__proto__:null,attributes:fo,attributes_value:vo,body:wo,body_value:ko,color_select:Mo,common:po,default:Po,editor:$o,editor_body:Ao,error:zo,states:yo,unit:xo}),nl:Object.freeze({__proto__:null,attributes:Io,attributes_value:To,body:Oo,body_value:jo,color_select:Vo,common:Co,default:Go,editor:No,editor_body:Do,error:Eo,states:So,unit:Bo}),pl:Object.freeze({__proto__:null,attributes:Wo,attributes_value:Lo,body:Ro,body_value:Ko,color_select:Xo,common:qo,default:Yo,editor:Fo,editor_body:Jo,error:Zo,states:Uo,unit:Ho}),pt:Object.freeze({__proto__:null,attributes:ai,attributes_value:oi,body:ii,body_value:ti,color_select:di,common:Qo,default:ci,editor:si,editor_body:li,error:ri,states:ei,unit:ni}),pt_BR:Object.freeze({__proto__:null,attributes:mi,attributes_value:ui,body:bi,body_value:gi,color_select:wi,common:_i,default:ki,editor:fi,editor_body:vi,error:yi,states:hi,unit:pi}),ro:Object.freeze({__proto__:null,attributes:$i,attributes_value:Ai,body:Mi,body_value:Pi,color_select:Oi,common:xi,default:ji,editor:Ii,editor_body:Ti,error:Si,states:zi,unit:Ci}),ru:Object.freeze({__proto__:null,attributes:Ni,attributes_value:Di,body:Vi,body_value:Gi,color_select:Ri,common:Bi,default:Ki,editor:Wi,editor_body:Li,error:Ui,states:Ei,unit:qi}),vi:Object.freeze({__proto__:null,attributes:Fi,attributes_value:Ji,body:Xi,body_value:Yi,color_select:it,common:Hi,default:tt,editor:at,editor_body:ot,error:et,states:Zi,unit:Qi}),zh_Hans:Object.freeze({__proto__:null,attributes:st,attributes_value:lt,body:dt,body_value:ct,color_select:bt,common:nt,default:gt,editor:mt,editor_body:ut,error:ht,states:rt,unit:_t}),zh_Hant:Object.freeze({__proto__:null,attributes:ft,attributes_value:vt,body:wt,body_value:kt,color_select:Mt,common:pt,default:Pt,editor:$t,editor_body:At,error:zt,states:yt,unit:xt})},St="en";function It(e,a,o){var i;const[t,n]=e.toLowerCase().split(".");let r=null;try{r=JSON.parse(null!==(i=localStorage.getItem("selectedLanguage"))&&void 0!==i?i:"")}catch(e){console.warn(e),r=localStorage.getItem("selectedLanguage")}const s=(r||navigator.language.split("-")[0]||St).replace(/['"]+/g,"").replace("-","_");let l;try{l=Ct[s][t][n]}catch(e){console.warn(e),l=Ct[St][t][n]}if(void 0===l&&(l=Ct[St][t][n]),void 0!==l)return a&&o&&(l=null==l?void 0:l.replace(a,o)),l}function Tt(e,a){void 0===a&&(a={});var o=a.insertAt;if(e&&"undefined"!=typeof document){var i=document.head||document.getElementsByTagName("head")[0],t=document.createElement("style");t.type="text/css","top"===o&&i.firstChild?i.insertBefore(t,i.firstChild):i.appendChild(t),t.styleSheet?t.styleSheet.cssText=e:t.appendChild(document.createTextNode(e))}}var Ot=r`:host {
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
+
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};
+
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t$4=globalThis,e$3=t$4.ShadowRoot&&(void 0===t$4.ShadyCSS||t$4.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s$1=Symbol(),o$6=new WeakMap;let n$4 = class n{constructor(t,e,o){if(this._$cssResult$=true,o!==s$1)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e;}get styleSheet(){let t=this.o;const s=this.t;if(e$3&&void 0===t){const e=void 0!==s&&1===s.length;e&&(t=o$6.get(s)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&o$6.set(s,t));}return t}toString(){return this.cssText}};const r$6=t=>new n$4("string"==typeof t?t:t+"",void 0,s$1),i$5=(t,...e)=>{const o=1===t.length?t[0]:e.reduce(((e,s,o)=>e+(t=>{if(true===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+t[o+1]),t[0]);return new n$4(o,t,s$1)},S$2=(s,o)=>{if(e$3)s.adoptedStyleSheets=o.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet));else for(const e of o){const o=document.createElement("style"),n=t$4.litNonce;void 0!==n&&o.setAttribute("nonce",n),o.textContent=e.cssText,s.appendChild(o);}},c$2=e$3?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return r$6(e)})(t):t;
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const{is:i$4,defineProperty:e$2,getOwnPropertyDescriptor:r$5,getOwnPropertyNames:h$1,getOwnPropertySymbols:o$5,getPrototypeOf:n$3}=Object,a$2=globalThis,c$1=a$2.trustedTypes,l$1=c$1?c$1.emptyScript:"",p$1=a$2.reactiveElementPolyfillSupport,d$1=(t,s)=>t,u$1={toAttribute(t,s){switch(s){case Boolean:t=t?l$1:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,s){let i=t;switch(s){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t);}catch(t){i=null;}}return i}},f$1=(t,s)=>!i$4(t,s),y$1={attribute:true,type:String,converter:u$1,reflect:false,hasChanged:f$1};Symbol.metadata??=Symbol("metadata"),a$2.litPropertyMetadata??=new WeakMap;let b$1 = class b extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t);}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,s=y$1){if(s.state&&(s.attribute=false),this._$Ei(),this.elementProperties.set(t,s),!s.noAccessor){const i=Symbol(),r=this.getPropertyDescriptor(t,i,s);void 0!==r&&e$2(this.prototype,t,r);}}static getPropertyDescriptor(t,s,i){const{get:e,set:h}=r$5(this.prototype,t)??{get(){return this[s]},set(t){this[s]=t;}};return {get(){return e?.call(this)},set(s){const r=e?.call(this);h.call(this,s),this.requestUpdate(t,r,i);},configurable:true,enumerable:true}}static getPropertyOptions(t){return this.elementProperties.get(t)??y$1}static _$Ei(){if(this.hasOwnProperty(d$1("elementProperties")))return;const t=n$3(this);t.finalize(),void 0!==t.l&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties);}static finalize(){if(this.hasOwnProperty(d$1("finalized")))return;if(this.finalized=true,this._$Ei(),this.hasOwnProperty(d$1("properties"))){const t=this.properties,s=[...h$1(t),...o$5(t)];for(const i of s)this.createProperty(i,t[i]);}const t=this[Symbol.metadata];if(null!==t){const s=litPropertyMetadata.get(t);if(void 0!==s)for(const[t,i]of s)this.elementProperties.set(t,i);}this._$Eh=new Map;for(const[t,s]of this.elementProperties){const i=this._$Eu(t,s);void 0!==i&&this._$Eh.set(i,t);}this.elementStyles=this.finalizeStyles(this.styles);}static finalizeStyles(s){const i=[];if(Array.isArray(s)){const e=new Set(s.flat(1/0).reverse());for(const s of e)i.unshift(c$2(s));}else void 0!==s&&i.push(c$2(s));return i}static _$Eu(t,s){const i=s.attribute;return  false===i?void 0:"string"==typeof i?i:"string"==typeof t?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=false,this.hasUpdated=false,this._$Em=null,this._$Ev();}_$Ev(){this._$ES=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((t=>t(this)));}addController(t){(this._$EO??=new Set).add(t),void 0!==this.renderRoot&&this.isConnected&&t.hostConnected?.();}removeController(t){this._$EO?.delete(t);}_$E_(){const t=new Map,s=this.constructor.elementProperties;for(const i of s.keys())this.hasOwnProperty(i)&&(t.set(i,this[i]),delete this[i]);t.size>0&&(this._$Ep=t);}createRenderRoot(){const t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return S$2(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(true),this._$EO?.forEach((t=>t.hostConnected?.()));}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach((t=>t.hostDisconnected?.()));}attributeChangedCallback(t,s,i){this._$AK(t,i);}_$EC(t,s){const i=this.constructor.elementProperties.get(t),e=this.constructor._$Eu(t,i);if(void 0!==e&&true===i.reflect){const r=(void 0!==i.converter?.toAttribute?i.converter:u$1).toAttribute(s,i.type);this._$Em=t,null==r?this.removeAttribute(e):this.setAttribute(e,r),this._$Em=null;}}_$AK(t,s){const i=this.constructor,e=i._$Eh.get(t);if(void 0!==e&&this._$Em!==e){const t=i.getPropertyOptions(e),r="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==t.converter?.fromAttribute?t.converter:u$1;this._$Em=e,this[e]=r.fromAttribute(s,t.type),this._$Em=null;}}requestUpdate(t,s,i){if(void 0!==t){if(i??=this.constructor.getPropertyOptions(t),!(i.hasChanged??f$1)(this[t],s))return;this.P(t,s,i);} false===this.isUpdatePending&&(this._$ES=this._$ET());}P(t,s,i){this._$AL.has(t)||this._$AL.set(t,s),true===i.reflect&&this._$Em!==t&&(this._$Ej??=new Set).add(t);}async _$ET(){this.isUpdatePending=true;try{await this._$ES;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[t,s]of this._$Ep)this[t]=s;this._$Ep=void 0;}const t=this.constructor.elementProperties;if(t.size>0)for(const[s,i]of t) true!==i.wrapped||this._$AL.has(s)||void 0===this[s]||this.P(s,this[s],i);}let t=false;const s=this._$AL;try{t=this.shouldUpdate(s),t?(this.willUpdate(s),this._$EO?.forEach((t=>t.hostUpdate?.())),this.update(s)):this._$EU();}catch(s){throw t=false,this._$EU(),s}t&&this._$AE(s);}willUpdate(t){}_$AE(t){this._$EO?.forEach((t=>t.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=true,this.firstUpdated(t)),this.updated(t);}_$EU(){this._$AL=new Map,this.isUpdatePending=false;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return  true}update(t){this._$Ej&&=this._$Ej.forEach((t=>this._$EC(t,this[t]))),this._$EU();}updated(t){}firstUpdated(t){}};b$1.elementStyles=[],b$1.shadowRootOptions={mode:"open"},b$1[d$1("elementProperties")]=new Map,b$1[d$1("finalized")]=new Map,p$1?.({ReactiveElement:b$1}),(a$2.reactiveElementVersions??=[]).push("2.0.4");
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t$3=globalThis,i$3=t$3.trustedTypes,s=i$3?i$3.createPolicy("lit-html",{createHTML:t=>t}):void 0,e$1="$lit$",h=`lit$${Math.random().toFixed(9).slice(2)}$`,o$4="?"+h,n$2=`<${o$4}>`,r$4=document,l=()=>r$4.createComment(""),c=t=>null===t||"object"!=typeof t&&"function"!=typeof t,a$1=Array.isArray,u=t=>a$1(t)||"function"==typeof t?.[Symbol.iterator],d="[ \t\n\f\r]",f=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,v=/-->/g,_=/>/g,m=RegExp(`>|${d}(?:([^\\s"'>=/]+)(${d}*=${d}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),p=/'/g,g=/"/g,$=/^(?:script|style|textarea|title)$/i,y=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),x=y(1),T=Symbol.for("lit-noChange"),E=Symbol.for("lit-nothing"),A=new WeakMap,C=r$4.createTreeWalker(r$4,129);function P(t,i){if(!a$1(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==s?s.createHTML(i):i}const V$1=(t,i)=>{const s=t.length-1,o=[];let r,l=2===i?"<svg>":3===i?"<math>":"",c=f;for(let i=0;i<s;i++){const s=t[i];let a,u,d=-1,y=0;for(;y<s.length&&(c.lastIndex=y,u=c.exec(s),null!==u);)y=c.lastIndex,c===f?"!--"===u[1]?c=v:void 0!==u[1]?c=_:void 0!==u[2]?($.test(u[2])&&(r=RegExp("</"+u[2],"g")),c=m):void 0!==u[3]&&(c=m):c===m?">"===u[0]?(c=r??f,d=-1):void 0===u[1]?d=-2:(d=c.lastIndex-u[2].length,a=u[1],c=void 0===u[3]?m:'"'===u[3]?g:p):c===g||c===p?c=m:c===v||c===_?c=f:(c=m,r=void 0);const x=c===m&&t[i+1].startsWith("/>")?" ":"";l+=c===f?s+n$2:d>=0?(o.push(a),s.slice(0,d)+e$1+s.slice(d)+h+x):s+h+(-2===d?i:x);}return [P(t,l+(t[s]||"<?>")+(2===i?"</svg>":3===i?"</math>":"")),o]};class N{constructor({strings:t,_$litType$:s},n){let r;this.parts=[];let c=0,a=0;const u=t.length-1,d=this.parts,[f,v]=V$1(t,s);if(this.el=N.createElement(f,n),C.currentNode=this.el.content,2===s||3===s){const t=this.el.content.firstChild;t.replaceWith(...t.childNodes);}for(;null!==(r=C.nextNode())&&d.length<u;){if(1===r.nodeType){if(r.hasAttributes())for(const t of r.getAttributeNames())if(t.endsWith(e$1)){const i=v[a++],s=r.getAttribute(t).split(h),e=/([.?@])?(.*)/.exec(i);d.push({type:1,index:c,name:e[2],strings:s,ctor:"."===e[1]?H$1:"?"===e[1]?I:"@"===e[1]?L:k}),r.removeAttribute(t);}else t.startsWith(h)&&(d.push({type:6,index:c}),r.removeAttribute(t));if($.test(r.tagName)){const t=r.textContent.split(h),s=t.length-1;if(s>0){r.textContent=i$3?i$3.emptyScript:"";for(let i=0;i<s;i++)r.append(t[i],l()),C.nextNode(),d.push({type:2,index:++c});r.append(t[s],l());}}}else if(8===r.nodeType)if(r.data===o$4)d.push({type:2,index:c});else {let t=-1;for(;-1!==(t=r.data.indexOf(h,t+1));)d.push({type:7,index:c}),t+=h.length-1;}c++;}}static createElement(t,i){const s=r$4.createElement("template");return s.innerHTML=t,s}}function S$1(t,i,s=t,e){if(i===T)return i;let h=void 0!==e?s._$Co?.[e]:s._$Cl;const o=c(i)?void 0:i._$litDirective$;return h?.constructor!==o&&(h?._$AO?.(false),void 0===o?h=void 0:(h=new o(t),h._$AT(t,s,e)),void 0!==e?(s._$Co??=[])[e]=h:s._$Cl=h),void 0!==h&&(i=S$1(t,h._$AS(t,i.values),h,e)),i}class M{constructor(t,i){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){const{el:{content:i},parts:s}=this._$AD,e=(t?.creationScope??r$4).importNode(i,true);C.currentNode=e;let h=C.nextNode(),o=0,n=0,l=s[0];for(;void 0!==l;){if(o===l.index){let i;2===l.type?i=new R(h,h.nextSibling,this,t):1===l.type?i=new l.ctor(h,l.name,l.strings,this,t):6===l.type&&(i=new z(h,this,t)),this._$AV.push(i),l=s[++n];}o!==l?.index&&(h=C.nextNode(),o++);}return C.currentNode=r$4,e}p(t){let i=0;for(const s of this._$AV) void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class R{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,i,s,e){this.type=2,this._$AH=E,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cv=e?.isConnected??true;}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t?.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=S$1(this,t,i),c(t)?t===E||null==t||""===t?(this._$AH!==E&&this._$AR(),this._$AH=E):t!==this._$AH&&t!==T&&this._(t):void 0!==t._$litType$?this.$(t):void 0!==t.nodeType?this.T(t):u(t)?this.k(t):this._(t);}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t));}_(t){this._$AH!==E&&c(this._$AH)?this._$AA.nextSibling.data=t:this.T(r$4.createTextNode(t)),this._$AH=t;}$(t){const{values:i,_$litType$:s}=t,e="number"==typeof s?this._$AC(t):(void 0===s.el&&(s.el=N.createElement(P(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===e)this._$AH.p(i);else {const t=new M(e,this),s=t.u(this.options);t.p(i),this.T(s),this._$AH=t;}}_$AC(t){let i=A.get(t.strings);return void 0===i&&A.set(t.strings,i=new N(t)),i}k(t){a$1(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const h of t)e===i.length?i.push(s=new R(this.O(l()),this.O(l()),this,this.options)):s=i[e],s._$AI(h),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){for(this._$AP?.(false,true,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){ void 0===this._$AM&&(this._$Cv=t,this._$AP?.(t));}}class k{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,i,s,e,h){this.type=1,this._$AH=E,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=h,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=E;}_$AI(t,i=this,s,e){const h=this.strings;let o=false;if(void 0===h)t=S$1(this,t,i,0),o=!c(t)||t!==this._$AH&&t!==T,o&&(this._$AH=t);else {const e=t;let n,r;for(t=h[0],n=0;n<h.length-1;n++)r=S$1(this,e[s+n],i,n),r===T&&(r=this._$AH[n]),o||=!c(r)||r!==this._$AH[n],r===E?t=E:t!==E&&(t+=(r??"")+h[n+1]),this._$AH[n]=r;}o&&!e&&this.j(t);}j(t){t===E?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"");}}let H$1 = class H extends k{constructor(){super(...arguments),this.type=3;}j(t){this.element[this.name]=t===E?void 0:t;}};class I extends k{constructor(){super(...arguments),this.type=4;}j(t){this.element.toggleAttribute(this.name,!!t&&t!==E);}}class L extends k{constructor(t,i,s,e,h){super(t,i,s,e,h),this.type=5;}_$AI(t,i=this){if((t=S$1(this,t,i,0)??E)===T)return;const s=this._$AH,e=t===E&&s!==E||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,h=t!==E&&(s===E||e);e&&this.element.removeEventListener(this.name,this,s),h&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t);}}class z{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){S$1(this,t);}}const j=t$3.litHtmlPolyfillSupport;j?.(N,R),(t$3.litHtmlVersions??=[]).push("3.2.1");const B$1=(t,i,s)=>{const e=s?.renderBefore??i;let h=e._$litPart$;if(void 0===h){const t=s?.renderBefore??null;e._$litPart$=h=new R(i.insertBefore(l(),t),t,void 0,s??{});}return h._$AI(t),h};
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */let r$3 = class r extends b$1{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0;}createRenderRoot(){const t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){const s=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=B$1(s,this.renderRoot,this.renderOptions);}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(true);}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(false);}render(){return T}};r$3._$litElement$=true,r$3["finalized"]=true,globalThis.litElementHydrateSupport?.({LitElement:r$3});const i$2=globalThis.litElementPolyfillSupport;i$2?.({LitElement:r$3});(globalThis.litElementVersions??=[]).push("4.1.1");
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t$2=t=>(e,o)=>{ void 0!==o?o.addInitializer((()=>{customElements.define(t,e);})):customElements.define(t,e);};
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const o$3={attribute:true,type:String,converter:u$1,reflect:false,hasChanged:f$1},r$2=(t=o$3,e,r)=>{const{kind:n,metadata:i}=r;let s=globalThis.litPropertyMetadata.get(i);if(void 0===s&&globalThis.litPropertyMetadata.set(i,s=new Map),s.set(r.name,t),"accessor"===n){const{name:o}=r;return {set(r){const n=e.get.call(this);e.set.call(this,r),this.requestUpdate(o,n,t);},init(e){return void 0!==e&&this.P(o,void 0,t),e}}}if("setter"===n){const{name:o}=r;return function(r){const n=this[o];e.call(this,r),this.requestUpdate(o,n,t);}}throw Error("Unsupported decorator location: "+n)};function n$1(t){return (e,o)=>"object"==typeof o?r$2(t,e,o):((t,e,o)=>{const r=e.hasOwnProperty(o);return e.constructor.createProperty(o,r?{...t,wrapped:true}:t),r?Object.getOwnPropertyDescriptor(e,o):void 0})(t,e,o)}
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */function r$1(r){return n$1({...r,state:true,attribute:false})}
+
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const o$2=o=>o??E;
+
+var t$1,r,a=function(e,t){return o$1(t).format(e)},o$1=function(e){return new Intl.DateTimeFormat(e.language,{year:"numeric",month:"long",day:"numeric"})};!function(e){e.language="language",e.system="system",e.comma_decimal="comma_decimal",e.decimal_comma="decimal_comma",e.space_comma="space_comma",e.none="none";}(t$1||(t$1={})),function(e){e.language="language",e.system="system",e.am_pm="12",e.twenty_four="24";}(r||(r={}));var b=function(e){if(e.time_format===r.language||e.time_format===r.system){var t=e.time_format===r.language?e.language:void 0,n=(new Date).toLocaleString(t);return n.includes("AM")||n.includes("PM")}return e.time_format===r.am_pm},D=function(e,t){return S(t).format(e)},S=function(e){return new Intl.DateTimeFormat(e.language,{hour:"numeric",minute:"2-digit",hour12:b(e)})};function O(){return (O=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}var U=function(e){switch(e.number_format){case t$1.comma_decimal:return ["en-US","en"];case t$1.decimal_comma:return ["de","es","it"];case t$1.space_comma:return ["fr","sv","cs"];case t$1.system:return;default:return e.language}},B=function(e,t){return void 0===t&&(t=2),Math.round(e*Math.pow(10,t))/Math.pow(10,t)},H=function(e,r,n){var i=r?U(r):void 0;if(Number.isNaN=Number.isNaN||function e(t){return "number"==typeof t&&e(t)},(null==r?void 0:r.number_format)!==t$1.none&&!Number.isNaN(Number(e))&&Intl)try{return new Intl.NumberFormat(i,V(e,n)).format(Number(e))}catch(t){return console.error(t),new Intl.NumberFormat(void 0,V(e,n)).format(Number(e))}return "string"==typeof e?e:B(e,void 0).toString()+("")},V=function(e,t){var r=O({maximumFractionDigits:2},t);if("string"!=typeof e)return r;{var n=e.indexOf(".")>-1?e.split(".")[1].length:0;r.minimumFractionDigits=n,r.maximumFractionDigits=n;}return r},ne=function(e,t,r,n){n=n||{},r=null==r?{}:r;var i=new Event(t,{bubbles:void 0===n.bubbles||n.bubbles,cancelable:Boolean(n.cancelable),composed:void 0===n.composed||n.composed});return i.detail=r,e.dispatchEvent(i),i};function _e(e,t,r){if(t.has("config")||r)return  true;if(e.config.entity){var n=t.get("hass");return !n||n.states[e.config.entity]!==e.hass.states[e.config.entity]}return  false}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function deepMerge(...sources) {
+    const isObject = (obj) => obj && typeof obj === 'object';
+    const target = {};
+    sources
+        .filter((source) => isObject(source))
+        .forEach((source) => {
+        Object.keys(source).forEach((key) => {
+            const targetValue = target[key];
+            const sourceValue = source[key];
+            if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
+                target[key] = targetValue.concat(sourceValue);
+            }
+            else if (isObject(targetValue) && isObject(sourceValue)) {
+                target[key] = deepMerge(Object.assign({}, targetValue), sourceValue);
+            }
+            else {
+                target[key] = sourceValue;
+            }
+        });
+    });
+    return target;
+}
+function filterByImpedance(data, model) {
+    return Object.values(data).filter((item) => model || !item.impedance_required);
+}
+
+var common$h = {
+	version: "Verze",
+	name: "Karta Bodymiscale",
+	description: "Karta bodymiscale ukazuje údaje ohledně váhy a tělesných proporcí",
+	not_available: "Bodymiscale není dostupná",
+	toggle_power: "Více podrobností jako například BMI kCal zobrazit / skrýt"
+};
+var states$i = {
+	ok: "MĚŘENÍ: OK",
+	unknown: "STAV: neznámý",
+	problem: "Problém",
+	none: "Žádný",
+	weight_unavailable: "Váha není dostupná",
+	impedance_unavailable: "Impedance není dostupná",
+	weight_unavailable_and_impedance_unavailable: "Váha a impedance není dostupná",
+	weight_low: "nízká váha",
+	impedance_low: "nízká impedance",
+	weight_low_and_impedance_low: "nízká Váha a impedance",
+	impedance_low_and_weight_low: "nízká Impedance a váha",
+	weight_high: "vysoká váha",
+	impedance_high: "vysoká impedance",
+	weight_high_and_impedance_high: "vysoká Váha a impedance",
+	weight_high_and_impedance_low: "vysoká váha, nízká impedance",
+	weight_low_and_impedance_high: "nízká váha, vysoká impedance"
+};
+var attributes$h = {
+	"weight: ": "Váha: ",
+	"impedance: ": "Impedance: ",
+	"height: ": "Výška: ",
+	"age: ": "Věk: ",
+	"gender: ": "Pohlaví: "
+};
+var attributes_value$h = {
+	male: "muž",
+	female: "žena",
+	unavailable: "nedostupná"
+};
+var body$h = {
+	bmi: "BMI",
+	bmi_label: "BMI popis",
+	visceral_fat: "Viscerální tuk",
+	body_fat: "Tělesný tuk",
+	protein: "Protein",
+	water: "Voda",
+	muscle_mass: "Svalová hmota",
+	bone_mass: "Kostní hmota",
+	weight: "Váha",
+	ideal: "Ideální",
+	basal_metabolism: "Základní metabolismus",
+	body_type: "Tělesný typ",
+	metabolic_age: "Metabolický věk"
+};
+var body_value$h = {
+	skinny: "štíhlý",
+	balanced_skinny: "štíhlý-vyvážený",
+	skinny_muscular: "štíhlý-svalnatý",
+	balanced: "vyvážený",
+	balanced_muscular: "vyvážený-svalnatý",
+	lack_exercise: "nedostatek cvičení",
+	thick_set: "pevné",
+	obese: "obézní",
+	overweight: "nadváha",
+	underweight: "podváha",
+	normal_or_healthy_weight: "normální či zdravá váha",
+	slight_overweight: "lehká nadváha",
+	moderate_obesity: "menší obezita",
+	severe_obesity: "vážná obezita",
+	massive_obesity: "velká obezita",
+	unavailable: "nedostupná"
+};
+var unit$h = {
+	" years": " let"
+};
+var error$h = {
+	missing_entity: "Prosím definujte entitu.",
+	missing_entity_bodymiscale: "Prosím definujte entitu bodymiscale."
+};
+var editor$i = {
+	entity: "Prosím definujte účet váhy (povinné) !",
+	image: "Obrázek pozadí (volitelné)",
+	icons_body: "Cesta k ikonám (např. /local/images/bodyscoreIcon)",
+	model: "Máte senzor impedance?",
+	model1: "Aktivujte tuto funkci pro přesné měření složení těla.",
+	model_aria_label_on: "Aktivovat impedanci",
+	model_aria_label_off: "Deaktivovat impedanci",
+	unit: "Převést kilogramy na libry",
+	unit_aria_label_on: "Zapnout konverzi",
+	unit_aria_label_off: "Vypnout konverzi",
+	show_name: "Zobrazovat jméno účtu jako titulek ?",
+	show_name_aria_label_on: "Zapnout zobrazování jména",
+	show_name_aria_label_off: "Vypnout zobrazování jména",
+	show_states: "Zobrazit stav ?",
+	show_states_aria_label_on: "Zapnout zobrazování stavu",
+	show_states_aria_label_off: "Vypnout zobrazování stavu",
+	show_attributes: "Show hlavní osobní data (vpravo nahoře) ?",
+	show_attributes_aria_label_on: "Zapnout zobrazování atributů",
+	show_attributes_aria_label_off: "Vypnout zobrazování atributů",
+	show_always_details: "Vždy zobrazovat detaily",
+	show_always_details_aria_label_on: "Zapnout výchozí zobrazení podrobností",
+	show_always_details_aria_label_off: "Vypnout výchozí zobrazení podrobností",
+	show_toolbar: "Zobrazit pokročilá nastavení ?",
+	show_toolbar_aria_label_on: "Zapnout zobrazení pokročilých nastavení",
+	show_toolbar_aria_label_off: "Vypnout zobrazení pokročilých nastavení",
+	show_body: "Nabízet další detaily měření",
+	show_body1: "(spodní polovina - zobrazí se po klepnutí na ikonu šipky dolů) ?",
+	show_body_aria_label_on: "Zapnout zobrazování tělesného skóre",
+	show_body_aria_label_off: "Vypnout zobrazování tělesného skóre",
+	show_buttons: "Povolit změnu účtu ?",
+	show_buttons_aria_label_on: "Zapnout zobrazování tlačítek",
+	show_buttons_aria_label_off: "Vypnout zobrazování tlačítek",
+	header_options: "1. Možnosti záhlaví karty",
+	body_options: "2. Více možností karty",
+	code_only_note: "POZOR: Další možnosti jsou dostupné pouze v editor kódu."
+};
+var editor_body$h = {
+	from: "Od",
+	height: "Výška lišty",
+	icon_position: "Pozice ikony",
+	inside: "Uvnitř",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Pozice Min/Max",
+	name_position: "Pozice názvu",
+	off: "Vypnuto",
+	outside: "Vně",
+	target: "Cíl",
+	to: "Do",
+	value_position: "Pozice hodnoty"
+};
+var color_select$h = {
+	color: "Barva",
+	disabled: "Zakázáno",
+	red: "Červená",
+	pink: "Růžová",
+	purple: "Fialová",
+	"deep-purple": "Tmavě fialová",
+	indigo: "Indigo",
+	blue: "Modrá",
+	"light-blue": "Světle modrá",
+	cyan: "Azurová",
+	teal: "Tyrkysová",
+	green: "Zelená",
+	"light-green": "Světle zelená",
+	lime: "Limetková",
+	yellow: "Žlutá",
+	amber: "Jantarová",
+	orange: "Oranžová",
+	orangered: "Červenooranžová",
+	"deep-orange": "Tmavě oranžová",
+	brown: "Hnědá",
+	"light-grey": "Světle šedá",
+	grey: "Šedá",
+	"dark-grey": "Tmavě šedá",
+	"blue-grey": "Modrošedá",
+	darkgreen: "Tmavě zelená",
+	royalblue: "Královská modrá",
+	black: "Černá",
+	white: "Bílá"
+};
+var cs = {
+	common: common$h,
+	states: states$i,
+	attributes: attributes$h,
+	attributes_value: attributes_value$h,
+	body: body$h,
+	body_value: body_value$h,
+	unit: unit$h,
+	error: error$h,
+	editor: editor$i,
+	editor_body: editor_body$h,
+	color_select: color_select$h
+};
+
+var cs$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$h,
+    attributes_value: attributes_value$h,
+    body: body$h,
+    body_value: body_value$h,
+    color_select: color_select$h,
+    common: common$h,
+    default: cs,
+    editor: editor$i,
+    editor_body: editor_body$h,
+    error: error$h,
+    states: states$i,
+    unit: unit$h
+});
+
+var common$g = {
+	version: "Version",
+	name: "Bodymiscale Karte",
+	description: "Die bodymiscale Karte zeigt Ihren gewichtsmäßigen Körperstatus an.",
+	not_available: "Bodymiscale ist momenatan nicht verfügbar",
+	toggle_power: "Weitere Details wie BMI kCal anzeigen / ausblenden"
+};
+var states$h = {
+	ok: "MESSUNG: OK",
+	unknown: "STATUS: unbekannt",
+	problem: "Problem",
+	none: "keine",
+	weight_unavailable: "Gewichtsmessung nicht verfügbar",
+	impedance_unavailable: "Bioelektrische Impedanzmessung (Körperzusammensetzung) nicht verfügbar",
+	weight_unavailable_and_impedance_unavailable: "Gewichts- und bioelektrische Impedanzmessung (Körperzusammensetzung) nicht verfügbar."
+};
+var attributes$g = {
+	"weight: ": "Gewicht: ",
+	"impedance: ": "Zusammensetzung: ",
+	"height: ": "Körpergröße: ",
+	"age: ": "Alter: ",
+	"gender: ": "Geschlecht: "
+};
+var attributes_value$g = {
+	male: "männl.",
+	female: "weibl.",
+	unavailable: "Nicht verfügbar"
+};
+var body$g = {
+	bmi: "BMI",
+	bmi_label: "BMI Klassifikation",
+	visceral_fat: "Bauchfett",
+	body_fat: "Körperfett",
+	protein: "Protein",
+	water: "Wasser",
+	muscle_mass: "Muskelmasse",
+	bone_mass: "Knochenmasse",
+	weight: "Gewicht",
+	ideal: "Idealgewicht",
+	basal_metabolism: "Grundumsatz",
+	body_type: "Körperbau",
+	metabolic_age: "stoffwechselbedingtes Körperalter"
+};
+var body_value$g = {
+	skinny: "schlank",
+	balanced_skinny: "ausgeglichen schlank",
+	skinny_muscular: "muskulös schlank",
+	balanced: "ausgewogen",
+	balanced_muscular: "ausgewogen muskulös",
+	lack_exercise: "Bewegungsmangel",
+	thick_set: "stämmig",
+	obese: "fettleibig",
+	overweight: "Übergewicht",
+	underweight: "Untergewicht",
+	normal_or_healthy_weight: "Normal - gesundes Gewicht",
+	slight_overweight: "leichtes Übergewicht",
+	moderate_obesity: "moderate Fettleibigkeit",
+	severe_obesity: "schwere Fettleibigkeit",
+	massive_obesity: "massive Fettleibigkeit",
+	unavailable: "Nicht verfügbar"
+};
+var unit$g = {
+	" years": " Jahre"
+};
+var error$g = {
+	missing_entity: "Bitte definieren Sie eine Entität in der Konfiguration.",
+	missing_entity_bodymiscale: "Bitte definieren Sie \"bodymiscale\" als Entität in der Konfiguration."
+};
+var editor$h = {
+	entity: "Bitte ein Konto auf der Waage wählen (erforderlich)!",
+	image: "Hintergrundbild (optional)",
+	icons_body: "Pfad zu den Icons (z.B. /local/images/bodyscoreIcon)",
+	model: "Haben Sie einen Impedanzsensor?",
+	model1: "Aktivieren Sie diese Funktion für genaue Körperzusammensetzungsmessungen.",
+	model_aria_label_on: "Impedanz aktivieren",
+	model_aria_label_off: "Impedanz deaktivieren",
+	unit: "kg in lbs umrechnen",
+	unit_aria_label_on: "Konvertierung einschalten",
+	unit_aria_label_off: "Umwandlung deaktivieren",
+	show_name: "Namen des Konto als Titel anzeigen?",
+	show_name_aria_label_on: "Namensanzeige einschalten",
+	show_name_aria_label_off: "Namesanzeige ausschalten",
+	show_states: "Status anzeigen (Symbole links oben)?",
+	show_states_aria_label_on: "Statusanzeige einschalten",
+	show_states_aria_label_off: "Statusanzeige ausschalten",
+	show_attributes: "Persönliche Stammdaten anzeigen (rechts oben)?",
+	show_attributes_aria_label_on: "Basis Daten einblenden (rechts oben) einschalten",
+	show_attributes_aria_label_off: "Basis Daten einblenden (rechts oben) ausschalten",
+	show_always_details: "Details immer anzeigen",
+	show_always_details_aria_label_on: "Schalten Sie die standardmäßige Detailansicht ein",
+	show_always_details_aria_label_off: "Schaltet die standardmäßige Detailansicht aus",
+	show_toolbar: "Fortgeschrittene Optionen anzeigen ?",
+	show_toolbar_aria_label_on: "Symbolleiste anzeigen einschalten",
+	show_toolbar_aria_label_off: "Symbolleiste anzeigen ausschalten",
+	show_body: "Weitere Messergebnisse anbieten",
+	show_body1: "(untere Hälfte - per Chevron-Symbol einblenden)?",
+	show_body_aria_label_on: "Körperwertanzeige einschalten",
+	show_body_aria_label_off: "Körperwertanzeige ausschalten",
+	show_buttons: "Kontowechsel erlauben?",
+	show_buttons_aria_label_on: "Schaltfläche anzeigen einschalten",
+	show_buttons_aria_label_off: "Schaltfläche anzeigen ausschalten",
+	header_options: "1. Kartenkopf Optionen",
+	body_options: "2. mehr Kartenoptionen",
+	code_only_note: "ACHTUNG: Weitere Optionen sind nur im Code Editor verfügbar."
+};
+var editor_body$g = {
+	from: "Von",
+	height: "Leistenhöhe",
+	icon_position: "Symbolposition",
+	inside: "Innen",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Min/Max Position",
+	name_position: "Name Position",
+	off: "Aus",
+	outside: "Außen",
+	target: "Ziel",
+	to: "Zu",
+	value_position: "Wert Position"
+};
+var color_select$g = {
+	color: "Farbe",
+	disabled: "Deaktiviert",
+	red: "Rot",
+	pink: "Rosa",
+	purple: "Lila",
+	"deep-purple": "Dunkellila",
+	indigo: "Indigo",
+	blue: "Blau",
+	"light-blue": "Hellblau",
+	cyan: "Cyan",
+	teal: "Türkis",
+	green: "Grün",
+	"light-green": "Hellgrün",
+	lime: "Limette",
+	yellow: "Gelb",
+	amber: "Bernstein",
+	orange: "Orange",
+	orangered: "Rotorange",
+	"deep-orange": "Dunkelorange",
+	brown: "Braun",
+	"light-grey": "Hellgrau",
+	grey: "Grau",
+	"dark-grey": "Dunkelgrau",
+	"blue-grey": "Blaugrau",
+	darkgreen: "Dunkelgrün",
+	royalblue: "Königsblau",
+	black: "Schwarz",
+	white: "Weiß"
+};
+var de = {
+	common: common$g,
+	states: states$h,
+	attributes: attributes$g,
+	attributes_value: attributes_value$g,
+	body: body$g,
+	body_value: body_value$g,
+	unit: unit$g,
+	error: error$g,
+	editor: editor$h,
+	editor_body: editor_body$g,
+	color_select: color_select$g
+};
+
+var de$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$g,
+    attributes_value: attributes_value$g,
+    body: body$g,
+    body_value: body_value$g,
+    color_select: color_select$g,
+    common: common$g,
+    default: de,
+    editor: editor$h,
+    editor_body: editor_body$g,
+    error: error$g,
+    states: states$h,
+    unit: unit$g
+});
+
+var common$f = {
+	version: "Version",
+	name: "Bodymiscale Card",
+	description: "The bodymiscale card shows you your weight wise / related body status.",
+	not_available: "Bodymiscale is not available",
+	toggle_power: "More details like BMI kCal show / hide"
+};
+var states$g = {
+	ok: "MEASUREMENT: OK",
+	unknown: "STATE: unknown",
+	problem: "Problem",
+	none: "None",
+	weight_unavailable: "Weight unavailable",
+	impedance_unavailable: "Impedance unavailable",
+	weight_unavailable_and_impedance_unavailable: "Weight and impedance unavailable",
+	weight_low: "Weight low",
+	impedance_low: "Impedance low",
+	weight_low_and_impedance_low: "Weight and impedance low",
+	impedance_low_and_weight_low: "Impedance and weight low",
+	weight_high: "Weight high",
+	impedance_high: "Impedance high",
+	weight_high_and_impedance_high: "Weight and impedance high",
+	weight_high_and_impedance_low: "Weight high, impedance low",
+	weight_low_and_impedance_high: "Weight low, impedance high"
+};
+var attributes$f = {
+	"weight: ": "Weight: ",
+	"impedance: ": "Impedance: ",
+	"height: ": "Height: ",
+	"age: ": "Age: ",
+	"gender: ": "Gender: "
+};
+var attributes_value$f = {
+	male: "male",
+	female: "female",
+	unavailable: "unavailable"
+};
+var body$f = {
+	bmi: "BMI",
+	bmi_label: "BMI label",
+	visceral_fat: "Visceral fat",
+	body_fat: "Body fat",
+	protein: "Protein",
+	water: "Water",
+	muscle_mass: "Muscle mass",
+	bone_mass: "Bone mass",
+	weight: "Weight",
+	ideal: "Ideal",
+	basal_metabolism: "Basal metabolism",
+	body_type: "Body type",
+	metabolic_age: "Metabolic age"
+};
+var body_value$f = {
+	skinny: "Skinny",
+	balanced_skinny: "Balanced-skinny",
+	skinny_muscular: "Skinny-muscular",
+	balanced: "Balanced",
+	balanced_muscular: "Balanced-muscular",
+	lack_exercise: "Lack-exercise",
+	thick_set: "Thick-set",
+	obese: "Obese",
+	overweight: "Overweight",
+	underweight: "Underweight",
+	normal_or_healthy_weight: "Normal or Healthy Weight",
+	slight_overweight: "Slight overweight",
+	moderate_obesity: "Moderate obesity",
+	severe_obesity: "Severe obesity",
+	massive_obesity: "Massive obesity",
+	unavailable: "unavailable"
+};
+var unit$f = {
+	" years": " years"
+};
+var error$f = {
+	invalid_config: "Invalid configuration",
+	missing_entity: "Please define an entity.",
+	missing_entity_bodymiscale: "Please define a bodymiscale entity."
+};
+var editor$g = {
+	configuration: "Configuration",
+	customization: "Customization",
+	entity: "Please select an account on the scale (required)!",
+	image: "Background image (optional)",
+	icons_body: "Icons path (e.g., /local/images/bodyscoreIcon)",
+	model: "Do you have an impedance sensor?",
+	model1: "Enable this feature for accurate body composition measurements.",
+	model_aria_label_on: "Enable impedance",
+	model_aria_label_off: "Disable impedance",
+	unit: "Convert kg to lbs",
+	unit_aria_label_on: "Toggle the conversion on",
+	unit_aria_label_off: "Toggle the conversion off",
+	theme: "Configure the theme you use.",
+	theme_aria_label_on: "Toggle theme light on",
+	theme_aria_label_off: "Toggle theme dark off",
+	show_name: "Show the name of the account as title?",
+	show_name_aria_label_on: "Toggle display name on",
+	show_name_aria_label_off: "Toggle display name off",
+	show_states: "Show State?",
+	show_states_aria_label_on: "Toggle display state on",
+	show_states_aria_label_off: "Toggle display state off",
+	show_attributes: "Show personal master data (top right)?",
+	show_attributes_aria_label_on: "Toggle display attributes on",
+	show_attributes_aria_label_off: "Toggle display attributes off",
+	show_always_details: "Always show details",
+	show_always_details_aria_label_on: "Toggle default detail view on",
+	show_always_details_aria_label_off: "Toggle default detail view off",
+	show_toolbar: "Show advanced options?",
+	show_toolbar_aria_label_on: "Toggle display advanced options on",
+	show_toolbar_aria_label_off: "Toggle display advanced options off",
+	show_body: "Offer further measurement details",
+	show_body1: "(lower half - icon chevron down will show those)?",
+	show_body_aria_label_on: "Toggle display body score on",
+	show_body_aria_label_off: "Toggle display body score off",
+	show_buttons: "Allow account switch?",
+	show_buttons_aria_label_on: "Toggle display buttons on",
+	show_buttons_aria_label_off: "Toggle display buttons off",
+	header_options: "1. Card header options",
+	body_options: "2. More card options",
+	code_only_note: "ATTENTION: Additional options are only available in the code editor."
+};
+var editor_body$f = {
+	from: "From",
+	height: "Bar height",
+	icon_position: "Icon Position",
+	inside: "Inside",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Min/Max Position",
+	name_position: "Name Position",
+	off: "Off",
+	outside: "Outside",
+	target: "Target",
+	to: "To",
+	value_position: "Value Position"
+};
+var color_select$f = {
+	color: "Color",
+	disabled: "Disabled",
+	red: "Red",
+	pink: "Pink",
+	purple: "Purple",
+	"deep-purple": "Deep purple",
+	indigo: "Indigo",
+	blue: "Blue",
+	"light-blue": "Light blue",
+	cyan: "Cyan",
+	teal: "Teal",
+	green: "Green",
+	"light-green": "Light green",
+	lime: "Lime",
+	yellow: "Yellow",
+	amber: "Amber",
+	orange: "Orange",
+	orangered: "Red orange",
+	"deep-orange": "Deep orange",
+	brown: "Brown",
+	"light-grey": "Light grey",
+	grey: "Grey",
+	"dark-grey": "Dark grey",
+	"blue-grey": "Blue grey",
+	darkgreen: "Dark green",
+	royalblue: "Royal blue",
+	black: "Black",
+	white: "White"
+};
+var en = {
+	common: common$f,
+	states: states$g,
+	attributes: attributes$f,
+	attributes_value: attributes_value$f,
+	body: body$f,
+	body_value: body_value$f,
+	unit: unit$f,
+	error: error$f,
+	editor: editor$g,
+	editor_body: editor_body$f,
+	color_select: color_select$f
+};
+
+var en$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$f,
+    attributes_value: attributes_value$f,
+    body: body$f,
+    body_value: body_value$f,
+    color_select: color_select$f,
+    common: common$f,
+    default: en,
+    editor: editor$g,
+    editor_body: editor_body$f,
+    error: error$f,
+    states: states$g,
+    unit: unit$f
+});
+
+var common$e = {
+	version: "Versión",
+	name: "Tarjeta Bodymiscale",
+	description: "La tarjeta bodymiscale muestra el estado de tu cuerpo en relación a tu peso.",
+	not_available: "Bodymiscale no está disponible",
+	toggle_power: "Mostrar / ocultar más detalles como IMC,kCal"
+};
+var states$f = {
+	ok: "MEDICIÓN: OK",
+	unknown: "ESTADO: desconocido",
+	problem: "Problema",
+	none: "Ninguno",
+	weight_unavailable: "Peso no disponible",
+	impedance_unavailable: "Impedancia no disponible",
+	weight_unavailable_and_impedance_unavailable: "Peso e impedancia no disponibles",
+	weight_low: "Peso bajo",
+	impedance_low: "Impedancia baja",
+	weight_low_and_impedance_low: "Peso e impedancia bajos",
+	impedance_low_and_weight_low: "Impedancia y peso bajos",
+	weight_high: "Peso alto",
+	impedance_high: "Impedancia alta",
+	weight_high_and_impedance_high: "Peso e impedancia altos",
+	weight_high_and_impedance_low: "Peso alto, impedancia baja",
+	weight_low_and_impedance_high: "Peso bajo, impedancia alta"
+};
+var attributes$e = {
+	"weight: ": "Peso: ",
+	"impedance: ": "Impedancia: ",
+	"height: ": "Altura: ",
+	"age: ": "Edad: ",
+	"gender: ": "Sexo: "
+};
+var attributes_value$e = {
+	male: "masculino",
+	female: "femenino",
+	unavailable: "no disponible"
+};
+var body$e = {
+	bmi: "IMC",
+	bmi_label: "Etiqueta IMC",
+	visceral_fat: "Grasa visceral",
+	body_fat: "Grasa corporal",
+	protein: "Proteína",
+	water: "Agua",
+	muscle_mass: "Masa muscular",
+	bone_mass: "Masa ósea",
+	weight: "Peso",
+	ideal: "Ideal",
+	basal_metabolism: "Metabolismo basal",
+	body_type: "Tipo de cuerpo",
+	metabolic_age: "Edad metabólica"
+};
+var body_value$e = {
+	skinny: "Flaco",
+	balanced_skinny: "Flaco equilibrado",
+	skinny_muscular: "Flaco musculoso",
+	balanced: "Equilibrado",
+	balanced_muscular: "Musculuso equilibrado",
+	lack_exercise: "Falto de ejercicio",
+	thick_set: "Rechoncho",
+	obese: "Obeso",
+	overweight: "Sobrepeso",
+	underweight: "Por debajo del peso normal",
+	normal_or_healthy_weight: "Normal",
+	slight_overweight: "Ligero sobrepeso",
+	moderate_obesity: "Obesidad moderada",
+	severe_obesity: "Obesidad severa",
+	massive_obesity: "Obesidad masiva",
+	unavailable: "no disponible"
+};
+var unit$e = {
+	" years": " años"
+};
+var error$e = {
+	missing_entity: "Por favor, defina una entidad.",
+	missing_entity_bodymiscale: "Por favor, defina una entidad bodymiscale."
+};
+var editor$f = {
+	entity: "Por favor, escoja una cuenta de la bácula (necesario)!",
+	image: "Imagen de fondo (opcional)",
+	icons_body: "Ruta de los iconos (ej: /local/images/bodyscoreIcon)",
+	model: "¿Tiene un sensor de impedancia?",
+	model1: "Active esta función para mediciones precisas de la composición corporal.",
+	model_aria_label_on: "Activar impedancia",
+	model_aria_label_off: "Desactivar impedancia",
+	unit: "Convertir kg a lbs",
+	unit_aria_label_on: "Activar conversión",
+	unit_aria_label_off: "Desactivar conversión",
+	show_name: "¿Mostrar el nombre de la cuenta como título?",
+	show_name_aria_label_on: "Mostrar nombre como título",
+	show_name_aria_label_off: "Ocultar nombre como título",
+	show_states: "¿Mostrar estado de la báscula?",
+	show_states_aria_label_on: "Mostrar estado de la báscula",
+	show_states_aria_label_off: "Ocultar estado de la báscula",
+	show_attributes: "¿Mostrar datos de perfil personal (esquina superior derecha)?",
+	show_attributes_aria_label_on: "Mostrar atributos",
+	show_attributes_aria_label_off: "Ocultar atributos",
+	show_always_details: "Mostrar siempre los detalles",
+	show_always_details_aria_label_on: "Mostrar la vista de detalles predeterminada",
+	show_always_details_aria_label_off: "Ocultar la vista de detalles predeterminada",
+	show_toolbar: "¿Mostrar opciones avanzadas?",
+	show_toolbar_aria_label_on: "Mostrar opciones avanzadas",
+	show_toolbar_aria_label_off: "Ocultar opciones avanzadas",
+	show_body: "Mostrar más detalles de la medición",
+	show_body1: "¿(parte inferior - pulsar en la fecha para mostrar)?",
+	show_body_aria_label_on: "Mostrar puntuación corporal",
+	show_body_aria_label_off: "Ocultar puntuación corporal",
+	show_buttons: "¿Permitir cambio de cuenta?",
+	show_buttons_aria_label_on: "Mostrar botones de cuenta",
+	show_buttons_aria_label_off: "Ocultar botones de cuenta",
+	header_options: "1. Opciones de cabecera de tarjeta",
+	body_options: "2. Más opciones de tarjeta",
+	code_only_note: "ATENCIÓN: Opciones adicionales sólo están disponibles en el editor de código."
+};
+var editor_body$e = {
+	from: "De",
+	height: "Altura de la barra",
+	icon_position: "Posición del ícono",
+	inside: "Dentro",
+	max: "Máx",
+	min: "Mín",
+	minmax_position: "Posición Mín/Máx",
+	name_position: "Posición del nombre",
+	off: "Apagar",
+	outside: "Fuera",
+	target: "Objetivo",
+	to: "A",
+	value_position: "Posición del valor"
+};
+var color_select$e = {
+	color: "Color",
+	disabled: "Deshabilitado",
+	red: "Rojo",
+	pink: "Rosa",
+	purple: "Púrpura",
+	"deep-purple": "Púrpura oscuro",
+	indigo: "Índigo",
+	blue: "Azul",
+	"light-blue": "Azul claro",
+	cyan: "Cian",
+	teal: "Azul verdoso",
+	green: "Verde",
+	"light-green": "Verde claro",
+	lime: "Limón",
+	yellow: "Amarillo",
+	amber: "Ámbar",
+	orange: "Naranja",
+	orangered: "Naranja rojizo",
+	"deep-orange": "Naranja oscuro",
+	brown: "Marrón",
+	"light-grey": "Gris claro",
+	grey: "Gris",
+	"dark-grey": "Gris oscuro",
+	"blue-grey": "Gris azulado",
+	darkgreen: "Verde oscuro",
+	royalblue: "Azul real",
+	black: "Negro",
+	white: "Blanco"
+};
+var es = {
+	common: common$e,
+	states: states$f,
+	attributes: attributes$e,
+	attributes_value: attributes_value$e,
+	body: body$e,
+	body_value: body_value$e,
+	unit: unit$e,
+	error: error$e,
+	editor: editor$f,
+	editor_body: editor_body$e,
+	color_select: color_select$e
+};
+
+var es$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$e,
+    attributes_value: attributes_value$e,
+    body: body$e,
+    body_value: body_value$e,
+    color_select: color_select$e,
+    common: common$e,
+    default: es,
+    editor: editor$f,
+    editor_body: editor_body$e,
+    error: error$e,
+    states: states$f,
+    unit: unit$e
+});
+
+var common$d = {
+	version: "Versió",
+	name: "Targeta Bodymiscale",
+	description: "La targeta Bodymiscale mostra l'estat del teu cos en relació amb el teu pes.",
+	not_available: "Bodymiscale no està disponible",
+	toggle_power: "Mostra / amaga més detalls com IMC, kCal"
+};
+var states$e = {
+	ok: "MESURA: OK",
+	unknown: "ESTAT: desconegut",
+	problem: "Problema",
+	none: "Cap",
+	weight_unavailable: "Pes no disponible",
+	impedance_unavailable: "Impedància no disponible",
+	weight_unavailable_and_impedance_unavailable: "Pes i impedància no disponibles",
+	weight_low: "Pes baix",
+	impedance_low: "Impedància baixa",
+	weight_low_and_impedance_low: "Pes i impedància baixos",
+	impedance_low_and_weight_low: "Impedància i pes baixos",
+	weight_high: "Pes alt",
+	impedance_high: "Impedància alta",
+	weight_high_and_impedance_high: "Pes i impedància alts",
+	weight_high_and_impedance_low: "Pes alt, impedància baixa",
+	weight_low_and_impedance_high: "Pes baix, impedància alta"
+};
+var attributes$d = {
+	"weight: ": "Pes: ",
+	"impedance: ": "Impedància: ",
+	"height: ": "Alçada: ",
+	"age: ": "Edat: ",
+	"gender: ": "Sexe: "
+};
+var attributes_value$d = {
+	male: "masculí",
+	female: "femení",
+	unavailable: "no disponible"
+};
+var body$d = {
+	bmi: "IMC",
+	bmi_label: "Etiqueta IMC",
+	visceral_fat: "Greix visceral",
+	body_fat: "Greix corporal",
+	protein: "Proteïna",
+	water: "Aigua",
+	muscle_mass: "Massa muscular",
+	bone_mass: "Massa òssia",
+	weight: "Pes",
+	ideal: "Ideal",
+	basal_metabolism: "Metabolisme basal",
+	body_type: "Tipus de cos",
+	metabolic_age: "Edat metabòlica"
+};
+var body_value$d = {
+	skinny: "Prim",
+	balanced_skinny: "Prim equilibrat",
+	skinny_muscular: "Prim musculós",
+	balanced: "Equilibrat",
+	balanced_muscular: "Musculós equilibrat",
+	lack_exercise: "Manca d'exercici",
+	thick_set: "Corpulent",
+	obese: "Obès",
+	overweight: "Sobrepès",
+	underweight: "Per sota del pes normal",
+	normal_or_healthy_weight: "Normal",
+	slight_overweight: "Lleuger sobrepès",
+	moderate_obesity: "Obesitat moderada",
+	severe_obesity: "Obesitat severa",
+	massive_obesity: "Obesitat massiva",
+	unavailable: "no disponible"
+};
+var unit$d = {
+	" years": " anys"
+};
+var error$d = {
+	invalid_config: "Configuració no vàlida",
+	missing_entity: "Si us plau, definiu una entitat.",
+	missing_entity_bodymiscale: "Si us plau, definiu una entitat Bodymiscale."
+};
+var editor$e = {
+	configuration: "Configuració",
+	customization: "Personalització",
+	entity: "Si us plau, trieu un compte de la bàscula (necessari)!",
+	image: "Imatge de fons (opcional)",
+	icons_body: "Camí de les icones (ex: /local/images/bodyscoreIcon)",
+	model: "Teniu un sensor d'impedància?",
+	model1: "Activeu aquesta funció per a mesures precises de la composició corporal.",
+	model_aria_label_on: "Activar impedància",
+	model_aria_label_off: "Desactivar impedància",
+	unit: "Converteix kg a lbs",
+	unit_aria_label_on: "Activar conversió",
+	unit_aria_label_off: "Desactivar conversió",
+	theme: "Configureu el tema que utilitzeu.",
+	theme_aria_label_on: "Activa el tema clar",
+	theme_aria_label_off: "Desactiva el tema fosc",
+	show_name: "Mostrar el nom del compte com a títol?",
+	show_name_aria_label_on: "Mostrar nom com a títol",
+	show_name_aria_label_off: "Amagar nom com a títol",
+	show_states: "Mostrar l'estat de la bàscula?",
+	show_states_aria_label_on: "Mostrar estat de la bàscula",
+	show_states_aria_label_off: "Amagar estat de la bàscula",
+	show_attributes: "Mostrar dades de perfil personal (cantonada superior dreta)?",
+	show_attributes_aria_label_on: "Mostrar atributs",
+	show_attributes_aria_label_off: "Amagar atributs",
+	show_always_details: "Mostrar sempre els detalls",
+	show_always_details_aria_label_on: "Mostrar la vista de detalls predeterminada",
+	show_always_details_aria_label_off: "Amagar la vista de detalls predeterminada",
+	show_toolbar: "Mostrar opcions avançades?",
+	show_toolbar_aria_label_on: "Mostrar opcions avançades",
+	show_toolbar_aria_label_off: "Amagar opcions avançades",
+	show_body: "Mostrar més detalls de la mesura",
+	show_body1: "(part inferior - prémer la data per mostrar)?",
+	show_body_aria_label_on: "Mostrar puntuació corporal",
+	show_body_aria_label_off: "Amagar puntuació corporal",
+	show_buttons: "Permetre canvi de compte?",
+	show_buttons_aria_label_on: "Mostrar botons de compte",
+	show_buttons_aria_label_off: "Amagar botons de compte",
+	header_options: "1. Opcions de capçalera de targeta",
+	body_options: "2. Més opcions de targeta",
+	code_only_note: "ATENCIÓ: Opcions addicionals només estan disponibles a l'editor de codi."
+};
+var editor_body$d = {
+	from: "De",
+	height: "Alçada de la barra",
+	icon_position: "Posició de la icona",
+	inside: "Dins",
+	max: "Màx",
+	min: "Mín",
+	minmax_position: "Posició Mín/Màx",
+	name_position: "Posició del nom",
+	off: "Apagar",
+	outside: "Fora",
+	target: "Objectiu",
+	to: "A",
+	value_position: "Posició del valor"
+};
+var color_select$d = {
+	color: "Color",
+	disabled: "Deshabilitat",
+	red: "Vermell",
+	pink: "Rosa",
+	purple: "Porpra",
+	"deep-purple": "Porpra fosc",
+	indigo: "Índigo",
+	blue: "Blau",
+	"light-blue": "Blau clar",
+	cyan: "Cian",
+	teal: "Blau verdós",
+	green: "Verd",
+	"light-green": "Verd clar",
+	lime: "Llimona",
+	yellow: "Groc",
+	amber: "Ambre",
+	orange: "Taronja",
+	orangered: "Taronja vermellós",
+	"deep-orange": "Taronja fosc",
+	brown: "Marró",
+	"light-grey": "Gris clar",
+	grey: "Gris",
+	"dark-grey": "Gris fosc",
+	"blue-grey": "Gris blavós",
+	darkgreen: "Verd fosc",
+	royalblue: "Blau reial",
+	black: "Negre",
+	white: "Blanc"
+};
+var ca = {
+	common: common$d,
+	states: states$e,
+	attributes: attributes$d,
+	attributes_value: attributes_value$d,
+	body: body$d,
+	body_value: body_value$d,
+	unit: unit$d,
+	error: error$d,
+	editor: editor$e,
+	editor_body: editor_body$d,
+	color_select: color_select$d
+};
+
+var ca$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$d,
+    attributes_value: attributes_value$d,
+    body: body$d,
+    body_value: body_value$d,
+    color_select: color_select$d,
+    common: common$d,
+    default: ca,
+    editor: editor$e,
+    editor_body: editor_body$d,
+    error: error$d,
+    states: states$e,
+    unit: unit$d
+});
+
+var common$c = {
+	version: "Version",
+	name: "Carte Bodymiscale",
+	description: "La carte bodymiscale corporelle vous indique votre poids et votre état corporel.",
+	not_available: "Bodymiscale n'est pas disponible",
+	toggle_power: "Plus de détails comme IMC kCal afficher / cacher"
+};
+var states$d = {
+	ok: "MESURE : OK",
+	unknown: "ÉTAT : inconnu",
+	problem: "Problème",
+	none: "Aucun",
+	weight_unavailable: "Poids indisponible",
+	impedance_unavailable: "Impédance indisponible",
+	weight_unavailable_and_impedance_unavailable: "Poids et impédance indisponibles",
+	weight_low: "Poids faible",
+	impedance_low: "Impédance faible",
+	weight_low_and_impedance_low: "Poids et impédance faibles",
+	impedance_low_and_weight_low: "Impédance et poids faibles",
+	weight_high: "Poids élevé",
+	impedance_high: "Impédance élevée",
+	weight_high_and_impedance_high: "Poids et impédance élevés",
+	weight_high_and_impedance_low: "Poids élevé, impédance faible",
+	weight_low_and_impedance_high: "Poids faible, impédance élevée"
+};
+var attributes$c = {
+	"weight: ": "Poids: ",
+	"impedance: ": "Impédance: ",
+	"height: ": "Taille: ",
+	"age: ": "Age: ",
+	"gender: ": "Genre: "
+};
+var attributes_value$c = {
+	male: "homme",
+	female: "femme",
+	unavailable: "indisponible"
+};
+var body$c = {
+	bmi: "IMC",
+	bmi_label: "Étiquette IMC",
+	visceral_fat: "Graisse viscérale",
+	body_fat: "Graisse corporelle",
+	protein: "Protéine",
+	water: "Eau",
+	muscle_mass: "Masse musculaire",
+	bone_mass: "Masse osseuse",
+	weight: "Poids",
+	ideal: "Poids idéal",
+	basal_metabolism: "Métabolisme de base",
+	body_type: "Corpulence",
+	metabolic_age: "Age corporel"
+};
+var body_value$c = {
+	skinny: "Maigre",
+	balanced_skinny: "Équilibré maigre",
+	skinny_muscular: "Maigre musclé",
+	balanced: "Équilibré",
+	balanced_muscular: "Musclé équilibré",
+	lack_exercise: "Manque d'exercice",
+	thick_set: "Trapu",
+	obese: "Obèse",
+	overweight: "Surpoids",
+	underweight: "Insuffisance pondérale",
+	normal_or_healthy_weight: "Normal - poids de santé",
+	slight_overweight: "Léger surpoids",
+	moderate_obesity: "Obésité modérée",
+	severe_obesity: "Obésité sévère",
+	massive_obesity: "Obésité massive",
+	unavailable: "indisponible"
+};
+var unit$c = {
+	" years": " ans"
+};
+var error$c = {
+	invalid_config: "Configuration invalide",
+	missing_entity: "Veuillez définir une entité.",
+	missing_entity_bodymiscale: "Veuillez définir une entité Bodymiscale."
+};
+var editor$d = {
+	configuration: "Configuration",
+	customization: "Personnalisation",
+	entity: "Veuillez choisir un compte de la balance (obligatoire) !",
+	image: "Image de fond (facultatif)",
+	icons_body: "Chemin des icônes (ex: /local/images/bodyscoreIcon)",
+	model: "Vous avez un capteur d'impédance ?",
+	model1: "Activez cette fonctionnalité pour des mesures corporelle précises.",
+	model_aria_label_on: "Activez l'impédance",
+	model_aria_label_off: "Désactiver l'impédance",
+	unit: "Convertir les kg en lbs",
+	unit_aria_label_on: "Activer la conversion",
+	unit_aria_label_off: "Désactiver la conversion",
+	theme: "Configurer le thème que vous utilisez.",
+	theme_aria_label_on: "Activer thème clair",
+	theme_aria_label_off: "Désactiver thème sombre",
+	show_name: "Afficher le nom du compte comme titre ?",
+	show_name_aria_label_on: "Activer affichage du nom",
+	show_name_aria_label_off: "Désactiver affichage du nom",
+	show_states: "Afficher l'état ?",
+	show_states_aria_label_on: "Activer l'affichage de l'état",
+	show_states_aria_label_off: "Désactiver l'affichage de l'état",
+	show_attributes: "Afficher les données personnelles de base (en haut à droite) ?",
+	show_attributes_aria_label_on: "Activer l'affichage des données personnelles de base",
+	show_attributes_aria_label_off: "Désactiver l'affichage des données personnelles de base",
+	show_always_details: "Toujours afficher les détails",
+	show_always_details_aria_label_on: "Activer l'affichage des détails par défaut",
+	show_always_details_aria_label_off: "Désactiver l'affichage des détails par défaut",
+	show_toolbar: "Afficher les options avancées ?",
+	show_toolbar_aria_label_on: "Activer l'affichage des options avancées",
+	show_toolbar_aria_label_off: "Désactiver l'affichage des options avancées",
+	show_body: "Offrir d'autres détails de mesure",
+	show_body1: "(partie inférieure - affichage via l'icone chevron bas) ?",
+	show_body_aria_label_on: "Activer l'affichage des autres détails de mesure",
+	show_body_aria_label_off: "Désactiver l'affichage des autres détails de mesure",
+	show_buttons: "Autoriser le changement de compte ?",
+	show_buttons_aria_label_on: "Activer le changement de compte",
+	show_buttons_aria_label_off: "Désactiver le changement de compte",
+	header_options: "1. Options d'en-tête de la carte",
+	body_options: "2. Plus d'options de la cartes",
+	code_only_note: "ATTENTION: Les options supplémentaires ne sont disponibles que dans l'éditeur de code."
+};
+var editor_body$c = {
+	from: "De",
+	height: "Hauteur de la barre",
+	icon_position: "Position de l'icône",
+	inside: "À l'intérieur",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Position Min/Max",
+	name_position: "Position du nom",
+	off: "Désactivé",
+	outside: "À l'extérieur",
+	target: "Cible",
+	to: "À",
+	value_position: "Position de la valeur"
+};
+var color_select$c = {
+	color: "Couleur",
+	disabled: "Désactivé",
+	red: "Rouge",
+	pink: "Rose",
+	purple: "Violet",
+	"deep-purple": "Violet foncé",
+	indigo: "Indigo",
+	blue: "Bleu",
+	"light-blue": "Bleu clair",
+	cyan: "Cyan",
+	teal: "Turquoise",
+	green: "Vert",
+	"light-green": "Vert clair",
+	lime: "Vert citron",
+	yellow: "Jaune",
+	amber: "Ambre",
+	orange: "Orange",
+	orangered: "Rouge orange",
+	"deep-orange": "Orange foncé",
+	brown: "Marron",
+	"light-grey": "Gris clair",
+	grey: "Gris",
+	"dark-grey": "Gris foncé",
+	"blue-grey": "Bleu gris",
+	darkgreen: "Vert foncé",
+	royalblue: "Blue roi",
+	black: "Noir",
+	white: "Blanc"
+};
+var fr = {
+	common: common$c,
+	states: states$d,
+	attributes: attributes$c,
+	attributes_value: attributes_value$c,
+	body: body$c,
+	body_value: body_value$c,
+	unit: unit$c,
+	error: error$c,
+	editor: editor$d,
+	editor_body: editor_body$c,
+	color_select: color_select$c
+};
+
+var fr$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$c,
+    attributes_value: attributes_value$c,
+    body: body$c,
+    body_value: body_value$c,
+    color_select: color_select$c,
+    common: common$c,
+    default: fr,
+    editor: editor$d,
+    editor_body: editor_body$c,
+    error: error$c,
+    states: states$d,
+    unit: unit$c
+});
+
+var common$b = {
+	version: "Verzió",
+	name: "Bodymiscale Kártya",
+	description: "A BodyMiScale kártya megmutatja az ön súlyhoz viszonyított testi állapotát.",
+	not_available: "A Bodymiscale nem elérhető",
+	toggle_power: "További részletek, például a BMI, kCal megjelenítése / elrejtése"
+};
+var states$c = {
+	ok: "MÉRÉS: RENDBEN",
+	unknown: "ÁLLAPOT: ismeretlen",
+	problem: "Probléma",
+	none: "Nincs",
+	weight_unavailable: "Súly nem elérhető",
+	impedance_unavailable: "Impedancia nem elérhető",
+	weight_unavailable_and_impedance_unavailable: "Súly és impedancia nem elérhető",
+	weight_low: "Alacsony súly",
+	impedance_low: "Alacsony impedancia",
+	weight_low_and_impedance_low: "Alacsony súly és impedancia",
+	impedance_low_and_weight_low: "Alacsony impedancia és súly",
+	weight_high: "Magas súly",
+	impedance_high: "Magas impedancia",
+	weight_high_and_impedance_high: "Magas súly és impedancia",
+	weight_high_and_impedance_low: "Magas súly, alacsony impedancia",
+	weight_low_and_impedance_high: "Alacsony súly, magas impedancia"
+};
+var attributes$b = {
+	"weight: ": "Súly: ",
+	"impedance: ": "Impedancia: ",
+	"height: ": "Magasság: ",
+	"age: ": "Kor: ",
+	"gender: ": "Nem: "
+};
+var attributes_value$b = {
+	male: "férfi",
+	female: "nő",
+	unavailable: "nem elérhető"
+};
+var body$b = {
+	bmi: "BMI",
+	bmi_label: "BMI címke",
+	visceral_fat: "Zsigeri zsír",
+	body_fat: "Testzsír",
+	protein: "Fehérje",
+	water: "Víz",
+	muscle_mass: "Izomtömeg",
+	bone_mass: "Csonttömeg",
+	weight: "Súly",
+	ideal: "Ideális",
+	basal_metabolism: "Alapanyagcsere",
+	body_type: "Testtípus",
+	metabolic_age: "Anyagcsere kor"
+};
+var body_value$b = {
+	skinny: "Sovány",
+	balanced_skinny: "Kiegyensúlyozott-sovány",
+	skinny_muscular: "Sovány-izmos",
+	balanced: "Kiegyensúlyozott",
+	balanced_muscular: "Kiegyensúlyozott-izmos",
+	lack_exercise: "Mozgáshiányos",
+	thick_set: "Közepesen molett",
+	obese: "Kórosan elhízott",
+	overweight: "Túlsúlyos",
+	underweight: "Súlyhiányos",
+	normal_or_healthy_weight: "Normál vagy egészséges testsúly",
+	slight_overweight: "Enyhe túlsúly",
+	moderate_obesity: "Közepes elhízottság",
+	severe_obesity: "Súlyos elhízottság",
+	massive_obesity: "Masszív elhízottság",
+	unavailable: "nem elérhető"
+};
+var unit$b = {
+	" years": " év"
+};
+var error$b = {
+	missing_entity: "Kérjük, definiáljon egy entitást.",
+	missing_entity_bodymiscale: "Kérjük, definiáljon egy BodyMiScale entitást."
+};
+var editor$c = {
+	entity: "Kérjük, válasszon egy fiókot a mérlegen (kötelező)!",
+	image: "Háttérkép (opcionális)",
+	icons_body: "Ikonok útvonala (pl.: /local/images/bodyscoreIcon)",
+	model: "Rendelkezik impedancia érzékelővel?",
+	model1: "A pontos testösszetétel mérésekhez aktiválja ezt a funkciót.",
+	model_aria_label_on: "Impedancia engedélyezése",
+	model_aria_label_off: "Impedancia letiltása",
+	unit: "Kg átszámítása fonttá",
+	unit_aria_label_on: "Átszámítás bekapcsolása",
+	unit_aria_label_off: "Átszámítás kikapcsolása",
+	theme: "Állítsa be a használt témát.",
+	theme_aria_label_on: "Világos téma bekapcsolása",
+	theme_aria_label_off: "Sötét téma kikapcsolása",
+	show_name: "Mutassa a fiók nevét címként?",
+	show_name_aria_label_on: "Név megjelenítésének bekapcsolása",
+	show_name_aria_label_off: "Név megjelenítésének kikapcsolása",
+	show_states: "Állapot mutatása?",
+	show_states_aria_label_on: "Állapot megjelenítésének bekapcsolása",
+	show_states_aria_label_off: "Állapot megjelenítésének kikapcsolása",
+	show_attributes: "Személyes adatok mutatása (jobb felső sarokban)?",
+	show_attributes_aria_label_on: "Személyes adatok megjelenítésének bekapcsolása",
+	show_attributes_aria_label_off: "Személyes adatok megjelenítésének kikapcsolása",
+	show_always_details: "Mindig mutassa a részleteket",
+	show_always_details_aria_label_on: "Alapértelmezett részletes nézet bekapcsolása",
+	show_always_details_aria_label_off: "Alapértelmezett részletes nézet kikapcsolása",
+	show_toolbar: "Mutassa a haladó beállításokat?",
+	show_toolbar_aria_label_on: "Haladó beállítások megjelenítésének bekapcsolása",
+	show_toolbar_aria_label_off: "Haladó beállítások megjelenítésének kikapcsolása",
+	show_body: "Kínáljon további mérési részleteket",
+	show_body1: "(alsó rész - a lefelé mutató nyíl ikonra kattintva megjeleníthető)?",
+	show_body_aria_label_on: "Test pontszám megjelenítésének bekapcsolása",
+	show_body_aria_label_off: "Test pontszám megjelenítésének kikapcsolása",
+	show_buttons: "Fiókváltás engedélyezése?",
+	show_buttons_aria_label_on: "Gombok megjelenítésének bekapcsolása",
+	show_buttons_aria_label_off: "Gombok megjelenítésének kikapcsolása",
+	header_options: "1. Kártya fejléc beállítások",
+	body_options: "2. További kártya beállítások",
+	code_only_note: "FIGYELEM: További beállítások csak a kód szerkesztőben érhetők el."
+};
+var editor_body$b = {
+	from: "Tól",
+	height: "Sáv magassága",
+	icon_position: "Ikon pozíció",
+	inside: "Belső",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Min/Max pozíció",
+	name_position: "Név pozíció",
+	off: "Kikapcsolva",
+	outside: "Külső",
+	target: "Cél",
+	to: "Tovább",
+	value_position: "Érték pozíció"
+};
+var color_select$b = {
+	color: "Szín",
+	disabled: "Letiltva",
+	red: "Piros",
+	pink: "Rózsaszín",
+	purple: "Lila",
+	"deep-purple": "Sötét lila",
+	indigo: "Indigó",
+	blue: "Kék",
+	"light-blue": "Világoskék",
+	cyan: "Cián",
+	teal: "Türkiz",
+	green: "Zöld",
+	"light-green": "Világoszöld",
+	lime: "Lime",
+	yellow: "Sárga",
+	amber: "Borostyán",
+	orange: "Narancs",
+	orangered: "Narancsvörös",
+	"deep-orange": "Sötét narancs",
+	brown: "Barna",
+	"light-grey": "Világosszürke",
+	grey: "Szürke",
+	"dark-grey": "Sötétszürke",
+	"blue-grey": "Kékszürke",
+	darkgreen: "Sötétzöld",
+	royalblue: "Királykék",
+	black: "Fekete",
+	white: "Fehér"
+};
+var hu = {
+	common: common$b,
+	states: states$c,
+	attributes: attributes$b,
+	attributes_value: attributes_value$b,
+	body: body$b,
+	body_value: body_value$b,
+	unit: unit$b,
+	error: error$b,
+	editor: editor$c,
+	editor_body: editor_body$b,
+	color_select: color_select$b
+};
+
+var hu$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$b,
+    attributes_value: attributes_value$b,
+    body: body$b,
+    body_value: body_value$b,
+    color_select: color_select$b,
+    common: common$b,
+    default: hu,
+    editor: editor$c,
+    editor_body: editor_body$b,
+    error: error$b,
+    states: states$c,
+    unit: unit$b
+});
+
+var common$a = {
+	version: "Versione",
+	name: "Bodymiscale Card",
+	description: "La card bodymiscale ti mostra il tuo peso/stato corporeo relativo.",
+	not_available: "Bodymiscale non è disponibile",
+	toggle_power: "Più dettagli come BMI kCal mostra / nascondi"
+};
+var states$b = {
+	ok: "MISURAZIONE: OK",
+	unknown: "STATO: sconosciuto",
+	problem: "Problema",
+	none: "Nessuno",
+	weight_unavailable: "Peso non disponibile",
+	impedance_unavailable: "Impedenza non disponibile",
+	weight_unavailable_and_impedance_unavailable: "Peso e impedenza non disponibili",
+	weight_low: "Peso basso",
+	impedance_low: "Impedenza bassa",
+	weight_low_and_impedance_low: "Peso e impedenza bassi",
+	impedance_low_and_weight_low: "Impedenza e peso bassi",
+	weight_high: "Peso alto",
+	impedance_high: "Impedenza alta",
+	weight_high_and_impedance_high: "Peso e impedenza alti",
+	weight_high_and_impedance_low: "Peso alto, impedenza bassa",
+	weight_low_and_impedance_high: "Peso basso, impedenza alta"
+};
+var attributes$a = {
+	"weight: ": "Peso: ",
+	"impedance: ": "Impedenza: ",
+	"height: ": "Altezza: ",
+	"age: ": "Età: ",
+	"gender: ": "Sesso: "
+};
+var attributes_value$a = {
+	male: "uomo",
+	female: "donna",
+	unavailable: "non disponibile"
+};
+var body$a = {
+	bmi: "BMI",
+	bmi_label: "BMI Categoria",
+	visceral_fat: "Grasso viscerale",
+	body_fat: "Grasso corporeo",
+	protein: "Proteine",
+	water: "Acqua",
+	muscle_mass: "Massa muscolare",
+	bone_mass: "Massa ossea",
+	weight: "Peso",
+	ideal: "Ideale",
+	basal_metabolism: "Metabolismo base",
+	body_type: "Tipo di corpo",
+	metabolic_age: "Età metabolica"
+};
+var body_value$a = {
+	skinny: "Magro",
+	balanced_skinny: "Bilanciato-magro",
+	skinny_muscular: "Magro-muscoloso",
+	balanced: "Bilanciato",
+	balanced_muscular: "Bilanciato-muscoloso",
+	lack_exercise: "Manca-esercizio",
+	thick_set: "Spesso-impostato",
+	obese: "Obeso",
+	overweight: "Sovrappeso",
+	underweight: "Sottopeso",
+	normal_or_healthy_weight: "Normale o Peso Sano",
+	slight_overweight: "Leggermente in sovrappeso",
+	moderate_obesity: "Obesità Moderata",
+	severe_obesity: "Obesità Grave",
+	massive_obesity: "Obesità Massiccia",
+	unavailable: "non disponibile"
+};
+var unit$a = {
+	" years": " anni"
+};
+var error$a = {
+	missing_entity: "Perfavore definisci un'entità.",
+	missing_entity_bodymiscale: "Perfavore definisci un'entità di tipo bodymiscale."
+};
+var editor$b = {
+	entity: "Perfavore seleziona un account sulla bilancia (richiesto) !",
+	image: "Immagine di sfondo (opzionale)",
+	icons_body: "Percorso delle icone (es: /local/images/bodyscoreIcon)",
+	model: "Hai un sensore di impedenza?",
+	model1: "Attiva questa funzione per misurazioni accurate della composizione corporea.",
+	model_aria_label_on: "Abilita impedenza",
+	model_aria_label_off: "Disabilita impedenza",
+	unit: "Converti da kg a lbs",
+	unit_aria_label_on: "Attiva la conversione",
+	unit_aria_label_off: "Disattiva la conversione",
+	show_name: "Mostrare il nome dell'account come titolo  ?",
+	show_name_aria_label_on: "Attiva la visione del nome",
+	show_name_aria_label_off: "Disattiva la visione del nome",
+	show_states: "Mostrare lo Stato ?",
+	show_states_aria_label_on: "Attiva la visione dello stato",
+	show_states_aria_label_off: "Disattiva la visione dello stato",
+	show_attributes: "Mostrare i dati anagrafici personali (in alto a destra) ?",
+	show_attributes_aria_label_on: "Attiva la visione degli attributi",
+	show_attributes_aria_label_off: "Disattiva la visione degli attributi",
+	show_always_details: "Mostra sempre i dettagli",
+	show_always_details_aria_label_on: "Attiva la visualizzazione dettagliata predefinita",
+	show_always_details_aria_label_off: "Disattiva la visualizzazione dettagliata predefinita",
+	show_toolbar: "Mostrare opzioni avanzate ?",
+	show_toolbar_aria_label_on: "Attiva opzioni avanzate",
+	show_toolbar_aria_label_off: "Disattiva opzioni avanzate",
+	show_body: "Offrire ulteriori dettagli di misurazione",
+	show_body1: "(metà inferiore - l'icona con la spunta ve li mostrerà) ?",
+	show_body_aria_label_on: "Attiva la visione del punteggio del corpo",
+	show_body_aria_label_off: "Disattiva la visione del punteggio del corpo",
+	show_buttons: "Consenti il cambio di account ?",
+	show_buttons_aria_label_on: "Attiva la visione dei pulsanti",
+	show_buttons_aria_label_off: "Disattiva la visione dei pulsanti",
+	header_options: "1. Opzioni di intestazione della card",
+	body_options: "2. Ulteriori opzioni della card",
+	code_only_note: "ATTENZIONE: Le opzioni aggiuntive sono disponibili solo nella modalità editor di codice."
+};
+var editor_body$a = {
+	from: "Da",
+	height: "Altezza barra",
+	icon_position: "Posizione icona",
+	inside: "Dentro",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Posizione Min/Max",
+	name_position: "Posizione nome",
+	off: "Spento",
+	outside: "Fuori",
+	target: "Destinazione",
+	to: "A",
+	value_position: "Posizione valore"
+};
+var color_select$a = {
+	color: "Colore",
+	disabled: "Disabilitato",
+	red: "Rosso",
+	pink: "Rosa",
+	purple: "Viola",
+	"deep-purple": "Viola scuro",
+	indigo: "Indaco",
+	blue: "Blu",
+	"light-blue": "Azzurro",
+	cyan: "Ciano",
+	teal: "Verde acqua",
+	green: "Verde",
+	"light-green": "Verde chiaro",
+	lime: "Lime",
+	yellow: "Giallo",
+	amber: "Ambra",
+	orange: "Arancione",
+	orangered: "Arancione rosso",
+	"deep-orange": "Arancione scuro",
+	brown: "Marrone",
+	"light-grey": "Grigio chiaro",
+	grey: "Grigio",
+	"dark-grey": "Grigio scuro",
+	"blue-grey": "Blu grigio",
+	darkgreen: "Verde scuro",
+	royalblue: "Blu reale",
+	black: "Nero",
+	white: "Bianco"
+};
+var it = {
+	common: common$a,
+	states: states$b,
+	attributes: attributes$a,
+	attributes_value: attributes_value$a,
+	body: body$a,
+	body_value: body_value$a,
+	unit: unit$a,
+	error: error$a,
+	editor: editor$b,
+	editor_body: editor_body$a,
+	color_select: color_select$a
+};
+
+var it$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$a,
+    attributes_value: attributes_value$a,
+    body: body$a,
+    body_value: body_value$a,
+    color_select: color_select$a,
+    common: common$a,
+    default: it,
+    editor: editor$b,
+    editor_body: editor_body$a,
+    error: error$a,
+    states: states$b,
+    unit: unit$a
+});
+
+var common$9 = {
+	version: "Version",
+	name: "Bodymiscale Card",
+	description: "ボディミスケール カードは、体重や関連する身体の状態を表示します。",
+	not_available: "Bodymiscale は利用できません",
+	toggle_power: "BMI kCal などの詳細を表示/非表示"
+};
+var states$a = {
+	ok: "測定: OK",
+	unknown: "状態: 不明",
+	problem: "問題",
+	none: "なし",
+	weight_unavailable: "体重が利用できません",
+	impedance_unavailable: "インピーダンスが利用できません",
+	weight_unavailable_and_impedance_unavailable: "体重とインピーダンスが利用できません",
+	weight_low: "体重が低い",
+	impedance_low: "インピーダンスが低い",
+	weight_low_and_impedance_low: "体重とインピーダンスが低い",
+	impedance_low_and_weight_low: "インピーダンスと体重が低い",
+	weight_high: "体重が高い",
+	impedance_high: "インピーダンス高",
+	weight_high_and_impedance_high: "体重とインピーダンスが高い",
+	weight_high_and_impedance_low: "体重は高いが、インピーダンスは低い",
+	weight_low_and_impedance_high: "体重は低く、インピーダンスは高い"
+};
+var attributes$9 = {
+	"weight: ": "体重: ",
+	"impedance: ": "インピーダンス: ",
+	"height: ": "高さ: ",
+	"age: ": "年齢: ",
+	"gender: ": "性別: "
+};
+var attributes_value$9 = {
+	male: "男性",
+	female: "女性",
+	unavailable: "利用不可"
+};
+var body$9 = {
+	bmi: "BMI",
+	bmi_label: "BMI ラベル",
+	visceral_fat: "内臓脂肪",
+	body_fat: "体脂肪",
+	protein: "タンパク質",
+	water: "水分",
+	muscle_mass: "筋肉量",
+	bone_mass: "骨量",
+	weight: "体重",
+	ideal: "理想",
+	basal_metabolism: "基礎代謝",
+	body_type: "体型",
+	metabolic_age: "代謝年齢"
+};
+var body_value$9 = {
+	skinny: "痩せすぎ",
+	balanced_skinny: "バランスの取れた瘦せ型",
+	skinny_muscular: "細身筋肉質",
+	balanced: "バランスの取れた",
+	balanced_muscular: "バランスの取れた筋肉質",
+	lack_exercise: "運動不足",
+	thick_set: "がっしり体型",
+	obese: "肥満",
+	overweight: "太りすぎ",
+	underweight: "低体重",
+	normal_or_healthy_weight: "正常または健康的な体重",
+	slight_overweight: "少し太りすぎ",
+	moderate_obesity: "中程度の肥満",
+	severe_obesity: "重度の肥満",
+	massive_obesity: "極度の肥満",
+	unavailable: "利用不可"
+};
+var unit$9 = {
+	" years": " 年齢"
+};
+var error$9 = {
+	invalid_config: "無効な設定です",
+	missing_entity: "エンティティを設定して下さい。",
+	missing_entity_bodymiscale: "bodymiscale エンティティを定義してください。"
+};
+var editor$a = {
+	entity: "スケール上のアカウントを選択してください (必須)!",
+	image: "背景画像（オプション）",
+	icons_body: "アイコンのパス (例: /local/images/bodyscoreIcon)",
+	model: "インピーダンスセンサーはありますか?",
+	model1: "正確な体組成測定のためにこの機能を有効にしてください。",
+	model_aria_label_on: "インピーダンスを有効にする",
+	model_aria_label_off: "インピーダンスを無効にする",
+	unit: "kg を lbs に変換する",
+	unit_aria_label_on: "変換をオンに切り替えます",
+	unit_aria_label_off: "変換をオフに切り替えます",
+	theme: "使用するテーマを設定します。",
+	theme_aria_label_on: "テーマライトをオンに切り替えます",
+	theme_aria_label_off: "テーマダークをオフに切り替えます",
+	show_name: "アカウント名をタイトルとして表示しますか?",
+	show_name_aria_label_on: "表示名をオンに切り替えます",
+	show_name_aria_label_off: "表示名をオフに切り替えます",
+	show_states: "状態を表示しますか?",
+	show_states_aria_label_on: "表示状態をオンに切り替えます",
+	show_states_aria_label_off: "表示状態をオフに切り替えます",
+	show_attributes: "個人マスターデータを表示しますか (右上)?",
+	show_attributes_aria_label_on: "表示属性をオンに切り替えます",
+	show_attributes_aria_label_off: "表示属性をオフに切り替えます",
+	show_always_details: "常に詳細を表示する",
+	show_always_details_aria_label_on: "デフォルトの詳細ビューをオンに切り替えます",
+	show_always_details_aria_label_off: "デフォルトの詳細ビューをオフに切り替えます",
+	show_toolbar: "詳細オプションを表示しますか?",
+	show_toolbar_aria_label_on: "詳細オプションの表示をオンに切り替えます",
+	show_toolbar_aria_label_off: "詳細オプションの表示をオフに切り替えます",
+	show_body: "測定の詳細をさらに表示する",
+	show_body1: "(下半分 - 下向きの矢印アイコンが表示されます)?",
+	show_body_aria_label_on: "ボディスコアの表示をオンに切り替えます",
+	show_body_aria_label_off: "ボディスコアの表示をオフに切り替えます",
+	show_buttons: "アカウントの切り替えを許可しますか?",
+	show_buttons_aria_label_on: "表示ボタンをオンに切り替えます",
+	show_buttons_aria_label_off: "表示ボタンをオフに切り替えます",
+	header_options: "1. カード ヘッダー オプション",
+	body_options: "2. その他のカードオプション",
+	code_only_note: "注意: 追加オプションはコード エディターでのみ使用できます。"
+};
+var editor_body$9 = {
+	from: "から",
+	height: "バーの高さ",
+	icon_position: "アイコンの位置",
+	inside: "内側",
+	max: "最大",
+	min: "最小",
+	minmax_position: "最小/最大の位置",
+	name_position: "名前の位置",
+	off: "オフ",
+	outside: "外側",
+	target: "ターゲット",
+	to: "へ",
+	value_position: "値の位置"
+};
+var color_select$9 = {
+	color: "色",
+	disabled: "無効",
+	red: "赤",
+	pink: "ピンク",
+	purple: "紫",
+	"deep-purple": "濃い紫",
+	indigo: "インディゴ",
+	blue: "青",
+	"light-blue": "水色",
+	cyan: "シアン",
+	teal: "ティール",
+	green: "緑",
+	"light-green": "薄緑",
+	lime: "ライム",
+	yellow: "黄色",
+	amber: "アンバー",
+	orange: "オレンジ",
+	orangered: "赤橙色",
+	"deep-orange": "濃いオレンジ",
+	brown: "茶色",
+	"light-grey": "ライトグレー",
+	grey: "グレー",
+	"dark-grey": "ダークグレー",
+	"blue-grey": "青灰色",
+	darkgreen: "ダークグリーン",
+	royalblue: "ロイヤルブルー",
+	black: "黒",
+	white: "白"
+};
+var ja = {
+	common: common$9,
+	states: states$a,
+	attributes: attributes$9,
+	attributes_value: attributes_value$9,
+	body: body$9,
+	body_value: body_value$9,
+	unit: unit$9,
+	error: error$9,
+	editor: editor$a,
+	editor_body: editor_body$9,
+	color_select: color_select$9
+};
+
+var ja$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$9,
+    attributes_value: attributes_value$9,
+    body: body$9,
+    body_value: body_value$9,
+    color_select: color_select$9,
+    common: common$9,
+    default: ja,
+    editor: editor$a,
+    editor_body: editor_body$9,
+    error: error$9,
+    states: states$a,
+    unit: unit$9
+});
+
+var common$8 = {
+	version: "Versie",
+	name: "Bodymiscale Card",
+	description: "De bodymiscale kaart toont u uw gewicht / gerelateerde lichaamsstatus.",
+	not_available: "Bodymiscale is niet beschikbaar",
+	toggle_power: "Meer details zoals BMI kCal tonen / verbergen"
+};
+var states$9 = {
+	ok: "METING: OK",
+	unknown: "STATUS: onbekend",
+	problem: "Probleem",
+	none: "Geen",
+	weight_unavailable: "Gewicht niet beschikbar",
+	impedance_unavailable: "Impedantie niet beschikbaar",
+	weight_unavailable_and_impedance_unavailable: "Gewicht en impedantie niet beschikbaar",
+	weight_low: "Gewicht laag",
+	impedance_low: "Impedantie laag",
+	weight_low_and_impedance_low: "Laag gewicht en impedantie",
+	impedance_low_and_weight_low: "Lage impedantie en gewicht",
+	weight_high: "Gewicht hoog",
+	impedance_high: "Impedantie hoog",
+	weight_high_and_impedance_high: "Hoog gewicht en impedantie",
+	weight_high_and_impedance_low: "Gewicht hoog, impedantie laag",
+	weight_low_and_impedance_high: "Gewicht laag, impedantie hoog"
+};
+var attributes$8 = {
+	"weight: ": "Gewicht: ",
+	"impedance: ": "Impedantie: ",
+	"height: ": "Lengte: ",
+	"age: ": "Leeftijd: ",
+	"gender: ": "Geslacht: "
+};
+var attributes_value$8 = {
+	male: "man",
+	female: "vrouw",
+	unavailable: "niet beschikbaar"
+};
+var body$8 = {
+	bmi: "BMI",
+	bmi_label: "BMI label",
+	visceral_fat: "Visceraal vet",
+	body_fat: "Lichaamsvet",
+	protein: "Proteine",
+	water: "Water",
+	muscle_mass: "Spiermassa",
+	bone_mass: "Botgewicht",
+	weight: "Gewicht",
+	ideal: "Ideaal",
+	basal_metabolism: "Basaal metabolisme",
+	body_type: "Lichaamstype",
+	metabolic_age: "Metabolistische leeftijd"
+};
+var body_value$8 = {
+	skinny: "Mager",
+	balanced_skinny: "Gebalanceerd-mager",
+	skinny_muscular: "Mager-gespierd",
+	balanced: "Gebalanceerd",
+	balanced_muscular: "Gebalanceerd-gespierd",
+	lack_exercise: "Weinig-beweging",
+	thick_set: "Dik",
+	obese: "Obesitas",
+	overweight: "Overgewicht",
+	underweight: "Ondergewicht",
+	normal_or_healthy_weight: "Normaal of gezond gewicht",
+	slight_overweight: "Licht overgewicht",
+	moderate_obesity: "Gemiddeld overgewicht",
+	severe_obesity: "Ruim overgewicht",
+	massive_obesity: "Enorm overgewicht",
+	unavailable: "niet beschikbaar"
+};
+var unit$8 = {
+	" years": " jaren"
+};
+var error$8 = {
+	missing_entity: "Geef een entiteit in.",
+	missing_entity_bodymiscale: "Geef een bodymiscale entiteit in."
+};
+var editor$9 = {
+	entity: "Kies een account op de schaal (verplicht) !",
+	image: "Achtergrondafbeelding (facultatief)",
+	icons_body: "Icoonpad (bijv. /local/images/bodyscoreIcon)",
+	model: "Heeft u een impedantie sensor?",
+	model1: "Activeer deze functie voor nauwkeurige metingen van de lichaamssamenstelling.",
+	model_aria_label_on: "Impedantie inschakelen",
+	model_aria_label_off: "Impedantie uitschakelen",
+	unit: "Converteer kg naar lbs",
+	unit_aria_label_on: "Activeer conversie",
+	unit_aria_label_off: "Conversie deactiveren",
+	show_name: "Toon de naam van de rekening als titel ?",
+	show_name_aria_label_on: "Zet naam aan",
+	show_name_aria_label_off: "Zet naam uit",
+	show_states: "Geef status weer ?",
+	show_states_aria_label_on: "Zet status aan",
+	show_states_aria_label_off: "Zet status uit",
+	show_attributes: "Persoonlijke stamgegevens weergeven (rechtsboven) ?",
+	show_attributes_aria_label_on: "Zet attributen aan",
+	show_attributes_aria_label_off: "Zet attributen uit",
+	show_always_details: "Toon altijd details",
+	show_always_details_aria_label_on: "Zet standaard detailweergave aan",
+	show_always_details_aria_label_off: "Zet standaard detailweergave uit",
+	show_toolbar: "Toon geavanceerde opties ?",
+	show_toolbar_aria_label_on: "Zet knoppenbalk aan",
+	show_toolbar_aria_label_off: "Zet knoppenbalk uit",
+	show_body: "Bieden verdere meting details",
+	show_body1: "(onderste helft - pictogram chevron naar beneden zal tonen die) ?",
+	show_body_aria_label_on: "Zet lichaamsscore aan",
+	show_body_aria_label_off: "Zet lichaamsscore uit",
+	show_buttons: "Accountwissel toestaan ?",
+	show_buttons_aria_label_on: "Zet knoppen aan",
+	show_buttons_aria_label_off: "Zet knoppen uit",
+	header_options: "1. Kaart koptekst opties",
+	body_options: "2. Meer boordopties",
+	code_only_note: "LET OP: Extra opties zijn alleen beschikbaar in de code editor."
+};
+var editor_body$8 = {
+	from: "Van",
+	height: "Balkhoogte",
+	icon_position: "Pictogrampositie",
+	inside: "Binnen",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Min/Max Positie",
+	name_position: "Naam Positie",
+	off: "Uit",
+	outside: "Buiten",
+	target: "Doel",
+	to: "Naar",
+	value_position: "Waarde Positie"
+};
+var color_select$8 = {
+	color: "Kleur",
+	disabled: "Uitgeschakeld",
+	red: "Rood",
+	pink: "Roze",
+	purple: "Paars",
+	"deep-purple": "Dieppaars",
+	indigo: "Indigo",
+	blue: "Blauw",
+	"light-blue": "Lichtblauw",
+	cyan: "Cyaan",
+	teal: "Blauwgroen",
+	green: "Groen",
+	"light-green": "Lichtgroen",
+	lime: "Limoen",
+	yellow: "Geel",
+	amber: "Amber",
+	orange: "Oranje",
+	orangered: "Rood-oranje",
+	"deep-orange": "Dieporanje",
+	brown: "Bruin",
+	"light-grey": "Lichtgrijs",
+	grey: "Grijs",
+	"dark-grey": "Donkergrijs",
+	"blue-grey": "Blauwgrijs",
+	darkgreen: "Donkergroen",
+	royalblue: "Koningsblauw",
+	black: "Zwart",
+	white: "Wit"
+};
+var nl = {
+	common: common$8,
+	states: states$9,
+	attributes: attributes$8,
+	attributes_value: attributes_value$8,
+	body: body$8,
+	body_value: body_value$8,
+	unit: unit$8,
+	error: error$8,
+	editor: editor$9,
+	editor_body: editor_body$8,
+	color_select: color_select$8
+};
+
+var nl$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$8,
+    attributes_value: attributes_value$8,
+    body: body$8,
+    body_value: body_value$8,
+    color_select: color_select$8,
+    common: common$8,
+    default: nl,
+    editor: editor$9,
+    editor_body: editor_body$8,
+    error: error$8,
+    states: states$9,
+    unit: unit$8
+});
+
+var common$7 = {
+	version: "Wersja",
+	name: "Karta Bodymiscale",
+	description: "Karta BodyMiScale pokazuje Twoją wagę oraz parametry ciała.",
+	not_available: "Bodymiscale jest niedostępna",
+	toggle_power: "Więcej szczegółów jak BMI kCal - pokaż / ukryj"
+};
+var states$8 = {
+	ok: "POMIAR: OK",
+	unknown: "STATUS: nieznany",
+	problem: "Problem",
+	none: "Brak",
+	weight_unavailable: "Waga niedostępna",
+	impedance_unavailable: "Impedancja niedostępna",
+	weight_unavailable_and_impedance_unavailable: "Waga i impedancja niedostępne",
+	weight_low: "Niska waga",
+	impedance_low: "Niska impedancja",
+	weight_low_and_impedance_low: "Niska waga i impedancja",
+	impedance_low_and_weight_low: "Niska impedancja i waga",
+	weight_high: "Waga wysoka",
+	impedance_high: "Impedancja wysoka",
+	weight_high_and_impedance_high: "Wysoka waga i impedancja",
+	weight_high_and_impedance_low: "Waga wysoka a impedancja niska",
+	weight_low_and_impedance_high: "Waga nizska a impedancja wysoka"
+};
+var attributes$7 = {
+	"weight: ": "Waga: ",
+	"impedance: ": "Impedancja: ",
+	"height: ": "Wzrost: ",
+	"age: ": "Wiek: ",
+	"gender: ": "Płeć: "
+};
+var attributes_value$7 = {
+	male: "męska",
+	female: "żeńska",
+	unavailable: "niedstępna"
+};
+var body$7 = {
+	bmi: "BMI",
+	bmi_label: "BMI label",
+	visceral_fat: "Tłuszcz brzuszny",
+	body_fat: "Tłuszcz Ciała",
+	protein: "Białko",
+	water: "Woda",
+	muscle_mass: "Masa mięśniowa",
+	bone_mass: "Masa kostna",
+	weight: "Waga",
+	ideal: "Idealna",
+	basal_metabolism: "Metabolizm podstawowy",
+	body_type: "Typ sylwetki",
+	metabolic_age: "Wiek metaboliczny"
+};
+var body_value$7 = {
+	skinny: "Chudy",
+	balanced_skinny: "Umiarkowanie chudy",
+	skinny_muscular: "Chudy muskularny",
+	balanced: "Zrównoważony",
+	balanced_muscular: "Zrównoważony muskularny",
+	lack_exercise: "Mało aktywny",
+	thick_set: "Gruby",
+	obese: "Otyły",
+	overweight: "Nadwaga",
+	underweight: "Niedowaga",
+	normal_or_healthy_weight: "Normalna lub zdrowa waga",
+	slight_overweight: "Lekka nadwaga",
+	moderate_obesity: "Lekka otyłość",
+	severe_obesity: "Średnia otyłość",
+	massive_obesity: "Poważna otyłość",
+	unavailable: "niedostępny"
+};
+var unit$7 = {
+	" years": " lat"
+};
+var error$7 = {
+	missing_entity: "Proszę zdefiniuj encje.",
+	missing_entity_bodymiscale: "Proszę zdefiniuj encję bodymiscale."
+};
+var editor$8 = {
+	entity: "Proszę wybierz konto na wadze (wymagane)!",
+	image: "Obraz tła (opcjonalne)",
+	icons_body: "Ścieżka ikon (np. /local/images/bodyscoreIcon)",
+	model: "Czy masz czujnik impedancji?",
+	model1: "Włącz tę funkcję, aby uzyskać dokładne pomiary składu ciała.",
+	model_aria_label_on: "Włącz impedancję",
+	model_aria_label_off: "Wyłącz impedancję",
+	unit: "Zamień kg na lbs",
+	unit_aria_label_on: "Włącz opcję konwersji",
+	unit_aria_label_off: "Włącz opcję konwersji",
+	theme: "Wybierz rodza motywu.",
+	theme_aria_label_on: "Włącz jasny motyw",
+	theme_aria_label_off: "Włącz ciemny motyw",
+	show_name: "Użyć imienia jako tytułu karty?",
+	show_name_aria_label_on: "Włącz opcję imienia jako tytułu",
+	show_name_aria_label_off: "Wyłącz opcję imienia jako tytułu",
+	show_states: "Wyświetlić stan?",
+	show_states_aria_label_on: "Włącz wyświetlanie stanu",
+	show_states_aria_label_off: "Wyłącz wyświetlanie stanu",
+	show_attributes: "Show personal master data (gora po prawej)?",
+	show_attributes_aria_label_on: "Toggle display attributes on",
+	show_attributes_aria_label_off: "Toggle display attributes off",
+	show_always_details: "Zawsze pokazuj szczegóły",
+	show_always_details_aria_label_on: "Włącz domyślny widok szczegółów",
+	show_always_details_aria_label_off: "Wyłącz domyślny widok szczegółów",
+	show_toolbar: "Pokazać zaawansowane opcje?",
+	show_toolbar_aria_label_on: "Włącz zaawansowane opcje",
+	show_toolbar_aria_label_off: "Wyłącz zaawansowane opcje",
+	show_body: "Offer further measurement details",
+	show_body1: "(lower half - icon chevron down will show those)?",
+	show_body_aria_label_on: "Toggle display body score on",
+	show_body_aria_label_off: "Toggle display body score off",
+	show_buttons: "Allow account switch?",
+	show_buttons_aria_label_on: "Toggle display buttons on",
+	show_buttons_aria_label_off: "Toggle display buttons off",
+	header_options: "1. Opcje nagłówka",
+	body_options: "2. Więcej opcji karty",
+	code_only_note: "UWAGA: Dodatkowe opcje dostępne są tylko poprzez edycje kodu."
+};
+var editor_body$7 = {
+	from: "Od",
+	height: "Wysokość paska",
+	icon_position: "Pozycja ikony",
+	inside: "Wewnątrz",
+	max: "Max",
+	min: "Min",
+	minmax_position: "Pozycja Min/Max",
+	name_position: "Pozycja nazwy",
+	off: "Wyłącz",
+	outside: "Na zewnątrz",
+	target: "Cel",
+	to: "Do",
+	value_position: "Pozycja wartości"
+};
+var color_select$7 = {
+	color: "Kolor",
+	disabled: "Wyłączone",
+	red: "Czerwony",
+	pink: "Różowy",
+	purple: "Fioletowy",
+	"deep-purple": "Ciemnofioletowy",
+	indigo: "Indygo",
+	blue: "Niebieski",
+	"light-blue": "Jasnoniebieski",
+	cyan: "Błękitny",
+	teal: "Nadmorskizielony",
+	green: "Zielony",
+	"light-green": "Jasnozielony",
+	lime: "Limonkowy",
+	yellow: "Żółty",
+	amber: "Bursztynowy",
+	orange: "Pomarańczowy",
+	orangered: "Czerwono-pomarańczowy",
+	"deep-orange": "Ciemnopomarańczowy",
+	brown: "Brązowy",
+	"light-grey": "Jasnoszary",
+	grey: "Szary",
+	"dark-grey": "Ciemnoszary",
+	"blue-grey": "Niebieskoszary",
+	darkgreen: "Ciemnozielony",
+	royalblue: "Królestwo Niebieskie",
+	black: "Czarny",
+	white: "Biały"
+};
+var pl = {
+	common: common$7,
+	states: states$8,
+	attributes: attributes$7,
+	attributes_value: attributes_value$7,
+	body: body$7,
+	body_value: body_value$7,
+	unit: unit$7,
+	error: error$7,
+	editor: editor$8,
+	editor_body: editor_body$7,
+	color_select: color_select$7
+};
+
+var pl$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$7,
+    attributes_value: attributes_value$7,
+    body: body$7,
+    body_value: body_value$7,
+    color_select: color_select$7,
+    common: common$7,
+    default: pl,
+    editor: editor$8,
+    editor_body: editor_body$7,
+    error: error$7,
+    states: states$8,
+    unit: unit$7
+});
+
+var common$6 = {
+	version: "Versão",
+	name: "Bodymiscale Card",
+	description: "O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",
+	not_available: "Bodymiscale não está disponível",
+	toggle_power: "Mostrando/escondendo mais detalhes tal como o kCal,IMC"
+};
+var states$7 = {
+	ok: "MEDIÇÃO: OK",
+	unknown: "ESTATUTO: desconhecido",
+	problem: "Problema",
+	none: "Nenhum",
+	weight_unavailable: "Peso indisponível",
+	impedance_unavailable: "Impedância indisponível",
+	weight_unavailable_and_impedance_unavailable: "Peso e impedância indisponíveis",
+	weight_low: "Peso baixo",
+	impedance_low: "Impedância baixa",
+	weight_low_and_impedance_low: "Peso e impedância baixos",
+	impedance_low_and_weight_low: "Impedância e peso baixos",
+	weight_high: "Peso alto",
+	impedance_high: "Impedância alta",
+	weight_high_and_impedance_high: "Peso e impedância altos",
+	weight_high_and_impedance_low: "Peso alto, impedância baixa",
+	weight_low_and_impedance_high: "Peso baixo, impedância alta"
+};
+var attributes$6 = {
+	"weight: ": "Peso: ",
+	"impedance: ": "Impedância: ",
+	"height: ": "Altura: ",
+	"age: ": "Idade: ",
+	"gender: ": "Gênero: "
+};
+var attributes_value$6 = {
+	male: "masculino",
+	female: "femenino",
+	unavailable: "indisponível"
+};
+var body$6 = {
+	bmi: "IMC",
+	bmi_label: "Etiqueta IMC",
+	visceral_fat: "Gordura visceral",
+	body_fat: "Gordura corporal",
+	protein: "Proteína",
+	water: "Água",
+	muscle_mass: "Massa muscular",
+	bone_mass: "Massa óssea",
+	weight: "Peso",
+	ideal: "Ideal",
+	basal_metabolism: "Metabolismo basal",
+	body_type: "Tipo de corpo",
+	metabolic_age: "Idade metabólica"
+};
+var body_value$6 = {
+	skinny: "Magro",
+	balanced_skinny: "Magro equilibrado",
+	skinny_muscular: "Magro musculoso",
+	balanced: "Equilibrado",
+	balanced_muscular: "Musculoso equilibrado",
+	lack_exercise: "Falta de exercício",
+	thick_set: "Estatura sólida",
+	obese: "Obeso",
+	overweight: "Acima do peso normal",
+	underweight: "Abaixo do peso normal",
+	normal_or_healthy_weight: "Normal",
+	slight_overweight: "Ligeiramente acima do peso",
+	moderate_obesity: "Obesidade moderada",
+	severe_obesity: "Obesidade severa",
+	massive_obesity: "Obesidade maciça",
+	unavailable: "indisponível"
+};
+var unit$6 = {
+	" years": " Anos"
+};
+var error$6 = {
+	missing_entity: "Por favor, defina uma entidade.",
+	missing_entity_bodymiscale: "Por favor, defina uma entidade bodymiscale."
+};
+var editor$7 = {
+	entity: "Por favor, escolha a entidade da balança com o nome da pessoa (obrigatório) !",
+	image: "Imagem de fundo (opcional)",
+	icons_body: "Caminho dos ícones (ex: /local/images/bodyscoreIcon)",
+	model: "Tem um sensor de impedância?",
+	model1: "Ative esta função para medições precisas da composição corporal.",
+	model_aria_label_on: "Ativar impedância",
+	model_aria_label_off: "Desativar impedância",
+	unit: "Converter kg em libras",
+	unit_aria_label_on: "Ativar a conversão kg para lbs",
+	unit_aria_label_off: "Desativar a conversão kg para lbs",
+	show_name: "Mostrar o nome da conta como título ?",
+	show_name_aria_label_on: "Mostrar o nome como título",
+	show_name_aria_label_off: "Esconder o nome como título",
+	show_states: "Mostrar Estado da balança ?",
+	show_states_aria_label_on: "Mostrar o estado da balança",
+	show_states_aria_label_off: "Esconder o estado da balança",
+	show_attributes: "Mostrar os dados do perfil pessoal (canto superior direito) ?",
+	show_attributes_aria_label_on: "Mostrar atributos",
+	show_attributes_aria_label_off: "Esconder atributos",
+	show_always_details: "Mostrar sempre detalhes",
+	show_always_details_aria_label_on: "Alternar a vista de detalhe por defeito em",
+	show_always_details_aria_label_off: "Alternar a vista de detalhe por defeito",
+	show_toolbar: "Mostrar opções avançadas ?",
+	show_toolbar_aria_label_on: "Mostrar a barra de ferramentas",
+	show_toolbar_aria_label_off: "Esconder a barra de ferramentas",
+	show_body: "Mostrar mais detalhes da medição",
+	show_body1: "(parte inferior - clicar na seta para mostrar) ?",
+	show_body_aria_label_on: "Mostrar mais detalhes no corpo",
+	show_body_aria_label_off: "Esconder mais detalhes no corpo",
+	show_buttons: "Permitir a troca de conta ?",
+	show_buttons_aria_label_on: "Mostrar botões das contas",
+	show_buttons_aria_label_off: "Esconder botões das contas",
+	header_options: "1. Opções do cabeçalho do cartão",
+	body_options: "2. Mais opções do corpo do cartão",
+	code_only_note: "CUIDADO: Opções adicionais estão disponíveis apenas no editor de código."
+};
+var editor_body$6 = {
+	from: "De",
+	height: "Altura da barra",
+	icon_position: "Posição do ícone",
+	inside: "Dentro",
+	max: "Máximo",
+	min: "Mínimo",
+	minmax_position: "Posição Min/Max",
+	name_position: "Posição do nome",
+	off: "Desligado",
+	outside: "Fora",
+	target: "Alvo",
+	to: "Para",
+	value_position: "Posição do valor"
+};
+var color_select$6 = {
+	color: "Cor",
+	disabled: "Desativado",
+	red: "Vermelho",
+	pink: "Rosa",
+	purple: "Roxo",
+	"deep-purple": "Roxo escuro",
+	indigo: "Índigo",
+	blue: "Azul",
+	"light-blue": "Azul claro",
+	cyan: "Ciano",
+	teal: "Azul esverdeado",
+	green: "Verde",
+	"light-green": "Verde claro",
+	lime: "Lima",
+	yellow: "Amarelo",
+	amber: "Âmbar",
+	orange: "Laranja",
+	orangered: "Laranja avermelhado",
+	"deep-orange": "Laranja escuro",
+	brown: "Marrom",
+	"light-grey": "Cinza claro",
+	grey: "Cinza",
+	"dark-grey": "Cinza escuro",
+	"blue-grey": "Cinza azulado",
+	darkgreen: "Verde escuro",
+	royalblue: "Azul real",
+	black: "Preto",
+	white: "Branco"
+};
+var pt = {
+	common: common$6,
+	states: states$7,
+	attributes: attributes$6,
+	attributes_value: attributes_value$6,
+	body: body$6,
+	body_value: body_value$6,
+	unit: unit$6,
+	error: error$6,
+	editor: editor$7,
+	editor_body: editor_body$6,
+	color_select: color_select$6
+};
+
+var pt$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$6,
+    attributes_value: attributes_value$6,
+    body: body$6,
+    body_value: body_value$6,
+    color_select: color_select$6,
+    common: common$6,
+    default: pt,
+    editor: editor$7,
+    editor_body: editor_body$6,
+    error: error$6,
+    states: states$7,
+    unit: unit$6
+});
+
+var common$5 = {
+	version: "Versão",
+	name: "Bodymiscale Card",
+	description: "O cartão bodymiscale mostra-lhe o estado do seu corpo em relação ao peso.",
+	not_available: "Bodymiscale não é avaialável",
+	toggle_power: "Mais detalhes como o kCal show / hide da BMI"
+};
+var states$6 = {
+	ok: "MEDIÇÃO: OK",
+	unknown: "ESTATUTO: desconhecido",
+	problem: "Problema",
+	none: "Nenhum",
+	weight_unavailable: "Peso indisponível",
+	impedance_unavailable: "Impedance indisponível",
+	weight_unavailable_and_impedance_unavailable: "Peso e impedância indisponíveis",
+	weight_low: "Peso baixo",
+	impedance_low: "Impedância baixa",
+	weight_low_and_impedance_low: "Peso e impedância baixos",
+	impedance_low_and_weight_low: "Impedância e peso baixos",
+	weight_high: "Peso alto",
+	impedance_high: "Impedância alta",
+	weight_high_and_impedance_high: "Peso e impedância altos",
+	weight_high_and_impedance_low: "Peso alto, impedância baixa",
+	weight_low_and_impedance_high: "Peso baixo, impedância alta"
+};
+var attributes$5 = {
+	"weight: ": "Peso: ",
+	"impedance: ": "Impedance: ",
+	"height: ": "Cintura: ",
+	"age: ": "Idade: ",
+	"gender: ": "Gênero: "
+};
+var attributes_value$5 = {
+	male: "macho",
+	female: "fêmea",
+	unavailable: "indisponível"
+};
+var body$5 = {
+	bmi: "IMC",
+	bmi_label: "Etiqueta IMC",
+	visceral_fat: "Gordura visceral",
+	body_fat: "Gordura corporal",
+	protein: "Proteína",
+	water: "Água",
+	muscle_mass: "Massa muscular",
+	bone_mass: "Massa óssea",
+	weight: "Peso",
+	ideal: "Ideal",
+	basal_metabolism: "Metabolismo basal",
+	body_type: "Tipo de corpo",
+	metabolic_age: "Idade metabólica"
+};
+var body_value$5 = {
+	skinny: "Magro",
+	balanced_skinny: "Magro equilibrado",
+	skinny_muscular: "Magro musculoso",
+	balanced: "Equilibrado",
+	balanced_muscular: "Musculoso equilibrado",
+	lack_exercise: "Falta de exercício",
+	thick_set: "Grosso-conjunto",
+	obese: "Obeso",
+	overweight: "Sobrepeso",
+	underweight: "Underweight",
+	normal_or_healthy_weight: "Normal",
+	slight_overweight: "Ligeiro acima do peso",
+	moderate_obesity: "Obesidade moderada",
+	severe_obesity: "Obesidade severa",
+	massive_obesity: "Obesidade maciça",
+	unavailable: "indisponível"
+};
+var unit$5 = {
+	" years": " Anos"
+};
+var error$5 = {
+	missing_entity: "Por favor, defina uma entidade.",
+	missing_entity_bodymiscale: "Por favor, defina uma entidade bodymiscale."
+};
+var editor$6 = {
+	entity: "Por favor, escolha uma conta na escala (obrigatório) !",
+	image: "Imagem de fundo (opcional)",
+	icons_body: "Caminho dos ícones (ex: /local/images/bodyscoreIcon)",
+	model: "Você tem um sensor de impedância?",
+	model1: "Ative esta função para medições precisas da composição corporal.",
+	model_aria_label_on: "Ativar impedância",
+	model_aria_label_off: "Desativar impedância",
+	unit: "Converter kg em libras",
+	unit_aria_label_on: "Ativar a conversão",
+	unit_aria_label_off: "Desativar a conversão",
+	show_name: "Mostrar o nome da conta como título ?",
+	show_name_aria_label_on: "Alternar o nome da exibição",
+	show_name_aria_label_off: "Alternar o nome da exibição",
+	show_states: "Mostrar Estado ?",
+	show_states_aria_label_on: "Alternar estado de exibição ligado",
+	show_states_aria_label_off: "Alternar estado de exibição fora",
+	show_attributes: "Mostrar dados mestres pessoais (canto superior direito) ?",
+	show_attributes_aria_label_on: "Alternar atributos de exibição em",
+	show_attributes_aria_label_off: "Alternar atributos de exibição fora",
+	show_always_details: "Mostrar sempre detalhes",
+	show_always_details_aria_label_on: "Alternar a visualização de detalhes padrão em",
+	show_always_details_aria_label_off: "Alternar a visualização de detalhes padrão fora",
+	show_toolbar: "Mostrar opções avançadas ?",
+	show_toolbar_aria_label_on: "Alternar a barra de ferramentas do display em",
+	show_toolbar_aria_label_off: "Alternar barra de ferramentas de exibição fora",
+	show_body: "Oferecer mais detalhes de medição",
+	show_body1: "(parte inferior - ícone chevron down mostrará aqueles) ?",
+	show_body_aria_label_on: "Alternar a pontuação do corpo do display em",
+	show_body_aria_label_off: "Alternar a pontuação do corpo do display fora",
+	show_buttons: "Permitir a troca de conta ?",
+	show_buttons_aria_label_on: "Alternar botões de exibição",
+	show_buttons_aria_label_off: "Alternar botões de exibição desligados",
+	header_options: "1. Opções do cabeçalho do cartão",
+	body_options: "2. Mais opções de placas",
+	code_only_note: "CUIDADO: Opções adicionais estão disponíveis apenas no editor de código."
+};
+var editor_body$5 = {
+	from: "De",
+	height: "Altura da barra",
+	icon_position: "Posição do ícone",
+	inside: "Dentro",
+	max: "Máximo",
+	min: "Mínimo",
+	minmax_position: "Posição Min/Max",
+	name_position: "Posição do nome",
+	off: "Desligado",
+	outside: "Fora",
+	target: "Alvo",
+	to: "Para",
+	value_position: "Posição do valor"
+};
+var color_select$5 = {
+	color: "Cor",
+	disabled: "Desativado",
+	red: "Vermelho",
+	pink: "Rosa",
+	purple: "Roxo",
+	"deep-purple": "Roxo escuro",
+	indigo: "Índigo",
+	blue: "Azul",
+	"light-blue": "Azul claro",
+	cyan: "Ciano",
+	teal: "Azul esverdeado",
+	green: "Verde",
+	"light-green": "Verde claro",
+	lime: "Lima",
+	yellow: "Amarelo",
+	amber: "Âmbar",
+	orange: "Laranja",
+	orangered: "Laranja avermelhado",
+	"deep-orange": "Laranja escuro",
+	brown: "Marrom",
+	"light-grey": "Cinza claro",
+	grey: "Cinza",
+	"dark-grey": "Cinza escuro",
+	"blue-grey": "Cinza azulado",
+	darkgreen: "Verde escuro",
+	royalblue: "Azul real",
+	black: "Preto",
+	white: "Branco"
+};
+var ptBR = {
+	common: common$5,
+	states: states$6,
+	attributes: attributes$5,
+	attributes_value: attributes_value$5,
+	body: body$5,
+	body_value: body_value$5,
+	unit: unit$5,
+	error: error$5,
+	editor: editor$6,
+	editor_body: editor_body$5,
+	color_select: color_select$5
+};
+
+var pt_BR = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$5,
+    attributes_value: attributes_value$5,
+    body: body$5,
+    body_value: body_value$5,
+    color_select: color_select$5,
+    common: common$5,
+    default: ptBR,
+    editor: editor$6,
+    editor_body: editor_body$5,
+    error: error$5,
+    states: states$6,
+    unit: unit$5
+});
+
+var common$4 = {
+	version: "Versiune",
+	name: "Bodymiscale Card",
+	description: "Cardul bodymiscale îți arată starea ta în funcție de greutate/corespunzătoare corpului.",
+	not_available: "Bodymiscale nu este disponibil",
+	toggle_power: "Mai multe detalii precum BMI kCal arată/ascunde"
+};
+var states$5 = {
+	ok: "MĂSURARE: OK",
+	unknown: "Stare: unknown",
+	problem: "Problemă",
+	none: "Nimic",
+	weight_unavailable: "Greutate indisponibilă",
+	impedance_unavailable: "Impedanță indisponibilă",
+	weight_unavailable_and_impedance_unavailable: "Greutate și impedanță indisponibile",
+	weight_low: "Greutate redusă",
+	impedance_low: "Impedanță scăzută",
+	weight_low_and_impedance_low: "Greutate și impedanță scăzute",
+	impedance_low_and_weight_low: "Impedanță și greutate scăzute",
+	weight_high: "Greutate mare",
+	impedance_high: "Impedanță mare",
+	weight_high_and_impedance_high: "Greutate și impedanță ridicate",
+	weight_high_and_impedance_low: "Greutate mare, impedanță scăzută",
+	weight_low_and_impedance_high: "Greutate redusă, impedanță ridicată"
+};
+var attributes$4 = {
+	"weight: ": "Greutate: ",
+	"impedance: ": "Impedanță: ",
+	"height: ": "Înălţime: ",
+	"age: ": "Vârstă: ",
+	"gender: ": "Gen: "
+};
+var attributes_value$4 = {
+	male: "masculin",
+	female: "feminin",
+	unavailable: "indisponibil"
+};
+var body$4 = {
+	bmi: "IMC",
+	bmi_label: "Eticheta IMC",
+	visceral_fat: "Grasime viscerala",
+	body_fat: "Grăsime corporală",
+	protein: "Proteină",
+	water: "Apă",
+	muscle_mass: "Masă musculară",
+	bone_mass: "Masă osoasă",
+	weight: "Greutate",
+	ideal: "Ideal",
+	basal_metabolism: "Metabolismul bazal",
+	body_type: "Tipul corpului",
+	metabolic_age: "Vârsta metabolică"
+};
+var body_value$4 = {
+	skinny: "Slab",
+	balanced_skinny: "Slab-echilibrat",
+	skinny_muscular: "Slab-muscular",
+	balanced: "Echilibrat",
+	balanced_muscular: "Balanced-muscular",
+	lack_exercise: "Lipsa-exercițiu",
+	thick_set: "Îndesat",
+	obese: "Obez",
+	overweight: "Supraponderal",
+	underweight: "Subponderal",
+	normal_or_healthy_weight: "Greutate normală sau sănătoasă",
+	slight_overweight: "Ușor supraponderal",
+	moderate_obesity: "Obezitate moderată",
+	severe_obesity: "Obezitate severă",
+	massive_obesity: "Obezitate masivă",
+	unavailable: "indisponibil"
+};
+var unit$4 = {
+	" years": " ani"
+};
+var error$4 = {
+	missing_entity: "Vă rugăm să definiți o entitate.",
+	missing_entity_bodymiscale: "Definiți o entitate bodymiscale."
+};
+var editor$5 = {
+	entity: "Vă rugăm să selectați un cont de cântar (obligatoriu)!",
+	image: "Imagine de fundal (opțional)",
+	icons_body: "Calea pictogramelor (ex: /local/images/bodyscoreIcon)",
+	model: "Aveți un senzor de impedanță?",
+	model1: "Activați această funcție pentru măsurători precise ale compoziției corporale.",
+	model_aria_label_on: "Activare impedanță",
+	model_aria_label_off: "Dezactivare impedanță",
+	unit: "Convertiți kg în lbs",
+	unit_aria_label_on: "Activați conversia",
+	unit_aria_label_off: "Dezactivați conversia",
+	theme: "Configurați tema pe care o utilizați.",
+	theme_aria_label_on: "Activează lumina temei",
+	theme_aria_label_off: "Dezactivați tema întunecată",
+	show_name: "Afișați numele contului ca titlu?",
+	show_name_aria_label_on: "Activează numele afișat",
+	show_name_aria_label_off: "Dezactivați numele afișat",
+	show_states: "Arată starea?",
+	show_states_aria_label_on: "Comutați starea afișajului",
+	show_states_aria_label_off: "Dezactivați starea afișajului",
+	show_attributes: "Afișați datele de bază personale (dreapta sus)?",
+	show_attributes_aria_label_on: "Activați/dezactivați atributele de afișare",
+	show_attributes_aria_label_off: "Dezactivați atributele de afișare",
+	show_always_details: "Afișați întotdeauna detalii",
+	show_always_details_aria_label_on: "Activați vizualizarea implicită a detaliilor",
+	show_always_details_aria_label_off: "Dezactivați vizualizarea implicită a detaliilor",
+	show_toolbar: "Arată opțiuni avansate?",
+	show_toolbar_aria_label_on: "Comutați afișarea opțiunilor avansate",
+	show_toolbar_aria_label_off: "Dezactivați afișarea opțiunilor avansate",
+	show_body: "Oferiți detalii suplimentare de măsurare",
+	show_body1: "(Jumătatea inferioară - pictograma chevron în jos le va arăta)?",
+	show_body_aria_label_on: "Comutați afișarea scorului corporal",
+	show_body_aria_label_off: "Dezactivați scorul pentru corpul afișat",
+	show_buttons: "Permiteți schimbarea contului?",
+	show_buttons_aria_label_on: "Activați butoanele afișajului",
+	show_buttons_aria_label_off: "Dezactivați butoanele de afișare",
+	header_options: "1. Opțiuni pentru antetul cardului",
+	body_options: "2. Mai multe opțiuni de card",
+	code_only_note: "ATENŢIE: Opțiuni suplimentare sunt disponibile numai în editorul de cod."
+};
+var editor_body$4 = {
+	from: "De la",
+	height: "Înălțimea barei",
+	icon_position: "Poziția pictogramei",
+	inside: "Interior",
+	max: "Maxim",
+	min: "Minim",
+	minmax_position: "Poziția Min/Max",
+	name_position: "Poziția numelui",
+	off: "Oprit",
+	outside: "Exterior",
+	target: "Țintă",
+	to: "La",
+	value_position: "Poziția valorii"
+};
+var color_select$4 = {
+	color: "Culoare",
+	disabled: "Dezactivat",
+	red: "Roșu",
+	pink: "Roz",
+	purple: "Violet",
+	"deep-purple": "Violet închis",
+	indigo: "Indigo",
+	blue: "Albastru",
+	"light-blue": "Albastru deschis",
+	cyan: "Cian",
+	teal: "Albastru-verde",
+	green: "Verde",
+	"light-green": "Verde deschis",
+	lime: "Lămâie",
+	yellow: "Galben",
+	amber: "Chihlimbar",
+	orange: "Portocaliu",
+	orangered: "Portocaliu-roșu",
+	"deep-orange": "Portocaliu închis",
+	brown: "Maro",
+	"light-grey": "Gri deschis",
+	grey: "Gri",
+	"dark-grey": "Gri închis",
+	"blue-grey": "Gri-albastru",
+	darkgreen: "Verde închis",
+	royalblue: "Albastru regal",
+	black: "Negru",
+	white: "Alb"
+};
+var ro = {
+	common: common$4,
+	states: states$5,
+	attributes: attributes$4,
+	attributes_value: attributes_value$4,
+	body: body$4,
+	body_value: body_value$4,
+	unit: unit$4,
+	error: error$4,
+	editor: editor$5,
+	editor_body: editor_body$4,
+	color_select: color_select$4
+};
+
+var ro$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$4,
+    attributes_value: attributes_value$4,
+    body: body$4,
+    body_value: body_value$4,
+    color_select: color_select$4,
+    common: common$4,
+    default: ro,
+    editor: editor$5,
+    editor_body: editor_body$4,
+    error: error$4,
+    states: states$5,
+    unit: unit$4
+});
+
+var common$3 = {
+	version: "Версия",
+	name: "Карточка Bodymiscale",
+	description: "Карточка BodyMiScale отображает показатели тела, рассчитанные на основе результатов измерения веса и биоимпеданса.",
+	not_available: "Компонент Bodymiscale не доступен",
+	toggle_power: "Показать/скрыть дополнительные сведения о BMI"
+};
+var states$4 = {
+	ok: "Измерение: OK",
+	unknown: "Состояние: неизвестно",
+	problem: "Проблема",
+	none: "Нет",
+	weight_unavailable: "Вес недоступен",
+	impedance_unavailable: "Биоимпеданс недоступен",
+	weight_unavailable_and_impedance_unavailable: "Вес и импеданс недоступны",
+	weight_low: "Низкий вес",
+	impedance_low: "Низкий биоимпеданс",
+	weight_low_and_impedance_low: "Низкий вес и импеданс",
+	impedance_low_and_weight_low: "Низкий импеданс и вес",
+	weight_high: "Высокий вес",
+	impedance_high: "Высокий биоимпеданс",
+	weight_high_and_impedance_high: "Высокий вес и импеданс",
+	weight_high_and_impedance_low: "Высокий вес, низкий биоимпеданс",
+	weight_low_and_impedance_high: "Низкий вес, высокий биоимпеданс"
+};
+var attributes$3 = {
+	"weight: ": "Вес: ",
+	"impedance: ": "Импеданс: ",
+	"height: ": "Рост: ",
+	"age: ": "Возраст: ",
+	"gender: ": "Пол: "
+};
+var attributes_value$3 = {
+	male: "мужской",
+	female: "женский",
+	unavailable: "недоступен"
+};
+var body$3 = {
+	bmi: "Индекс BMI",
+	bmi_label: "Интерпретация BMI",
+	visceral_fat: "Висцеральный жир",
+	body_fat: "Жировая ткань",
+	protein: "Белки",
+	water: "Вода",
+	muscle_mass: "Мышечная масса",
+	bone_mass: "Костная масса",
+	weight: "Вес",
+	ideal: "Идеальный вес",
+	basal_metabolism: "Базальный метаболизм",
+	body_type: "Тип тела",
+	metabolic_age: "Метаболический возраст"
+};
+var body_value$3 = {
+	skinny: "Тощий",
+	balanced_skinny: "Худощавый",
+	skinny_muscular: "Подтянуто-мускулистый",
+	balanced: "Оптимальный",
+	balanced_muscular: "Мускулистый",
+	lack_exercise: "Недостаток упражнений",
+	thick_set: "Коренастый",
+	obese: "Ожирение",
+	overweight: "Лишний вес",
+	underweight: "Недостаточный вес",
+	normal_or_healthy_weight: "Нормальный вес",
+	slight_overweight: "Избыточный вес",
+	moderate_obesity: "Ожирение 1й степени",
+	severe_obesity: "Ожирение 2й степени",
+	massive_obesity: "Ожирение 3й степени",
+	unavailable: "недоступен"
+};
+var unit$3 = {
+	" years": " года(лет)"
+};
+var error$3 = {
+	missing_entity: "Определите сущность.",
+	missing_entity_bodymiscale: "Определите сущность BodyMiScale."
+};
+var editor$4 = {
+	entity: "Сущность BodyMiScale (обязательно)",
+	image: "Фоновое изображение (опционально)",
+	icons_body: "Путь к иконкам (например: /local/images/bodyscoreIcon)",
+	model: "У вас есть датчик импеданса?",
+	model1: "Включите эту функцию для точных измерений состава тела.",
+	model_aria_label_on: "Включить импеданс",
+	model_aria_label_off: "Выключить импеданс",
+	unit: "Преобразование кг в фунты",
+	unit_aria_label_on: "Преобразовать кг в фунты",
+	unit_aria_label_off: "Не преобразовывать кг в фунты",
+	show_name: "Отображение имени пользователя",
+	show_name_aria_label_on: "Отображать имя пользователя",
+	show_name_aria_label_off: "Не отображать имя пользователя",
+	show_states: "Отображение состояния",
+	show_states_aria_label_on: "Отображать состояние",
+	show_states_aria_label_off: "Не отображать состояние",
+	show_attributes: "Отображение персональных данных",
+	show_attributes_aria_label_on: "Отображать персональные данные",
+	show_attributes_aria_label_off: "Не отображать персональные данные",
+	show_always_details: "Всегда показывать детали",
+	show_always_details_aria_label_on: "Постоянное отображение деталей",
+	show_always_details_aria_label_off: "Не отображайте данные на постоянной основе",
+	show_toolbar: "Отображение панели дополнительных параметров",
+	show_toolbar_aria_label_on: "Отображать панель дополнительных параметров",
+	show_toolbar_aria_label_off: "Не отображать панель дополнительных параметров",
+	show_body: "Отображение дополнительных параметров",
+	show_body1: "(по нажатию кнопки со стрелкой вниз)",
+	show_body_aria_label_on: "Отображать дополнительные параметры",
+	show_body_aria_label_off: "Не отображать дополнительные параметры",
+	show_buttons: "Переключение аккаунтов",
+	show_buttons_aria_label_on: "Отображать кнопки",
+	show_buttons_aria_label_off: "Не отображать кнопки",
+	header_options: "1. Настройки заголовка карточки",
+	body_options: "2. Дополнительные настройки карточки",
+	code_only_note: "ВНИМАНИЕ: Дополнительные настройки отображаются только в редакторе кода."
+};
+var editor_body$3 = {
+	from: "От",
+	height: "Высота панели",
+	icon_position: "Позиция иконки",
+	inside: "Внутри",
+	max: "Макс",
+	min: "Мин",
+	minmax_position: "Позиция Min/Max",
+	name_position: "Позиция имени",
+	off: "Выключено",
+	outside: "Снаружи",
+	target: "Цель",
+	to: "К",
+	value_position: "Позиция значения"
+};
+var color_select$3 = {
+	color: "Цвет",
+	disabled: "Отключено",
+	red: "Красный",
+	pink: "Розовый",
+	purple: "Фиолетовый",
+	"deep-purple": "Темно-фиолетовый",
+	indigo: "Индиго",
+	blue: "Синий",
+	"light-blue": "Голубой",
+	cyan: "Циан",
+	teal: "Бирюзовый",
+	green: "Зеленый",
+	"light-green": "Светло-зеленый",
+	lime: "Лайм",
+	yellow: "Желтый",
+	amber: "Янтарный",
+	orange: "Оранжевый",
+	orangered: "Красно-оранжевый",
+	"deep-orange": "Темно-оранжевый",
+	brown: "Коричневый",
+	"light-grey": "Светло-серый",
+	grey: "Серый",
+	"dark-grey": "Темно-серый",
+	"blue-grey": "Серый синий",
+	darkgreen: "Темно-зеленый",
+	royalblue: "Королевский синий",
+	black: "Черный",
+	white: "Белый"
+};
+var ru = {
+	common: common$3,
+	states: states$4,
+	attributes: attributes$3,
+	attributes_value: attributes_value$3,
+	body: body$3,
+	body_value: body_value$3,
+	unit: unit$3,
+	error: error$3,
+	editor: editor$4,
+	editor_body: editor_body$3,
+	color_select: color_select$3
+};
+
+var ru$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$3,
+    attributes_value: attributes_value$3,
+    body: body$3,
+    body_value: body_value$3,
+    color_select: color_select$3,
+    common: common$3,
+    default: ru,
+    editor: editor$4,
+    editor_body: editor_body$3,
+    error: error$3,
+    states: states$4,
+    unit: unit$3
+});
+
+var common$2 = {
+	version: "Version",
+	name: "Bodymiscale Card",
+	description: "The bodymiscale card shows you your weight wise / related body status.",
+	not_available: "Bodymiscale is not available",
+	toggle_power: "More details like BMI kCal show / hide"
+};
+var states$3 = {
+	ok: "MEASUREMENT: OK",
+	unknown: "STATE: unknown",
+	problem: "Problem",
+	none: "None",
+	weight_unavailable: "Weight unavailable",
+	impedance_unavailable: "Impedance unavailable",
+	weight_unavailable_and_impedance_unavailable: "Weight and impedance unavailable",
+	weight_low: "Weight low",
+	impedance_low: "Impedance low",
+	weight_low_and_impedance_low: "Weight and impedance low",
+	impedance_low_and_weight_low: "Impedance and weight low",
+	weight_high: "Weight high",
+	impedance_high: "Impedance high",
+	weight_high_and_impedance_high: "Weight and impedance high",
+	weight_high_and_impedance_low: "Weight high, impedance low",
+	weight_low_and_impedance_high: "Weight low, impedance high"
+};
+var attributes$2 = {
+	"weight: ": "Weight: ",
+	"impedance: ": "Impedance: ",
+	"height: ": "Height: ",
+	"age: ": "Age: ",
+	"gender: ": "Gender: "
+};
+var attributes_value$2 = {
+	male: "male",
+	female: "female",
+	unavailable: "unavailable"
+};
+var body$2 = {
+	bmi: "BMI",
+	bmi_label: "BMI label",
+	visceral_fat: "Mỡ nội tạng",
+	body_fat: "Mỡ cơ thể",
+	protein: "Chất đạm",
+	water: "Nước",
+	muscle_mass: "Khối lượng cơ",
+	bone_mass: "Khối lượng xương",
+	weight: "Cân nặng",
+	ideal: "Lý tưởng",
+	basal_metabolism: "Trao đổi chất cơ bản",
+	body_type: "Kiểu cơ thể",
+	metabolic_age: "Tuổi chuyển hóa"
+};
+var body_value$2 = {
+	skinny: "Gầy",
+	balanced_skinny: "Cân đối - gầy",
+	skinny_muscular: "Gầy - cơ bắp",
+	balanced: "Cân bằng",
+	balanced_muscular: "Cơ bắp cân bằng",
+	lack_exercise: "Thiếu tập thể dục",
+	thick_set: "Thick-set",
+	obese: "Béo phì",
+	overweight: "Thừa cân",
+	underweight: "Thiếu cân",
+	normal_or_healthy_weight: "Cân nặng bình thường hoặc khỏe mạnh",
+	slight_overweight: "Hơi thừa cân",
+	moderate_obesity: "Béo phì vừa phải",
+	severe_obesity: "Béo phì nghiêm trọng",
+	massive_obesity: "Massive obesity",
+	unavailable: "Không có sẵn"
+};
+var unit$2 = {
+	" years": " years"
+};
+var error$2 = {
+	missing_entity: "Please define an entity.",
+	missing_entity_bodymiscale: "Please define a bodymiscale entity."
+};
+var editor$3 = {
+	entity: "Please select an account on the scale (required)!",
+	image: "Background image (optional)",
+	icons_body: "Đường dẫn biểu tượng (ví dụ: /local/images/bodyscoreIcon)",
+	model: "Do you have an impedance sensor?",
+	model1: "Enable this feature for accurate body composition measurements.",
+	model_aria_label_on: "Enable impedance",
+	model_aria_label_off: "Disable impedance",
+	unit: "Convert kg to lbs",
+	unit_aria_label_on: "Toggle the conversion on",
+	unit_aria_label_off: "Toggle the conversion off",
+	theme: "Configure the theme you use.",
+	theme_aria_label_on: "Toggle theme light on",
+	theme_aria_label_off: "Toggle theme dark off",
+	show_name: "Show the name of the account as title?",
+	show_name_aria_label_on: "Toggle display name on",
+	show_name_aria_label_off: "Toggle display name off",
+	show_states: "Show State?",
+	show_states_aria_label_on: "Toggle display state on",
+	show_states_aria_label_off: "Toggle display state off",
+	show_attributes: "Show personal master data (top right)?",
+	show_attributes_aria_label_on: "Toggle display attributes on",
+	show_attributes_aria_label_off: "Toggle display attributes off",
+	show_always_details: "Always show details",
+	show_always_details_aria_label_on: "Toggle default detail view on",
+	show_always_details_aria_label_off: "Toggle default detail view off",
+	show_toolbar: "Show advanced options?",
+	show_toolbar_aria_label_on: "Toggle display advanced options on",
+	show_toolbar_aria_label_off: "Toggle display advanced options off",
+	show_body: "Offer further measurement details",
+	show_body1: "(lower half - icon chevron down will show those)?",
+	show_body_aria_label_on: "Toggle display body score on",
+	show_body_aria_label_off: "Toggle display body score off",
+	show_buttons: "Allow account switch?",
+	show_buttons_aria_label_on: "Toggle display buttons on",
+	show_buttons_aria_label_off: "Toggle display buttons off",
+	header_options: "1. Card header options",
+	body_options: "2. More card options",
+	code_only_note: "ATTENTION: Additional options are only available in the code editor."
+};
+var editor_body$2 = {
+	from: "Từ",
+	height: "Chiều cao thanh",
+	icon_position: "Vị trí biểu tượng",
+	inside: "Bên trong",
+	max: "Tối đa",
+	min: "Tối thiểu",
+	minmax_position: "Vị trí Min/Max",
+	name_position: "Vị trí tên",
+	off: "Tắt",
+	outside: "Bên ngoài",
+	target: "Mục tiêu",
+	to: "Đến",
+	value_position: "Vị trí giá trị"
+};
+var color_select$2 = {
+	color: "Màu sắc",
+	disabled: "Tắt",
+	red: "Đỏ",
+	pink: "Hồng",
+	purple: "Tím",
+	"deep-purple": "Tím đậm",
+	indigo: "Chàm",
+	blue: "Xanh dương",
+	"light-blue": "Xanh nhạt",
+	cyan: "Cyan",
+	teal: "Lục lam",
+	green: "Xanh lá",
+	"light-green": "Xanh lá nhạt",
+	lime: "Chanh",
+	yellow: "Vàng",
+	amber: "Hổ phách",
+	orange: "Cam",
+	orangered: "Cam đỏ",
+	"deep-orange": "Cam đậm",
+	brown: "Nâu",
+	"light-grey": "Xám nhạt",
+	grey: "Xám",
+	"dark-grey": "Xám đậm",
+	"blue-grey": "Xám xanh dương",
+	darkgreen: "Xanh lá đậm",
+	royalblue: "Xanh dương hoàng gia",
+	black: "Đen",
+	white: "Trắng"
+};
+var vi = {
+	common: common$2,
+	states: states$3,
+	attributes: attributes$2,
+	attributes_value: attributes_value$2,
+	body: body$2,
+	body_value: body_value$2,
+	unit: unit$2,
+	error: error$2,
+	editor: editor$3,
+	editor_body: editor_body$2,
+	color_select: color_select$2
+};
+
+var vi$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$2,
+    attributes_value: attributes_value$2,
+    body: body$2,
+    body_value: body_value$2,
+    color_select: color_select$2,
+    common: common$2,
+    default: vi,
+    editor: editor$3,
+    editor_body: editor_body$2,
+    error: error$2,
+    states: states$3,
+    unit: unit$2
+});
+
+var common$1 = {
+	version: "版本",
+	name: "米家体脂称卡片",
+	description: "米家体脂称卡片会显示你的体重以及相关身体状态",
+	not_available: "Bodymiscale 不可用",
+	toggle_power: "显示/隐藏更多详情,例如: BMI, kCal"
+};
+var states$2 = {
+	ok: "测量: OK",
+	unknown: "状态: 未知",
+	problem: "故障",
+	none: "无",
+	weight_unavailable: "体重不可用",
+	impedance_unavailable: "阻抗不可用",
+	weight_unavailable_and_impedance_unavailable: "体重和阻抗均不可用",
+	weight_low: "体重过轻",
+	impedance_low: "阻抗低",
+	weight_low_and_impedance_low: "体重和阻抗均偏低",
+	impedance_low_and_weight_low: "阻抗和体重均偏低",
+	weight_high: "体重过重",
+	impedance_high: "阻抗高",
+	weight_high_and_impedance_high: "体重和阻抗均偏高",
+	weight_high_and_impedance_low: "体重过重, 阻抗低",
+	weight_low_and_impedance_high: "体重过轻, 阻抗高"
+};
+var attributes$1 = {
+	"weight: ": "重量: ",
+	"impedance: ": "阻抗: ",
+	"height: ": "身高: ",
+	"age: ": "年龄: ",
+	"gender: ": "性别: "
+};
+var attributes_value$1 = {
+	male: "男",
+	female: "女",
+	unavailable: "不可用"
+};
+var body$1 = {
+	bmi: "BMI",
+	bmi_label: "BMI 标签",
+	visceral_fat: "内脏脂肪",
+	body_fat: "体脂",
+	protein: "蛋白质",
+	water: "水分",
+	muscle_mass: "肌肉量",
+	bone_mass: "骨量",
+	weight: "体重",
+	ideal: "理想体重",
+	basal_metabolism: "基本代谢",
+	body_type: "身体类型",
+	metabolic_age: "代谢年龄"
+};
+var body_value$1 = {
+	skinny: "偏瘦",
+	balanced_skinny: "健美型",
+	skinny_muscular: "偏瘦肌肉",
+	balanced: "标准型",
+	balanced_muscular: "标准肌肉",
+	lack_exercise: "缺乏运动",
+	thick_set: "结实型偏胖",
+	obese: "偏胖型",
+	overweight: "肥胖型",
+	underweight: "过轻",
+	normal_or_healthy_weight: "正常或健康",
+	slight_overweight: "轻微超重",
+	moderate_obesity: "中度肥胖",
+	severe_obesity: "过度肥胖",
+	massive_obesity: "严重肥胖",
+	unavailable: "不可用"
+};
+var unit$1 = {
+	" years": " 岁"
+};
+var error$1 = {
+	missing_entity: "Please define an entity.",
+	missing_entity_bodymiscale: "Please define a bodymiscale entity."
+};
+var editor$2 = {
+	entity: "Please select an account on the scale (required) !",
+	image: "Background image (optional)",
+	icons_body: "图标路径 (例如：/local/images/bodyscoreIcon)",
+	model: "Do you have an impedance sensor?",
+	model1: "Enable this feature for accurate body composition measurements.",
+	model_aria_label_on: "Enable impedance",
+	model_aria_label_off: "Disable impedance",
+	unit: "Convert kg to lbs",
+	unit_aria_label_on: "Toggle the conversion on",
+	unit_aria_label_off: "Toggle the conversion off",
+	show_name: "Show the name of the account as title ?",
+	show_name_aria_label_on: "Toggle display name on",
+	show_name_aria_label_off: "Toggle display name off",
+	show_states: "Show State ?",
+	show_states_aria_label_on: "Toggle display state on",
+	show_states_aria_label_off: "Toggle display state off",
+	show_attributes: "Show personal master data (top right) ?",
+	show_attributes_aria_label_on: "Toggle display attributes on",
+	show_attributes_aria_label_off: "Toggle display attributes off",
+	show_always_details: "Always show details",
+	show_always_details_aria_label_on: "Toggle default detail view on",
+	show_always_details_aria_label_off: "Toggle default detail view off",
+	show_toolbar: "Show advanced options ?",
+	show_toolbar_aria_label_on: "Toggle display advanced options on",
+	show_toolbar_aria_label_off: "Toggle display advanced options off",
+	show_body: "Offer further measurement details",
+	show_body1: "(lower half - icon chevron down will show those) ?",
+	show_body_aria_label_on: "Toggle display body score on",
+	show_body_aria_label_off: "Toggle display body score off",
+	show_buttons: "Allow account switch ?",
+	show_buttons_aria_label_on: "Toggle display buttons on",
+	show_buttons_aria_label_off: "Toggle display buttons off",
+	header_options: "1. Card header options",
+	body_options: "2. More card options",
+	code_only_note: "ATTENTION: Additional options are only available in the code editor."
+};
+var editor_body$1 = {
+	from: "从",
+	height: "条形高度",
+	icon_position: "图标位置",
+	inside: "内部",
+	max: "最大",
+	min: "最小",
+	minmax_position: "最小/最大位置",
+	name_position: "名称位置",
+	off: "关闭",
+	outside: "外部",
+	target: "目标",
+	to: "到",
+	value_position: "值的位置"
+};
+var color_select$1 = {
+	color: "颜色",
+	disabled: "禁用",
+	red: "红色",
+	pink: "粉色",
+	purple: "紫色",
+	"deep-purple": "深紫色",
+	indigo: "靛蓝",
+	blue: "蓝色",
+	"light-blue": "浅蓝色",
+	cyan: "青色",
+	teal: "蓝绿色",
+	green: "绿色",
+	"light-green": "浅绿色",
+	lime: "石灰色",
+	yellow: "黄色",
+	amber: "琥珀色",
+	orange: "橙色",
+	orangered: "红橙色",
+	"deep-orange": "深橙色",
+	brown: "棕色",
+	"light-grey": "浅灰色",
+	grey: "灰色",
+	"dark-grey": "深灰色",
+	"blue-grey": "蓝灰色",
+	darkgreen: "深绿色",
+	royalblue: "皇家蓝",
+	black: "黑色",
+	white: "白色"
+};
+var zhHans = {
+	common: common$1,
+	states: states$2,
+	attributes: attributes$1,
+	attributes_value: attributes_value$1,
+	body: body$1,
+	body_value: body_value$1,
+	unit: unit$1,
+	error: error$1,
+	editor: editor$2,
+	editor_body: editor_body$1,
+	color_select: color_select$1
+};
+
+var zh_Hans = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes$1,
+    attributes_value: attributes_value$1,
+    body: body$1,
+    body_value: body_value$1,
+    color_select: color_select$1,
+    common: common$1,
+    default: zhHans,
+    editor: editor$2,
+    editor_body: editor_body$1,
+    error: error$1,
+    states: states$2,
+    unit: unit$1
+});
+
+var common = {
+	version: "版本",
+	name: "米家體脂計卡片",
+	description: "米家體脂計卡片會顯示你的體重以及相關身體狀態",
+	not_available: "Bodymiscale 不可用",
+	toggle_power: "顯示/隱藏更多詳情,例如: BMI, kCal"
+};
+var states$1 = {
+	ok: "測量: OK",
+	unknown: "狀態: 未知",
+	problem: "故障",
+	none: "無",
+	weight_unavailable: "體重不可用",
+	impedance_unavailable: "阻抗不可用",
+	weight_unavailable_and_impedance_unavailable: "體重和阻抗均不可用",
+	weight_low: "體重過輕",
+	impedance_low: "阻抗低",
+	weight_low_and_impedance_low: "體重和阻抗均偏低",
+	impedance_low_and_weight_low: "阻抗和體重均偏低",
+	weight_high: "體重過重",
+	impedance_high: "阻抗高",
+	weight_high_and_impedance_high: "體重和阻抗均偏高",
+	weight_high_and_impedance_low: "體重過重, 阻抗低",
+	weight_low_and_impedance_high: "體重過輕, 阻抗高"
+};
+var attributes = {
+	"weight: ": "重量: ",
+	"impedance: ": "阻抗: ",
+	"height: ": "身高: ",
+	"age: ": "年齡: ",
+	"gender: ": "性別: "
+};
+var attributes_value = {
+	male: "男",
+	female: "女",
+	unavailable: "不可用"
+};
+var body = {
+	bmi: "BMI",
+	bmi_label: "BMI 標籤",
+	visceral_fat: "內臟脂肪",
+	body_fat: "體脂",
+	protein: "蛋白質",
+	water: "水分",
+	muscle_mass: "肌肉量",
+	bone_mass: "骨量",
+	weight: "體重",
+	ideal: "理想體重",
+	basal_metabolism: "基本代謝",
+	body_type: "身體類型",
+	metabolic_age: "代謝年齡"
+};
+var body_value = {
+	skinny: "偏瘦",
+	balanced_skinny: "健美型",
+	skinny_muscular: "偏瘦肌肉",
+	balanced: "標準型",
+	balanced_muscular: "標準肌肉",
+	lack_exercise: "缺乏運動",
+	thick_set: "結實型偏胖",
+	obese: "偏胖型",
+	overweight: "肥胖型",
+	underweight: "過輕",
+	normal_or_healthy_weight: "正常或健康",
+	slight_overweight: "輕微超重",
+	moderate_obesity: "中度肥胖",
+	severe_obesity: "過度肥胖",
+	massive_obesity: "嚴重肥胖",
+	unavailable: "不可用"
+};
+var unit = {
+	" years": " 歲"
+};
+var error = {
+	missing_entity: "Please define an entity.",
+	missing_entity_bodymiscale: "Please define a bodymiscale entity."
+};
+var editor$1 = {
+	entity: "Please select an account on the scale (required) !",
+	image: "Background image (optional)",
+	icons_body: "圖示路徑 (例如：/local/images/bodyscoreIcon)",
+	model: "Do you have an impedance sensor?",
+	model1: "Enable this feature for accurate body composition measurements.",
+	model_aria_label_on: "Enable impedance",
+	model_aria_label_off: "Disable impedance",
+	unit: "Convert kg to lbs",
+	unit_aria_label_on: "Toggle the conversion on",
+	unit_aria_label_off: "Toggle the conversion off",
+	show_name: "Show the name of the account as title ?",
+	show_name_aria_label_on: "Toggle display name on",
+	show_name_aria_label_off: "Toggle display name off",
+	show_states: "Show State ?",
+	show_states_aria_label_on: "Toggle display state on",
+	show_states_aria_label_off: "Toggle display state off",
+	show_attributes: "Show personal master data (top right) ?",
+	show_attributes_aria_label_on: "Toggle display attributes on",
+	show_attributes_aria_label_off: "Toggle display attributes off",
+	show_always_details: "Always show details",
+	show_always_details_aria_label_on: "Toggle default detail view on",
+	show_always_details_aria_label_off: "Toggle default detail view off",
+	show_toolbar: "Show advanced options ?",
+	show_toolbar_aria_label_on: "Toggle display advanced options on",
+	show_toolbar_aria_label_off: "Toggle display advanced options off",
+	show_body: "Offer further measurement details",
+	show_body1: "(lower half - icon chevron down will show those) ?",
+	show_body_aria_label_on: "Toggle display body score on",
+	show_body_aria_label_off: "Toggle display body score off",
+	show_buttons: "Allow account switch ?",
+	show_buttons_aria_label_on: "Toggle display buttons on",
+	show_buttons_aria_label_off: "Toggle display buttons off",
+	header_options: "1. Card header options",
+	body_options: "2. More card options",
+	code_only_note: "ATTENTION: Additional options are only available in the code editor."
+};
+var editor_body = {
+	from: "從",
+	height: "條形高度",
+	icon_position: "圖示位置",
+	inside: "內部",
+	max: "最大",
+	min: "最小",
+	minmax_position: "最小/最大位置",
+	name_position: "名稱位置",
+	off: "關閉",
+	outside: "外部",
+	target: "目標",
+	to: "到",
+	value_position: "數值位置"
+};
+var color_select = {
+	color: "顏色",
+	disabled: "禁用",
+	red: "紅色",
+	pink: "粉色",
+	purple: "紫色",
+	"deep-purple": "深紫色",
+	indigo: "靛藍",
+	blue: "藍色",
+	"light-blue": "淺藍色",
+	cyan: "青色",
+	teal: "藍綠色",
+	green: "綠色",
+	"light-green": "淺綠色",
+	lime: "酸橙色",
+	yellow: "黃色",
+	amber: "琥珀色",
+	orange: "橙色",
+	orangered: "紅橙色",
+	"deep-orange": "深橙色",
+	brown: "棕色",
+	"light-grey": "淺灰色",
+	grey: "灰色",
+	"dark-grey": "深灰色",
+	"blue-grey": "藍灰色",
+	darkgreen: "深綠色",
+	royalblue: "皇家藍",
+	black: "黑色",
+	white: "白色"
+};
+var zhHant = {
+	common: common,
+	states: states$1,
+	attributes: attributes,
+	attributes_value: attributes_value,
+	body: body,
+	body_value: body_value,
+	unit: unit,
+	error: error,
+	editor: editor$1,
+	editor_body: editor_body,
+	color_select: color_select
+};
+
+var zh_Hant = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    attributes: attributes,
+    attributes_value: attributes_value,
+    body: body,
+    body_value: body_value,
+    color_select: color_select,
+    common: common,
+    default: zhHant,
+    editor: editor$1,
+    editor_body: editor_body,
+    error: error,
+    states: states$1,
+    unit: unit
+});
+
+const languages = {
+    cs: cs$1,
+    de: de$1,
+    en: en$1,
+    es: es$1,
+    ca: ca$1,
+    fr: fr$1,
+    hu: hu$1,
+    it: it$1,
+    ja: ja$1,
+    nl: nl$1,
+    pl: pl$1,
+    pt: pt$1,
+    pt_BR: pt_BR,
+    ro: ro$1,
+    ru: ru$1,
+    vi: vi$1,
+    zh_Hans: zh_Hans,
+    zh_Hant: zh_Hant,
+};
+const DEFAULT_LANG = 'en';
+function localize(str, search, replace) {
+    var _a;
+    const [section, key] = str.toLowerCase().split('.');
+    let langStored = null;
+    try {
+        langStored = JSON.parse((_a = localStorage.getItem('selectedLanguage')) !== null && _a !== void 0 ? _a : '');
+    }
+    catch (e) {
+        console.warn(e);
+        langStored = localStorage.getItem('selectedLanguage');
+    }
+    const lang = (langStored || navigator.language.split('-')[0] || DEFAULT_LANG)
+        .replace(/['"]+/g, '')
+        .replace('-', '_');
+    let translated;
+    try {
+        translated = languages[lang][section][key];
+    }
+    catch (e) {
+        console.warn(e);
+        translated = languages[DEFAULT_LANG][section][key];
+    }
+    if (translated === undefined) {
+        translated = languages[DEFAULT_LANG][section][key];
+    }
+    if (translated === undefined) {
+        return;
+    }
+    if (search && replace) {
+        translated = translated === null || translated === void 0 ? void 0 : translated.replace(search, replace);
+    }
+    return translated;
+}
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z$1 = i$5`:host {
   --bc-background: var(
     --ha-card-background,
     var(--card-background-color, white)
@@ -344,157 +3962,1720 @@ score-card-value {
 .value-direction-right {
   margin-left: auto;
 }
-`;Tt(Ot);const jt={disabled:"null",red:"#f44336",pink:"#e91e63",purple:"#926bc7","deep-purple":"#6e41ab",indigo:"#3f51b5",blue:"#2196f3","light-blue":"#03a9f4",cyan:"#00bcd4",teal:"#009688",green:"#4caF50","light-green":"#8bc34a",lime:"#cddc39",yellow:"#ffeb3b",amber:"#ffc107",orange:"#ff9800",orangered:"#ff4500","deep-orange":"#ff6f22",brown:"#795548","light-grey":"#bdbdbd",grey:"#9e9e9e","dark-grey":"#606060","blue-grey":"#607d8b",darkgreen:"#006400",royalblue:"#4169e1",black:"#000000",white:"#FFFFFF"};function Bt(e){return jt[e]?jt[e]:jt.disabled}new Set(Object.keys(jt));let Et={convertkgtolb:e=>Math.round(2.20462*Number(e)*10)/10};const Nt={status:{key:"state",icon:"mdi:scale-bathroom"},problem:{key:"problem",icon:"mdi:alert"},last_measurement_time:{key:"last_measurement_time",icon:"mdi:calendar-clock"}},Dt={weight:{key:"weight",label:It("attributes.weight: "),unit:" kg"},impedance:{key:"impedance",label:It("attributes.impedance: "),unit:" ohm",impedance_required:!0},height:{key:"height",label:It("attributes.height: "),unit:" cm"},age:{key:"age",label:It("attributes.age: "),unit:It("unit. years")},gender:{key:"gender",label:It("attributes.gender: ")}},Vt={weight:{key:"weight",label:It("attributes.weight: "),unit:" lbs",compute:Et.convertkgtolb},impedance:{key:"impedance",label:It("attributes.impedance: "),unit:" ohm",impedance_required:!0},height:{key:"height",label:It("attributes.height: "),unit:" cm"},age:{key:"age",label:It("attributes.age: "),unit:It("unit. years")},gender:{key:"gender",label:It("attributes.gender: ")}},Gt={basal_metabolism:{key:"basal_metabolism",label:It("body.basal_metabolism"),icon:"/local/images/bodyscoreIcon/basal_metabolism.png",unit:" kcal",min:0,max:3e3,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:1530,color:"orangered"},{from:1530.01,to:3e3,color:"green"}],target:1530,width:"100%",impedance_required:!1},bmi:{key:"bmi",label:It("body.bmi"),icon:"/local/images/bodyscoreIcon/bmi.png",min:0,max:40,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:18.5,color:"blue"},{from:18.51,to:25,color:"green"},{from:25.01,to:28,color:"orange"},{from:28.01,to:32,color:"orangered"},{from:32.01,to:40,color:"red"}],target:21.75,width:"100%",impedance_required:!1},bmi_label:{key:"bmi_label",label:It("body.bmi_label"),icon:"/local/images/bodyscoreIcon/body_type.png",min:null,max:null,color:"var(--score-card-color, var(--ha-card-background))",height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!1},body_fat:{key:"body_fat",label:It("body.body_fat"),icon:"/local/images/bodyscoreIcon/body_fat.png",unit:" %",min:0,max:40,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:12,color:"blue"},{from:12.01,to:18,color:"royalblue"},{from:18.01,to:23,color:"green"},{from:23.01,to:28,color:"orange"},{from:28.01,to:40,color:"orangered"}],target:20.5,width:"100%",impedance_required:!0},body_type:{key:"body_type",label:It("body.body_type"),icon:"/local/images/bodyscoreIcon/body_type.png",color:"var(--score-card-color, var(--ha-card-background))",min:null,max:null,height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!0},bone_mass:{key:"bone_mass",label:It("body.bone_mass"),icon:"/local/images/bodyscoreIcon/bone_mass.png",unit:" kg",min:0,max:8,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:2,color:"orangered"},{from:2.01,to:4.2,color:"green"},{from:4.21,to:8,color:"darkgreen"}],target:3.1,width:"100%",impedance_required:!0},ideal:{key:"ideal",label:It("body.ideal"),icon:"/local/images/bodyscoreIcon/ideal.png",unit:" kg",min:0,max:130,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:57.3,color:"blue"},{from:57.31,to:77.4,color:"green"},{from:77.41,to:86.7,color:"orange"},{from:86.71,to:99,color:"orangered"},{from:99.1,to:130,color:"red"}],target:67.35,width:"100%",impedance_required:!1},metabolic_age:{key:"metabolic_age",label:It("body.metabolic_age"),icon:"/local/images/bodyscoreIcon/metabolic_age.png",unit:It("unit. years"),min:null,max:null,color:"var(--score-card-color, var(--ha-card-background))",height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!0},muscle_mass:{key:"muscle_mass",label:It("body.muscle_mass"),icon:"/local/images/bodyscoreIcon/muscle_mass.png",unit:" kg",min:0,max:100,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:49.4,color:"orangered"},{from:49.41,to:59.5,color:"green"},{from:59.51,to:100,color:"darkgreen"}],target:54.45,width:"100%",impedance_required:!0},protein:{key:"protein",label:It("body.protein"),icon:"/local/images/bodyscoreIcon/protein.png",unit:" %",min:0,max:32,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:16,color:"orangered"},{from:16.01,to:20,color:"green"},{from:20.01,to:32,color:"darkgreen"}],target:18,width:"100%",impedance_required:!0},visceral_fat:{key:"visceral_fat",label:It("body.visceral_fat"),icon:"/local/images/bodyscoreIcon/visceral_fat.png",min:0,max:20,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:10,color:"green"},{from:10.01,to:15,color:"orange"},{from:15.01,to:20,color:"orangered"}],target:12.5,width:"100%",impedance_required:!1},water:{key:"water",label:It("body.water"),icon:"/local/images/bodyscoreIcon/water.png",unit:" %",min:0,max:80,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:55,color:"orangered"},{from:55.01,to:65.1,color:"green"},{from:65.11,to:80,color:"darkgreen"}],target:60,width:"100%",impedance_required:!0},weight:{key:"weight",label:It("body.weight"),icon:"/local/images/bodyscoreIcon/ideal.png",unit:" kg",min:0,max:130,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:57.3,color:"blue"},{from:57.31,to:77.4,color:"green"},{from:77.41,to:86.7,color:"orange"},{from:86.71,to:99,color:"orangered"},{from:99.1,to:130,color:"red"}],target:67.35,width:"100%",impedance_required:!1}},qt={basal_metabolism:{key:"basal_metabolism",label:It("body.basal_metabolism"),icon:"/local/images/bodyscoreIcon/basal_metabolism.png",unit:" kcal",min:0,max:3e3,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:1530,color:"orangered"},{from:1530.01,to:3e3,color:"green"}],target:1530,width:"100%",impedance_required:!1},bmi:{key:"bmi",label:It("body.bmi"),icon:"/local/images/bodyscoreIcon/bmi.png",min:0,max:40,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:18.5,color:"blue"},{from:18.51,to:25,color:"green"},{from:25.01,to:28,color:"orange"},{from:28.01,to:32,color:"orangered"},{from:32.01,to:40,color:"red"}],target:21.75,width:"100%",impedance_required:!1},bmi_label:{key:"bmi_label",label:It("body.bmi_label"),icon:"/local/images/bodyscoreIcon/body_type.png",min:null,max:null,color:"var(--score-card-color, var(--ha-card-background))",height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!1},body_fat:{key:"body_fat",label:It("body.body_fat"),icon:"/local/images/bodyscoreIcon/body_fat.png",unit:" %",min:0,max:40,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:12,color:"blue"},{from:12.01,to:18,color:"royalblue"},{from:18.01,to:23,color:"green"},{from:23.01,to:28,color:"orange"},{from:28.01,to:40,color:"orangered"}],target:20.5,width:"100%",impedance_required:!0},body_type:{key:"body_type",label:It("body.body_type"),icon:"/local/images/bodyscoreIcon/body_type.png",color:"var(--score-card-color, var(--ha-card-background))",min:null,max:null,height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!0},bone_mass:{key:"bone_mass",label:It("body.bone_mass"),icon:"/local/images/bodyscoreIcon/bone_mass.png",unit:" lbs",compute:Et.convertkgtolb,min:0,max:17.6,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:4.4,color:"orangered"},{from:4.5,to:9.3,color:"green"},{from:9.4,to:17.6,color:"darkgreen"}],target:6.9,width:"100%",impedance_required:!0},ideal:{key:"ideal",label:It("body.ideal"),icon:"/local/images/bodyscoreIcon/ideal.png",unit:" lbs",compute:Et.convertkgtolb,min:0,max:286.6,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:126.3,color:"blue"},{from:126.4,to:170.6,color:"green"},{from:170.7,to:191.1,color:"orange"},{from:191.2,to:218.5,color:"orangered"},{from:218.6,to:286.6,color:"red"}],target:148.5,width:"100%",impedance_required:!1},metabolic_age:{key:"metabolic_age",label:It("body.metabolic_age"),icon:"/local/images/bodyscoreIcon/metabolic_age.png",unit:It("unit. years"),min:null,max:null,color:"var(--score-card-color, var(--ha-card-background))",height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!0},muscle_mass:{key:"muscle_mass",label:It("body.muscle_mass"),icon:"/local/images/bodyscoreIcon/muscle_mass.png",unit:" lbs",compute:Et.convertkgtolb,min:0,max:220.5,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:108.9,color:"orangered"},{from:109,to:131.2,color:"green"},{from:131.3,to:220.5,color:"darkgreen"}],target:120.1,width:"100%",impedance_required:!0},protein:{key:"protein",label:It("body.protein"),icon:"/local/images/bodyscoreIcon/protein.png",unit:" %",min:0,max:32,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:16,color:"orangered"},{from:16.01,to:20,color:"green"},{from:20.01,to:32,color:"darkgreen"}],target:18,width:"100%",impedance_required:!0},visceral_fat:{key:"visceral_fat",label:It("body.visceral_fat"),icon:"/local/images/bodyscoreIcon/visceral_fat.png",min:0,max:20,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:10,color:"green"},{from:10.01,to:15,color:"orange"},{from:15.01,to:20,color:"orangered"}],target:12.5,width:"100%",impedance_required:!1},water:{key:"water",label:It("body.water"),icon:"/local/images/bodyscoreIcon/water.png",unit:" %",min:0,max:80,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:55,color:"orangered"},{from:55.01,to:65.1,color:"green"},{from:65.11,to:80,color:"darkgreen"}],target:60,width:"100%",impedance_required:!0},weight:{key:"weight",label:It("body.weight"),icon:"/local/images/bodyscoreIcon/ideal.png",unit:" lbs",compute:Et.convertkgtolb,min:0,max:286.6,color:"var(--score-card-color, var(--ha-card-background))",height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:126.3,color:"blue"},{from:126.4,to:170.6,color:"green"},{from:170.7,to:191.1,color:"orange"},{from:191.2,to:218.5,color:"orangered"},{from:218.6,to:286.6,color:"red"}],target:148.5,width:"100%",impedance_required:!1}},Ut={user1:{show:!1,label:"User1",icon:"mdi:alpha-u-circle",entity:""},user2:{show:!1,label:"User2",icon:"mdi:alpha-u-circle",entity:""},user3:{show:!1,label:"User3",icon:"mdi:alpha-u-circle",entity:""},user4:{show:!1,label:"User4",icon:"mdi:alpha-u-circle",entity:""},user5:{show:!1,label:"User5",icon:"mdi:alpha-u-circle",entity:""}},Wt={model:!1,unit:!1,theme:!0,show_name:!0,show_states:!0,show_attributes:!0,show_always_details:!1,show_toolbar:!0,show_body:!0,show_buttons:!1,attributes:{impedance:{key:"impedance",impedance_required:!0}},body:{basal_metabolism:{key:"basal_metabolism",min:0,max:3e3,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:1530,color:"orangered"},{from:1530.01,to:3e3,color:"green"}],target:1530,width:"100%",impedance_required:!1},bmi:{key:"bmi",min:0,max:40,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:18.5,color:"blue"},{from:18.51,to:25,color:"green"},{from:25.01,to:28,color:"orange"},{from:28.01,to:32,color:"orangered"},{from:32.01,to:40,color:"red"}],target:21.75,width:"100%",impedance_required:!1},bmi_label:{key:"bmi_label",min:null,max:null,height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!1},body_fat:{key:"body_fat",min:0,max:40,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:12,color:"blue"},{from:12.01,to:18,color:"royalblue"},{from:18.01,to:23,color:"green"},{from:23.01,to:28,color:"orange"},{from:28.01,to:40,color:"orangered"}],target:20.5,width:"100%",impedance_required:!0},body_type:{key:"body_type",min:null,max:null,height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!0},bone_mass:{key:"bone_mass",min:0,max:8,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:2,color:"orangered"},{from:2.01,to:4.2,color:"green"},{from:4.21,to:8,color:"darkgreen"}],target:3.1,width:"100%",impedance_required:!0},ideal:{key:"ideal",min:0,max:130,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:57.3,color:"blue"},{from:57.31,to:77.4,color:"green"},{from:77.41,to:86.7,color:"orange"},{from:86.71,to:99,color:"orangered"},{from:99.1,to:130,color:"red"}],target:67.35,width:"100%",impedance_required:!1},metabolic_age:{key:"metabolic_age",min:null,max:null,height:null,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null,target:null,width:"100%",impedance_required:!0},muscle_mass:{key:"muscle_mass",min:0,max:100,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:49.4,color:"orangered"},{from:49.41,to:59.5,color:"green"},{from:59.51,to:100,color:"darkgreen"}],target:54.45,width:"100%",impedance_required:!0},protein:{key:"protein",min:0,max:32,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:16,color:"orangered"},{from:16.01,to:20,color:"green"},{from:20.01,to:32,color:"darkgreen"}],target:18,width:"100%",impedance_required:!0},visceral_fat:{key:"visceral_fat",min:0,max:20,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:10,color:"green"},{from:10.01,to:15,color:"orange"},{from:15.01,to:20,color:"orangered"}],target:12.5,width:"100%",impedance_required:!1},water:{key:"water",min:0,max:80,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:55,color:"orangered"},{from:55.01,to:65.1,color:"green"},{from:65.11,to:80,color:"darkgreen"}],target:60,width:"100%",impedance_required:!0},weight:{key:"weight",min:0,max:130,height:30,positions:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:[{from:0,to:57.3,color:"blue"},{from:57.31,to:77.4,color:"green"},{from:77.41,to:86.7,color:"orange"},{from:86.71,to:99,color:"orangered"},{from:99.1,to:130,color:"red"}],target:67.35,width:"100%",impedance_required:!1}}};function Lt(e){const{image:a,theme:o,show_toolbar:i,show_body:t}=e;return{background:a?`\n          background-image: url('${a}');\n          color: white;\n          text-shadow: 0 0 10px black;\n          min-height: 220px;\n          ${i||t?"border-radius: 0;":"border-radius: var(--ha-card-border-radius, 12px);"}\n          overflow: hidden;\n        `:"",icon:`color: ${a?"white":"var(--paper-item-icon-color)"};`,iconbody:`background-color: ${!1!==o?"var(--paper-item-icon-color)":"white"};`}}console.info(`%c Body-miscale-card \n%c  ${It("common.version")} 2025.4.0 `,"color: cyan; background: black; font-weight: bold;","color: darkblue; background: white; font-weight: bold;");let Rt=class extends ne{constructor(){super(...arguments),this.open=!1}static get styles(){return Ot}static async getConfigElement(){return Promise.resolve().then((function(){return en})),document.createElement("body-miscale-card-editor")}static getStubConfig(e,a){const[o]=a.filter((e=>e.startsWith("bodymiscale")));return Object.assign(Object.assign({},Wt),{entity:null!=o?o:""})}get entity(){return this.hass.states[this.config.entity]}setConfig(e){this.config=function(e){var a,o,i,t,n,r,s,l,d,c,_,h,m,u,b,g,p,y,f,v,w,k,x;if(!e)throw new Error(It("error.invalid_config"));if(!e.entity)throw new Error(It("error.missing_entity"));if("bodymiscale"!==e.entity.split(".")[0])throw new Error(It("error.missing_entity_bodymiscale"));return{entity:null!==(a=e.entity)&&void 0!==a?a:"",image:null!==(o=e.image)&&void 0!==o?o:"",model:null!==(i=e.model)&&void 0!==i&&i,impedance_required:null!==(t=e.impedance_required)&&void 0!==t&&t,unit:null!==(n=e.unit)&&void 0!==n&&n,theme:null===(r=e.theme)||void 0===r||r,show_name:null===(s=e.show_name)||void 0===s||s,show_states:null===(l=e.show_states)||void 0===l||l,show_attributes:null===(d=e.show_attributes)||void 0===d||d,show_always_details:null!==(c=e.show_always_details)&&void 0!==c&&c,show_toolbar:null===(_=e.show_toolbar)||void 0===_||_,show_body:null===(h=e.show_body)||void 0===h||h,show_buttons:null!==(m=e.show_buttons)&&void 0!==m&&m,states:ze(Nt,e.states),attributes:e.unit?ze(Vt,e.attributes):ze(Dt,e.attributes),body:e.unit?ze(qt,e.body):ze(Gt,e.body),buttons:!0===e.buttons?{}:ze(Ut,e.buttons),styles:Lt(e),open:null!==(u=e.open)&&void 0!==u&&u,height:null!==(b=e.height)&&void 0!==b?b:void 0,width:null!==(g=e.width)&&void 0!==g?g:void 0,stats:null!==(p=e.stats)&&void 0!==p?p:{},min:null!==(y=e.min)&&void 0!==y?y:void 0,max:null!==(f=e.max)&&void 0!==f?f:void 0,color:null!==(v=e.color)&&void 0!==v?v:void 0,positions:null!==(w=e.positions)&&void 0!==w?w:{icon:"outside",name:"inside",minmax:"off",value:"inside"},severity:null!==(k=e.severity)&&void 0!==k?k:void 0,target:null!==(x=e.target)&&void 0!==x?x:void 0}}(e)}getCardSize(){return this.config.show_name&&this.config.show_buttons?4:this.config.show_name||this.config.show_buttons?3:2}shouldShowBackground(){return!(""===this.config.image&&!1===this.config.show_states&&!1===this.config.show_attributes&&!0===this.config.show_always_details&&!0===this.config.show_body)}shouldUpdate(e){return function(e,a,o){if(a.has("config")||o)return!0;if(e.config.entity){var i=a.get("hass");return!i||i.states[e.config.entity]!==e.hass.states[e.config.entity]}return!1}(this,e,!1)}toggle(e){null==e||e.stopPropagation(),this.open=!this.open}customEvent(e){var a;(null===(a=e.detail)||void 0===a?void 0:a.fold_row)&&this.toggle(e)}toggleMenu(e){var a;const o=null===(a=this.shadowRoot)||void 0===a?void 0:a.querySelector(`#bmc-menu-${e}`);o&&"open"in o&&(o.open=!o.open)}handleChange(e){this.hass&&(this.config=Object.assign(Object.assign({},this.config),{entity:e}),xe(this,"config-changed",{config:this.config}))}moreInfo(){var e;(null===(e=this.config)||void 0===e?void 0:e.entity)?xe(this,"hass-more-info",{entityId:this.config.entity}):console.warn("No entity defined in the config.")}renderName(e){return this.config.show_name?U`
-      <div class="bodymiscale-name">${e.attributes.friendly_name}</div>
-    `:L}renderState(e){var a,o,i,t,n;if(!this.config.show_states)return L;if(!this.hass||!(null===(a=this.config)||void 0===a?void 0:a.entity))return U`<div>${It("state.default.unavailable")}</div>`;const r=null===(o=this.hass.states)||void 0===o?void 0:o[this.config.entity];if(!r)return U`<div>
-        ${this.hass.localize("state.default.unavailable")}
-      </div>`;const s=(null==e?void 0:e.key)&&r,l=s&&void 0!==(null===(i=r.attributes)||void 0===i?void 0:i[e.key]),d=s&&void 0!==r[e.key];let c=l?r.attributes[e.key]:d?r[e.key]:this.hass.localize("state.default.unavailable");if("last_measurement_time"===e.key&&"string"==typeof c)try{const e=new Date(c.replace(" ","T")),a=be(e,this.hass.locale);c=`${a} ${ye(e,this.hass.locale)}`}catch(e){}const _="number"==typeof c?we(c,this.hass.locale):c,h=It(`states.${c}`)||_,m="ok"===r.state&&"mdi:alert"===e.icon?L:U` <div class="state-div">
-            <div>${e.icon&&this.renderIcon(e,"default")}</div>
+`;
+styleInject(css_248z$1);
+
+const COLOR_HEX_MAP = {
+    disabled: 'null',
+    red: '#f44336',
+    pink: '#e91e63',
+    purple: '#926bc7',
+    'deep-purple': '#6e41ab',
+    indigo: '#3f51b5',
+    blue: '#2196f3',
+    'light-blue': '#03a9f4',
+    cyan: '#00bcd4',
+    teal: '#009688',
+    green: '#4caF50',
+    'light-green': '#8bc34a',
+    lime: '#cddc39',
+    yellow: '#ffeb3b',
+    amber: '#ffc107',
+    orange: '#ff9800',
+    orangered: '#ff4500',
+    'deep-orange': '#ff6f22',
+    brown: '#795548',
+    'light-grey': '#bdbdbd',
+    grey: '#9e9e9e',
+    'dark-grey': '#606060',
+    'blue-grey': '#607d8b',
+    darkgreen: '#006400',
+    royalblue: '#4169e1',
+    black: '#000000',
+    white: '#FFFFFF',
+};
+new Set(Object.keys(COLOR_HEX_MAP));
+function computeCssColor(color) {
+    if (COLOR_HEX_MAP[color]) {
+        return COLOR_HEX_MAP[color];
+    }
+    return COLOR_HEX_MAP.disabled;
+}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+let compute = {
+    convertkgtolb: (v) => Math.round(Number(v) * 2.20462 * 10) / 10,
+};
+const states = {
+    status: {
+        key: 'state',
+        icon: 'mdi:scale-bathroom',
+    },
+    problem: {
+        key: 'problem',
+        icon: 'mdi:alert',
+    },
+    last_measurement_time: {
+        key: 'last_measurement_time',
+        icon: 'mdi:calendar-clock',
+    },
+};
+const attributes_kg = {
+    weight: {
+        key: 'weight',
+        label: localize(`attributes.${'weight: '}`),
+        unit: ' kg',
+    },
+    impedance: {
+        key: 'impedance',
+        label: localize(`attributes.${'impedance: '}`),
+        unit: ' ohm',
+        impedance_required: true,
+    },
+    height: {
+        key: 'height',
+        label: localize(`attributes.${'height: '}`),
+        unit: ' cm',
+    },
+    age: {
+        key: 'age',
+        label: localize(`attributes.${'age: '}`),
+        unit: localize(`unit.${' years'}`),
+    },
+    gender: {
+        key: 'gender',
+        label: localize(`attributes.${'gender: '}`),
+    },
+};
+const attributes_lb = {
+    weight: {
+        key: 'weight',
+        label: localize(`attributes.${'weight: '}`),
+        unit: ' lbs',
+        compute: compute.convertkgtolb,
+    },
+    impedance: {
+        key: 'impedance',
+        label: localize(`attributes.${'impedance: '}`),
+        unit: ' ohm',
+        impedance_required: true,
+    },
+    height: {
+        key: 'height',
+        label: localize(`attributes.${'height: '}`),
+        unit: ' cm',
+    },
+    age: {
+        key: 'age',
+        label: localize(`attributes.${'age: '}`),
+        unit: localize(`unit.${' years'}`),
+    },
+    gender: {
+        key: 'gender',
+        label: localize(`attributes.${'gender: '}`),
+    },
+};
+const body_kg = {
+    basal_metabolism: {
+        key: 'basal_metabolism',
+        label: localize(`body.${'basal_metabolism'}`),
+        icon: 'basal_metabolism.png',
+        unit: ' kcal',
+        min: 0,
+        max: 3000,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 1530, color: 'orangered' },
+            { from: 1530.01, to: 3000, color: 'green' },
+        ],
+        target: 1530,
+        width: '100%',
+        impedance_required: false,
+    },
+    bmi: {
+        key: 'bmi',
+        label: localize(`body.${'bmi'}`),
+        icon: 'bmi.png',
+        min: 0,
+        max: 40,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 18.5, color: 'blue' },
+            { from: 18.51, to: 25, color: 'green' },
+            { from: 25.01, to: 28, color: 'orange' },
+            { from: 28.01, to: 32, color: 'orangered' },
+            { from: 32.01, to: 40, color: 'red' },
+        ],
+        target: 21.75,
+        width: '100%',
+        impedance_required: false,
+    },
+    bmi_label: {
+        key: 'bmi_label',
+        label: localize(`body.${'bmi_label'}`),
+        icon: 'body_type.png',
+        min: null,
+        max: null,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: null,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: null,
+        target: null,
+        width: '100%',
+        impedance_required: false,
+    },
+    body_fat: {
+        key: 'body_fat',
+        label: localize(`body.${'body_fat'}`),
+        icon: 'body_fat.png',
+        unit: ' %',
+        min: 0,
+        max: 40,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 12, color: 'blue' },
+            { from: 12.01, to: 18, color: 'royalblue' },
+            { from: 18.01, to: 23, color: 'green' },
+            { from: 23.01, to: 28, color: 'orange' },
+            { from: 28.01, to: 40, color: 'orangered' },
+        ],
+        target: 20.5,
+        width: '100%',
+        impedance_required: true,
+    },
+    body_type: {
+        key: 'body_type',
+        label: localize(`body.${'body_type'}`),
+        icon: 'body_type.png',
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        min: null,
+        max: null,
+        height: null,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: null,
+        target: null,
+        width: '100%',
+        impedance_required: true,
+    },
+    bone_mass: {
+        key: 'bone_mass',
+        label: localize(`body.${'bone_mass'}`),
+        icon: 'bone_mass.png',
+        unit: ' kg',
+        min: 0,
+        max: 8,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 2, color: 'orangered' },
+            { from: 2.01, to: 4.2, color: 'green' },
+            { from: 4.21, to: 8, color: 'darkgreen' },
+        ],
+        target: 3.1,
+        width: '100%',
+        impedance_required: true,
+    },
+    ideal: {
+        key: 'ideal',
+        label: localize(`body.${'ideal'}`),
+        icon: 'ideal.png',
+        unit: ' kg',
+        min: 0,
+        max: 130,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 57.3, color: 'blue' },
+            { from: 57.31, to: 77.4, color: 'green' },
+            { from: 77.41, to: 86.7, color: 'orange' },
+            { from: 86.71, to: 99, color: 'orangered' },
+            { from: 99.1, to: 130, color: 'red' },
+        ],
+        target: 67.35,
+        width: '100%',
+        impedance_required: false,
+    },
+    metabolic_age: {
+        key: 'metabolic_age',
+        label: localize(`body.${'metabolic_age'}`),
+        icon: 'metabolic_age.png',
+        unit: localize(`unit.${' years'}`),
+        min: null,
+        max: null,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: null,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: null,
+        target: null,
+        width: '100%',
+        impedance_required: true,
+    },
+    muscle_mass: {
+        key: 'muscle_mass',
+        label: localize(`body.${'muscle_mass'}`),
+        icon: 'muscle_mass.png',
+        unit: ' kg',
+        min: 0,
+        max: 100,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 49.4, color: 'orangered' },
+            { from: 49.41, to: 59.5, color: 'green' },
+            { from: 59.51, to: 100, color: 'darkgreen' },
+        ],
+        target: 54.45,
+        width: '100%',
+        impedance_required: true,
+    },
+    protein: {
+        key: 'protein',
+        label: localize(`body.${'protein'}`),
+        icon: 'protein.png',
+        unit: ' %',
+        min: 0,
+        max: 32,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 16, color: 'orangered' },
+            { from: 16.01, to: 20, color: 'green' },
+            { from: 20.01, to: 32, color: 'darkgreen' },
+        ],
+        target: 18,
+        width: '100%',
+        impedance_required: true,
+    },
+    visceral_fat: {
+        key: 'visceral_fat',
+        label: localize(`body.${'visceral_fat'}`),
+        icon: 'visceral_fat.png',
+        min: 0,
+        max: 20,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 10, color: 'green' },
+            { from: 10.01, to: 15, color: 'orange' },
+            { from: 15.01, to: 20, color: 'orangered' },
+        ],
+        target: 12.5,
+        width: '100%',
+        impedance_required: false,
+    },
+    water: {
+        key: 'water',
+        label: localize(`body.${'water'}`),
+        icon: 'water.png',
+        unit: ' %',
+        min: 0,
+        max: 80,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 55, color: 'orangered' },
+            { from: 55.01, to: 65.1, color: 'green' },
+            { from: 65.11, to: 80, color: 'darkgreen' },
+        ],
+        target: 60,
+        width: '100%',
+        impedance_required: true,
+    },
+    weight: {
+        key: 'weight',
+        label: localize(`body.${'weight'}`),
+        icon: 'ideal.png',
+        unit: ' kg',
+        min: 0,
+        max: 130,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 57.3, color: 'blue' },
+            { from: 57.31, to: 77.4, color: 'green' },
+            { from: 77.41, to: 86.7, color: 'orange' },
+            { from: 86.71, to: 99, color: 'orangered' },
+            { from: 99.1, to: 130, color: 'red' },
+        ],
+        target: 67.35,
+        width: '100%',
+        impedance_required: false,
+    },
+};
+const body_lb = {
+    basal_metabolism: {
+        key: 'basal_metabolism',
+        label: localize(`body.${'basal_metabolism'}`),
+        icon: 'basal_metabolism.png',
+        unit: ' kcal',
+        min: 0,
+        max: 3000,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 1530, color: 'orangered' },
+            { from: 1530.01, to: 3000, color: 'green' },
+        ],
+        target: 1530,
+        width: '100%',
+        impedance_required: false,
+    },
+    bmi: {
+        key: 'bmi',
+        label: localize(`body.${'bmi'}`),
+        icon: 'bmi.png',
+        min: 0,
+        max: 40,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 18.5, color: 'blue' },
+            { from: 18.51, to: 25, color: 'green' },
+            { from: 25.01, to: 28, color: 'orange' },
+            { from: 28.01, to: 32, color: 'orangered' },
+            { from: 32.01, to: 40, color: 'red' },
+        ],
+        target: 21.75,
+        width: '100%',
+        impedance_required: false,
+    },
+    bmi_label: {
+        key: 'bmi_label',
+        label: localize(`body.${'bmi_label'}`),
+        icon: 'body_type.png',
+        min: null,
+        max: null,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: null,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: null,
+        target: null,
+        width: '100%',
+        impedance_required: false,
+    },
+    body_fat: {
+        key: 'body_fat',
+        label: localize(`body.${'body_fat'}`),
+        icon: 'body_fat.png',
+        unit: ' %',
+        min: 0,
+        max: 40,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 12, color: 'blue' },
+            { from: 12.01, to: 18, color: 'royalblue' },
+            { from: 18.01, to: 23, color: 'green' },
+            { from: 23.01, to: 28, color: 'orange' },
+            { from: 28.01, to: 40, color: 'orangered' },
+        ],
+        target: 20.5,
+        width: '100%',
+        impedance_required: true,
+    },
+    body_type: {
+        key: 'body_type',
+        label: localize(`body.${'body_type'}`),
+        icon: 'body_type.png',
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        min: null,
+        max: null,
+        height: null,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: null,
+        target: null,
+        width: '100%',
+        impedance_required: true,
+    },
+    bone_mass: {
+        key: 'bone_mass',
+        label: localize(`body.${'bone_mass'}`),
+        icon: 'bone_mass.png',
+        unit: ' lbs',
+        compute: compute.convertkgtolb,
+        min: 0,
+        max: 17.6,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 4.4, color: 'orangered' },
+            { from: 4.5, to: 9.3, color: 'green' },
+            { from: 9.4, to: 17.6, color: 'darkgreen' },
+        ],
+        target: 6.9,
+        width: '100%',
+        impedance_required: true,
+    },
+    ideal: {
+        key: 'ideal',
+        label: localize(`body.${'ideal'}`),
+        icon: 'ideal.png',
+        unit: ' lbs',
+        compute: compute.convertkgtolb,
+        min: 0,
+        max: 286.6,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 126.3, color: 'blue' },
+            { from: 126.4, to: 170.6, color: 'green' },
+            { from: 170.7, to: 191.1, color: 'orange' },
+            { from: 191.2, to: 218.5, color: 'orangered' },
+            { from: 218.6, to: 286.6, color: 'red' },
+        ],
+        target: 148.5,
+        width: '100%',
+        impedance_required: false,
+    },
+    metabolic_age: {
+        key: 'metabolic_age',
+        label: localize(`body.${'metabolic_age'}`),
+        icon: 'metabolic_age.png',
+        unit: localize(`unit.${' years'}`),
+        min: null,
+        max: null,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: null,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: null,
+        target: null,
+        width: '100%',
+        impedance_required: true,
+    },
+    muscle_mass: {
+        key: 'muscle_mass',
+        label: localize(`body.${'muscle_mass'}`),
+        icon: 'muscle_mass.png',
+        unit: ' lbs',
+        compute: compute.convertkgtolb,
+        min: 0,
+        max: 220.5,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 108.9, color: 'orangered' },
+            { from: 109, to: 131.2, color: 'green' },
+            { from: 131.3, to: 220.5, color: 'darkgreen' },
+        ],
+        target: 120.1,
+        width: '100%',
+        impedance_required: true,
+    },
+    protein: {
+        key: 'protein',
+        label: localize(`body.${'protein'}`),
+        icon: 'protein.png',
+        unit: ' %',
+        min: 0,
+        max: 32,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 16, color: 'orangered' },
+            { from: 16.01, to: 20, color: 'green' },
+            { from: 20.01, to: 32, color: 'darkgreen' },
+        ],
+        target: 18,
+        width: '100%',
+        impedance_required: true,
+    },
+    visceral_fat: {
+        key: 'visceral_fat',
+        label: localize(`body.${'visceral_fat'}`),
+        icon: 'visceral_fat.png',
+        min: 0,
+        max: 20,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 10, color: 'green' },
+            { from: 10.01, to: 15, color: 'orange' },
+            { from: 15.01, to: 20, color: 'orangered' },
+        ],
+        target: 12.5,
+        width: '100%',
+        impedance_required: false,
+    },
+    water: {
+        key: 'water',
+        label: localize(`body.${'water'}`),
+        icon: 'water.png',
+        unit: ' %',
+        min: 0,
+        max: 80,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 55, color: 'orangered' },
+            { from: 55.01, to: 65.1, color: 'green' },
+            { from: 65.11, to: 80, color: 'darkgreen' },
+        ],
+        target: 60,
+        width: '100%',
+        impedance_required: true,
+    },
+    weight: {
+        key: 'weight',
+        label: localize(`body.${'weight'}`),
+        icon: 'ideal.png',
+        unit: ' lbs',
+        compute: compute.convertkgtolb,
+        min: 0,
+        max: 286.6,
+        color: 'var(--score-card-color, var(--ha-card-background))',
+        height: 30,
+        positions: {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: [
+            { from: 0, to: 126.3, color: 'blue' },
+            { from: 126.4, to: 170.6, color: 'green' },
+            { from: 170.7, to: 191.1, color: 'orange' },
+            { from: 191.2, to: 218.5, color: 'orangered' },
+            { from: 218.6, to: 286.6, color: 'red' },
+        ],
+        target: 148.5,
+        width: '100%',
+        impedance_required: false,
+    },
+};
+const buttons = {
+    user1: {
+        show: false,
+        label: 'User1',
+        icon: 'mdi:alpha-u-circle',
+        entity: '',
+    },
+    user2: {
+        show: false,
+        label: 'User2',
+        icon: 'mdi:alpha-u-circle',
+        entity: '',
+    },
+    user3: {
+        show: false,
+        label: 'User3',
+        icon: 'mdi:alpha-u-circle',
+        entity: '',
+    },
+    user4: {
+        show: false,
+        label: 'User4',
+        icon: 'mdi:alpha-u-circle',
+        entity: '',
+    },
+    user5: {
+        show: false,
+        label: 'User5',
+        icon: 'mdi:alpha-u-circle',
+        entity: '',
+    },
+};
+const defaultCardConfig = {
+    model: false,
+    unit: false,
+    theme: true,
+    show_name: true,
+    show_states: true,
+    show_attributes: true,
+    show_always_details: false,
+    show_toolbar: true,
+    show_body: true,
+    show_buttons: false,
+    attributes: {
+        impedance: {
+            key: 'impedance',
+            impedance_required: true,
+        },
+    },
+    body: {
+        basal_metabolism: {
+            key: 'basal_metabolism',
+            min: 0,
+            max: 3000,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 1530, color: 'orangered' },
+                { from: 1530.01, to: 3000, color: 'green' },
+            ],
+            target: 1530,
+            width: '100%',
+            impedance_required: false,
+        },
+        bmi: {
+            key: 'bmi',
+            min: 0,
+            max: 40,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 18.5, color: 'blue' },
+                { from: 18.51, to: 25, color: 'green' },
+                { from: 25.01, to: 28, color: 'orange' },
+                { from: 28.01, to: 32, color: 'orangered' },
+                { from: 32.01, to: 40, color: 'red' },
+            ],
+            target: 21.75,
+            width: '100%',
+            impedance_required: false,
+        },
+        bmi_label: {
+            key: 'bmi_label',
+            min: null,
+            max: null,
+            height: null,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: null,
+            target: null,
+            width: '100%',
+            impedance_required: false,
+        },
+        body_fat: {
+            key: 'body_fat',
+            min: 0,
+            max: 40,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 12, color: 'blue' },
+                { from: 12.01, to: 18, color: 'royalblue' },
+                { from: 18.01, to: 23, color: 'green' },
+                { from: 23.01, to: 28, color: 'orange' },
+                { from: 28.01, to: 40, color: 'orangered' },
+            ],
+            target: 20.5,
+            width: '100%',
+            impedance_required: true,
+        },
+        body_type: {
+            key: 'body_type',
+            min: null,
+            max: null,
+            height: null,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: null,
+            target: null,
+            width: '100%',
+            impedance_required: true,
+        },
+        bone_mass: {
+            key: 'bone_mass',
+            min: 0,
+            max: 8,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 2, color: 'orangered' },
+                { from: 2.01, to: 4.2, color: 'green' },
+                { from: 4.21, to: 8, color: 'darkgreen' },
+            ],
+            target: 3.1,
+            width: '100%',
+            impedance_required: true,
+        },
+        ideal: {
+            key: 'ideal',
+            min: 0,
+            max: 130,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 57.3, color: 'blue' },
+                { from: 57.31, to: 77.4, color: 'green' },
+                { from: 77.41, to: 86.7, color: 'orange' },
+                { from: 86.71, to: 99, color: 'orangered' },
+                { from: 99.1, to: 130, color: 'red' },
+            ],
+            target: 67.35,
+            width: '100%',
+            impedance_required: false,
+        },
+        metabolic_age: {
+            key: 'metabolic_age',
+            min: null,
+            max: null,
+            height: null,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: null,
+            target: null,
+            width: '100%',
+            impedance_required: true,
+        },
+        muscle_mass: {
+            key: 'muscle_mass',
+            min: 0,
+            max: 100,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 49.4, color: 'orangered' },
+                { from: 49.41, to: 59.5, color: 'green' },
+                { from: 59.51, to: 100, color: 'darkgreen' },
+            ],
+            target: 54.45,
+            width: '100%',
+            impedance_required: true,
+        },
+        protein: {
+            key: 'protein',
+            min: 0,
+            max: 32,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 16, color: 'orangered' },
+                { from: 16.01, to: 20, color: 'green' },
+                { from: 20.01, to: 32, color: 'darkgreen' },
+            ],
+            target: 18,
+            width: '100%',
+            impedance_required: true,
+        },
+        visceral_fat: {
+            key: 'visceral_fat',
+            min: 0,
+            max: 20,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 10, color: 'green' },
+                { from: 10.01, to: 15, color: 'orange' },
+                { from: 15.01, to: 20, color: 'orangered' },
+            ],
+            target: 12.5,
+            width: '100%',
+            impedance_required: false,
+        },
+        water: {
+            key: 'water',
+            min: 0,
+            max: 80,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 55, color: 'orangered' },
+                { from: 55.01, to: 65.1, color: 'green' },
+                { from: 65.11, to: 80, color: 'darkgreen' },
+            ],
+            target: 60,
+            width: '100%',
+            impedance_required: true,
+        },
+        weight: {
+            key: 'weight',
+            min: 0,
+            max: 130,
+            height: 30,
+            positions: {
+                icon: 'outside',
+                name: 'inside',
+                minmax: 'off',
+                value: 'inside',
+            },
+            severity: [
+                { from: 0, to: 57.3, color: 'blue' },
+                { from: 57.31, to: 77.4, color: 'green' },
+                { from: 77.41, to: 86.7, color: 'orange' },
+                { from: 86.71, to: 99, color: 'orangered' },
+                { from: 99.1, to: 130, color: 'red' },
+            ],
+            target: 67.35,
+            width: '100%',
+            impedance_required: false,
+        },
+    },
+};
+
+function buildStyles(config) {
+    const { image, theme, show_toolbar, show_body } = config;
+    return {
+        background: image
+            ? `
+          background-image: url('${image}');
+          color: white;
+          text-shadow: 0 0 10px black;
+          min-height: 220px;
+          ${show_toolbar
+                ? 'border-radius: 0;'
+                : show_body
+                    ? 'border-radius: 0;'
+                    : 'border-radius: var(--ha-card-border-radius, 12px);'}
+          overflow: hidden;
+        `
+            : '',
+        icon: `color: ${image ? 'white' : 'var(--paper-item-icon-color)'};`,
+        iconbody: `background-color: ${theme !== false ? 'var(--paper-item-icon-color)' : 'white'};`,
+    };
+}
+function buildConfig(config) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z;
+    if (!config) {
+        throw new Error(localize('error.invalid_config'));
+    }
+    if (!config.entity) {
+        throw new Error(localize('error.missing_entity'));
+    }
+    if (config.entity.split('.')[0] !== 'bodymiscale') {
+        throw new Error(localize('error.missing_entity_bodymiscale'));
+    }
+    // Fusionner les données et préparer les valeurs par défaut
+    return {
+        entity: (_a = config.entity) !== null && _a !== void 0 ? _a : '',
+        image: (_b = config.image) !== null && _b !== void 0 ? _b : '',
+        icons_body: (_c = config.icons_body) !== null && _c !== void 0 ? _c : '',
+        model: (_d = config.model) !== null && _d !== void 0 ? _d : false,
+        impedance_required: (_e = config.impedance_required) !== null && _e !== void 0 ? _e : false,
+        unit: (_f = config.unit) !== null && _f !== void 0 ? _f : false,
+        theme: (_g = config.theme) !== null && _g !== void 0 ? _g : true,
+        show_name: (_h = config.show_name) !== null && _h !== void 0 ? _h : true,
+        show_states: (_j = config.show_states) !== null && _j !== void 0 ? _j : true,
+        show_attributes: (_k = config.show_attributes) !== null && _k !== void 0 ? _k : true,
+        show_always_details: (_l = config.show_always_details) !== null && _l !== void 0 ? _l : false,
+        show_toolbar: (_m = config.show_toolbar) !== null && _m !== void 0 ? _m : true,
+        show_body: (_o = config.show_body) !== null && _o !== void 0 ? _o : true,
+        show_buttons: (_p = config.show_buttons) !== null && _p !== void 0 ? _p : false,
+        states: deepMerge(states, config.states),
+        attributes: config.unit
+            ? deepMerge(attributes_lb, config.attributes)
+            : deepMerge(attributes_kg, config.attributes),
+        body: config.unit
+            ? deepMerge(body_lb, config.body)
+            : deepMerge(body_kg, config.body),
+        buttons: config.buttons === true ? {} : deepMerge(buttons, config.buttons),
+        styles: buildStyles(config),
+        open: (_q = config.open) !== null && _q !== void 0 ? _q : false,
+        height: (_r = config.height) !== null && _r !== void 0 ? _r : undefined,
+        width: (_s = config.width) !== null && _s !== void 0 ? _s : undefined,
+        stats: (_t = config.stats) !== null && _t !== void 0 ? _t : {},
+        min: (_u = config.min) !== null && _u !== void 0 ? _u : undefined,
+        max: (_v = config.max) !== null && _v !== void 0 ? _v : undefined,
+        color: (_w = config.color) !== null && _w !== void 0 ? _w : undefined,
+        positions: (_x = config.positions) !== null && _x !== void 0 ? _x : {
+            icon: 'outside',
+            name: 'inside',
+            minmax: 'off',
+            value: 'inside',
+        },
+        severity: (_y = config.severity) !== null && _y !== void 0 ? _y : undefined,
+        target: (_z = config.target) !== null && _z !== void 0 ? _z : undefined,
+    };
+}
+
+// String in the right side will be replaced by Rollup
+const PKG_VERSION = 'DEVELOPMENT';
+console.info(`%c Body-miscale-card \n%c  ${localize('common.version')} ${PKG_VERSION} `, 'color: cyan; background: black; font-weight: bold;', 'color: darkblue; background: white; font-weight: bold;');
+let BodymiscaleCard = class BodymiscaleCard extends r$3 {
+    constructor() {
+        super(...arguments);
+        this.open = false;
+    }
+    static get styles() {
+        return css_248z$1;
+    }
+    static async getConfigElement() {
+        Promise.resolve().then(function () { return editor; });
+        return document.createElement('body-miscale-card-editor');
+    }
+    static getStubConfig(_, entities) {
+        const [bodymiscaleEntity] = entities.filter((eid) => eid.startsWith('bodymiscale'));
+        return Object.assign(Object.assign({}, defaultCardConfig), { entity: bodymiscaleEntity !== null && bodymiscaleEntity !== void 0 ? bodymiscaleEntity : '' });
+    }
+    get entity() {
+        return this.hass.states[this.config.entity];
+    }
+    setConfig(config) {
+        this.config = buildConfig(config);
+    }
+    getCardSize() {
+        return this.config.show_name && this.config.show_buttons
+            ? 4
+            : this.config.show_name || this.config.show_buttons
+                ? 3
+                : 2;
+    }
+    shouldShowBackground() {
+        return !(this.config.image === '' &&
+            this.config.show_states === false &&
+            this.config.show_attributes === false &&
+            this.config.show_always_details === true &&
+            this.config.show_body === true);
+    }
+    shouldUpdate(changedProps) {
+        return _e(this, changedProps, false);
+    }
+    toggle(event) {
+        event === null || event === void 0 ? void 0 : event.stopPropagation();
+        this.open = !this.open;
+    }
+    customEvent(event) {
+        var _a;
+        if ((_a = event.detail) === null || _a === void 0 ? void 0 : _a.fold_row) {
+            this.toggle(event);
+        }
+    }
+    toggleMenu(key) {
+        var _a;
+        const menu = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector(`#bmc-menu-${key}`);
+        if (menu && 'open' in menu) {
+            menu.open = !menu.open;
+        }
+    }
+    handleChange(entity) {
+        if (!this.hass)
+            return;
+        // Mise à jour de l'entité principale
+        this.config = Object.assign(Object.assign({}, this.config), { entity });
+        // Déclencher un événement pour enregistrer le changement
+        ne(this, 'config-changed', { config: this.config });
+    }
+    moreInfo() {
+        var _a;
+        if (!((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            console.warn('No entity defined in the config.');
+            return;
+        }
+        ne(this, 'hass-more-info', {
+            entityId: this.config.entity,
+        });
+    }
+    renderName(stateObj) {
+        if (!this.config.show_name) {
+            return E;
+        }
+        return x `
+      <div class="bodymiscale-name">${stateObj.attributes.friendly_name}</div>
+    `;
+    }
+    renderState(data) {
+        var _a, _b, _c, _d, _e;
+        if (!this.config.show_states) {
+            return E;
+        }
+        if (!this.hass || !((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            return x `<div>${localize('state.default.unavailable')}</div>`;
+        }
+        const stateObj = (_b = this.hass.states) === null || _b === void 0 ? void 0 : _b[this.config.entity];
+        if (!stateObj) {
+            return x `<div>
+        ${this.hass.localize('state.default.unavailable')}
+      </div>`;
+        }
+        const keyExists = (data === null || data === void 0 ? void 0 : data.key) && stateObj;
+        const isValidAttribute = keyExists && ((_c = stateObj.attributes) === null || _c === void 0 ? void 0 : _c[data.key]) !== undefined;
+        const isValidEntityData = keyExists && stateObj[data.key] !== undefined;
+        let value = isValidAttribute
+            ? stateObj.attributes[data.key]
+            : isValidEntityData
+                ? stateObj[data.key]
+                : this.hass.localize('state.default.unavailable');
+        if (data.key === 'last_measurement_time' && typeof value === 'string') {
+            try {
+                const parsedDate = new Date(value.replace(' ', 'T'));
+                const formattedDate = a(parsedDate, this.hass.locale);
+                const formattedTime = D(parsedDate, this.hass.locale);
+                value = `${formattedDate} ${formattedTime}`;
+            }
+            catch (_f) {
+                /* empty */
+            }
+        }
+        const formatValue = typeof value === 'number' ? H(value, this.hass.locale) : value;
+        const localizedValue = localize(`states.${value}`) || formatValue;
+        const attribute = stateObj.state === 'ok' && data.icon === 'mdi:alert'
+            ? E
+            : x ` <div class="state-div">
+            <div>${data.icon && this.renderIcon(data, 'default')}</div>
             <div class="state-label">
-              ${null!==(t=e.label)&&void 0!==t?t:""}${h}${null!==(n=e.unit)&&void 0!==n?n:""}
+              ${(_d = data.label) !== null && _d !== void 0 ? _d : ''}${localizedValue}${(_e = data.unit) !== null && _e !== void 0 ? _e : ''}
             </div>
-          </div>`;return`${e.key}_list`in r.attributes&&(l||d)?this.renderDropdown(m,e.key):m}renderAttribute(e){var a,o,i,t,n;if(!this.config.show_attributes)return L;if(!this.hass||!(null===(a=this.config)||void 0===a?void 0:a.entity))return U`<div>${It("state.default.unavailable")}</div>`;const r=null===(o=this.hass.states)||void 0===o?void 0:o[this.config.entity];if(!r)return U`<div>
-        ${this.hass.localize("state.default.unavailable")}
-      </div>`;const s="function"==typeof e.compute?e.compute:e=>e,l=(null==e?void 0:e.key)&&r,d=l&&void 0!==(null===(i=r.attributes)||void 0===i?void 0:i[e.key]),c=l&&void 0!==r[e.key];let _=d?s(r.attributes[e.key]):c?s(r[e.key]):this.hass.localize("state.default.unavailable");if("last_measurement_time"===e.key&&"string"==typeof _)try{const e=new Date(_.replace(" ","T")),a=be(e,this.hass.locale);_=`${a} ${ye(e,this.hass.locale)}`}catch(e){}const h="number"==typeof _?we(_,this.hass.locale):_,m=It(`attributes_value.${_}`)||h,u=U`<div>
-      ${e.icon&&this.renderIcon(e,"default")}
-      ${null!==(t=e.label)&&void 0!==t?t:""}${m}${null!==(n=e.unit)&&void 0!==n?n:""}
-    </div>`;return`${e.key}_list`in r.attributes&&(d||c)?this.renderDropdown(u,e.key):u}renderBody(e){var a,o,i;if(!this.config.show_body)return L;if(!this.hass||!(null===(a=this.config)||void 0===a?void 0:a.entity))return U`<div>${It("state.default.unavailable")}</div>`;const t=null===(o=this.hass.states)||void 0===o?void 0:o[this.config.entity];if(!t)return U`<div>
-        ${this.hass.localize("state.default.unavailable")}
-      </div>`;const n="function"==typeof e.compute?e.compute:e=>e,r=(null==e?void 0:e.key)&&t,s=r&&void 0!==(null===(i=t.attributes)||void 0===i?void 0:i[e.key]),l=r&&void 0!==t[e.key];let d=s?n(t.attributes[e.key]):l?n(t[e.key]):this.hass.localize("state.default.unavailable");if("last_measurement_time"===e.key&&"string"==typeof d)try{const e=new Date(d.replace(" ","T")),a=be(e,this.hass.locale);d=`${a} ${ye(e,this.hass.locale)}`}catch(e){}const c="number"==typeof d?we(d,this.hass.locale):d;let _="0px 0px 0px 13px",h=30;e.height&&(h=e.height);const m="number"==typeof h?`${h}px`:h.toString().includes("px")?h:`${parseInt(h,10)||0}px`;let u="stretch",b="right";const{outside:g,inside:p,backgroundMargin:y}=this.renderBarIcon(e),{outside:f,inside:v,backgroundMargin:w}=this.renderBarName(e),{outside:k,inside:x}=this.renderBarMinMax(e),{outside:z,inside:$,backgroundMargin:A}=this.renderBarValue(e,d,c,It);_=y||w||A||_;const M=Number(d),P=this._computeBarColor(e,M),C=this._computePercent(e,Number(d)),S=this._computePercent(e,e.target);let I=C,T=this._computePercent(e,e.target);T<I&&(I=T,T=C);let O="";e.width&&(u="center",O=`width: ${e.width}`);const j=U`
-      <score-card-row style="flex-direction: ${"row"};">
+          </div>`;
+        const hasDropdown = `${data.key}_list` in stateObj.attributes;
+        return hasDropdown && (isValidAttribute || isValidEntityData)
+            ? this.renderDropdown(attribute, data.key)
+            : attribute;
+    }
+    renderAttribute(data) {
+        var _a, _b, _c, _d, _e;
+        if (!this.config.show_attributes) {
+            return E;
+        }
+        if (!this.hass || !((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            return x `<div>${localize('state.default.unavailable')}</div>`;
+        }
+        const stateObj = (_b = this.hass.states) === null || _b === void 0 ? void 0 : _b[this.config.entity];
+        if (!stateObj) {
+            return x `<div>
+        ${this.hass.localize('state.default.unavailable')}
+      </div>`;
+        }
+        const computeFunc = typeof data.compute === 'function' ? data.compute : (v) => v;
+        const keyExists = (data === null || data === void 0 ? void 0 : data.key) && stateObj;
+        const isValidAttribute = keyExists && ((_c = stateObj.attributes) === null || _c === void 0 ? void 0 : _c[data.key]) !== undefined;
+        const isValidEntityData = keyExists && stateObj[data.key] !== undefined;
+        let value = isValidAttribute
+            ? computeFunc(stateObj.attributes[data.key])
+            : isValidEntityData
+                ? computeFunc(stateObj[data.key])
+                : this.hass.localize('state.default.unavailable');
+        if (data.key === 'last_measurement_time' && typeof value === 'string') {
+            try {
+                const parsedDate = new Date(value.replace(' ', 'T'));
+                const formattedDate = a(parsedDate, this.hass.locale);
+                const formattedTime = D(parsedDate, this.hass.locale);
+                value = `${formattedDate} ${formattedTime}`;
+            }
+            catch (_f) {
+                /* empty */
+            }
+        }
+        const formatValue = typeof value === 'number' ? H(value, this.hass.locale) : value;
+        const localizedValue = localize(`attributes_value.${value}`) || formatValue;
+        const attribute = x `<div>
+      ${data.icon && this.renderIcon(data, 'default')}
+      ${(_d = data.label) !== null && _d !== void 0 ? _d : ''}${localizedValue}${(_e = data.unit) !== null && _e !== void 0 ? _e : ''}
+    </div>`;
+        const hasDropdown = `${data.key}_list` in stateObj.attributes;
+        return hasDropdown && (isValidAttribute || isValidEntityData)
+            ? this.renderDropdown(attribute, data.key)
+            : attribute;
+    }
+    renderBody(data) {
+        var _a, _b, _c;
+        if (!this.config.show_body) {
+            return E;
+        }
+        if (!this.hass || !((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            return x `<div>${localize('state.default.unavailable')}</div>`;
+        }
+        const stateObj = (_b = this.hass.states) === null || _b === void 0 ? void 0 : _b[this.config.entity];
+        if (!stateObj) {
+            return x `<div>
+        ${this.hass.localize('state.default.unavailable')}
+      </div>`;
+        }
+        const computeFunc = typeof data.compute === 'function' ? data.compute : (v) => v;
+        const keyExists = (data === null || data === void 0 ? void 0 : data.key) && stateObj;
+        const isValidAttribute = keyExists && ((_c = stateObj.attributes) === null || _c === void 0 ? void 0 : _c[data.key]) !== undefined;
+        const isValidEntityData = keyExists && stateObj[data.key] !== undefined;
+        let value = isValidAttribute
+            ? computeFunc(stateObj.attributes[data.key])
+            : isValidEntityData
+                ? computeFunc(stateObj[data.key])
+                : this.hass.localize('state.default.unavailable');
+        if (data.key === 'last_measurement_time' && typeof value === 'string') {
+            try {
+                const parsedDate = new Date(value.replace(' ', 'T'));
+                const formattedDate = a(parsedDate, this.hass.locale);
+                const formattedTime = D(parsedDate, this.hass.locale);
+                value = `${formattedDate} ${formattedTime}`;
+            }
+            catch (_d) {
+                /* empty */
+            }
+        }
+        const formatValue = typeof value === 'number' ? H(value, this.hass.locale) : value;
+        // Forcer la direction à 'right' (horizontale)
+        let backgroundMargin = '0px 0px 0px 13px';
+        // Définir la hauteur et vérifier la hauteur configurée.
+        let barHeight = 30;
+        if (data.height)
+            barHeight = data.height;
+        // Normalisation de barHeight
+        const normalizedBarHeight = typeof barHeight === 'number'
+            ? `${barHeight}px` // Si c'est un nombre, ajouter 'px'
+            : barHeight.toString().includes('px')
+                ? barHeight // Si déjà en "px", ne rien changer
+                : `${parseInt(barHeight, 10) || 0}px`; // Sinon, convertir en nombre et ajouter 'px'
+        // Définir les variables de style pour toujours aller à droite
+        let alignItems = 'stretch';
+        let barDirection = 'right'; // Toujours 'right'
+        let flexDirection = 'row';
+        let markerDirection = 'left'; // Le marqueur reste à gauche
+        let markerStyle = 'height: 100%; width: 2px;';
+        // Récupérer les éléments à l'extérieur et à l'intérieur
+        const { outside: iconOutside, inside: iconInside, backgroundMargin: backgroundMarginFromIcon, } = this.renderBarIcon(data);
+        const { outside: nameOutside, inside: nameInside, backgroundMargin: backgroundMarginFromName, } = this.renderBarName(data);
+        const { outside: minMaxOutside, inside: minMaxInside } = this.renderBarMinMax(data);
+        const { outside: valueOutside, inside: valueInside, backgroundMargin: backgroundMarginFromValue, } = this.renderBarValue(data, value, formatValue, localize);
+        // Mettre à jour backgroundMargin ici
+        backgroundMargin =
+            backgroundMarginFromIcon ||
+                backgroundMarginFromName ||
+                backgroundMarginFromValue ||
+                backgroundMargin;
+        // Définir la couleur de la barre
+        const numberValue = Number(value);
+        const barColor = this._computeBarColor(data, numberValue);
+        // Définir le pourcentage de la barre et du marqueur en fonction de la différence de valeur.
+        const barPercent = this._computePercent(data, Number(value));
+        const targetMarkerPercent = this._computePercent(data, data.target);
+        let targetStartPercent = barPercent;
+        let targetEndPercent = this._computePercent(data, data.target);
+        if (targetEndPercent < targetStartPercent) {
+            targetStartPercent = targetEndPercent;
+            targetEndPercent = barPercent;
+        }
+        // Définir la largeur de la barre si configurée.
+        let barWidth = '';
+        if (data.width) {
+            alignItems = 'center';
+            barWidth = `width: ${data.width}`;
+        }
+        // Créer le tableau contenant toutes les lignes.
+        let rowFlexDirection = 'row';
+        const attribute = x `
+      <score-card-row style="flex-direction: ${rowFlexDirection};">
         <score-card-card
-          style="flex-direction: ${"row"}; align-items: ${u};"
+          style="flex-direction: ${flexDirection}; align-items: ${alignItems};"
         >
-          ${g} ${f}
+          ${iconOutside} ${nameOutside}
           <score-card-background
-            style="margin: ${_}; height: ${m}; ${O}"
+            style="margin: ${backgroundMargin}; height: ${normalizedBarHeight}; ${barWidth}"
           >
             <score-card-backgroundbar
-              style="--bar-color: ${P};"
+              style="--bar-color: ${barColor};"
             ></score-card-backgroundbar>
             <score-card-currentbar
-              style="--bar-color: ${P}; --bar-percent: ${C}%; --bar-direction: ${b}"
+              style="--bar-color: ${barColor}; --bar-percent: ${barPercent}%; --bar-direction: ${barDirection}"
             ></score-card-currentbar>
-            ${e.target?U`
+            ${data.target
+            ? x `
                   <score-card-targetbar
-                    style="--bar-color: ${P}; --bar-percent: ${I}%; --bar-target-percent: ${T}%; --bar-direction: ${b};"
+                    style="--bar-color: ${barColor}; --bar-percent: ${targetStartPercent}%; --bar-target-percent: ${targetEndPercent}%; --bar-direction: ${barDirection};"
                   ></score-card-targetbar>
                   <score-card-markerbar
-                    style="--bar-color: ${P}; --bar-target-percent: ${S}%; ${"left"}: calc(${S}% - 1px); ${"height: 100%; width: 2px;"}"
+                    style="--bar-color: ${barColor}; --bar-target-percent: ${targetMarkerPercent}%; ${markerDirection}: calc(${targetMarkerPercent}% - 1px); ${markerStyle}"
                   ></score-card-markerbar>
-                `:""}
+                `
+            : ''}
             <score-card-contentbar class="contentbar-direction-right">
-              ${p} ${v} ${x} ${$}
+              ${iconInside} ${nameInside} ${minMaxInside} ${valueInside}
             </score-card-contentbar>
           </score-card-background>
-          ${k} ${z}
+          ${minMaxOutside} ${valueOutside}
         </score-card-card>
       </score-card-row>
-    `;return`${e.key}_list`in t.attributes&&(s||l)?this.renderDropdown(j,e.key):j}renderBarIcon(e){let a=L,o=L,i="0px";switch(e.positions.icon){case"outside":a=U`
+    `;
+        const hasDropdown = `${data.key}_list` in stateObj.attributes;
+        return hasDropdown && (isValidAttribute || isValidEntityData)
+            ? this.renderDropdown(attribute, data.key)
+            : attribute;
+    }
+    renderBarIcon(data) {
+        let iconOutside = E;
+        let iconInside = E;
+        // Déclaration et mise à jour de backgroundMargin ici
+        let backgroundMargin = '0px'; // Définie pour l'initialisation
+        switch (data.positions.icon) {
+            case 'outside':
+                iconOutside = x `
           <score-card-iconbar
-            >${e.icon&&this.renderIcon(e,"body")}</score-card-iconbar
+            >${data.icon && this.renderIcon(data, 'body')}</score-card-iconbar
           >
-        `,i="0px 0px 0px 13px";break;case"inside":o=U`
+        `;
+                backgroundMargin = '0px 0px 0px 13px';
+                break;
+            case 'inside':
+                iconInside = x `
           <score-card-iconbar
-            >${e.icon&&this.renderIcon(e,"body")}</score-card-iconbar
+            >${data.icon && this.renderIcon(data, 'body')}</score-card-iconbar
           >
-        `,i="0px";break;case"off":i="0px"}return{outside:a,inside:o,backgroundMargin:i}}renderBarName(e){let a=L,o=L,i="0px";if(void 0!==e.label)switch(e.positions.name){case"outside":a=U`
+        `;
+                backgroundMargin = '0px'; // Réinitialisation de backgroundMargin pour 'inside'
+                break;
+            case 'off':
+                backgroundMargin = '0px'; // Pas de marge pour 'off'
+                break;
+        }
+        return { outside: iconOutside, inside: iconInside, backgroundMargin };
+    }
+    renderBarName(data) {
+        let nameOutside = E;
+        let nameInside = E;
+        // Déclaration et mise à jour de backgroundMargin ici
+        let backgroundMargin = '0px'; // Définie pour l'initialisation
+        if (data.label !== undefined) {
+            switch (data.positions.name) {
+                case 'outside':
+                    nameOutside = x `
             <score-card-name
-              style="${e.width?`width: calc(100% - ${e.width});`:""}"
-              >${e.label||""}</score-card-name
+              style="${data.width ? `width: calc(100% - ${data.width});` : ''}"
+              >${data.label || ''}</score-card-name
             >
-          `,i="0px";break;case"inside":o=U`<score-card-name
-            >${e.label||""}</score-card-name
-          >`}return{outside:a,inside:o,backgroundMargin:i}}renderBarMinMax(e){let a=L,o=L;if(void 0!==e.min&&void 0!==e.max)switch(e.positions.minmax){case"outside":a=U`
-            <score-card-min>${e.min}</score-card-min>
+          `;
+                    backgroundMargin = '0px'; // Mise à jour de la marge pour 'outside'
+                    break;
+                case 'inside':
+                    nameInside = x `<score-card-name
+            >${data.label || ''}</score-card-name
+          >`;
+                    break;
+            }
+        }
+        return { outside: nameOutside, inside: nameInside, backgroundMargin };
+    }
+    renderBarMinMax(data) {
+        let minMaxOutside = E;
+        let minMaxInside = E;
+        if (data.min !== undefined && data.max !== undefined) {
+            switch (data.positions.minmax) {
+                case 'outside':
+                    minMaxOutside = x `
+            <score-card-min>${data.min}</score-card-min>
             <score-card-divider>/</score-card-divider>
-            <score-card-max>${e.max}</score-card-max>
-          `;break;case"inside":o=U`
+            <score-card-max>${data.max}</score-card-max>
+          `;
+                    break;
+                case 'inside':
+                    minMaxInside = x `
             <score-card-min class="min-direction-right">
-              ${e.min}
+              ${data.min}
             </score-card-min>
             <score-card-divider>/</score-card-divider>
-            <score-card-max>${e.max}</score-card-max>
-          `}return{outside:a,inside:o}}renderBarValue(e,a,o,i){let t=L,n=L;switch(e.positions.value){case"outside":t=U`
+            <score-card-max>${data.max}</score-card-max>
+          `;
+                    break;
+            }
+        }
+        return { outside: minMaxOutside, inside: minMaxInside };
+    }
+    renderBarValue(data, value, formatValue, localize) {
+        let valueOutside = E;
+        let valueInside = E;
+        // Déclaration et mise à jour de backgroundMargin ici
+        let backgroundMargin = '0px'; // Définie pour l'initialisation
+        switch (data.positions.value) {
+            case 'outside':
+                valueOutside = x `
           <score-card-value class="value-direction-right">
-            ${(i(`body_value.${a}`)||o)+(e.unit||"")}
+            ${(localize(`body_value.${value}`) || formatValue) +
+                    (data.unit || '')}
           </score-card-value>
-        `;break;case"inside":n=U`
+        `;
+                break;
+            case 'inside':
+                valueInside = x `
           <score-card-value
-            class="${"inside"==e.positions.minmax?"":"value-direction-right"}"
+            class="${data.positions.minmax == 'inside'
+                    ? ''
+                    : 'value-direction-right'}"
           >
-            ${(i(`body_value.${a}`)||o)+(e.unit||"")}
+            ${(localize(`body_value.${value}`) || formatValue) +
+                    (data.unit || '')}
           </score-card-value>
-        `}return{outside:t,inside:n,backgroundMargin:"0px"}}_computeSeverityColor(e,a){var o;const i=e.severity;let t;return isNaN(a)?i.forEach((a=>{e==a.text&&a.color&&(t=Bt(a.color)||"disabled")})):i.forEach((e=>{a>=(e.from||0)&&a<=(e.to||1/0)&&e.color&&(t=Bt(e.color)||"disabled")})),null!==(o=null!=t?t:Bt(e.color))&&void 0!==o?o:"disabled"}_computeBarColor(e,a){let o;return o=e.severity?this._computeSeverityColor(e,a)||Bt(e.color)||"disabled":Bt(e.color)||"disabled",o}_computePercent(e,a){return"unavailable"==e?0:isNaN(a)?100:100*(a-e.min)/(e.max-e.min)}renderIcon(e,a="default"){var o,i,t;if(!this.hass||!(null===(o=this.config)||void 0===o?void 0:o.entity))return L;const n=this.hass.states[this.config.entity];if(!n)return L;const r="water"===e.key.toLowerCase()&&"water_icon"in n.attributes?n.attributes.water_icon:e.icon;if(!r)return L;if("body"===a)return U`
+        `;
+                break;
+        }
+        return { outside: valueOutside, inside: valueInside, backgroundMargin };
+    }
+    _computeSeverityColor(data, numberValue) {
+        var _a;
+        const sections = data.severity;
+        let color;
+        if (isNaN(numberValue)) {
+            sections.forEach((section) => {
+                if (data == section.text && section.color) {
+                    color = computeCssColor(section.color) || 'disabled';
+                }
+            });
+        }
+        else {
+            sections.forEach((section) => {
+                if (numberValue >= (section.from || 0) &&
+                    numberValue <= (section.to || Infinity) &&
+                    section.color) {
+                    color = computeCssColor(section.color) || 'disabled';
+                }
+            });
+        }
+        return (_a = color !== null && color !== void 0 ? color : computeCssColor(data.color)) !== null && _a !== void 0 ? _a : 'disabled';
+    }
+    _computeBarColor(data, numberValue) {
+        let BarColor;
+        if (data.severity) {
+            BarColor =
+                this._computeSeverityColor(data, numberValue) ||
+                    computeCssColor(data.color) ||
+                    'disabled';
+        }
+        else if (data == 'unavailable') {
+            BarColor = computeCssColor(data.color) || 'disabled';
+        }
+        else {
+            BarColor = computeCssColor(data.color) || 'disabled';
+        }
+        return BarColor;
+    }
+    _computePercent(data, numberValue) {
+        if (data == 'unavailable')
+            return 0;
+        if (isNaN(numberValue))
+            return 100;
+        return (100 * (numberValue - data.min)) / (data.max - data.min);
+    }
+    getIconUrl(iconName) {
+        var _a, _b;
+        const basePath = (_b = (_a = this.config) === null || _a === void 0 ? void 0 : _a.icons_body) !== null && _b !== void 0 ? _b : '/local/images/bodyscoreIcon';
+        return `${basePath}/${iconName}`;
+    }
+    renderIcon(data, type = 'default') {
+        var _a, _b, _c;
+        if (!this.hass || !((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            return E;
+        }
+        const stateObj = this.hass.states[this.config.entity];
+        if (!stateObj) {
+            return E;
+        }
+        const icon = data.key.toLowerCase() === 'water' && 'water_icon' in stateObj.attributes
+            ? stateObj.attributes.water_icon
+            : data.icon;
+        if (!icon) {
+            return E;
+        }
+        const iconUrl = this.getIconUrl(data.icon);
+        if (type === 'body' && iconUrl) {
+            return x `
         <ha-icon
           class="image"
           style="
-              -webkit-mask-image: url('${r}'); 
+              -webkit-mask-image: url('${iconUrl}');
+              mask-image: url('${iconUrl}');
               -webkit-mask-size: 24px;
-              ${(null===(i=this.config.styles)||void 0===i?void 0:i.iconbody)||""}"
+              mask-size: 24px;
+              ${((_b = this.config.styles) === null || _b === void 0 ? void 0 : _b.iconbody) || ''}"
         ></ha-icon>
-      `;const s="none"!==n.attributes.problem&&"mdi:alert"===r;return U`
+      `;
+        }
+        const isProblem = stateObj.attributes.problem !== 'none' && icon === 'mdi:alert';
+        const iconClass = isProblem ? 'problem' : '';
+        return x `
       <ha-icon
-        class="${s?"problem":""}"
-        icon="${r}"
-        style="margin-right: 10px; ${(null===(t=this.config.styles)||void 0===t?void 0:t.icon)||""} ${s?"color: var(--error-color) !important;":""}"
+        class="${iconClass}"
+        icon="${icon}"
+        style="margin-right: 10px; ${((_c = this.config.styles) === null || _c === void 0 ? void 0 : _c.icon) || ''} ${isProblem
+            ? 'color: var(--error-color) !important;'
+            : ''}"
       ></ha-icon>
-    `}renderButton(e){return this.config.show_buttons&&e.show?U`
+    `;
+    }
+    renderButton(button) {
+        if (!this.config.show_buttons || !button.show) {
+            return E;
+        }
+        return x `
       <ha-button
-        @click=${()=>this.handleChange(e.entity)}
-        title=${he(e.label)}
+        @click=${() => this.handleChange(button.entity)}
+        title=${o$2(button.label)}
       >
-        ${e.icon?U`<ha-icon icon="${e.icon}"></ha-icon>`:e.label}
+        ${button.icon
+            ? x `<ha-icon icon="${button.icon}"></ha-icon>`
+            : button.label}
       </ha-button>
-    `:L}renderToolbar(){var e;return this.config.show_toolbar?U`
+    `;
+    }
+    renderToolbar() {
+        var _a;
+        if (!this.config.show_toolbar) {
+            return E;
+        }
+        return x `
       <div class="toolbar" @ll-custom=${this.customEvent} ?open=${this.open}>
         <ha-icon-button
           @click=${this.toggle}
-          title=${he(It("common.toggle_power")||void 0)}
+          title=${o$2(localize('common.toggle_power') || undefined)}
           style="color: var(--primary-color);"
         >
           <ha-icon
-            icon=${this.config.show_always_details?"":this.open?"mdi:chevron-up":"mdi:chevron-down"}
+            icon=${this.config.show_always_details
+            ? ''
+            : this.open
+                ? 'mdi:chevron-up'
+                : 'mdi:chevron-down'}
           ></ha-icon>
         </ha-icon-button>
         <div class="fill-gap"></div>
-        ${Object.values(null!==(e=this.config.buttons)&&void 0!==e?e:{}).filter((e=>e.show)).map((e=>this.renderButton(e)))}
+        ${Object.values((_a = this.config.buttons) !== null && _a !== void 0 ? _a : {})
+            .filter((btn) => btn.show)
+            .map((btn) => this.renderButton(btn))}
       </div>
-    `:L}renderDropdown(e,a){var o,i;if(!this.hass||!(null===(o=this.config)||void 0===o?void 0:o.entity))return L;const t=this.hass.states[this.config.entity];if(!(null==t?void 0:t.attributes))return L;const n=null!==(i=t.attributes[`${a}_list`])&&void 0!==i?i:[];return Array.isArray(n)&&0!==n.length?U` <div
+    `;
+    }
+    renderDropdown(attribute, key) {
+        var _a, _b;
+        if (!this.hass || !((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            return E;
+        }
+        const stateObj = this.hass.states[this.config.entity];
+        if (!(stateObj === null || stateObj === void 0 ? void 0 : stateObj.attributes)) {
+            return E;
+        }
+        const list = (_b = stateObj.attributes[`${key}_list`]) !== null && _b !== void 0 ? _b : [];
+        if (!Array.isArray(list) || list.length === 0) {
+            return E;
+        }
+        return x ` <div
       style="position: relative"
-      @click=${e=>e.stopPropagation()}
+      @click=${(e) => e.stopPropagation()}
     >
-      <ha-button @click=${()=>this.toggleMenu(a)}> ${e} </ha-button>
+      <ha-button @click=${() => this.toggleMenu(key)}> ${attribute} </ha-button>
       <mwc-menu
-        @selected=${e=>this.handleChange(n[e.detail.index])}
-        id=${he(`bmc-menu-${a}`)}
+        @selected=${(e) => this.handleChange(list[e.detail.index])}
+        id=${o$2(`bmc-menu-${key}`)}
         activatable
         corner="BOTTOM_START"
       >
-        ${n.map((e=>U`
-            <mwc-list-item value=${e}>${e}</mwc-list-item>
-          `))}
+        ${list.map((item) => x `
+            <mwc-list-item value=${item}>${item}</mwc-list-item>
+          `)}
       </mwc-menu>
-    </div>`:L}render(){var e,a,o,i;if(!this.hass||!(null===(e=this.config)||void 0===e?void 0:e.entity))return L;const t=this.hass.states[this.config.entity];if(!t)return U`
+    </div>`;
+    }
+    render() {
+        var _a, _b, _c, _d;
+        if (!this.hass || !((_a = this.config) === null || _a === void 0 ? void 0 : _a.entity)) {
+            return E;
+        }
+        const stateObj = this.hass.states[this.config.entity];
+        if (!stateObj) {
+            return x `
         <ha-card>
           <div class="preview not-available">
             <div class="metadata">
               <div class="not-available">
-                ${It("common.not_available")}
+                ${localize('common.not_available')}
               </div>
             </div>
           </div>
         </ha-card>
-      `;const n=$e(null!==(a=this.config.body)&&void 0!==a?a:{},this.config.model),r=$e(null!==(o=this.config.attributes)&&void 0!==o?o:{},this.config.model);return U`
+      `;
+        }
+        const filteredBodyData = filterByImpedance((_b = this.config.body) !== null && _b !== void 0 ? _b : {}, this.config.model);
+        const filteredAttributesData = filterByImpedance((_c = this.config.attributes) !== null && _c !== void 0 ? _c : {}, this.config.model);
+        return x `
       <ha-card>
-        ${this.shouldShowBackground()?U`
+        ${this.shouldShowBackground()
+            ? x `
               <div
                 class="background"
-                style="${(null===(i=this.config.styles)||void 0===i?void 0:i.background)||""};"
+                style="${((_d = this.config.styles) === null || _d === void 0 ? void 0 : _d.background) || ''};"
               >
-                ${this.config.show_name?U`<div class="title" style="padding: 12px 16px 8px">
-                      ${this.renderName(t)}
-                    </div>`:""}
+                ${this.config.show_name
+                ? x `<div class="title" style="padding: 12px 16px 8px">
+                      ${this.renderName(stateObj)}
+                    </div>`
+                : ''}
                 <div
                   class="grid"
                   style="padding: 12px 16px 8px"
@@ -502,50 +5683,119 @@ score-card-value {
                   tabindex="0"
                 >
                   <div class="grid-left">
-                    ${(this.config.states?Object.values(this.config.states):[]).filter((e=>e)).map(this.renderState.bind(this))}
+                    ${(this.config.states
+                ? Object.values(this.config.states)
+                : [])
+                .filter((v) => v)
+                .map(this.renderState.bind(this))}
                   </div>
                   <div class="grid-right">
-                    ${r.filter(Boolean).map(this.renderAttribute.bind(this))}
+                    ${filteredAttributesData
+                .filter(Boolean)
+                .map(this.renderAttribute.bind(this))}
                   </div>
                 </div>
               </div>
-            `:this.config.show_name?U`<div class="title">${this.renderName(t)}</div>`:""}
+            `
+            : this.config.show_name
+                ? x `<div class="title">${this.renderName(stateObj)}</div>`
+                : ''}
         ${this.renderToolbar()}
 
-        <div id="items" ?open=${this.open||this.config.show_always_details}>
+        <div id="items" ?open=${this.open || this.config.show_always_details}>
           <div id="score" class="card-content">
-            ${n.filter(Boolean).map(this.renderBody.bind(this))}
+            ${filteredBodyData.filter(Boolean).map(this.renderBody.bind(this))}
           </div>
         </div>
       </ha-card>
-    `}};e([ce({attribute:!1})],Rt.prototype,"hass",void 0),e([_e()],Rt.prototype,"config",void 0),e([_e()],Rt.prototype,"open",void 0),Rt=e([se("body-miscale-card")],Rt),window.customCards=window.customCards||[],window.customCards.push({preview:!0,type:"body-miscale-card",name:It("common.name"),description:It("common.description")});const Kt=1;let Ht=class{constructor(e){}get _$AU(){return this._$AM._$AU}_$AT(e,a,o){this._$Ct=e,this._$AM=a,this._$Ci=o}_$AS(e,a){return this.update(e,a)}update(e,a){return this.render(...a)}};const Zt="important",Ft=" !"+Zt,Jt=(e=>(...a)=>({_$litDirective$:e,values:a}))(class extends Ht{constructor(e){if(super(e),e.type!==Kt||"style"!==e.name||e.strings?.length>2)throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.")}render(e){return Object.keys(e).reduce(((a,o)=>{const i=e[o];return null==i?a:a+`${o=o.includes("-")?o:o.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g,"-$&").toLowerCase()}:${i};`}),"")}update(e,[a]){const{style:o}=e.element;if(void 0===this.ft)return this.ft=new Set(Object.keys(a)),this.render(a);for(const e of this.ft)null==a[e]&&(this.ft.delete(e),e.includes("-")?o.removeProperty(e):o[e]=null);for(const e in a){const i=a[e];if(null!=i){this.ft.add(e);const a="string"==typeof i&&i.endsWith(Ft);e.includes("-")||a?o.setProperty(e,a?i.slice(0,-11):i,a?Zt:""):o[e]=i}}return W}});let Xt=class extends ne{constructor(){super(...arguments),this.configValue=""}_selectChanged(e){const a=e.target.value;this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:a||void 0}}))}render(){return U`
+    `;
+    }
+};
+__decorate([
+    n$1({ attribute: false })
+], BodymiscaleCard.prototype, "hass", void 0);
+__decorate([
+    r$1()
+], BodymiscaleCard.prototype, "config", void 0);
+__decorate([
+    r$1()
+], BodymiscaleCard.prototype, "open", void 0);
+BodymiscaleCard = __decorate([
+    t$2('body-miscale-card')
+], BodymiscaleCard);
+window.customCards = window.customCards || [];
+window.customCards.push({
+    preview: true,
+    type: 'body-miscale-card',
+    name: localize('common.name'),
+    description: localize('common.description'),
+});
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t={ATTRIBUTE:1},e=t=>(...e)=>({_$litDirective$:t,values:e});let i$1 = class i{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,e,i){this._$Ct=t,this._$AM=e,this._$Ci=i;}_$AS(t,e){return this.update(t,e)}update(t,e){return this.render(...e)}};
+
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const n="important",i=" !"+n,o=e(class extends i$1{constructor(t$1){if(super(t$1),t$1.type!==t.ATTRIBUTE||"style"!==t$1.name||t$1.strings?.length>2)throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.")}render(t){return Object.keys(t).reduce(((e,r)=>{const s=t[r];return null==s?e:e+`${r=r.includes("-")?r:r.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g,"-$&").toLowerCase()}:${s};`}),"")}update(e,[r]){const{style:s}=e.element;if(void 0===this.ft)return this.ft=new Set(Object.keys(r)),this.render(r);for(const t of this.ft)null==r[t]&&(this.ft.delete(t),t.includes("-")?s.removeProperty(t):s[t]=null);for(const t in r){const e=r[t];if(null!=e){this.ft.add(t);const r="string"==typeof e&&e.endsWith(i);t.includes("-")||r?s.setProperty(t,r?e.slice(0,-11):e,r?n:""):s[t]=e;}}return T}});
+
+let ColorSelect = class ColorSelect extends r$3 {
+    constructor() {
+        super(...arguments);
+        this.configValue = '';
+    }
+    _selectChanged(event) {
+        const value = event.target.value;
+        this.dispatchEvent(new CustomEvent('value-changed', {
+            detail: {
+                value: value || undefined,
+            },
+        }));
+    }
+    render() {
+        return x `
       <ha-select
         .icon=${Boolean(this.value)}
-        .label=${It("color_select.color")}
+        .label=${localize('color_select.color')}
         .configValue=${this.configValue}
         @selected=${this._selectChanged}
-        @closed=${e=>e.stopPropagation()}
+        @closed=${(e) => e.stopPropagation()}
         .value=${this.value}
         fixedMenuPosition
         naturalMenuWidth
       >
         <span slot="icon">
-          ${this._renderColorCircle(this.value||"grey")}
+          ${this._renderColorCircle(this.value || 'grey')}
         </span>
 
-        ${Object.keys(jt).map((e=>U`
-            <ha-list-item .value=${e} graphic="icon">
-              ${It(`color_select.${e}`)||e}
-              <span slot="graphic">${this._renderColorCircle(e)}</span>
+        ${Object.keys(COLOR_HEX_MAP).map(
+        // Utiliser les clés de COLOR_HEX_MAP
+        (color) => x `
+            <ha-list-item .value=${color} graphic="icon">
+              ${localize(`color_select.${color}`) || color}
+              <span slot="graphic">${this._renderColorCircle(color)}</span>
             </ha-list-item>
-          `))}
+          `)}
       </ha-select>
-    `}_renderColorCircle(e){return U`
+    `;
+    }
+    _renderColorCircle(color) {
+        return x `
       <span
         class="circle-color"
-        style=${Jt({"--circle-color":Bt(e)})}
+        style=${o({
+            '--circle-color': computeCssColor(color),
+        })}
       ></span>
-    `}static get styles(){return r`
+    `;
+    }
+    static get styles() {
+        return i$5 `
       .circle-color {
         display: block;
         background-color: var(--circle-color, var(--divider-color));
@@ -558,7 +5808,23 @@ score-card-value {
       ha-select {
         width: 100%;
       }
-    `}};e([ce()],Xt.prototype,"label",void 0),e([ce()],Xt.prototype,"value",void 0),e([ce()],Xt.prototype,"configValue",void 0),Xt=e([se("color-select")],Xt);var Yt=r`.card-config {
+    `;
+    }
+};
+__decorate([
+    n$1()
+], ColorSelect.prototype, "label", void 0);
+__decorate([
+    n$1()
+], ColorSelect.prototype, "value", void 0);
+__decorate([
+    n$1()
+], ColorSelect.prototype, "configValue", void 0);
+ColorSelect = __decorate([
+    t$2('color-select')
+], ColorSelect);
+
+var css_248z = i$5`.card-config {
   display: block;
 }
 
@@ -642,23 +5908,62 @@ ha-form-grid {
 .severity-row ha-textfield {
   margin-right: 8px;
 }
-`;Tt(Yt);let Qt=class extends ne{constructor(){super(...arguments),this.page=1,this.selectedColor="white",this.config={},this.isInitialized=!1}setConfig(e){this.config=Object.assign({},e)}async connectedCallback(){super.connectedCallback(),await this.loadCardHelpers()}shouldUpdate(){return this.isInitialized||this.initialize(),!0}render(){if(!this.hass||!this.helpers)return L;const e=Object.assign(Object.assign({},Wt),this.config);return U`
+`;
+styleInject(css_248z);
+
+let BodymiscaleCardEditor = class BodymiscaleCardEditor extends r$3 {
+    constructor() {
+        super(...arguments);
+        this.page = 1;
+        this.selectedColor = 'white';
+        this.config = {};
+        this.isInitialized = false;
+    }
+    setConfig(config) {
+        this.config = Object.assign({}, config);
+    }
+    async connectedCallback() {
+        super.connectedCallback();
+        await this.loadCardHelpers();
+    }
+    shouldUpdate() {
+        if (!this.isInitialized) {
+            this.initialize();
+        }
+        return true;
+    }
+    render() {
+        if (!this.hass || !this.helpers) {
+            return E;
+        }
+        const config = Object.assign(Object.assign({}, defaultCardConfig), this.config);
+        return x `
       <div class="card-config">
-        ${1===this.page?this.renderPage1(e):this.renderPage2(e)}
+        ${this.page === 1 ? this.renderPage1(config) : this.renderPage2(config)}
       </div>
-    `}_handleConfigClick(){this.page=1}_handleCustomClick(){this.page=2}renderPage1(e){const a=Object.keys(this.hass.states).filter((e=>e.startsWith("bodymiscale.")));return U`
+    `;
+    }
+    _handleConfigClick() {
+        this.page = 1;
+    }
+    _handleCustomClick() {
+        this.page = 2;
+    }
+    renderPage1(config) {
+        const entities = Object.keys(this.hass.states).filter((entity) => entity.startsWith('bodymiscale.'));
+        return x `
       <div class="flex-space-between">
-        <h2 class="page-title">${It("editor.Configuration")}</h2>
+        <h2 class="page-title">${localize('editor.Configuration')}</h2>
         <div class="navigation">
           <ha-icon-button
             @click=${this._handleConfigClick}
-            .disabled=${1===this.page}
+            .disabled=${this.page === 1}
           >
             <ha-icon icon="mdi:tune"></ha-icon>
           </ha-icon-button>
           <ha-icon-button
             @click=${this._handleCustomClick}
-            .disabled=${2===this.page}
+            .disabled=${this.page === 2}
           >
             <ha-icon icon="mdi:palette"></ha-icon>
           </ha-icon-button>
@@ -666,203 +5971,406 @@ ha-form-grid {
       </div>
       <div class="option">
         <ha-select
-          .label=${It("editor.entity")}
+          .label=${localize('editor.entity')}
           @selected=${this.valueChanged}
-          .configValue=${"entity"}
-          .value=${e.entity}
-          @closed=${e=>e.stopPropagation()}
+          .configValue=${'entity'}
+          .value=${config.entity}
+          @closed=${(e) => e.stopPropagation()}
           fixedMenuPosition
           naturalMenuWidth
           required
-          .validationMessage=${It("error.missing_entity")}
+          .validationMessage=${localize('error.missing_entity')}
         >
-          ${a.map((e=>U`<mwc-list-item .value=${e}>${e}</mwc-list-item>`))}
+          ${entities.map((entity) => x `<mwc-list-item .value=${entity}>${entity}</mwc-list-item>`)}
         </ha-select>
       </div>
 
       <div class="option">
         <ha-textfield
-          .label=${It("editor.image")}
-          .value=${e.image||""}
-          .configValue=${"image"}
+          .label=${localize('editor.image')}
+          .value=${config.image || ''}
+          .configValue=${'image'}
           @input=${this.valueChanged}
         ></ha-textfield>
       </div>
 
-      ${this.renderSwitch("model",e)} ${this.renderSwitch("unit",e)}
-      ${this.renderSwitch("theme",e)}
+      <div class="option">
+        <ha-textfield
+          .label=${localize('editor.icons_body')}
+          .value=${config.icons_body || ''}
+          .configValue=${'icons_body'}
+          @input=${this.valueChanged}
+        ></ha-textfield>
+      </div>
+
+      ${this.renderSwitch('model', config)} ${this.renderSwitch('unit', config)}
+      ${this.renderSwitch('theme', config)}
 
       <p class="page-title">
-        <u>${It("editor.header_options")}</u>
+        <u>${localize('editor.header_options')}</u>
       </p>
 
-      ${this.renderSwitch("show_name",e)}
-      ${this.renderSwitch("show_states",e)}
-      ${this.renderSwitch("show_attributes",e)}
+      ${this.renderSwitch('show_name', config)}
+      ${this.renderSwitch('show_states', config)}
+      ${this.renderSwitch('show_attributes', config)}
 
       <p class="page-title">
-        <u>${It("editor.body_options")}</u>
+        <u>${localize('editor.body_options')}</u>
       </p>
 
-      ${this.renderSwitch("show_always_details",e)}
-      ${this.renderSwitch("show_toolbar",e)}
-      ${this.renderSwitch("show_body",e,!0)}
-      ${this.renderSwitch("show_buttons",e,!0)}
+      ${this.renderSwitch('show_always_details', config)}
+      ${this.renderSwitch('show_toolbar', config)}
+      ${this.renderSwitch('show_body', config, true)}
+      ${this.renderSwitch('show_buttons', config, true)}
 
-      <strong>${It("editor.code_only_note")}</strong>
-    `}renderPage2(e){return U`
+      <strong>${localize('editor.code_only_note')}</strong>
+    `;
+    }
+    renderPage2(config) {
+        return x `
       <div class="flex-space-between">
-        <h2 class="page-title">${It("editor.Customization")}</h2>
+        <h2 class="page-title">${localize('editor.Customization')}</h2>
         <div class="navigation">
           <ha-icon-button
             @click=${this._handleConfigClick}
-            .disabled=${1===this.page}
+            .disabled=${this.page === 1}
           >
             <ha-icon icon="mdi:tune"></ha-icon>
           </ha-icon-button>
           <ha-icon-button
             @click=${this._handleCustomClick}
-            .disabled=${2===this.page}
+            .disabled=${this.page === 2}
           >
             <ha-icon icon="mdi:palette"></ha-icon>
           </ha-icon-button>
         </div>
       </div>
-      ${this.renderBodyOptions(e)}
-    `}renderSwitch(e,a,o=!1){return U`
-      <div style="padding: ${o?"0 0 0 45px":"0"}">
-        ${It(`editor.${e}`)}
+      ${this.renderBodyOptions(config)}
+    `;
+    }
+    renderSwitch(option, config, padded = false) {
+        return x `
+      <div style="padding: ${padded ? '0 0 0 45px' : '0'}">
+        ${localize(`editor.${option}`)}
         <div class="option">
           <ha-formfield
-            .label=${It(a[e]?`editor.${e}_aria_label_off`:`editor.${e}_aria_label_on`)}
+            .label=${localize(config[option]
+            ? `editor.${option}_aria_label_off`
+            : `editor.${option}_aria_label_on`)}
           >
             <ha-switch
-              .checked=${Boolean(a[e])}
-              .configValue=${e}
+              .checked=${Boolean(config[option])}
+              .configValue=${option}
               @change=${this.valueChanged}
             ></ha-switch>
           </ha-formfield>
         </div>
       </div>
-    `}renderBodyOptions(e){var a;const o=!1===e.unit?Gt:qt,i=null!==(a=e.body)&&void 0!==a?a:{};return Object.keys(o).filter((a=>{const i=o[a];return!1!==e.model||!i.impedance_required})).map((e=>{var a,t,n,r,s,l,d,c,_,h;const m=o[e],u=(null===(a=i[e])||void 0===a?void 0:a.positions)||m.positions||{},b=void 0!==(null===(t=i[e])||void 0===t?void 0:t.min)?null===(n=i[e])||void 0===n?void 0:n.min:m.min,g=void 0!==(null===(r=i[e])||void 0===r?void 0:r.max)?null===(s=i[e])||void 0===s?void 0:s.max:m.max,p=void 0!==(null===(l=i[e])||void 0===l?void 0:l.target)?null===(d=i[e])||void 0===d?void 0:d.target:m.target,y=void 0!==(null===(c=i[e])||void 0===c?void 0:c.height)?null===(_=i[e])||void 0===_?void 0:_.height:m.height,f=(null===(h=i[e])||void 0===h?void 0:h.severity)||m.severity,v=It(`body.${e}`);return U`
+    `;
+    }
+    renderBodyOptions(config) {
+        var _a;
+        const bodyData = config.unit === false ? body_kg : body_lb;
+        const bodyConfig = (_a = config.body) !== null && _a !== void 0 ? _a : {};
+        // Filtrage basé sur impedance_required
+        const filteredKeys = Object.keys(bodyData).filter((key) => {
+            const item = bodyData[key];
+            // Si model est false, n'inclure que ceux avec impedance_required === false
+            if (config.model === false) {
+                return !item.impedance_required; // Exclure ceux qui ont impedance_required = true
+            }
+            // Si model est true, inclure tous les éléments
+            return true;
+        });
+        return filteredKeys.map((key) => {
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+            const item = bodyData[key];
+            const positions = ((_a = bodyConfig[key]) === null || _a === void 0 ? void 0 : _a.positions) || item.positions || {};
+            const min = ((_b = bodyConfig[key]) === null || _b === void 0 ? void 0 : _b.min) !== undefined ? (_c = bodyConfig[key]) === null || _c === void 0 ? void 0 : _c.min : item.min;
+            const max = ((_d = bodyConfig[key]) === null || _d === void 0 ? void 0 : _d.max) !== undefined ? (_e = bodyConfig[key]) === null || _e === void 0 ? void 0 : _e.max : item.max;
+            const target = ((_f = bodyConfig[key]) === null || _f === void 0 ? void 0 : _f.target) !== undefined
+                ? (_g = bodyConfig[key]) === null || _g === void 0 ? void 0 : _g.target
+                : item.target;
+            const height = ((_h = bodyConfig[key]) === null || _h === void 0 ? void 0 : _h.height) !== undefined
+                ? (_j = bodyConfig[key]) === null || _j === void 0 ? void 0 : _j.height
+                : item.height;
+            const severity = ((_k = bodyConfig[key]) === null || _k === void 0 ? void 0 : _k.severity) || item.severity;
+            const label = localize(`body.${key}`);
+            const positionKeys = ['icon', 'name', 'minmax', 'value'];
+            return x `
         <div>
-          <h3>${v}</h3>
+          <h3>${label}</h3>
           <ha-form-grid>
-            ${["icon","name","minmax","value"].map((a=>this.renderPositionSelect(a,u[a],e)))}
+            ${positionKeys.map((positionKey) => {
+                return this.renderPositionSelect(positionKey, positions[positionKey], key);
+            })}
           </ha-form-grid>
           <ha-form-grid>
-            ${this.renderMinMaxInputs(b,g,e)}
-            ${this.renderTargetInputs(p,e)}
-            ${this.renderHeightInputs(y,e)}
+            ${this.renderMinMaxInputs(min, max, key)}
+            ${this.renderTargetInputs(target, key)}
+            ${this.renderHeightInputs(height, key)}
           </ha-form-grid>
           <ha-form-grid>
-            ${this.renderSeverityInputs(f,e)}
+            ${this.renderSeverityInputs(severity, key)}
           </ha-form-grid>
         </div>
-      `}))}renderPositionSelect(e,a,o){const i=null!=a?a:"";return U`
+      `;
+        });
+    }
+    renderPositionSelect(positionKey, currentValue, sectionKey) {
+        const valueToUse = currentValue !== null && currentValue !== void 0 ? currentValue : '';
+        return x `
       <div class="option">
         <ha-select
-          .label=${It(`editor_body.${e}_position`)}
-          .configValue=${`body.${o}.positions.${e}`}
+          .label=${localize(`editor_body.${positionKey}_position`)}
+          .configValue=${`body.${sectionKey}.positions.${positionKey}`}
           @selected=${this.valueChanged}
-          .value=${i}
-          @closed=${e=>e.stopPropagation()}
+          .value=${valueToUse}
+          @closed=${(e) => e.stopPropagation()}
           fixedMenuPosition
           naturalMenuWidth
           class="full"
         >
-          ${void 0===a?U`<mwc-list-item value="" selected disabled></mwc-list-item>`:L}
+          ${currentValue === undefined
+            ? x `<mwc-list-item value="" selected disabled></mwc-list-item>`
+            : E}
           <mwc-list-item value="inside"
-            >${It("editor_body.inside")}</mwc-list-item
+            >${localize('editor_body.inside')}</mwc-list-item
           >
           <mwc-list-item value="outside"
-            >${It("editor_body.outside")}</mwc-list-item
+            >${localize('editor_body.outside')}</mwc-list-item
           >
           <mwc-list-item value="off"
-            >${It("editor_body.off")}</mwc-list-item
+            >${localize('editor_body.off')}</mwc-list-item
           >
         </ha-select>
       </div>
-    `}renderMinMaxInputs(e,a,o){return null==e||null==a?L:U`
+    `;
+    }
+    renderMinMaxInputs(min, max, sectionKey) {
+        if (min == null || max == null) {
+            return E;
+        }
+        return x `
       <div class="option">
         <ha-textfield
-          .label=${It("editor_body.min")}
-          .configValue=${`body.${o}.min`}
+          .label=${localize('editor_body.min')}
+          .configValue=${`body.${sectionKey}.min`}
           @input=${this.valueChanged}
-          .value=${String(e)}
+          .value=${String(min)}
           class="full"
           type="number"
         ></ha-textfield>
       </div>
       <div class="option">
         <ha-textfield
-          .label=${It("editor_body.max")}
-          .configValue=${`body.${o}.max`}
+          .label=${localize('editor_body.max')}
+          .configValue=${`body.${sectionKey}.max`}
           @input=${this.valueChanged}
-          .value=${String(a)}
+          .value=${String(max)}
           class="full"
           type="number"
         ></ha-textfield>
       </div>
-    `}renderTargetInputs(e,a){return null==e?L:U`
+    `;
+    }
+    renderTargetInputs(target, sectionKey) {
+        if (target == null) {
+            return E;
+        }
+        return x `
       <div class="option">
         <ha-textfield
-          .label=${It("editor_body.target")}
-          .configValue=${`body.${a}.target`}
+          .label=${localize('editor_body.target')}
+          .configValue=${`body.${sectionKey}.target`}
           @input=${this.valueChanged}
-          .value=${String(e)}
+          .value=${String(target)}
           class="full"
           type="number"
         ></ha-textfield>
       </div>
-    `}renderHeightInputs(e,a){return null==e?L:U`
+    `;
+    }
+    renderHeightInputs(height, sectionKey) {
+        if (height == null) {
+            return E;
+        }
+        return x `
       <div class="option">
         <ha-textfield
-          .label=${It("editor_body.height")}
-          .configValue=${`body.${a}.height`}
+          .label=${localize('editor_body.height')}
+          .configValue=${`body.${sectionKey}.height`}
           @input=${this.valueChanged}
-          .value=${String(e)}
+          .value=${String(height)}
           class="full"
           type="number"
         ></ha-textfield>
       </div>
-    `}renderSeverityInputs(e,a){if(null==e)return L;const o=Array.isArray(e)?e:[],i=o.length>0?o:[{from:"",to:"",color:""}];return U`
+    `;
+    }
+    renderSeverityInputs(severity, configKey) {
+        if (severity == null) {
+            return E;
+        }
+        const severityArray = Array.isArray(severity) ? severity : [];
+        // Assurer qu'il y a toujours au moins une ligne vide pour l'édition
+        const itemsToRender = severityArray.length > 0
+            ? severityArray
+            : [{ from: '', to: '', color: '' }];
+        return x `
       <div>
-        ${i.map(((e,o)=>{var i,t,n;return U`
+        ${itemsToRender.map((item, index) => {
+            var _a, _b, _c;
+            return x `
               <div class="severity-row">
                 <ha-textfield
-                  .label=${It("editor_body.from")}
-                  .value=${String(null!==(i=e.from)&&void 0!==i?i:"")}
-                  @input=${e=>this.updateNumericSeverity(a,o,"from",e.target.value)}
+                  .label=${localize('editor_body.from')}
+                  .value=${String((_a = item.from) !== null && _a !== void 0 ? _a : '')}
+                  @input=${(ev) => this.updateNumericSeverity(configKey, index, 'from', ev.target.value)}
                   type="number"
                   class="full"
                 ></ha-textfield>
                 <ha-textfield
-                  .label=${It("editor_body.to")}
-                  .value=${String(null!==(t=e.to)&&void 0!==t?t:"")}
-                  @input=${e=>this.updateNumericSeverity(a,o,"to",e.target.value)}
+                  .label=${localize('editor_body.to')}
+                  .value=${String((_b = item.to) !== null && _b !== void 0 ? _b : '')}
+                  @input=${(ev) => this.updateNumericSeverity(configKey, index, 'to', ev.target.value)}
                   type="number"
                   class="full"
                 ></ha-textfield>
                 <div>
                   <color-select
-                    .value=${null!==(n=e.color)&&void 0!==n?n:""}
-                    @value-changed=${e=>this.updateNumericSeverity(a,o,"color",e.detail.value)}
+                    .value=${(_c = item.color) !== null && _c !== void 0 ? _c : ''}
+                    @value-changed=${(ev) => this.updateNumericSeverity(configKey, index, 'color', ev.detail.value)}
                   ></color-select>
                 </div>
                 <div style="display: flex; align-items: center; margin: 0px">
                   <ha-icon-button
-                    @click=${()=>this.removeNumericSeverity(a,o)}
+                    @click=${() => this.removeNumericSeverity(configKey, index)}
                   >
                     <ha-icon icon="mdi:delete"></ha-icon>
                   </ha-icon-button>
                   <ha-icon-button
-                    @click=${()=>this.addNumericSeverity(a)}
+                    @click=${() => this.addNumericSeverity(configKey)}
                   >
                     <ha-icon icon="mdi:plus"></ha-icon>
                   </ha-icon-button>
                 </div>
               </div>
-            `}))}
+            `;
+        })}
       </div>
-    `}updateNumericSeverity(e,a,o,i){var t;if(this.config&&this.config.body){Array.isArray(null===(t=this.config.body[e])||void 0===t?void 0:t.severity)||(this.config.body[e].severity=[]);const n=[...this.config.body[e].severity];n[a]&&(n[a]=Object.assign(Object.assign({},n[a]),{[o]:i}),this.updateConfig(e,n))}}addNumericSeverity(e){var a,o;if(this.config&&this.config.body){Array.isArray(null===(a=this.config.body[e])||void 0===a?void 0:a.severity)||(this.config.body[e].severity=[]);const i=[...(null===(o=this.config.body[e])||void 0===o?void 0:o.severity)||[]];i.push({from:0,to:0,color:""}),this.updateConfig(e,i)}}removeNumericSeverity(e,a){var o,i,t;const n=[...(null===(t=null===(i=null===(o=this.config)||void 0===o?void 0:o.body)||void 0===i?void 0:i[e])||void 0===t?void 0:t.severity)||[]].filter(((e,o)=>o!==a));0===n.length&&n.push({from:0,to:0,color:""}),this.updateConfig(e,n)}updateConfig(e,a){this.config&&this.config.body&&(this.config.body[e].severity=a,this.valueChanged())}valueChanged(e=null){if(this.config&&this.hass)if(e&&e.target){const a=e.target;if(a.configValue&&"string"==typeof a.configValue){const e=void 0!==a.checked?a.checked:a.value||void 0,o=a.configValue.split(".");let i=Object.assign({},this.config),t=i;for(let e=0;e<o.length-1;e++){const a=o[e];void 0===t[a]&&(t[a]={}),t=t[a]}t[o[o.length-1]]=e,this.config=i,xe(this,"config-changed",{config:this.config})}}else xe(this,"config-changed",{config:this.config})}initialize(){this.hass&&this.config&&this.helpers&&(this.isInitialized=!0)}async loadCardHelpers(){this.helpers=await window.loadCardHelpers()}static get styles(){return Yt}};e([ce({attribute:!1})],Qt.prototype,"hass",void 0),e([ce({type:Number})],Qt.prototype,"page",void 0),e([ce()],Qt.prototype,"selectedColor",void 0),e([_e()],Qt.prototype,"config",void 0),e([_e()],Qt.prototype,"helpers",void 0),Qt=e([se("body-miscale-card-editor")],Qt);var en=Object.freeze({__proto__:null,get BodymiscaleCardEditor(){return Qt}});export{Rt as BodymiscaleCard};
+    `;
+    }
+    updateNumericSeverity(configKey, index, key, value) {
+        var _a;
+        if (this.config && this.config.body) {
+            if (!Array.isArray((_a = this.config.body[configKey]) === null || _a === void 0 ? void 0 : _a.severity)) {
+                this.config.body[configKey].severity = []; // Initialiser si nécessaire
+            }
+            const severity = [
+                ...this.config.body[configKey].severity,
+            ];
+            if (severity[index]) {
+                severity[index] = Object.assign(Object.assign({}, severity[index]), { [key]: value });
+                this.updateConfig(configKey, severity);
+            }
+        }
+    }
+    addNumericSeverity(configKey) {
+        var _a, _b;
+        if (this.config && this.config.body) {
+            if (!Array.isArray((_a = this.config.body[configKey]) === null || _a === void 0 ? void 0 : _a.severity)) {
+                this.config.body[configKey].severity = []; // Initialiser en tant que tableau si nécessaire
+            }
+            const severity = [
+                ...(((_b = this.config.body[configKey]) === null || _b === void 0 ? void 0 : _b.severity) || []),
+            ];
+            severity.push({ from: 0, to: 0, color: '' });
+            this.updateConfig(configKey, severity);
+        }
+    }
+    removeNumericSeverity(configKey, index) {
+        var _a, _b, _c;
+        const severity = [
+            ...(((_c = (_b = (_a = this.config) === null || _a === void 0 ? void 0 : _a.body) === null || _b === void 0 ? void 0 : _b[configKey]) === null || _c === void 0 ? void 0 : _c.severity) || []),
+        ].filter((_, i) => i !== index);
+        // Assurer qu'on a toujours au moins une ligne vide
+        if (severity.length === 0) {
+            severity.push({ from: 0, to: 0, color: '' });
+        }
+        this.updateConfig(configKey, severity);
+    }
+    updateConfig(configKey, severity) {
+        if (this.config && this.config.body) {
+            this.config.body[configKey].severity = severity;
+            this.valueChanged();
+        }
+    }
+    valueChanged(event = null) {
+        if (!this.config || !this.hass) {
+            return;
+        }
+        if (event && event.target) {
+            const target = event.target;
+            if (target.configValue && typeof target.configValue === 'string') {
+                const newValue = target.checked !== undefined
+                    ? target.checked
+                    : target.value || undefined;
+                const path = target.configValue.split('.');
+                let currentConfig = Object.assign({}, this.config);
+                let currentLevel = currentConfig;
+                for (let i = 0; i < path.length - 1; i++) {
+                    const key = path[i];
+                    if (currentLevel[key] === undefined) {
+                        currentLevel[key] = {};
+                    }
+                    currentLevel = currentLevel[key];
+                }
+                // Mise à jour de la valeur
+                const lastKey = path[path.length - 1];
+                currentLevel[lastKey] = newValue;
+                this.config = currentConfig;
+                ne(this, 'config-changed', { config: this.config });
+            }
+        }
+        else {
+            ne(this, 'config-changed', { config: this.config });
+        }
+    }
+    initialize() {
+        if (this.hass && this.config && this.helpers) {
+            this.isInitialized = true;
+        }
+    }
+    async loadCardHelpers() {
+        this.helpers = await window.loadCardHelpers();
+    }
+    static get styles() {
+        return css_248z;
+    }
+};
+__decorate([
+    n$1({ attribute: false })
+], BodymiscaleCardEditor.prototype, "hass", void 0);
+__decorate([
+    n$1({ type: Number })
+], BodymiscaleCardEditor.prototype, "page", void 0);
+__decorate([
+    n$1()
+], BodymiscaleCardEditor.prototype, "selectedColor", void 0);
+__decorate([
+    r$1()
+], BodymiscaleCardEditor.prototype, "config", void 0);
+__decorate([
+    r$1()
+], BodymiscaleCardEditor.prototype, "helpers", void 0);
+BodymiscaleCardEditor = __decorate([
+    t$2('body-miscale-card-editor')
+], BodymiscaleCardEditor);
+
+var editor = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    get BodymiscaleCardEditor () { return BodymiscaleCardEditor; }
+});
+
+export { BodymiscaleCard };

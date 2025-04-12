@@ -80,6 +80,7 @@
   "editor": {
     "entity": "スケール上のアカウントを選択してください (必須)!",
     "image": "背景画像（オプション）",
+    "icons_body": "アイコンのパス (例: /local/images/bodyscoreIcon)",
     "model": "インピーダンスセンサーはありますか?",
     "model1": "正確な体組成測定のためにこの機能を有効にしてください。",
     "model_aria_label_on": "インピーダンスを有効にする",

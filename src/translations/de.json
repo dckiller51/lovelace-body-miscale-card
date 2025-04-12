@@ -70,6 +70,7 @@
   "editor": {
     "entity": "Bitte ein Konto auf der Waage wählen (erforderlich)!",
     "image": "Hintergrundbild (optional)",
+    "icons_body": "Pfad zu den Icons (z.B. /local/images/bodyscoreIcon)",
     "model": "Haben Sie einen Impedanzsensor?",
     "model1": "Aktivieren Sie diese Funktion für genaue Körperzusammensetzungsmessungen.",
     "model_aria_label_on": "Impedanz aktivieren",

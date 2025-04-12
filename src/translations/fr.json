@@ -82,6 +82,7 @@
     "customization": "Personnalisation",
     "entity": "Veuillez choisir un compte de la balance (obligatoire) !",
     "image": "Image de fond (facultatif)",
+    "icons_body": "Chemin des icônes (ex: /local/images/bodyscoreIcon)",
     "model": "Vous avez un capteur d'impédance ?",
     "model1": "Activez cette fonctionnalité pour des mesures corporelle précises.",
     "model_aria_label_on": "Activez l'impédance",

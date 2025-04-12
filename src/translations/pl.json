@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Proszę wybierz konto na wadze (wymagane)!",
     "image": "Obraz tła (opcjonalne)",
+    "icons_body": "Ścieżka ikon (np. /local/images/bodyscoreIcon)",
     "model": "Czy masz czujnik impedancji?",
     "model1": "Włącz tę funkcję, aby uzyskać dokładne pomiary składu ciała.",
     "model_aria_label_on": "Włącz impedancję",

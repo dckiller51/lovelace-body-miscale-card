@@ -79,6 +79,7 @@
   "editor": {
     "entity": "Por favor, escolha a entidade da balança com o nome da pessoa (obrigatório) !",
     "image": "Imagem de fundo (opcional)",
+    "icons_body": "Caminho dos ícones (ex: /local/images/bodyscoreIcon)",
     "model": "Tem um sensor de impedância?",
     "model1": "Ative esta função para medições precisas da composição corporal.",
     "model_aria_label_on": "Ativar impedância",
