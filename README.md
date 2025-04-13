@@ -50,7 +50,7 @@ to `<config>/www/images/bodyscoreIcon` or configure your own preferred path.
 | entity     | string                      | **Required**    | `bodymiscale.name`                                                     |
 | name       | string/bool                 | `friendly_name` | Override friendly name (set to `false` to hide)                        |
 | image      | string/bool                 | `false`         | Set path/filename of background image (e.g., `/local/img/miscale2.jpg`) |
-| icons      | string                      | Nothing         | Set the path of the icons (e.g., `/local/images/bodyscoreIcon`) |
+| icons_body | string                      | Nothing         | Set the path of the icons (e.g., `/local/images/bodyscoreIcon`) |
 | attributes | [Entity Data](#entity data) | _(see below)_   | Set to `false` to hide all attributes                                  |
 | buttons    | [Button Data](#button data) | _(see below)_   | Set to `false` to hide button row                                      |
 
