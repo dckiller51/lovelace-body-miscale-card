@@ -44,7 +44,7 @@
     "@types/estree": "^1.0.7",
     "@types/json-schema": "^7.0.15",
     "@types/resolve": "^1.20.6",
-    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.0",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
