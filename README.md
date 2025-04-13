@@ -40,7 +40,7 @@ to `<config>/www/images/` or configure your own preferred path.
 
 For body score icons, download and add
 [src/images/bodyscoreIcon/*.png]<https://github.com/dckiller51/lovelace-body-miscale-card/tree/main/src/images/bodyscoreIcon>
-to `<config>/www/images/bodyscoreIcon/`.
+to `<config>/www/images/bodyscoreIcon` or configure your own preferred path.
 
 ## Configuration
 
@@ -49,7 +49,8 @@ to `<config>/www/images/bodyscoreIcon/`.
 | type       | string                      | **Required**    | `custom:body-miscale-card`                                             |
 | entity     | string                      | **Required**    | `bodymiscale.name`                                                     |
 | name       | string/bool                 | `friendly_name` | Override friendly name (set to `false` to hide)                        |
-| image      | string/bool                 | `false`         | Set path/filename of background image (i.e. `/local/img/miscale2.jpg`) |
+| image      | string/bool                 | `false`         | Set path/filename of background image (e.g., `/local/img/miscale2.jpg`) |
+| icons      | string                      | Nothing         | Set the path of the icons (e.g., `/local/images/bodyscoreIcon`) |
 | attributes | [Entity Data](#entity data) | _(see below)_   | Set to `false` to hide all attributes                                  |
 | buttons    | [Button Data](#button data) | _(see below)_   | Set to `false` to hide button row                                      |
 
@@ -133,6 +134,7 @@ Basic configuration:
 - type: custom:body-miscale-card
   entity: bodymiscale.name
   image: /local/custom/folder/background.jpg
+  icons_body: /local/images/bodyscoreIcon
   name: My Bodymiscale
   model: false
 ```
