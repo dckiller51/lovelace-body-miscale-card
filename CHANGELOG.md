@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.2
+
+- 🛠️ **Fixed** Issue with severity resetting when modifying or deleting lines in the editor.
+- 🔧 **Improved** Handling of undefined/null severity values with proper default fallback logic.
+
 ## 2025.4.1
 
 - ✨ **Feature** Added the ability to customize the icons directory.

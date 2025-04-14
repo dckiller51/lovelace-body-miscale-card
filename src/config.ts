@@ -88,7 +88,7 @@ export default function buildConfig(
       minmax: 'off',
       value: 'inside',
     },
-    severity: config.severity ?? undefined,
+    severity: config.severity ?? null,
     target: config.target ?? undefined,
   };
 }

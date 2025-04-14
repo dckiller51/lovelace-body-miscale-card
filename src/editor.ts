@@ -232,18 +232,28 @@ export class BodymiscaleCardEditor
       const item = bodyData[key as keyof typeof bodyData];
       const positions = bodyConfig[key]?.positions || item.positions || {};
       const min =
-        bodyConfig[key]?.min !== undefined ? bodyConfig[key]?.min : item.min;
+      bodyConfig[key]?.min !== undefined && bodyConfig[key]?.min !== null
+        ? bodyConfig[key].min
+        : item.min;
       const max =
-        bodyConfig[key]?.max !== undefined ? bodyConfig[key]?.max : item.max;
+        bodyConfig[key]?.max !== undefined && bodyConfig[key]?.max !== null
+          ? bodyConfig[key].max
+          : item.max;
       const target =
-        bodyConfig[key]?.target !== undefined
+        bodyConfig[key]?.target !== undefined && bodyConfig[key]?.target !== null
           ? bodyConfig[key]?.target
           : item.target;
       const height =
-        bodyConfig[key]?.height !== undefined
-          ? bodyConfig[key]?.height
+        bodyConfig[key]?.height !== undefined && bodyConfig[key]?.height !== null
+          ? bodyConfig[key].height
           : item.height;
-      const severity = bodyConfig[key]?.severity || item.severity;
+      const severity =
+        Array.isArray(bodyConfig[key]?.severity) &&
+        bodyConfig[key].severity.some(
+          (s: { from: number; to: number; color: string }) => s.color !== undefined
+        )
+          ? bodyConfig[key].severity
+          : item.severity;
 
       const label = localize(`body.${key}`);
 
@@ -476,7 +486,7 @@ export class BodymiscaleCardEditor
     key: 'from' | 'to' | 'color',
     value: number | string,
   ): void {
-    if (this.config && this.config.body) {
+    if (this.config?.body) {
       if (!Array.isArray(this.config.body[configKey]?.severity)) {
         this.config.body[configKey].severity = []; // Initialiser si nécessaire
       }
@@ -486,13 +496,14 @@ export class BodymiscaleCardEditor
       if (severity[index]) {
         severity[index] = { ...severity[index], [key]: value };
 
-        this.updateConfig(configKey, severity);
+        this.config.body[configKey].severity = severity; // Mise à jour directe
+        this.valueChanged(); // Déclencher l'événement de changement
       }
     }
   }
 
   private addNumericSeverity(configKey: string): void {
-    if (this.config && this.config.body) {
+    if (this.config?.body) {
       if (!Array.isArray(this.config.body[configKey]?.severity)) {
         this.config.body[configKey].severity = []; // Initialiser en tant que tableau si nécessaire
       }
@@ -500,28 +511,24 @@ export class BodymiscaleCardEditor
         ...((this.config.body[configKey]?.severity as NumericSeverity) || []),
       ];
       severity.push({ from: 0, to: 0, color: '' });
-      this.updateConfig(configKey, severity);
+      this.config.body[configKey].severity = severity; // Mise à jour directe
+      this.valueChanged(); // Déclencher l'événement de changement
     }
   }
 
   private removeNumericSeverity(configKey: string, index: number) {
-    const severity = [
-      ...((this.config?.body?.[configKey]?.severity as NumericSeverity) || []),
-    ].filter((_, i) => i !== index);
+    if (this.config?.body?.[configKey]?.severity) {
+      const severity = [
+        ...(this.config.body[configKey].severity as NumericSeverity),
+      ].filter((_, i) => i !== index);
 
-    // Assurer qu'on a toujours au moins une ligne vide
-    if (severity.length === 0) {
-      severity.push({ from: 0, to: 0, color: '' });
-    }
+      // Assurer qu'on a toujours au moins une ligne vide
+      if (severity.length === 0) {
+        severity.push({ from: 0, to: 0, color: '' });
+      }
 
-    this.updateConfig(configKey, severity);
-  }
-
-  private updateConfig(configKey: string, severity: NumericSeverity): void {
-    if (this.config && this.config.body) {
-      this.config.body[configKey].severity = severity;
-
-      this.valueChanged();
+      this.config.body[configKey].severity = severity; // Mise à jour directe
+      this.valueChanged(); // Déclencher l'événement de changement
     }
   }
 
