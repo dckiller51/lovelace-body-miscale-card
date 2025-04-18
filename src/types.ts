@@ -54,7 +54,6 @@ export interface RenderAttributeData {
 export interface RenderBodyData {
   color?: string;
   compute?: (value: any) => any;
-  height?: number | null;
   icon?: string;
   impedance_required: boolean;
   key: string;
@@ -62,15 +61,15 @@ export interface RenderBodyData {
   max?: number | null;
   min?: number | null;
   positions?: {
-    icon?: 'outside' | 'inside' | 'off' | undefined;
-    name?: 'outside' | 'inside' | 'off' | undefined;
-    minmax?: 'outside' | 'inside' | 'off' | undefined;
-    value?: 'outside' | 'inside' | 'off' | undefined;
+    icon?: 'left' | 'right' | 'off' | undefined;
+    name?: 'left' | 'right' | 'off' | undefined;
+    minmax?: 'left' | 'right' | 'off' | undefined;
+    value?: 'left' | 'right' | 'off' | undefined;
   };
+  showabovelabels?: string | null,
+  showbelowlabels?: string | null,
   severity?: string | NumericSeverity | null;
-  target?: number | null;
   unit?: string;
-  width?: string;
 }
 
 export interface RenderIconData {
@@ -93,13 +92,14 @@ export interface BodymiscaleCardConfig {
   show_buttons: boolean;
   body: Record<string, RenderBodyData>;
   positions?: {
-    icon?: 'outside' | 'inside' | 'off';
-    name?: 'outside' | 'inside' | 'off';
-    minmax?: 'outside' | 'inside' | 'off';
-    value?: 'outside' | 'inside' | 'off';
+    icon?: 'left' | 'right' | 'off';
+    name?: 'left' | 'right' | 'off';
+    minmax?: 'left' | 'right' | 'off';
+    value?: 'left' | 'right' | 'off';
   };
+  showabovelabels?: string | null,
+  showbelowlabels?: string | null,
   severity?: string | NumericSeverity | null;
-  height?: number | null;
   stats: Record<string, RenderStateData[]>;
   states: Record<string, RenderStateData[]>;
   styles: {
@@ -107,11 +107,9 @@ export interface BodymiscaleCardConfig {
     icon: string;
     iconbody: string;
   };
-  target?: string | number | null;
   min?: number | null;
   max?: number | null;
   unit?: boolean;
-  width?: string;
   color?: string;
   buttons: boolean | Record<string, any>;
   attributes: Record<string, RenderAttributeData>;
@@ -120,4 +118,4 @@ export interface BodymiscaleCardConfig {
 }
 
 export type PositionKeys = 'icon' | 'name' | 'minmax' | 'value';
-export type NumericSeverity = { from: number; to: number; color: string }[];
+export type NumericSeverity = { from: number; to: number; color: string; label: string }[];

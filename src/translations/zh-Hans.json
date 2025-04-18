@@ -115,15 +115,17 @@
   },
   "editor_body": {
     "from": "从",
-    "height": "条形高度",
     "icon_position": "图标位置",
-    "inside": "内部",
+    "left": "左侧",
     "max": "最大",
     "min": "最小",
     "minmax_position": "最小/最大位置",
     "name_position": "名称位置",
     "off": "关闭",
-    "outside": "外部",
+    "on": "开启",
+    "right": "右侧",
+    "showabovelabels": "显示上方标签",
+    "showbelowlabels": "显示下方标签",
     "target": "目标",
     "to": "到",
     "value_position": "值的位置"
@@ -157,5 +159,21 @@
     "royalblue": "皇家蓝",
     "black": "黑色",
     "white": "白色"
+  },
+  "label_below": {
+    "balanced": "标准型",
+    "good": "好",
+    "increased": "增加",
+    "insufficient": "不足",
+    "high": "高",
+    "low": "低",
+    "normal": "正常",
+    "obese": "偏胖型",
+    "objective_achieved": "目标达成",
+    "objective_not_achieved": "目标未达成",
+    "overweight": "肥胖型",
+    "underweight": "过轻",
+    "very_high": "非常高",
+    "very_low": "非常低"
   }
 }

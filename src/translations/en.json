@@ -121,16 +121,17 @@
   },
   "editor_body": {
     "from": "From",
-    "height": "Bar height",
     "icon_position": "Icon Position",
-    "inside": "Inside",
+    "left": "Left",
     "max": "Max",
     "min": "Min",
     "minmax_position": "Min/Max Position",
     "name_position": "Name Position",
     "off": "Off",
-    "outside": "Outside",
-    "target": "Target",
+    "on": "On",
+    "right": "Right",
+    "showabovelabels": "Show labels above",
+    "showbelowlabels": "Show labels below",
     "to": "To",
     "value_position": "Value Position"
   },
@@ -163,5 +164,21 @@
     "royalblue": "Royal blue",
     "black": "Black",
     "white": "White"
+  },
+  "label_below": {
+    "balanced": "Balanced",
+    "good": "Good",
+    "increased": "Increased",
+    "insufficient": "Insufficient",
+    "high": "High",
+    "low": "Low",
+    "normal": "Normal",
+    "obese": "Obese",
+    "objective_achieved": "Objective achieved",
+    "objective_not_achieved": "Objective not achieved",
+    "overweight": "Overweight",
+    "underweight": "Underweight",
+    "very_high": "Very high",
+    "very_low": "Very low"
   }
 }

@@ -118,15 +118,17 @@
   },
   "editor_body": {
     "from": "De la",
-    "height": "Înălțimea barei",
     "icon_position": "Poziția pictogramei",
-    "inside": "Interior",
+    "left": "La stânga",
     "max": "Maxim",
     "min": "Minim",
     "minmax_position": "Poziția Min/Max",
     "name_position": "Poziția numelui",
     "off": "Oprit",
-    "outside": "Exterior",
+    "on": "Pornit",
+    "right": "La dreapta",
+    "showabovelabels": "Afișează etichetele deasupra",
+    "showbelowlabels": "Afișează etichetele dedesubt",
     "target": "Țintă",
     "to": "La",
     "value_position": "Poziția valorii"
@@ -160,5 +162,21 @@
     "royalblue": "Albastru regal",
     "black": "Negru",
     "white": "Alb"
+  },
+  "label_below": {
+    "balanced": "Echilibrat",
+    "good": "Bun",
+    "increased": "Crescut",
+    "insufficient": "Insuficient",
+    "high": "Înalt",
+    "low": "Scăzut",
+    "normal": "Normal",
+    "obese": "Obez",
+    "objective_achieved": "Obiectiv atins",
+    "objective_not_achieved": "Obiectiv neatins",
+    "overweight": "Supraponderal",
+    "underweight": "Subponderal",
+    "very_high": "Foarte înalt",
+    "very_low": "Foarte scăzut"
   }
 }

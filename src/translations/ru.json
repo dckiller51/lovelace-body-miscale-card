@@ -116,15 +116,17 @@
   },
   "editor_body": {
     "from": "От",
-    "height": "Высота панели",
     "icon_position": "Позиция иконки",
-    "inside": "Внутри",
+    "left": "Слева",
     "max": "Макс",
     "min": "Мин",
     "minmax_position": "Позиция Min/Max",
     "name_position": "Позиция имени",
     "off": "Выключено",
-    "outside": "Снаружи",
+    "on": "Вкл.",
+    "right": "Справа",
+    "showabovelabels": "Показать метки сверху",
+    "showbelowlabels": "Показать метки снизу",
     "target": "Цель",
     "to": "К",
     "value_position": "Позиция значения"
@@ -158,5 +160,21 @@
     "royalblue": "Королевский синий",
     "black": "Черный",
     "white": "Белый"
+  },
+  "label_below": {
+    "balanced": "Оптимальный",
+    "good": "Хорошо",
+    "increased": "Повышенный",
+    "insufficient": "Недостаточно",
+    "high": "Высокий",
+    "low": "Низкий",
+    "normal": "Нормальный",
+    "obese": "Ожирение",
+    "objective_achieved": "Цель достигнута",
+    "objective_not_achieved": "Цель не достигнута",
+    "overweight": "Лишний вес",
+    "underweight": "Недостаточный вес",
+    "very_high": "Очень высокий",
+    "very_low": "Очень низкий"
   }
 }

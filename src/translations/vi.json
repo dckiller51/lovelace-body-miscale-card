@@ -118,15 +118,17 @@
   },
   "editor_body": {
     "from": "Từ",
-    "height": "Chiều cao thanh",
     "icon_position": "Vị trí biểu tượng",
-    "inside": "Bên trong",
+    "left": "Bên trái",
     "max": "Tối đa",
     "min": "Tối thiểu",
     "minmax_position": "Vị trí Min/Max",
     "name_position": "Vị trí tên",
     "off": "Tắt",
-    "outside": "Bên ngoài",
+    "on": "Bật",
+    "right": "Bên phải",
+    "showabovelabels": "Hiển thị nhãn phía trên",
+    "showbelowlabels": "Hiển thị nhãn phía dưới",
     "target": "Mục tiêu",
     "to": "Đến",
     "value_position": "Vị trí giá trị"
@@ -160,5 +162,21 @@
     "royalblue": "Xanh dương hoàng gia",
     "black": "Đen",
     "white": "Trắng"
+  },
+  "label_below": {
+    "balanced": "Cân bằng",
+    "good": "Tốt",
+    "increased": "Tăng",
+    "insufficient": "Không đủ",
+    "high": "Cao",
+    "low": "Thấp",
+    "normal": "Bình thường",
+    "obese": "Béo phì",
+    "objective_achieved": "Mục tiêu đạt được",
+    "objective_not_achieved": "Mục tiêu chưa đạt",
+    "overweight": "Thừa cân",
+    "underweight": "Thiếu cân",
+    "very_high": "Rất cao",
+    "very_low": "Rất thấp"
   }
 }

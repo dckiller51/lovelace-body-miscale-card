@@ -232,28 +232,18 @@ export class BodymiscaleCardEditor
       const item = bodyData[key as keyof typeof bodyData];
       const positions = bodyConfig[key]?.positions || item.positions || {};
       const min =
-      bodyConfig[key]?.min !== undefined && bodyConfig[key]?.min !== null
-        ? bodyConfig[key].min
-        : item.min;
+        bodyConfig[key]?.min !== undefined ? bodyConfig[key]?.min : item.min;
       const max =
-        bodyConfig[key]?.max !== undefined && bodyConfig[key]?.max !== null
-          ? bodyConfig[key].max
-          : item.max;
-      const target =
-        bodyConfig[key]?.target !== undefined && bodyConfig[key]?.target !== null
-          ? bodyConfig[key]?.target
-          : item.target;
-      const height =
-        bodyConfig[key]?.height !== undefined && bodyConfig[key]?.height !== null
-          ? bodyConfig[key].height
-          : item.height;
-      const severity =
-        Array.isArray(bodyConfig[key]?.severity) &&
-        bodyConfig[key].severity.some(
-          (s: { from: number; to: number; color: string }) => s.color !== undefined
-        )
-          ? bodyConfig[key].severity
-          : item.severity;
+        bodyConfig[key]?.max !== undefined ? bodyConfig[key]?.max : item.max;
+      const showabovelabels =
+        bodyConfig[key]?.showabovelabels !== undefined && bodyConfig[key]?.showabovelabels !== null
+          ? bodyConfig[key].showabovelabels
+          : item.showabovelabels;
+      const showbelowlabels =
+        bodyConfig[key]?.showbelowlabels !== undefined && bodyConfig[key]?.showbelowlabels !== null
+          ? bodyConfig[key].showbelowlabels
+          : item.showbelowlabels;
+      const severity = bodyConfig[key]?.severity || item.severity;
 
       const label = localize(`body.${key}`);
 
@@ -273,8 +263,8 @@ export class BodymiscaleCardEditor
           </ha-form-grid>
           <ha-form-grid>
             ${this.renderMinMaxInputs(min, max, key)}
-            ${this.renderTargetInputs(target, key)}
-            ${this.renderHeightInputs(height, key)}
+            ${this.renderBooleanSelector('showabovelabels', showabovelabels, `body.${key}.showabovelabels`)}
+            ${this.renderBooleanSelector('showbelowlabels', showbelowlabels, `body.${key}.showbelowlabels`)}
           </ha-form-grid>
           <ha-form-grid>
             ${this.renderSeverityInputs(severity, key)}
@@ -306,11 +296,11 @@ export class BodymiscaleCardEditor
           ${currentValue === undefined
             ? html`<mwc-list-item value="" selected disabled></mwc-list-item>`
             : nothing}
-          <mwc-list-item value="inside"
-            >${localize('editor_body.inside')}</mwc-list-item
+          <mwc-list-item value="left"
+            >${localize('editor_body.left')}</mwc-list-item
           >
-          <mwc-list-item value="outside"
-            >${localize('editor_body.outside')}</mwc-list-item
+          <mwc-list-item value="right"
+            >${localize('editor_body.right')}</mwc-list-item
           >
           <mwc-list-item value="off"
             >${localize('editor_body.off')}</mwc-list-item
@@ -353,49 +343,35 @@ export class BodymiscaleCardEditor
     `;
   }
 
-  private renderTargetInputs(
-    target: number | null | undefined,
-    sectionKey: string,
+  private renderBooleanSelector(
+    labelKey: string,
+    currentValue: string | null | undefined,
+    configPath: string
   ) {
-    if (target == null) {
+    if (currentValue === null || currentValue === undefined) {
       return nothing;
     }
-
+  
+    const value = String(currentValue);
+  
     return html`
       <div class="option">
-        <ha-textfield
-          .label=${localize('editor_body.target')}
-          .configValue=${`body.${sectionKey}.target`}
-          @input=${this.valueChanged}
-          .value=${String(target)}
+        <ha-select
+          .label=${localize(`editor_body.${labelKey}`)}
+          .configValue=${configPath}
+          .value=${value}
+          @selected=${this.valueChanged}
+          @closed=${(e: Event) => e.stopPropagation()}
+          fixedMenuPosition
+          naturalMenuWidth
           class="full"
-          type="number"
-        ></ha-textfield>
+        >
+          <mwc-list-item value="true">${localize('editor_body.on')}</mwc-list-item>
+          <mwc-list-item value="false">${localize('editor_body.off')}</mwc-list-item>
+        </ha-select>
       </div>
     `;
-  }
-
-  private renderHeightInputs(
-    height: number | null | undefined,
-    sectionKey: string,
-  ) {
-    if (height == null) {
-      return nothing;
-    }
-
-    return html`
-      <div class="option">
-        <ha-textfield
-          .label=${localize('editor_body.height')}
-          .configValue=${`body.${sectionKey}.height`}
-          @input=${this.valueChanged}
-          .value=${String(height)}
-          class="full"
-          type="number"
-        ></ha-textfield>
-      </div>
-    `;
-  }
+  }  
 
   private renderSeverityInputs(
     severity: NumericSeverity | null | string | undefined,
@@ -486,7 +462,7 @@ export class BodymiscaleCardEditor
     key: 'from' | 'to' | 'color',
     value: number | string,
   ): void {
-    if (this.config?.body) {
+    if (this.config && this.config.body) {
       if (!Array.isArray(this.config.body[configKey]?.severity)) {
         this.config.body[configKey].severity = []; // Initialiser si nécessaire
       }
@@ -496,39 +472,42 @@ export class BodymiscaleCardEditor
       if (severity[index]) {
         severity[index] = { ...severity[index], [key]: value };
 
-        this.config.body[configKey].severity = severity; // Mise à jour directe
-        this.valueChanged(); // Déclencher l'événement de changement
+        this.updateConfig(configKey, severity);
       }
     }
   }
 
   private addNumericSeverity(configKey: string): void {
-    if (this.config?.body) {
+    if (this.config && this.config.body) {
       if (!Array.isArray(this.config.body[configKey]?.severity)) {
         this.config.body[configKey].severity = []; // Initialiser en tant que tableau si nécessaire
       }
       const severity = [
         ...((this.config.body[configKey]?.severity as NumericSeverity) || []),
       ];
-      severity.push({ from: 0, to: 0, color: '' });
-      this.config.body[configKey].severity = severity; // Mise à jour directe
-      this.valueChanged(); // Déclencher l'événement de changement
+      severity.push({ from: 0, to: 0, color: '', label: '' });
+      this.updateConfig(configKey, severity);
     }
   }
 
   private removeNumericSeverity(configKey: string, index: number) {
-    if (this.config?.body?.[configKey]?.severity) {
-      const severity = [
-        ...(this.config.body[configKey].severity as NumericSeverity),
-      ].filter((_, i) => i !== index);
+    const severity = [
+      ...((this.config?.body?.[configKey]?.severity as NumericSeverity) || []),
+    ].filter((_, i) => i !== index);
 
-      // Assurer qu'on a toujours au moins une ligne vide
-      if (severity.length === 0) {
-        severity.push({ from: 0, to: 0, color: '' });
-      }
+    // Assurer qu'on a toujours au moins une ligne vide
+    if (severity.length === 0) {
+      severity.push({ from: 0, to: 0, color: '', label: '' });
+    }
 
-      this.config.body[configKey].severity = severity; // Mise à jour directe
-      this.valueChanged(); // Déclencher l'événement de changement
+    this.updateConfig(configKey, severity);
+  }
+
+  private updateConfig(configKey: string, severity: NumericSeverity): void {
+    if (this.config && this.config.body) {
+      this.config.body[configKey].severity = severity;
+
+      this.valueChanged();
     }
   }
 

@@ -188,16 +188,15 @@ Add custom bar options (To know the start, destination, color and target values,
 
 ## Options
 
-| Name      | Type   | Default                                            | Description                                                                              |
-| --------- | ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| color     | string | var(--score-card-color, var(--ha-card-background)) | Color of the bar.                                                                        |
-| height    | string | 30px                                               | Defines the height of the bar.                                                           |
-| max       | number | 100                                                | Defines maximum value of the bar.                                                        |
-| min       | number | 0                                                  | Defines minimum value of the bar.                                                        |
-| positions | object | none                                               | Defines the positions of the card elements. See [Positions Options](#positions-options). |
-| severity  | object | none                                               | A list of severity values. See [Severity Options](#severity-options).                    |
-| target    | number | none                                               | Defines and enables target marker value.                                                 |
-| width     | string | 100%                                               | Defines the width of the bar (**Required** the name must be on `outside`).               |
+| Name              | Type    | Default                                            | Description                                                                                 |
+|-------------------|---------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `color`           | string  | `green`                                            | Color of the bar.                                                                         |
+| `max`             | number  | `100`                                              | Defines maximum value of the bar.                                                          |
+| `min`             | number  | `0`                                                | Defines minimum value of the bar.                                                          |
+| `positions`       | object  | —                                                  | Defines the positions of the card elements. See [Positions Options](#positions-options).   |
+| `showabovelabels` | boolean | `true`                                             | Show the numeric range labels above the color bar.                                         |
+| `showbelowlabels` | boolean | `true`                                             | Show the custom text labels below the color bar.                                           |
+| `severity`        | object  | —                                                  | A list of severity values. See [Severity Options](#severity-options).                      |
 
 ## Severity Options
 
@@ -206,15 +205,16 @@ Add custom bar options (To know the start, destination, color and target values,
 | from  | number | **Required** | Defines from which value the color should be displayed. |
 | to    | number | **Required** | Defines to which value the color should be displayed.   |
 | color | string | **Required** | Defines the color to be displayed.                      |
+| label | string | **Optional** | Defines the label shown under the bar.                  |
 
 ## Positions Options
 
 | Name   | Type   | Default | Description                |
 | ------ | ------ | ------- | -------------------------- |
-| icon   | string | outside | `inside`, `outside`, `off` |
-| name   | string | inside  | `inside`, `outside`, `off` |
-| minmax | string | off     | `inside`, `outside`, `off` |
-| value  | string | inside  | `inside`, `outside`, `off` |
+| icon   | string | outside | `left`, `right`, `off`     |
+| name   | string | inside  | `left`, `right`, `off`     |
+| minmax | string | off     | `left`, `right`, `off`     |
+| value  | string | inside  | `left`, `right`, `off`     |
 
 ```yaml
 type: custom:body-miscale-card
@@ -233,31 +233,32 @@ buttons:
 body:
   bmi:
     positions:
-      name: outside
-      minmax: inside
-    width: 50%
-    target: 21
+      name: left
+      minmax: right
   bmi_label:
     color: blue
-    height: 40px
   visceral_fat:
     severity:
-      - from: 0
-        to: 4.99
-        color: blue
       - from: 5
         to: 10
         color: green
-      - from: 10.01
+        label: Normal
+      - from: 10
         to: 15
+        color: orange
+        label: High
+      - from: 15
+        to: 20
         color: red
-    target: 15
-    min: 0
+        label: Very high
+    min: 5
     max: 25
+    showabovelabels: "true"
+    showbelowlabels: "true"
 ```
 
 Translations: Automatic (setting of your homeassistant) or manual
-Currently the languages available are `DE`,`EN`,`FR`,`IT`,`NL`,`PT-BR`,`ZH-HANS`, you can contact me to integrate your native language
+Currently the languages available are `CA`,`CS`,`DE`,`EN`,`ES`,`FR`,`HU`,`IT`,`JA`,`NL`,`PL`,`PT-BR`,`PT`,`RO`,`RU`,`VI`,`ZH-HANS`,`ZH-HANT`, you can contact me to integrate your native language
 
 ```yaml
 - type: custom:body-miscale-card

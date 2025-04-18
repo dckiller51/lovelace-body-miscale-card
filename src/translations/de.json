@@ -106,15 +106,17 @@
   },
   "editor_body": {
     "from": "Von",
-    "height": "Leistenhöhe",
     "icon_position": "Symbolposition",
-    "inside": "Innen",
+    "left": "Links",
     "max": "Max",
     "min": "Min",
     "minmax_position": "Min/Max Position",
     "name_position": "Name Position",
     "off": "Aus",
-    "outside": "Außen",
+    "on": "Ein",
+    "right": "Rechts",
+    "showabovelabels": "Labels oben anzeigen",
+    "showbelowlabels": "Labels unten anzeigen",
     "target": "Ziel",
     "to": "Zu",
     "value_position": "Wert Position"
@@ -148,5 +150,21 @@
     "royalblue": "Königsblau",
     "black": "Schwarz",
     "white": "Weiß"
+  },
+  "label_below": {
+    "balanced": "ausgewogen",
+    "good": "Gut",
+    "increased": "Erhöht",
+    "insufficient": "Unzureichend",
+    "high": "Hoch",
+    "low": "Niedrig",
+    "normal": "Normal",
+    "obese": "fettleibig",
+    "objective_achieved": "Ziel erreicht",
+    "objective_not_achieved": "Ziel nicht erreicht",
+    "overweight": "Übergewicht",
+    "underweight": "Untergewicht",
+    "very_high": "Sehr hoch",
+    "very_low": "Sehr niedrig"
   }
 }

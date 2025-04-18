@@ -115,15 +115,17 @@
   },
   "editor_body": {
     "from": "從",
-    "height": "條形高度",
     "icon_position": "圖示位置",
-    "inside": "內部",
+    "left": "左側",
     "max": "最大",
     "min": "最小",
     "minmax_position": "最小/最大位置",
     "name_position": "名稱位置",
     "off": "關閉",
-    "outside": "外部",
+    "on": "開啟",
+    "right": "右側",
+    "showabovelabels": "顯示上方標籤",
+    "showbelowlabels": "顯示下方標籤",
     "target": "目標",
     "to": "到",
     "value_position": "數值位置"
@@ -157,5 +159,21 @@
     "royalblue": "皇家藍",
     "black": "黑色",
     "white": "白色"
+  },
+  "label_below": {
+    "balanced": "標準型",
+    "good": "好",
+    "increased": "增加",
+    "insufficient": "不足",
+    "high": "高",
+    "low": "低",
+    "normal": "正常",
+    "obese": "偏胖型",
+    "objective_achieved": "目標達成",
+    "objective_not_achieved": "目標未達成",
+    "overweight": "肥胖型",
+    "underweight": "過輕",
+    "very_high": "非常高",
+    "very_low": "非常低"
   }
 }

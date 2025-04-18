@@ -256,354 +256,206 @@ export class BodymiscaleCard extends LitElement {
   }
 
   private renderBody(data: any): Template {
-    if (!this.config.show_body) {
-      return nothing;
-    }
-    if (!this.hass || !this.config?.entity) {
-      return html`<div>${localize('state.default.unavailable')}</div>`;
-    }
-
+    if (!this.hass || !this.config?.entity) return nothing;
+  
     const stateObj = this.hass.states?.[this.config.entity];
-    if (!stateObj) {
-      return html`<div>
-        ${this.hass.localize('state.default.unavailable')}
-      </div>`;
-    }
-
+    if (!stateObj) return html`<div>${this.hass.localize('state.default.unavailable')}</div>`;
+  
+    const keyExists = data?.key && stateObj;
+  
+    const isValidAttr =
+      keyExists && stateObj.attributes?.[data.key] !== undefined;
+  
+    const isValidEntity =
+      keyExists && (stateObj as Record<string, any>)[data.key] !== undefined;
+  
     const computeFunc =
       typeof data.compute === 'function' ? data.compute : (v: any) => v;
-    const keyExists = data?.key && stateObj;
-    const isValidAttribute =
-      keyExists && stateObj.attributes?.[data.key] !== undefined;
-    const isValidEntityData =
-      keyExists && (stateObj as Record<string, any>)[data.key] !== undefined;
-
-    let value = isValidAttribute
+  
+    const rawValue = isValidAttr
       ? computeFunc(stateObj.attributes[data.key])
-      : isValidEntityData
-        ? computeFunc((stateObj as Record<string, any>)[data.key])
-        : this.hass.localize('state.default.unavailable');
-
-    if (data.key === 'last_measurement_time' && typeof value === 'string') {
-      try {
-        const parsedDate = new Date(value.replace(' ', 'T'));
-        const formattedDate = formatDate(parsedDate, this.hass.locale);
-        const formattedTime = formatTime(parsedDate, this.hass.locale);
-        value = `${formattedDate} ${formattedTime}`;
-      } catch {
-        /* empty */
-      }
+      : isValidEntity
+      ? computeFunc((stateObj as Record<string, any>)[data.key])
+      : this.hass.localize('state.default.unavailable');
+  
+    const formattedValue =
+      typeof rawValue === 'number'
+        ? formatNumber(rawValue, this.hass.locale)
+        : rawValue;
+  
+    const iconUrl = this.getIconUrl(data.icon);
+  
+    const icon = data.icon
+      ? html`
+          <ha-icon
+            class="image"
+            style="
+              -webkit-mask-image: url('${iconUrl}');
+              mask-image: url('${iconUrl}');
+              -webkit-mask-size: 24px;
+              mask-size: 24px;
+              background-color: currentColor;
+              ${this.config.styles?.iconbody || ''}
+            "
+          ></ha-icon>
+        `
+      : nothing;
+  
+    const name = data.label
+      ? html`<div class="name">${data.label}</div>`
+      : nothing;
+  
+    const segmentBar = typeof rawValue === 'number' ? this.renderColorBarSegments(data, rawValue, false) : nothing;
+    const showBar = segmentBar !== nothing;
+    const barClass = showBar ? 'bar-container' : 'bar-container compact';
+  
+    const iconPosition = data.positions?.icon ?? 'left';
+    const namePosition = data.positions?.name ?? 'left';
+    const minMaxPosition = data.positions?.minmax ?? 'off';
+    const valuePosition = data.positions?.value ?? 'right';
+    
+    const iconBlock = iconPosition !== 'off' ? icon : nothing;
+    const nameBlock = namePosition !== 'off' ? name : nothing;
+    const minMaxBlock = minMaxPosition !== 'off'
+      ? html`
+          <div class="minmax">
+            ${localize('editor_body.minmax_label')}
+            <span class="min">${data.min}</span>/<span class="max">${data.max}</span>
+          </div>`
+      : nothing;
+    const valueBlock = valuePosition !== 'off'
+      ? html`<div class="value">${localize(`body_value.${rawValue}`) || formattedValue}${data.unit || ''}</div>`
+      : nothing;
+    
+    // Contenu gauche / droite
+    const leftItems = [
+      iconPosition === 'left' ? iconBlock : nothing,
+      namePosition === 'left' ? nameBlock : nothing,
+      minMaxPosition === 'left' ? minMaxBlock : nothing,
+      valuePosition === 'left' ? valueBlock : nothing,
+    ];
+    
+    const rightItems = [
+      iconPosition === 'right' ? iconBlock : nothing,
+      namePosition === 'right' ? nameBlock : nothing,
+      minMaxPosition === 'right' ? minMaxBlock : nothing,
+      valuePosition === 'right' ? valueBlock : nothing,
+    ];
+    
+    return html`
+      <div style="display: flex; flex-direction: column; padding: 1rem 0;">
+        <!-- Ligne 1: éléments dynamiques -->
+        <div class="flex-container" style="justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            ${leftItems.filter(item => item !== nothing)} <!-- Affiche uniquement les éléments valides à gauche -->
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            ${rightItems.filter(item => item !== nothing)} <!-- Affiche uniquement les éléments valides à droite -->
+          </div>
+        </div>
+    
+        <!-- Ligne 2: Barre (si elle existe) -->
+        <div class="${barClass}">
+          ${segmentBar}
+        </div>
+      </div>
+    `;    
+  }  
+  
+  private renderColorBarSegments(data: any, value: number, wrap = true): Template {
+    const range = data.max - data.min;
+    if (!data.severity || !Array.isArray(data.severity) || range <= 0) {
+      return nothing;
     }
-
-    const formatValue =
-      typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
-
-    // Forcer la direction à 'right' (horizontale)
-    let backgroundMargin = '0px 0px 0px 13px';
-
-    // Définir la hauteur et vérifier la hauteur configurée.
-    let barHeight: string | number = 30;
-    if (data.height) barHeight = data.height;
-
-    // Normalisation de barHeight
-    const normalizedBarHeight =
-      typeof barHeight === 'number'
-        ? `${barHeight}px` // Si c'est un nombre, ajouter 'px'
-        : barHeight.toString().includes('px')
-          ? barHeight // Si déjà en "px", ne rien changer
-          : `${parseInt(barHeight, 10) || 0}px`; // Sinon, convertir en nombre et ajouter 'px'
-
-    // Définir les variables de style pour toujours aller à droite
-    let alignItems = 'stretch';
-    let barDirection = 'right'; // Toujours 'right'
-    let flexDirection = 'row';
-    let markerDirection = 'left'; // Le marqueur reste à gauche
-    let markerStyle = 'height: 100%; width: 2px;';
-
-    // Récupérer les éléments à l'extérieur et à l'intérieur
-    const {
-      outside: iconOutside,
-      inside: iconInside,
-      backgroundMargin: backgroundMarginFromIcon,
-    } = this.renderBarIcon(data);
-    const {
-      outside: nameOutside,
-      inside: nameInside,
-      backgroundMargin: backgroundMarginFromName,
-    } = this.renderBarName(data);
-    const { outside: minMaxOutside, inside: minMaxInside } =
-      this.renderBarMinMax(data);
-    const {
-      outside: valueOutside,
-      inside: valueInside,
-      backgroundMargin: backgroundMarginFromValue,
-    } = this.renderBarValue(data, value, formatValue, localize);
-
-    // Mettre à jour backgroundMargin ici
-    backgroundMargin =
-      backgroundMarginFromIcon ||
-      backgroundMarginFromName ||
-      backgroundMarginFromValue ||
-      backgroundMargin;
-
-    // Définir la couleur de la barre
-    const numberValue = Number(value);
-    const barColor = this._computeBarColor(data, numberValue);
-
-    // Définir le pourcentage de la barre et du marqueur en fonction de la différence de valeur.
-    const barPercent = this._computePercent(data, Number(value));
-    const targetMarkerPercent = this._computePercent(data, data.target);
-    let targetStartPercent = barPercent;
-    let targetEndPercent = this._computePercent(data, data.target);
-
-    if (targetEndPercent < targetStartPercent) {
-      targetStartPercent = targetEndPercent;
-      targetEndPercent = barPercent;
+  
+    const filteredSeverity = data.severity.filter(
+      (s: any) =>
+        s.color !== 'disabled' &&
+        s.from !== null &&
+        s.to !== null &&
+        s.color !== undefined
+    );
+  
+    if (filteredSeverity.length === 0) {
+      return nothing;
     }
-
-    // Définir la largeur de la barre si configurée.
-    let barWidth = '';
-    if (data.width) {
-      alignItems = 'center';
-      barWidth = `width: ${data.width}`;
-    }
-
-    // Créer le tableau contenant toutes les lignes.
-    let rowFlexDirection = 'row';
-
-    const attribute = html`
-      <score-card-row style="flex-direction: ${rowFlexDirection};">
-        <score-card-card
-          style="flex-direction: ${flexDirection}; align-items: ${alignItems};"
+  
+    const segmentsHtml = filteredSeverity.map((segment: any, index: number) => {
+      const from = parseFloat(segment.from) || 0;
+      const to = parseFloat(segment.to) || 0;
+      const widthPercent = ((to - from) / range) * 100;
+      const color = computeCssColor(segment.color) || 'gray';
+  
+      const showAbove = data.showabovelabels !== "false";
+      const showBelow = data.showbelowlabels !== "false";
+      
+      const segmentLabelAbove = showAbove && index !== filteredSeverity.length - 1
+      ? html`
+          <div class="segment-label-above" style="color: ${color};">
+            ${formatNumber(to, this.hass.locale)}${data.unit || ''}
+          </div>
+        `
+      : nothing;
+      
+        const segmentLabelBelow = showBelow && segment.label
+        ? html`
+            <div class="segment-label-below" style="color: ${color};">
+              ${localize(`label_below.${segment.label}`)}
+            </div>
+          `
+        : nothing;
+      
+      return html`
+        <div
+          class="colorbar-segment"
+          style="
+            width: ${widthPercent}%;
+            background-color: ${color};
+            border-radius: ${index === 0
+              ? '4px 0 0 4px'
+              : index === filteredSeverity.length - 1
+              ? '0 4px 4px 0'
+              : '0'};
+          "
         >
-          ${iconOutside} ${nameOutside}
-          <score-card-background
-            style="margin: ${backgroundMargin}; height: ${normalizedBarHeight}; ${barWidth}"
-          >
-            <score-card-backgroundbar
-              style="--bar-color: ${barColor};"
-            ></score-card-backgroundbar>
-            <score-card-currentbar
-              style="--bar-color: ${barColor}; --bar-percent: ${barPercent}%; --bar-direction: ${barDirection}"
-            ></score-card-currentbar>
-            ${data.target
-              ? html`
-                  <score-card-targetbar
-                    style="--bar-color: ${barColor}; --bar-percent: ${targetStartPercent}%; --bar-target-percent: ${targetEndPercent}%; --bar-direction: ${barDirection};"
-                  ></score-card-targetbar>
-                  <score-card-markerbar
-                    style="--bar-color: ${barColor}; --bar-target-percent: ${targetMarkerPercent}%; ${markerDirection}: calc(${targetMarkerPercent}% - 1px); ${markerStyle}"
-                  ></score-card-markerbar>
-                `
-              : ''}
-            <score-card-contentbar class="contentbar-direction-right">
-              ${iconInside} ${nameInside} ${minMaxInside} ${valueInside}
-            </score-card-contentbar>
-          </score-card-background>
-          ${minMaxOutside} ${valueOutside}
-        </score-card-card>
-      </score-card-row>
+          ${segmentLabelAbove}
+          ${segmentLabelBelow}
+        </div>
+      `;        
+    });
+  
+    const markerPercent = this._computePercent(data, value);
+    const activeSegment = filteredSeverity.find(
+      (s: any) => value >= (parseFloat(s.from) || 0) && value <= (parseFloat(s.to) || data.max)
+    );
+    const markerColor = computeCssColor(activeSegment?.color) || 'var(--primary-color)';
+  
+    const barHtml = html`
+      <div class="bar-inner">
+        ${segmentsHtml}
+        <div class="bar-marker-wrapper" style="left: ${markerPercent}%;">
+          <div
+            class="bar-marker"
+            style="border-color: ${markerColor};"
+          ></div>
+          <div class="bar-marker-tooltip">
+            ${formatNumber(value, this.hass.locale)}${data.unit || ''}
+          </div>
+        </div>
+      </div>
     `;
-
-    const hasDropdown = `${data.key}_list` in stateObj.attributes;
-
-    return hasDropdown && (isValidAttribute || isValidEntityData)
-      ? this.renderDropdown(attribute, data.key)
-      : attribute;
-  }
-
-  private renderBarIcon(data: any): {
-    outside: Template;
-    inside: Template;
-    backgroundMargin: string;
-  } {
-    let iconOutside: Template = nothing;
-    let iconInside: Template = nothing;
-
-    // Déclaration et mise à jour de backgroundMargin ici
-    let backgroundMargin = '0px'; // Définie pour l'initialisation
-
-    switch (data.positions.icon) {
-      case 'outside':
-        iconOutside = html`
-          <score-card-iconbar
-            >${data.icon && this.renderIcon(data, 'body')}</score-card-iconbar
-          >
-        `;
-        backgroundMargin = '0px 0px 0px 13px';
-        break;
-      case 'inside':
-        iconInside = html`
-          <score-card-iconbar
-            >${data.icon && this.renderIcon(data, 'body')}</score-card-iconbar
-          >
-        `;
-        backgroundMargin = '0px'; // Réinitialisation de backgroundMargin pour 'inside'
-        break;
-      case 'off':
-        backgroundMargin = '0px'; // Pas de marge pour 'off'
-        break;
-    }
-
-    return { outside: iconOutside, inside: iconInside, backgroundMargin };
-  }
-
-  private renderBarName(data: any): {
-    outside: Template;
-    inside: Template;
-    backgroundMargin: string;
-  } {
-    let nameOutside: Template = nothing;
-    let nameInside: Template = nothing;
-
-    // Déclaration et mise à jour de backgroundMargin ici
-    let backgroundMargin = '0px'; // Définie pour l'initialisation
-
-    if (data.label !== undefined) {
-      switch (data.positions.name) {
-        case 'outside':
-          nameOutside = html`
-            <score-card-name
-              style="${data.width ? `width: calc(100% - ${data.width});` : ''}"
-              >${data.label || ''}</score-card-name
-            >
-          `;
-          backgroundMargin = '0px'; // Mise à jour de la marge pour 'outside'
-          break;
-        case 'inside':
-          nameInside = html`<score-card-name
-            >${data.label || ''}</score-card-name
-          >`;
-          break;
-        case 'off':
-          break; // Pas de changement
-      }
-    }
-
-    return { outside: nameOutside, inside: nameInside, backgroundMargin };
-  }
-
-  private renderBarMinMax(data: any): { outside: Template; inside: Template } {
-    let minMaxOutside: Template = nothing;
-    let minMaxInside: Template = nothing;
-
-    if (data.min !== undefined && data.max !== undefined) {
-      switch (data.positions.minmax) {
-        case 'outside':
-          minMaxOutside = html`
-            <score-card-min>${data.min}</score-card-min>
-            <score-card-divider>/</score-card-divider>
-            <score-card-max>${data.max}</score-card-max>
-          `;
-          break;
-        case 'inside':
-          minMaxInside = html`
-            <score-card-min class="min-direction-right">
-              ${data.min}
-            </score-card-min>
-            <score-card-divider>/</score-card-divider>
-            <score-card-max>${data.max}</score-card-max>
-          `;
-          break;
-        case 'off':
-          break;
-      }
-    }
-
-    return { outside: minMaxOutside, inside: minMaxInside };
-  }
-
-  private renderBarValue(
-    data: any,
-    value: any,
-    formatValue: any,
-    localize: any,
-  ): { outside: Template; inside: Template; backgroundMargin: string } {
-    let valueOutside: Template = nothing;
-    let valueInside: Template = nothing;
-
-    // Déclaration et mise à jour de backgroundMargin ici
-    let backgroundMargin = '0px'; // Définie pour l'initialisation
-
-    switch (data.positions.value) {
-      case 'outside':
-        valueOutside = html`
-          <score-card-value class="value-direction-right">
-            ${(localize(`body_value.${value}`) || formatValue) +
-            (data.unit || '')}
-          </score-card-value>
-        `;
-        break;
-      case 'inside':
-        valueInside = html`
-          <score-card-value
-            class="${data.positions.minmax == 'inside'
-              ? ''
-              : 'value-direction-right'}"
-          >
-            ${(localize(`body_value.${value}`) || formatValue) +
-            (data.unit || '')}
-          </score-card-value>
-        `;
-        break;
-      case 'off':
-        break; // Pas de changement pour 'off'
-    }
-
-    return { outside: valueOutside, inside: valueInside, backgroundMargin };
-  }
-
-  private _computeSeverityColor(data: any, numberValue: number): string {
-    const sections: {
-      from?: number;
-      to?: number;
-      text?: string;
-      color: string | undefined;
-    }[] = data.severity;
-    let color: string | undefined;
-
-    if (isNaN(numberValue)) {
-      sections.forEach((section) => {
-        if (data == section.text && section.color) {
-          color = computeCssColor(section.color) || 'disabled';
-        }
-      });
-    } else {
-      sections.forEach((section) => {
-        if (
-          numberValue >= (section.from || 0) &&
-          numberValue <= (section.to || Infinity) &&
-          section.color
-        ) {
-          color = computeCssColor(section.color) || 'disabled';
-        }
-      });
-    }
-
-    return color ?? computeCssColor(data.color) ?? 'disabled';
-  }
-
-  private _computeBarColor(data: any, numberValue: number): string {
-    let BarColor: string;
-    if (data.severity) {
-      BarColor =
-        this._computeSeverityColor(data, numberValue) ||
-        computeCssColor(data.color) ||
-        'disabled';
-    } else if (data == 'unavailable') {
-      BarColor = computeCssColor(data.color) || 'disabled';
-    } else {
-      BarColor = computeCssColor(data.color) || 'disabled';
-    }
-    return BarColor;
-  }
-
+  
+    return wrap
+      ? html`<div class="bar-container">${barHtml}</div>`
+      : barHtml;
+  }  
+  
   private _computePercent(data: any, numberValue: number): number {
-    if (data == 'unavailable') return 0;
-    if (isNaN(numberValue)) return 100;
-
-    return (100 * (numberValue - data.min)) / (data.max - data.min);
-  }
+    if (!data || typeof numberValue !== 'number') return 0;
+    const range = data.max - data.min;
+    if (range <= 0) return 0;
+    return ((numberValue - data.min) / range) * 100;
+  }  
 
   private getIconUrl(iconName: string): string {
     const basePath = this.config?.icons_body ?? '/local/images/bodyscoreIcon';
@@ -772,6 +624,7 @@ export class BodymiscaleCard extends LitElement {
       this.config.body ?? {},
       this.config.model,
     );
+    console.log('filteredBodyData in render:', filteredBodyData);
     const filteredAttributesData = filterByImpedance(
       this.config.attributes ?? {},
       this.config.model,
@@ -819,7 +672,9 @@ export class BodymiscaleCard extends LitElement {
 
         <div id="items" ?open=${this.open || this.config.show_always_details}>
           <div id="score" class="card-content">
-            ${filteredBodyData.filter(Boolean).map(this.renderBody.bind(this))}
+            <div class="scroll-wrapper">
+              ${filteredBodyData.filter(Boolean).map(this.renderBody.bind(this))}
+            </div>
           </div>
         </div>
       </ha-card>

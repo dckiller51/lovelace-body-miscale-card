@@ -118,15 +118,17 @@
   },
   "editor_body": {
     "from": "Tól",
-    "height": "Sáv magassága",
     "icon_position": "Ikon pozíció",
-    "inside": "Belső",
+    "left": "Bal oldalon",
     "max": "Max",
     "min": "Min",
     "minmax_position": "Min/Max pozíció",
     "name_position": "Név pozíció",
     "off": "Kikapcsolva",
-    "outside": "Külső",
+    "on": "Be",
+    "right": "Jobb oldalon",
+    "showabovelabels": "Címkék megjelenítése felül",
+    "showbelowlabels": "Címkék megjelenítése alul",
     "target": "Cél",
     "to": "Tovább",
     "value_position": "Érték pozíció"
@@ -160,5 +162,21 @@
     "royalblue": "Királykék",
     "black": "Fekete",
     "white": "Fehér"
+  },
+  "label_below": {
+    "balanced": "Kiegyensúlyozott",
+    "good": "Jó",
+    "increased": "Növekedett",
+    "insufficient": "Elégtelen",
+    "high": "Magas",
+    "low": "Alacsony",
+    "normal": "Normális",
+    "obese": "Kórosan elhízott",
+    "objective_achieved": "Cél elérve",
+    "objective_not_achieved": "Cél nem elérve",
+    "overweight": "Túlsúlyos",
+    "underweight": "Súlyhiányos",
+    "very_high": "Nagyon magas",
+    "very_low": "Nagyon alacsony"
   }
 }

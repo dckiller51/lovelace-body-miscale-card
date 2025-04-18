@@ -121,16 +121,17 @@
   },
   "editor_body": {
     "from": "De",
-    "height": "Alçada de la barra",
     "icon_position": "Posició de la icona",
-    "inside": "Dins",
+    "left": "A l'esquerra",
     "max": "Màx",
     "min": "Mín",
     "minmax_position": "Posició Mín/Màx",
     "name_position": "Posició del nom",
     "off": "Apagar",
-    "outside": "Fora",
-    "target": "Objectiu",
+    "on": "Activat",
+    "right": "A la dreta",
+    "showabovelabels": "Mostrar etiquetes a sobre",
+    "showbelowlabels": "Mostrar etiquetes a sota",
     "to": "A",
     "value_position": "Posició del valor"
   },
@@ -163,5 +164,21 @@
     "royalblue": "Blau reial",
     "black": "Negre",
     "white": "Blanc"
+  },
+  "label_below": {
+    "balanced": "Equilibrat",
+    "good": "Bo",
+    "increased": "Augmentat",
+    "insufficient": "Insuficient",
+    "high": "Alt",
+    "low": "Baix",
+    "normal": "Normal",
+    "obese": "Obès",
+    "objective_achieved": "Objectiu assolit",
+    "objective_not_achieved": "Objectiu no assolit",
+    "overweight": "Sobrepès",
+    "underweight": "Per sota del pes normal",
+    "very_high": "Molt alt",
+    "very_low": "Molt baix"
   }
 }

@@ -115,16 +115,17 @@
   },
   "editor_body": {
     "from": "Od",
-    "height": "Výška lišty",
     "icon_position": "Pozice ikony",
-    "inside": "Uvnitř",
+    "left": "Vlevo",
     "max": "Max",
     "min": "Min",
     "minmax_position": "Pozice Min/Max",
     "name_position": "Pozice názvu",
     "off": "Vypnuto",
-    "outside": "Vně",
-    "target": "Cíl",
+    "on": "Zapnuto",
+    "right": "Vpravo",
+    "showabovelabels": "Zobrazit štítky nahoře",
+    "showbelowlabels": "Zobrazit štítky dole",
     "to": "Do",
     "value_position": "Pozice hodnoty"
   },
@@ -157,5 +158,21 @@
     "royalblue": "Královská modrá",
     "black": "Černá",
     "white": "Bílá"
+  },
+  "label_below": {
+    "balanced": "vyvážený",
+    "good": "Dobrý",
+    "increased": "Zvýšený",
+    "insufficient": "Nedostatečný",
+    "high": "Vysoký",
+    "low": "Nízký",
+    "normal": "Normální",
+    "obese": "obézní",
+    "objective_achieved": "Cíl dosažen",
+    "objective_not_achieved": "Cíl nedosažen",
+    "overweight": "nadváha",
+    "underweight": "podváha",
+    "very_high": "Velmi vysoký",
+    "very_low": "Velmi nízký"
   }
 }

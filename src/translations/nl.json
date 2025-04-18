@@ -115,15 +115,17 @@
   },
   "editor_body": {
     "from": "Van",
-    "height": "Balkhoogte",
     "icon_position": "Pictogrampositie",
-    "inside": "Binnen",
+    "left": "Links",
     "max": "Max",
     "min": "Min",
     "minmax_position": "Min/Max Positie",
     "name_position": "Naam Positie",
     "off": "Uit",
-    "outside": "Buiten",
+    "on": "Aan",
+    "right": "Rechts",
+    "showabovelabels": "Labels boven weergeven",
+    "showbelowlabels": "Labels onder weergeven",
     "target": "Doel",
     "to": "Naar",
     "value_position": "Waarde Positie"
@@ -157,5 +159,21 @@
     "royalblue": "Koningsblauw",
     "black": "Zwart",
     "white": "Wit"
+  },
+  "label_below": {
+    "balanced": "Gebalanceerd",
+    "good": "Goed",
+    "increased": "Verhoogd",
+    "insufficient": "Onvoldoende",
+    "high": "Hoog",
+    "low": "Laag",
+    "normal": "Normaal",
+    "obese": "Obesitas",
+    "objective_achieved": "Doel bereikt",
+    "objective_not_achieved": "Doel niet bereikt",
+    "overweight": "Overgewicht",
+    "underweight": "Ondergewicht",
+    "very_high": "Zeer hoog",
+    "very_low": "Zeer laag"
   }
 }

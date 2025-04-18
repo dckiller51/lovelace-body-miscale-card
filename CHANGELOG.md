@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.3
+
+- ✨ **Added**: Ability to dynamically position icon, name, and value to the left or right, with the option to turn them off.
+- 🔄 **Updated**: Editor translations for positioning options ("left", "right") which replace the previous "inside" and "outside" options.
+- 🎯 **Added**: Marker circle positioned correctly for the new segmented color bar.
+- 🎨 **Updated**: CSS styling for icon and value positioning, ensuring correct alignment and responsiveness on mobile devices.
+- 💬 **Enhanced**: Tooltip visibility: values are now shown on hover or tap, particularly useful on mobile devices.
+- 🔄 **Updated**: Bar styling: Removed fixed `height` for the color bar to allow it to adjust dynamically based on the content width.
+- 📊 **Added**: Segment upper bound values now displayed above each colored segment for better readability.
+- 🌍 **Updated**: Translations for positioning options ("left", "right") in multiple languages.
+- ✨ **Added**: Show labels above and below segments for better information visibility. This option is configurable via `showabovelabels` and `showbelowlabels` to allow flexibility in display preferences.
+- 🔄 **Updated**: `showabovelabels` and `showbelowlabels` now support dynamic toggling and are part of the card's configurable options. Default values are `true`, but can be set to `false` to hide labels when required.
+
+### ⚠️ **Warning**: Major Change
+
+The bar representation has been replaced with segmented color bars. Please review your configuration and make necessary adjustments to ensure compatibility.
+
+### Action Required
+
+- **Remove and Re-add the Card**: To ensure compatibility with the new segmented bar representation, you must **remove the current card** from your configuration and then **add it back again**.
+- **Review Configuration**: Ensure that your configuration aligns with the new segmented color bar structure. For example, the `color`, `min`, and `max` values might need to be adjusted for better visual clarity.
+
 ## 2025.4.2
 
 - 🛠️ **Fixed** Issue with severity resetting when modifying or deleting lines in the editor.
