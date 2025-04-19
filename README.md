@@ -288,6 +288,10 @@ Currently the languages available are `CA`,`CS`,`DE`,`EN`,`ES`,`FR`,`HU`,`IT`,`J
       show: true
 ```
 
+## Severity Configuration Helper (Work in Progress) 🚧
+
+🧰 Try the Severity Configuration Helper: [Open Tool](https://dckiller51.github.io/lovelace-body-miscale-card/)
+
 ## Credits
 
 The card is based on the work of Ben Tomlin <https://github.com/benct/lovelace-xiaomi-vacuum-card>
