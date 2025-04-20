@@ -2,9 +2,12 @@ const profiles = {
   basal_metabolism: {
 
   },
-  bmi: {
-
-  },
+  bmi: [
+    { from: 12, to: 18.5, color: 'blue', label: 'low' },
+    { from: 18.5, to: 25.0, color: 'green', label: 'normal' },
+    { from: 25.0, to: 30.0, color: 'orange', label: 'high' },
+    { from: 30.0, to: 36.5, color: 'red', label: 'very_high' }
+  ],
   bodyfat: {
     male: {
       '18-39': [
@@ -54,7 +57,40 @@ const profiles = {
     }
   },
   bone_mass: {
-
+    male: {
+      '-65': [
+        { from: 0, to: 1.60, color: 'red', label: 'insufficient' },
+        { from: 1.60, to: 3.40, color: 'green', label: 'normal' },
+        { from: 3.40, to: 5.20, color: 'blue', label: 'good' }
+      ],
+      '65-95': [
+        { from: 0, to: 2.00, color: 'red', label: 'insufficient' },
+        { from: 2.00, to: 4.20, color: 'green', label: 'normal' },
+        { from: 4.20, to: 6.40, color: 'blue', label: 'good' }
+      ],
+      '95+': [
+        { from: 0, to: 2.25, color: 'red', label: 'insufficient' },
+        { from: 2.25, to: 4.70, color: 'green', label: 'normal' },
+        { from: 4.70, to: 7.20, color: 'blue', label: 'good' }
+      ]
+    },
+    female: {
+      '-50': [
+        { from: 0, to: 1.20, color: 'red', label: 'insufficient' },
+        { from: 1.20, to: 2.50, color: 'green', label: 'normal' },
+        { from: 2.50, to: 3.80, color: 'blue', label: 'good' }
+      ],
+      '50-75': [
+        { from: 0, to: 1.45, color: 'red', label: 'insufficient' },
+        { from: 1.45, to: 3.10, color: 'green', label: 'normal' },
+        { from: 3.10, to: 4.70, color: 'blue', label: 'good' }
+      ],
+      '75+': [
+        { from: 0, to: 1.80, color: 'red', label: 'insufficient' },
+        { from: 1.80, to: 3.80, color: 'green', label: 'normal' },
+        { from: 3.80, to: 5.80, color: 'blue', label: 'good' }
+      ]
+    }
   },
   ideal: {
 
@@ -65,11 +101,22 @@ const profiles = {
   protein: {
 
   },
-  visceral_fat: {
-
-  },
+  visceral_fat: [
+    { from: 5, to: 10, color: 'green', label: 'normal' },
+    { from: 10, to: 15, color: 'orange', label: 'high' },
+    { from: 15, to: 20, color: 'red', label: 'very_high' }
+  ],
   water: {
-
+    male: [
+      { from: 45, to: 55, color: 'red', label: 'insufficient' },
+      { from: 55, to: 65, color: 'green', label: 'normal' },
+      { from: 65, to: 75, color: 'blue', label: 'good' }
+    ],
+    female: [
+      { from: 40, to: 50, color: 'red', label: 'insufficient' },
+      { from: 50, to: 60, color: 'green', label: 'normal' },
+      { from: 60, to: 70, color: 'blue', label: 'good' }
+    ]
   },
   weight: {
 
