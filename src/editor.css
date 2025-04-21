@@ -78,3 +78,26 @@ ha-form-grid {
 .severity-row ha-textfield {
   margin-right: 8px;
 }
+
+.severity-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.severity-icons .compact-icon {
+  --mdc-icon-button-size: 32px;
+  --mdc-icon-size: 20px;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.severity-icons .compact-icon ha-icon {
+  width: 20px;
+  height: 20px;
+}

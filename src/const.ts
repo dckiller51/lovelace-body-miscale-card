@@ -159,8 +159,8 @@ export const body_kg: Record<string, RenderBodyData> = {
     showabovelabels: "true",
     showbelowlabels: "true",
     severity: [
-      { from: 5, to: 12, color: 'blue', label: 'very_low' },
-      { from: 12, to: 18, color: 'royalblue', label: 'low' },
+      { from: 5, to: 12, color: 'royalblue', label: 'very_low' },
+      { from: 12, to: 18, color: 'blue', label: 'low' },
       { from: 18, to: 23, color: 'green', label: 'normal' },
       { from: 23, to: 28, color: 'orange', label: 'increased' },
       { from: 28, to: 35, color: 'red', label: 'high' },
@@ -448,8 +448,8 @@ export const body_lb: Record<string, RenderBodyData> = {
     showabovelabels: "true",
     showbelowlabels: "true",
     severity: [
-      { from: 5, to: 12, color: 'blue', label: 'very_low' },
-      { from: 12, to: 18, color: 'royalblue', label: 'low' },
+      { from: 5, to: 12, color: 'royalblue', label: 'very_low' },
+      { from: 12, to: 18, color: 'blue', label: 'low' },
       { from: 18, to: 23, color: 'green', label: 'normal' },
       { from: 23, to: 28, color: 'orange', label: 'increased' },
       { from: 28, to: 35, color: 'red', label: 'high' },
@@ -737,8 +737,8 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
     body_fat: {
       key: 'body_fat',
       severity: [
-        { from: 5, to: 12, color: 'blue', label: 'very_low' },
-        { from: 12, to: 18, color: 'royalblue', label: 'low' },
+        { from: 5, to: 12, color: 'royalblue', label: 'very_low' },
+        { from: 12, to: 18, color: 'blue', label: 'low' },
         { from: 18, to: 23, color: 'green', label: 'normal' },
         { from: 23, to: 28, color: 'orange', label: 'increased' },
         { from: 28, to: 35, color: 'red', label: 'high' },

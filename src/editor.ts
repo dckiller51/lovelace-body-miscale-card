@@ -373,22 +373,22 @@ export class BodymiscaleCardEditor
     `;
   }  
 
-  private renderSeverityInputs(
+  private renderSeverityInputs( 
     severity: NumericSeverity | null | string | undefined,
     configKey: string,
   ): Template {
     if (severity == null) {
       return nothing;
     }
-
+  
     const severityArray = Array.isArray(severity) ? severity : [];
-
+  
     // Assurer qu'il y a toujours au moins une ligne vide pour l'édition
     const itemsToRender =
       severityArray.length > 0
         ? severityArray
         : [{ from: '', to: '', color: '' }];
-
+  
     return html`
       <div>
         ${itemsToRender.map(
@@ -436,16 +436,25 @@ export class BodymiscaleCardEditor
                       )}
                   ></color-select>
                 </div>
-                <div style="display: flex; align-items: center; margin: 0px">
+                <div class="severity-icons">
                   <ha-icon-button
+                    class="compact-icon"
                     @click=${() => this.removeNumericSeverity(configKey, index)}
                   >
                     <ha-icon icon="mdi:delete"></ha-icon>
                   </ha-icon-button>
                   <ha-icon-button
+                    class="compact-icon"
                     @click=${() => this.addNumericSeverity(configKey)}
                   >
                     <ha-icon icon="mdi:plus"></ha-icon>
+                  </ha-icon-button>
+                  <!-- Ajout de l'icône avec lien -->
+                  <ha-icon-button
+                    class="compact-icon"
+                    @click=${() => window.open('https://dckiller51.github.io/lovelace-body-miscale-card/', '_blank')}
+                  >
+                    <ha-icon icon="mdi:information-outline"></ha-icon>
                   </ha-icon-button>
                 </div>
               </div>
@@ -454,7 +463,7 @@ export class BodymiscaleCardEditor
         )}
       </div>
     `;
-  }
+  }  
 
   private updateNumericSeverity(
     configKey: string,

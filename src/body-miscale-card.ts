@@ -624,7 +624,6 @@ export class BodymiscaleCard extends LitElement {
       this.config.body ?? {},
       this.config.model,
     );
-    console.log('filteredBodyData in render:', filteredBodyData);
     const filteredAttributesData = filterByImpedance(
       this.config.attributes ?? {},
       this.config.model,

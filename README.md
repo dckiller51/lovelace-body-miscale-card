@@ -288,7 +288,7 @@ Currently the languages available are `CA`,`CS`,`DE`,`EN`,`ES`,`FR`,`HU`,`IT`,`J
       show: true
 ```
 
-## Severity Configuration Helper (Work in Progress) 🚧
+## Severity Configuration Helper
 
 🧰 Try the Severity Configuration Helper: [Open Tool](https://dckiller51.github.io/lovelace-body-miscale-card/)
 

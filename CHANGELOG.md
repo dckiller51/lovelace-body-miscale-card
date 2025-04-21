@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.4
+
+- 🛠 **Added**: Severity Profile Generator tool to help configure and preview metric thresholds (weight, ideal, bmi, etc.) based on gender, age, height, and weight.
+- ⚖️ **Support**: Added unit selection (kg/lbs) for metrics like weight, ideal, bone_mass, and muscle_mass.
+- ℹ️ **UI**: Added info icon linking to the [Severity Generator helper tool](https://dckiller51.github.io/lovelace-body-miscale-card/) in the severity editing section.
+
 ## 2025.4.3
 
 - ✨ **Added**: Ability to dynamically position icon, name, and value to the left or right, with the option to turn them off.
