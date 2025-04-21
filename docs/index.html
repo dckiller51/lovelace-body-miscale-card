@@ -91,10 +91,18 @@
     </label>
   
     <label>
-      Weight (kg):
+      Weight:
       <input type="number" id="weight" required />
     </label>
-  
+
+    <label>
+      Unit:
+      <select id="unit">
+        <option value="kg" selected>kg</option>
+        <option value="lbs">lbs</option>
+      </select>
+    </label>
+
     <label>
       Metric:
       <select id="metric"></select>
@@ -110,8 +118,7 @@
     const form = document.getElementById('profile-form');
     const tableContainer = document.getElementById('profile-table');
     const metricSelect = document.getElementById('metric');
-  
-    // Liste des métriques disponibles
+
     if (window.severityData) {
       const orderedMetrics = Object.keys(window.severityData);
       orderedMetrics.forEach(metric => {
@@ -121,27 +128,38 @@
         metricSelect.appendChild(option);
       });
     }
-  
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-  
+
       const age = parseInt(document.getElementById('age').value);
       const gender = document.getElementById('gender').value;
       const metric = metricSelect.value;
       const weight = parseFloat(document.getElementById('weight').value);
       const height = parseFloat(document.getElementById('height').value);
-  
+
       let profileData;
-  
+
       if (metric === 'basal_metabolism') {
         profileData = generateBasalMetabolismProfile({ gender, age, weight, height });
+      } else if (metric === 'ideal' || metric === 'weight') {
+        profileData = getIdealProfile(height);
       } else {
         profileData = getProfileFor(metric, gender, age, weight);
       }
-  
+
       generateTable(profileData);
     });
-  
+
+    function getIdealProfile(height) {
+      const ideal = window.severityData['ideal'];
+      const heights = Object.keys(ideal).map(h => parseInt(h));
+      const closest = heights.reduce((prev, curr) =>
+        Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
+      );
+      return ideal[closest];
+    }
+
     function getProfileFor(metric, gender, age, weight) {
       const data = window.severityData[metric];
 
@@ -159,17 +177,14 @@
         }
       }
 
-      // Cas 1 : Données globales (ex: BMI)
       if (Array.isArray(data)) {
         return data;
       }
 
-      // Cas 2 : Données dépendant seulement du genre (ex: water)
       if (Array.isArray(data[gender])) {
         return data[gender];
       }
 
-      // Cas 3 : Données dépendant du genre et d'une tranche d'âge (ex: bodyfat)
       if (data[gender]) {
         const genderData = data[gender];
 
@@ -179,7 +194,7 @@
         });
 
         const matchedRange = ranges.find(({ from, to }) => age >= from && age <= to);
-        
+
         if (matchedRange) {
           return genderData[matchedRange.range];
         }
@@ -187,15 +202,24 @@
 
       return [];
     }
-  
+
+    function convertTo(unit, value) {
+      if (unit === 'lbs') return +(value * 2.20462).toFixed(2);
+      return value;
+    }
+
     function generateTable(profileData) {
       tableContainer.innerHTML = '';
-  
+
       if (!profileData.length) {
         tableContainer.innerHTML = '<p>No profile found for this selection.</p>';
         return;
       }
-  
+
+      const unit = document.getElementById('unit').value;
+      const metric = document.getElementById('metric').value;
+      const needsConversion = ['weight', 'ideal', 'bone_mass', 'muscle_mass'].includes(metric);
+
       const table = document.createElement('table');
       const headerRow = document.createElement('tr');
       const headers = ['From', 'To', 'Label', 'Color'];
@@ -205,24 +229,27 @@
         headerRow.appendChild(th);
       });
       table.appendChild(headerRow);
-  
+
       profileData.forEach(({ from, to, label, color }) => {
+        const displayFrom = needsConversion ? convertTo(unit, from) : from;
+        const displayTo = needsConversion ? convertTo(unit, to) : to;
+
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${from}</td>
-          <td>${to}</td>
+          <td>${displayFrom}</td>
+          <td>${displayTo}</td>
           <td>${label}</td>
           <td><div class="color-box" style="background-color:${color};"></div></td>
         `;
         table.appendChild(row);
       });
-  
+
       tableContainer.appendChild(table);
     }
-  
+
     function generateBasalMetabolismProfile({ gender, age, weight, height, activityFactor = 1.9 }) {
       let bmr;
-  
+
       if (gender === 'female') {
         bmr = 864.6 + (10.2036 * weight) - (0.39336 * height) - (6.204 * age);
         if (bmr > 2996) bmr = 5000;
@@ -230,12 +257,12 @@
         bmr = 877.8 + (14.916 * weight) - (0.726 * height) - (8.976 * age);
         if (bmr > 2322) bmr = 5000;
       }
-  
+
       bmr = Math.min(Math.max(bmr, 500), 5000);
       const upperBound = Math.round(bmr * activityFactor);
       const lowerBound = Math.round(bmr);
       const from = Math.max(Math.round(lowerBound - (upperBound - lowerBound)), 0);
-  
+
       return [
         { from, to: lowerBound, color: 'red', label: 'objective_not_achieved' },
         { from: lowerBound, to: upperBound, color: 'green', label: 'objective_achieved' }
