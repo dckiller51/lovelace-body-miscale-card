@@ -77,8 +77,6 @@ export default function buildConfig(
     styles: buildStyles(config),
     open: config.open ?? false,
     stats: config.stats ?? {},
-    min: config.min ?? undefined,
-    max: config.max ?? undefined,
     color: config.color ?? undefined,
     positions: config.positions ?? {
       icon: 'left',

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.5
+
+- ✨ **Enhanced**: Minimum and maximum values for metric thresholds are now automatically calculated based on the severity configuration, eliminating the need for manual definition.
+- ✨ **Fixed** The .scroll-wrapper now has a max-height set to 40vh, ensuring that larger screens display the scrollbar all the way to the bottom when content exceeds this height.
+- ✨ **Updated** Reduced vertical spacing for metrics that do not have a progress bar displayed.
+- ✨ **Added**: Users can now customize the label displayed for each severity level within the editor.
+- ✨ **Added**: Implemented functionality to generate a full YAML configuration based on the defined severity profiles and user inputs.
+
 ## 2025.4.4
 
 - 🛠 **Added**: Severity Profile Generator tool to help configure and preview metric thresholds (weight, ideal, bmi, etc.) based on gender, age, height, and weight.

@@ -235,11 +235,6 @@ ha-card {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.bar-container.compact {
-  margin-top: 0.5rem;
 }
 
 .bar-inner {
@@ -289,30 +284,9 @@ ha-card {
   opacity: 1;
 }
 
-.score-card-colorbar.colorbar {
-  position: relative;
-  display: flex;
-  height: 8px;
-  width: 100%;
-  margin-top: 4px;
-  overflow: visible;
-  border-radius: 4px;
-}
-
 .colorbar-segment {
   height: 100%;
   position: relative;
-}
-
-.colorbar-marker {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  z-index: 2;
-  transition: left 0.3s ease;
 }
 
 .segment-label-above {
@@ -338,7 +312,7 @@ ha-card {
 }
 
 .scroll-wrapper {
-  max-height: 60vh; /* hauteur max dynamique (viewport height) */
+  max-height: 40vh; /* hauteur max dynamique (viewport height) */
   overflow-y: auto;
   padding-right: 0.5rem; /* espace pour la scrollbar */
   scroll-behavior: smooth;
@@ -359,6 +333,7 @@ ha-card {
   scrollbar-color: rgba(100, 100, 100, 0.3) transparent;
 }
 
+/* Styles pour les écrans jusqu'à 600px (téléphones) */
 @media (max-width: 600px) {
   .scroll-wrapper {
     max-height: 50vh;

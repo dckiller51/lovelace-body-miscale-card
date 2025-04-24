@@ -5,7 +5,7 @@
 .option {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .option ha-switch {
@@ -29,7 +29,7 @@
 }
 
 .option ha-formfield {
-  padding-bottom: 8px;
+  padding-bottom: 0.5rem;
 }
 
 .flex-space-between {
@@ -53,7 +53,7 @@ ha-icon-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 0.5rem;
 }
 
 ha-icon {
@@ -66,17 +66,37 @@ ha-form-grid {
     var(--form-grid-column-count, auto-fit),
     minmax(var(--form-grid-min-width, 200px), 1fr)
   );
-  gap: 8px;
-  margin-top: 8px;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .severity-row {
-  display: flex;
-  align-items: center;
+  margin-bottom: 0.5rem; /* Ajoute une marge en dessous de chaque bloc .severity-row */
 }
 
 .severity-row ha-textfield {
-  margin-right: 8px;
+  margin-right: 0.5rem;
+}
+
+.severity-row .input-line {
+  display: flex;
+  margin-bottom: 0.5rem; /* Ajustez l'espacement sous la ligne */
+}
+
+.severity-row .input-line ha-textfield {
+  flex: 1; /* Permet aux champs de prendre l'espace disponible de manière égale */
+}
+
+.severity-row .below-line {
+  display: flex;
+  align-items: center; /* Aligne verticalement le label et les icônes */
+  gap: 1rem; /* Ajustez l'espacement entre le label et les icônes */
+  margin-top: 0.5rem; /* Ajoutez un peu d'espace au-dessus de cette ligne */
+}
+
+.severity-row .below-line .label-input {
+  flex: 1; /* Permet au label de prendre l'espace disponible, poussant les icônes à droite */
+  width: auto; /* Réinitialise la largeur à auto pour qu'il ne prenne pas toute la largeur initialement */
 }
 
 .severity-icons {

@@ -84,17 +84,19 @@ export class BodymiscaleCardEditor
 
     return html`
       <div class="flex-space-between">
-        <h2 class="page-title">${localize('editor.Configuration')}</h2>
+        <h2 class="page-title">${localize('editor.configuration')}</h2>
         <div class="navigation">
           <ha-icon-button
             @click=${this._handleConfigClick}
             .disabled=${this.page === 1}
+            .label="${localize('editor.configuration')}"
           >
             <ha-icon icon="mdi:tune"></ha-icon>
           </ha-icon-button>
           <ha-icon-button
             @click=${this._handleCustomClick}
             .disabled=${this.page === 2}
+            .label="${localize('editor.customization')}"
           >
             <ha-icon icon="mdi:palette"></ha-icon>
           </ha-icon-button>
@@ -164,17 +166,19 @@ export class BodymiscaleCardEditor
   private renderPage2(config: Partial<BodymiscaleCardConfig>): Template {
     return html`
       <div class="flex-space-between">
-        <h2 class="page-title">${localize('editor.Customization')}</h2>
+        <h2 class="page-title">${localize('editor.customization')}</h2>
         <div class="navigation">
           <ha-icon-button
             @click=${this._handleConfigClick}
             .disabled=${this.page === 1}
+            .label="${localize('editor.configuration')}"
           >
             <ha-icon icon="mdi:tune"></ha-icon>
           </ha-icon-button>
           <ha-icon-button
             @click=${this._handleCustomClick}
             .disabled=${this.page === 2}
+            .label="${localize('editor.customization')}"
           >
             <ha-icon icon="mdi:palette"></ha-icon>
           </ha-icon-button>
@@ -231,10 +235,6 @@ export class BodymiscaleCardEditor
     return filteredKeys.map((key) => {
       const item = bodyData[key as keyof typeof bodyData];
       const positions = bodyConfig[key]?.positions || item.positions || {};
-      const min =
-        bodyConfig[key]?.min !== undefined ? bodyConfig[key]?.min : item.min;
-      const max =
-        bodyConfig[key]?.max !== undefined ? bodyConfig[key]?.max : item.max;
       const showabovelabels =
         bodyConfig[key]?.showabovelabels !== undefined && bodyConfig[key]?.showabovelabels !== null
           ? bodyConfig[key].showabovelabels
@@ -262,7 +262,6 @@ export class BodymiscaleCardEditor
             })}
           </ha-form-grid>
           <ha-form-grid>
-            ${this.renderMinMaxInputs(min, max, key)}
             ${this.renderBooleanSelector('showabovelabels', showabovelabels, `body.${key}.showabovelabels`)}
             ${this.renderBooleanSelector('showbelowlabels', showbelowlabels, `body.${key}.showbelowlabels`)}
           </ha-form-grid>
@@ -306,39 +305,6 @@ export class BodymiscaleCardEditor
             >${localize('editor_body.off')}</mwc-list-item
           >
         </ha-select>
-      </div>
-    `;
-  }
-
-  private renderMinMaxInputs(
-    min: number | null | undefined,
-    max: number | null | undefined,
-    sectionKey: string,
-  ) {
-    if (min == null || max == null) {
-      return nothing;
-    }
-
-    return html`
-      <div class="option">
-        <ha-textfield
-          .label=${localize('editor_body.min')}
-          .configValue=${`body.${sectionKey}.min`}
-          @input=${this.valueChanged}
-          .value=${String(min)}
-          class="full"
-          type="number"
-        ></ha-textfield>
-      </div>
-      <div class="option">
-        <ha-textfield
-          .label=${localize('editor_body.max')}
-          .configValue=${`body.${sectionKey}.max`}
-          @input=${this.valueChanged}
-          .value=${String(max)}
-          class="full"
-          type="number"
-        ></ha-textfield>
       </div>
     `;
   }
@@ -387,75 +353,91 @@ export class BodymiscaleCardEditor
     const itemsToRender =
       severityArray.length > 0
         ? severityArray
-        : [{ from: '', to: '', color: '' }];
+        : [{ from: '', to: '', color: '', label: '' }];
   
     return html`
       <div>
         ${itemsToRender.map(
           (
-            item: { from: number | string; to: number | string; color: string },
+            item: { from: number | string; to: number | string; color: string; label?: string },
             index: number,
           ) => {
             return html`
               <div class="severity-row">
-                <ha-textfield
-                  .label=${localize('editor_body.from')}
-                  .value=${String(item.from ?? '')}
-                  @input=${(ev: Event) =>
-                    this.updateNumericSeverity(
-                      configKey,
-                      index,
-                      'from',
-                      (ev.target as HTMLInputElement).value,
-                    )}
-                  type="number"
-                  class="full"
-                ></ha-textfield>
-                <ha-textfield
-                  .label=${localize('editor_body.to')}
-                  .value=${String(item.to ?? '')}
-                  @input=${(ev: Event) =>
-                    this.updateNumericSeverity(
-                      configKey,
-                      index,
-                      'to',
-                      (ev.target as HTMLInputElement).value,
-                    )}
-                  type="number"
-                  class="full"
-                ></ha-textfield>
-                <div>
-                  <color-select
-                    .value=${item.color ?? ''}
-                    @value-changed=${(ev: CustomEvent) =>
+                <div class="input-line">
+                  <ha-textfield
+                    .label=${localize('editor_body.from')}
+                    .value=${String(item.from ?? '')}
+                    @input=${(ev: Event) =>
                       this.updateNumericSeverity(
                         configKey,
                         index,
-                        'color',
-                        ev.detail.value,
+                        'from',
+                        (ev.target as HTMLInputElement).value,
                       )}
-                  ></color-select>
+                    type="number"
+                    class="from-input"
+                  ></ha-textfield>
+                  <ha-textfield
+                    .label=${localize('editor_body.to')}
+                    .value=${String(item.to ?? '')}
+                    @input=${(ev: Event) =>
+                      this.updateNumericSeverity(
+                        configKey,
+                        index,
+                        'to',
+                        (ev.target as HTMLInputElement).value,
+                      )}
+                    type="number"
+                    class="to-input"
+                  ></ha-textfield>
+                  <div class="color-picker-container">
+                    <color-select
+                      .value=${item.color ?? ''}
+                      @value-changed=${(ev: CustomEvent) =>
+                        this.updateNumericSeverity(
+                          configKey,
+                          index,
+                          'color',
+                          ev.detail.value,
+                        )}
+                    ></color-select>
+                  </div>
                 </div>
-                <div class="severity-icons">
-                  <ha-icon-button
-                    class="compact-icon"
-                    @click=${() => this.removeNumericSeverity(configKey, index)}
-                  >
-                    <ha-icon icon="mdi:delete"></ha-icon>
-                  </ha-icon-button>
-                  <ha-icon-button
-                    class="compact-icon"
-                    @click=${() => this.addNumericSeverity(configKey)}
-                  >
-                    <ha-icon icon="mdi:plus"></ha-icon>
-                  </ha-icon-button>
-                  <!-- Ajout de l'icône avec lien -->
-                  <ha-icon-button
-                    class="compact-icon"
-                    @click=${() => window.open('https://dckiller51.github.io/lovelace-body-miscale-card/', '_blank')}
-                  >
-                    <ha-icon icon="mdi:information-outline"></ha-icon>
-                  </ha-icon-button>
+                <div class="below-line">
+                  <ha-textfield
+                    .label=${localize('editor_body.label_below')}
+                    .value=${item.label ?? ''}
+                    @input=${(ev: Event) =>
+                      this.updateNumericSeverity(
+                        configKey,
+                        index,
+                        'label',
+                        (ev.target as HTMLInputElement).value,
+                      )}
+                    class="label-input"
+                  ></ha-textfield>
+                  <div class="severity-icons">
+                    <ha-icon-button
+                      class="compact-icon"
+                      @click=${() => this.removeNumericSeverity(configKey, index)}
+                    >
+                      <ha-icon icon="mdi:delete"></ha-icon>
+                    </ha-icon-button>
+                    <ha-icon-button
+                      class="compact-icon"
+                      @click=${() => this.addNumericSeverity(configKey)}
+                    >
+                      <ha-icon icon="mdi:plus"></ha-icon>
+                    </ha-icon-button>
+                    <ha-icon-button
+                      class="compact-icon"
+                      @click=${() => window.open('https://dckiller51.github.io/lovelace-body-miscale-card/', '_blank')}
+                      .label="${localize('editor_body.severity_generator_help')}"
+                    >
+                      <ha-icon icon="mdi:information-outline"></ha-icon>
+                    </ha-icon-button>
+                  </div>
                 </div>
               </div>
             `;
@@ -463,12 +445,12 @@ export class BodymiscaleCardEditor
         )}
       </div>
     `;
-  }  
+  } 
 
   private updateNumericSeverity(
     configKey: string,
     index: number,
-    key: 'from' | 'to' | 'color',
+    key: 'from' | 'to' | 'color' | 'label',
     value: number | string,
   ): void {
     if (this.config && this.config.body) {

@@ -15,7 +15,7 @@ import localize from './localize';
 import styles from './styles.css';
 import { computeCssColor } from './compute-color';
 import { HassEntity } from 'home-assistant-js-websocket';
-import { Template, BodymiscaleCardConfig, BodymiscaleEntity } from './types';
+import { Template, BodymiscaleCardConfig, BodymiscaleEntity, NumericSeverity } from './types';
 import buildConfig from './config';
 import { defaultCardConfig } from './const';
 
@@ -309,20 +309,29 @@ export class BodymiscaleCard extends LitElement {
     const showBar = segmentBar !== nothing;
     const barClass = showBar ? 'bar-container' : 'bar-container compact';
   
-    const iconPosition = data.positions?.icon ?? 'left';
-    const namePosition = data.positions?.name ?? 'left';
-    const minMaxPosition = data.positions?.minmax ?? 'off';
-    const valuePosition = data.positions?.value ?? 'right';
+    const iconPosition = data.positions.icon;
+    const namePosition = data.positions.name;
+    const minMaxPosition = data.positions.minmax;
+    const valuePosition = data.positions.value;
     
     const iconBlock = iconPosition !== 'off' ? icon : nothing;
     const nameBlock = namePosition !== 'off' ? name : nothing;
-    const minMaxBlock = minMaxPosition !== 'off'
-      ? html`
-          <div class="minmax">
-            ${localize('editor_body.minmax_label')}
-            <span class="min">${data.min}</span>/<span class="max">${data.max}</span>
-          </div>`
-      : nothing;
+
+    let minMaxBlock: Template | typeof nothing = nothing;
+    let calculatedMin = 0;
+    let calculatedMax = 100;
+
+    if (minMaxPosition !== 'off' && data.severity) {
+      const minMaxValues = this.getMinMaxFromSeverity(data.severity);
+      calculatedMin = minMaxValues.min;
+      calculatedMax = minMaxValues.max;
+      minMaxBlock = html`
+        <div class="minmax">
+          ${localize('editor_body.minmax_label')}
+          <span class="min">${calculatedMin}</span>/<span class="max">${calculatedMax}</span>
+        </div>`;
+    }
+  
     const valueBlock = valuePosition !== 'off'
       ? html`<div class="value">${localize(`body_value.${rawValue}`) || formattedValue}${data.unit || ''}</div>`
       : nothing;
@@ -343,37 +352,95 @@ export class BodymiscaleCard extends LitElement {
     ];
     
     return html`
-      <div style="display: flex; flex-direction: column; padding: 1rem 0;">
-        <!-- Ligne 1: éléments dynamiques -->
-        <div class="flex-container" style="justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            ${leftItems.filter(item => item !== nothing)} <!-- Affiche uniquement les éléments valides à gauche -->
-          </div>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            ${rightItems.filter(item => item !== nothing)} <!-- Affiche uniquement les éléments valides à droite -->
-          </div>
+    <div style="display: flex; flex-direction: column; padding: 0.4rem 0 0.4rem; ${!showBar ? 'justify-content: center; align-items: center;' : ''}">
+      <div class="flex-container" style="${!showBar ? 'width: 100%;' : 'justify-content: space-between; width: 100%;'}">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          ${leftItems.filter(item => item !== nothing)}
         </div>
-    
-        <!-- Ligne 2: Barre (si elle existe) -->
-        <div class="${barClass}">
-          ${segmentBar}
+        <div style="display: flex; align-items: center; gap: 1rem; ${!showBar ? 'margin-left: auto;' : ''}">
+          ${rightItems.filter(item => item !== nothing)}
         </div>
       </div>
-    `;    
+  
+      ${showBar ? html`
+        <div class="${barClass}" style="margin-top: 1.5rem; min-height: 2rem;">
+          ${segmentBar}
+        </div>
+      ` : nothing}
+    </div>
+  `;
   }  
   
+  private getMinMaxFromSeverity(severityConfig: NumericSeverity | undefined): { min: number; max: number } {
+    let min = Infinity;
+    let max = -Infinity;
+  
+    if (severityConfig && Array.isArray(severityConfig)) {
+      severityConfig.forEach(severityLevel => {
+        const fromValue = severityLevel.from;
+        const toValue = severityLevel.to;
+  
+        let fromNumber: number | undefined;
+        let toNumber: number | undefined;
+  
+        if (typeof fromValue === 'number') {
+          fromNumber = fromValue;
+        } else if (typeof fromValue === 'string' && fromValue !== 'min') {
+          const parsed = parseFloat(fromValue);
+          if (!isNaN(parsed)) {
+            fromNumber = parsed;
+          } else if (fromValue === 'min') {
+            fromNumber = -Infinity;
+          }
+        } else if (fromValue === 'min') {
+          fromNumber = -Infinity;
+        }
+  
+        if (typeof toValue === 'number') {
+          toNumber = toValue;
+        } else if (typeof toValue === 'string' && toValue !== 'max') {
+          const parsed = parseFloat(toValue);
+          if (!isNaN(parsed)) {
+            toNumber = parsed;
+          } else if (toValue === 'max') {
+            toNumber = Infinity;
+          }
+        } else if (toValue === 'max') {
+          toNumber = Infinity;
+        }
+  
+        if (fromNumber !== undefined && !isNaN(fromNumber)) {
+          min = Math.min(min, fromNumber);
+        }
+        if (toNumber !== undefined && !isNaN(toNumber)) {
+          max = Math.max(max, toNumber);
+        }
+      });
+    }
+  
+    return {
+      min: min === Infinity ? 0 : min,
+      max: max === -Infinity ? 100 : max,
+    };
+  }
+
+
+  private _computePercent(rangeData: { min: number; max: number }, numberValue: number): number {
+    if (!rangeData || typeof numberValue !== 'number') return 0;
+    const range = rangeData.max - rangeData.min;
+    if (range <= 0) return 0;
+    return ((numberValue - rangeData.min) / range) * 100;
+  }
+  
   private renderColorBarSegments(data: any, value: number, wrap = true): Template {
-    const range = data.max - data.min;
+    const { min: calculatedMin, max: calculatedMax } = this.getMinMaxFromSeverity(data.severity || []);
+    const range = calculatedMax - calculatedMin;
     if (!data.severity || !Array.isArray(data.severity) || range <= 0) {
       return nothing;
     }
   
     const filteredSeverity = data.severity.filter(
-      (s: any) =>
-        s.color !== 'disabled' &&
-        s.from !== null &&
-        s.to !== null &&
-        s.color !== undefined
+      (s: any) => s.color !== 'disabled' && s.from !== null && s.to !== null && s.color !== undefined
     );
   
     if (filteredSeverity.length === 0) {
@@ -381,52 +448,30 @@ export class BodymiscaleCard extends LitElement {
     }
   
     const segmentsHtml = filteredSeverity.map((segment: any, index: number) => {
-      const from = parseFloat(segment.from) || 0;
-      const to = parseFloat(segment.to) || 0;
+      const from = parseFloat(segment.from) || calculatedMin;
+      const to = parseFloat(segment.to) || calculatedMax;
       const widthPercent = ((to - from) / range) * 100;
       const color = computeCssColor(segment.color) || 'gray';
-  
       const showAbove = data.showabovelabels !== "false";
       const showBelow = data.showbelowlabels !== "false";
-      
       const segmentLabelAbove = showAbove && index !== filteredSeverity.length - 1
-      ? html`
-          <div class="segment-label-above" style="color: ${color};">
-            ${formatNumber(to, this.hass.locale)}${data.unit || ''}
-          </div>
-        `
-      : nothing;
-      
-        const segmentLabelBelow = showBelow && segment.label
-        ? html`
-            <div class="segment-label-below" style="color: ${color};">
-              ${localize(`label_below.${segment.label}`)}
-            </div>
-          `
+        ? html`<div class="segment-label-above" style="color: ${color};">${formatNumber(to, this.hass.locale)}${data.unit || ''}</div>`
         : nothing;
-      
+      const segmentLabelBelow = showBelow && segment.label
+        ? html`<div class="segment-label-below" style="color: ${color};">${localize(`label_below.${segment.label}`) || segment.label || ''}</div>`
+        : nothing;
+  
       return html`
-        <div
-          class="colorbar-segment"
-          style="
-            width: ${widthPercent}%;
-            background-color: ${color};
-            border-radius: ${index === 0
-              ? '4px 0 0 4px'
-              : index === filteredSeverity.length - 1
-              ? '0 4px 4px 0'
-              : '0'};
-          "
-        >
+        <div class="colorbar-segment" style="width: ${widthPercent}%; background-color: ${color}; border-radius: ${index === 0 ? '4px 0 0 4px' : index === filteredSeverity.length - 1 ? '0 4px 4px 0' : '0'};">
           ${segmentLabelAbove}
           ${segmentLabelBelow}
         </div>
-      `;        
+      `;
     });
   
-    const markerPercent = this._computePercent(data, value);
+    const markerPercent = this._computePercent({ min: calculatedMin, max: calculatedMax }, value);
     const activeSegment = filteredSeverity.find(
-      (s: any) => value >= (parseFloat(s.from) || 0) && value <= (parseFloat(s.to) || data.max)
+      (s: any) => value >= (parseFloat(s.from) || calculatedMin) && value <= (parseFloat(s.to) || calculatedMax)
     );
     const markerColor = computeCssColor(activeSegment?.color) || 'var(--primary-color)';
   
@@ -434,28 +479,14 @@ export class BodymiscaleCard extends LitElement {
       <div class="bar-inner">
         ${segmentsHtml}
         <div class="bar-marker-wrapper" style="left: ${markerPercent}%;">
-          <div
-            class="bar-marker"
-            style="border-color: ${markerColor};"
-          ></div>
-          <div class="bar-marker-tooltip">
-            ${formatNumber(value, this.hass.locale)}${data.unit || ''}
-          </div>
+          <div class="bar-marker" style="border-color: ${markerColor};"></div>
+          <div class="bar-marker-tooltip">${formatNumber(value, this.hass.locale)}${data.unit || ''}</div>
         </div>
       </div>
     `;
   
-    return wrap
-      ? html`<div class="bar-container">${barHtml}</div>`
-      : barHtml;
-  }  
-  
-  private _computePercent(data: any, numberValue: number): number {
-    if (!data || typeof numberValue !== 'number') return 0;
-    const range = data.max - data.min;
-    if (range <= 0) return 0;
-    return ((numberValue - data.min) / range) * 100;
-  }  
+    return wrap ? html`<div class="bar-container">${barHtml}</div>` : barHtml;
+  }
 
   private getIconUrl(iconName: string): string {
     const basePath = this.config?.icons_body ?? '/local/images/bodyscoreIcon';

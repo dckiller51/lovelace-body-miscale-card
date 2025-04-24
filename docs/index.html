@@ -62,9 +62,22 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      margin-right: 0.5rem;
     }
     .generate-btn:hover {
       background: #005fa3;
+    }
+    .yaml-output {
+      margin-top: 2rem;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 6px;
+      background-color: #eee;
+    }
+    .yaml-output h2 {
+      margin-top: 0;
+      color: #333;
+      text-align: center;
     }
   </style>
 </head>
@@ -76,7 +89,7 @@
       Age:
       <input type="number" id="age" required />
     </label>
-  
+
     <label>
       Gender:
       <select id="gender">
@@ -84,12 +97,12 @@
         <option value="female">Female</option>
       </select>
     </label>
-  
+
     <label>
       Height (cm):
       <input type="number" id="height" required />
     </label>
-  
+
     <label>
       Weight:
       <input type="number" id="weight" required />
@@ -107,17 +120,27 @@
       Metric:
       <select id="metric"></select>
     </label>
-  
-    <button type="submit" class="generate-btn">Generate Profile</button>
+
+    <button type="submit" class="generate-btn" id="visualize-btn">Visualize Profile</button>
+    <button type="button" class="generate-btn" id="generate-yaml-btn">Generate Full YAML</button>
   </form>
-  
+
   <div class="table-container" id="profile-table"></div>
-  
+
+  <div class="yaml-output">
+    <h2>Generated YAML</h2>
+    <textarea id="yaml-output" rows="15" cols="80" readonly style="width: 100%;"></textarea>
+    <button type="button" class="generate-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   <script src="severity-data.js"></script>
   <script>
     const form = document.getElementById('profile-form');
     const tableContainer = document.getElementById('profile-table');
+    const yamlOutput = document.getElementById('yaml-output');
     const metricSelect = document.getElementById('metric');
+    const generateYamlBtn = document.getElementById('generate-yaml-btn');
 
     if (window.severityData) {
       const orderedMetrics = Object.keys(window.severityData);
@@ -131,28 +154,61 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const profileData = getProfileDataFromForm();
+      generateTable(profileData.severityConfig, profileData.unit, profileData.metric);
+    });
 
+    generateYamlBtn.addEventListener('click', () => {
+      const profileData = getProfileDataFromForm();
+      generateFullYaml(profileData.age, profileData.gender, profileData.weight, profileData.height, profileData.unit);
+    });
+
+    function getProfileDataFromForm() {
       const age = parseInt(document.getElementById('age').value);
       const gender = document.getElementById('gender').value;
       const metric = metricSelect.value;
       const weight = parseFloat(document.getElementById('weight').value);
       const height = parseFloat(document.getElementById('height').value);
+      const unit = document.getElementById('unit').value;
 
-      let profileData;
+      let severityConfig = [];
 
       if (metric === 'basal_metabolism') {
-        profileData = generateBasalMetabolismProfile({ gender, age, weight, height });
-      } else if (metric === 'ideal' || metric === 'weight') {
-        profileData = getIdealProfile(height);
+        severityConfig = generateBasalMetabolismProfile({ gender, age, weight, height });
+      } else if (metric === 'ideal') {
+        const idealProfile = getIdealProfile(height);
+        if (idealProfile) {
+          severityConfig = idealProfile;
+        }
+      } else if (metric === 'weight') {
+        const weightProfile = getWeightProfile(height);
+        if (weightProfile) {
+          severityConfig = weightProfile;
+        }
       } else {
-        profileData = getProfileFor(metric, gender, age, weight);
+        const profileData = getProfileFor(metric, gender, age, weight);
+        if (profileData) {
+          severityConfig = profileData;
+        }
       }
 
-      generateTable(profileData);
-    });
+      return { age, gender, metric, weight, height, unit, severityConfig };
+    }
+
+    function getWeightProfile(height) {
+      const weightData = window.severityData['weight']?.severity; // Accéder à .severity
+      if (!weightData) return [];
+
+      const heights = Object.keys(weightData).map(h => parseInt(h));
+      const closest = heights.reduce((prev, curr) =>
+        Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
+      );
+      return weightData[closest];
+    }
 
     function getIdealProfile(height) {
-      const ideal = window.severityData['ideal'];
+      const ideal = window.severityData['ideal']?.severity; // Accéder à .severity
+      if (!ideal) return undefined;
       const heights = Object.keys(ideal).map(h => parseInt(h));
       const closest = heights.reduce((prev, curr) =>
         Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
@@ -162,53 +218,64 @@
 
     function getProfileFor(metric, gender, age, weight) {
       const data = window.severityData[metric];
-
       if (!data) return [];
 
-      if (metric === 'bone_mass') {
-        if (gender === 'male') {
-          if (weight < 65) return data.male['-65'];
-          if (weight <= 95) return data.male['65-95'];
-          return data.male['95+'];
-        } else {
-          if (weight < 50) return data.female['-50'];
-          if (weight <= 75) return data.female['50-75'];
-          return data.female['75+'];
+      if (metric === 'bone_mass' || metric === 'muscle_mass' || metric === 'water') {
+        const severityData = data.severity;
+        if (severityData && severityData[gender]) {
+          if (metric === 'bone_mass') {
+            if (weight < 65) return severityData[gender]['-65'];
+            if (weight <= 95) return severityData[gender]['65-95'];
+            return severityData[gender]['95+'];
+          } else if (metric === 'muscle_mass') {
+             if (age < 30) return severityData[gender]['18-29'];
+            if (age < 40) return severityData[gender]['30-39'];
+            if (age < 50) return severityData[gender]['40-49'];
+            if (age < 60) return severityData[gender]['50-59'];
+            if (age < 70) return severityData[gender]['60-69'];
+            if (age < 80) return severityData[gender]['70-79'];
+             return severityData[gender]['80-89'];
+          } else if (metric === 'water') {
+            return severityData[gender];
+          }
         }
-      }
-
-      if (Array.isArray(data)) {
-        return data;
-      }
-
-      if (Array.isArray(data[gender])) {
-        return data[gender];
-      }
-
-      if (data[gender]) {
-        const genderData = data[gender];
-
-        const ranges = Object.keys(genderData).map(range => {
-          const [from, to] = range.split('-').map(Number);
-          return { range, from, to };
-        });
-
-        const matchedRange = ranges.find(({ from, to }) => age >= from && age <= to);
-
-        if (matchedRange) {
-          return genderData[matchedRange.range];
+      } else if (metric === 'body_fat') {
+        const severityData = data.severity;
+        if (severityData && severityData[gender]) {
+          if (age < 40) return severityData[gender]['18-39'];
+          if (age < 60) return severityData[gender]['40-59'];
+          return severityData[gender]['60+'];
         }
+      } else if (data.severity) {
+        return data.severity;
       }
 
       return [];
     }
 
-    function convertTo(unit, value) {
-      if (unit === 'lbs') return +(value * 2.20462).toFixed(2);
-      return value;
+    function generateBasalMetabolismProfile({ gender, age, weight, height, activityFactor = 1.9 }) {
+      let bmr;
+
+      if (gender === 'female') {
+        bmr = 864.6 + (10.2036 * weight) - (0.39336 * height) - (6.204 * age);
+        if (bmr > 2996) bmr = 5000;
+      } else {
+        bmr = 877.8 + (14.916 * weight) - (0.726 * height) - (8.976 * age);
+        if (bmr > 2322) bmr = 5000;
+      }
+
+      bmr = Math.min(Math.max(bmr, 500), 5000);
+      const upperBound = Math.round(bmr * activityFactor);
+      const lowerBound = Math.round(bmr);
+      const from = Math.max(Math.round(lowerBound - (upperBound - lowerBound)), 0);
+
+      return [
+        { from, to: lowerBound, color: 'red', label: 'objective_not_achieved' },
+        { from: lowerBound, to: upperBound, color: 'green', label: 'objective_achieved' }
+      ];
     }
 
-    function generateTable(profileData) {
+    function generateTable(profileData, unit, metric) {
       tableContainer.innerHTML = '';
 
       if (!profileData.length) {
@@ -216,8 +283,6 @@
         return;
       }
 
-      const unit = document.getElementById('unit').value;
-      const metric = document.getElementById('metric').value;
       const needsConversion = ['weight', 'ideal', 'bone_mass', 'muscle_mass'].includes(metric);
 
       const table = document.createElement('table');
@@ -247,26 +312,82 @@
       tableContainer.appendChild(table);
     }
 
-    function generateBasalMetabolismProfile({ gender, age, weight, height, activityFactor = 1.9 }) {
-      let bmr;
+    function convertTo(unit, value) {
+      if (unit === 'lbs') return +(value * 2.20462).toFixed(2);
+      return value;
+    }
 
-      if (gender === 'female') {
-        bmr = 864.6 + (10.2036 * weight) - (0.39336 * height) - (6.204 * age);
-        if (bmr > 2996) bmr = 5000;
-      } else {
-        bmr = 877.8 + (14.916 * weight) - (0.726 * height) - (8.976 * age);
-        if (bmr > 2322) bmr = 5000;
+    function generateFullYaml(age, gender, weight, height, unit) {
+      const yamlData = {
+        type: "custom:body-miscale-card",
+        model: false,
+        unit: false,
+        theme: true,
+        show_name: true,
+        show_states: true,
+        show_attributes: true,
+        show_always_details: false,
+        show_toolbar: true,
+        show_body: true,
+        show_buttons: false,
+        attributes: {
+          impedance: {
+            key: 'impedance',
+            impedance_required: true
+          }
+        },
+        body: {},
+        entity: ""
+      };
+
+      const metricsWithSeverity = [
+        'basal_metabolism', 'bmi', 'body_fat', 'bone_mass', 'ideal',
+        'muscle_mass', 'protein', 'visceral_fat', 'water', 'weight'
+      ];
+
+      for (const metric of Object.keys(window.severityData)) {
+        const bodyItem = {
+          key: window.severityData[metric].key || metric,
+          impedance_required: window.severityData[metric]?.impedance_required || false,
+          positions: {
+            icon: 'left',
+            name: 'left',
+            minmax: 'off',
+            value: 'right'
+          }
+        };
+
+        if (metricsWithSeverity.includes(metric)) {
+          if (metric === 'basal_metabolism') {
+            bodyItem.severity = generateBasalMetabolismProfile({ gender, age, weight, height });
+          } else if (metric === 'ideal') {
+            bodyItem.severity = getIdealProfile(height);
+          } else if (metric === 'weight') {
+            bodyItem.severity = getWeightProfile(height);
+          } else {
+            const profileData = getProfileFor(metric, gender, age, weight);
+            if (profileData) {
+              bodyItem.severity = profileData;
+            }
+          }
+          bodyItem.showabovelabels = "true";
+          bodyItem.showbelowlabels = "true";
+        } else {
+          // Metrics sans severity
+          if (metric === 'bmi_label' || metric === 'body_type' || metric === 'metabolic_age') {
+            bodyItem.positions.minmax = "off";
+          }
+        }
+
+        yamlData.body[metric] = bodyItem;
       }
 
-      bmr = Math.min(Math.max(bmr, 500), 5000);
-      const upperBound = Math.round(bmr * activityFactor);
-      const lowerBound = Math.round(bmr);
-      const from = Math.max(Math.round(lowerBound - (upperBound - lowerBound)), 0);
-
-      return [
-        { from, to: lowerBound, color: 'red', label: 'objective_not_achieved' },
-        { from: lowerBound, to: upperBound, color: 'green', label: 'objective_achieved' }
-      ];
+      try {
+        const generatedYaml = jsyaml.dump(yamlData, { indent: 2 });
+        yamlOutput.value = generatedYaml;
+      } catch (error) {
+        yamlOutput.value = `Error generating full YAML: ${error}`;
+      }
     }
   </script>
 </body>

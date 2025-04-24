@@ -58,8 +58,6 @@ export interface RenderBodyData {
   impedance_required: boolean;
   key: string;
   label?: string;
-  max?: number | null;
-  min?: number | null;
   positions?: {
     icon?: 'left' | 'right' | 'off' | undefined;
     name?: 'left' | 'right' | 'off' | undefined;
@@ -107,8 +105,6 @@ export interface BodymiscaleCardConfig {
     icon: string;
     iconbody: string;
   };
-  min?: number | null;
-  max?: number | null;
   unit?: boolean;
   color?: string;
   buttons: boolean | Record<string, any>;
@@ -118,4 +114,4 @@ export interface BodymiscaleCardConfig {
 }
 
 export type PositionKeys = 'icon' | 'name' | 'minmax' | 'value';
-export type NumericSeverity = { from: number; to: number; color: string; label: string }[];
+export type NumericSeverity = { from: number; to: number; color: string; label?: string }[];
