@@ -4,11 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.4.6
+
+- 🛠️ **Improved** The `.scroll-wrapper`'s `max-height` has been adjusted for better content accessibility across various screen sizes.
+  - On screens with a width of 600px or less (typically phones), the `max-height` is set to `50vh`.
+  - On screens with a height of 600px or more, the `max-height` is set to `300px`.
+  - For other screen sizes, the `max-height` defaults to `40vh`.
+  This change ensures that all content within the scrollable area is accessible without being cut off on smaller screens while providing a more controlled height on larger displays.
+
 ## 2025.4.5
 
-- ✨ **Enhanced**: Minimum and maximum values for metric thresholds are now automatically calculated based on the severity configuration, eliminating the need for manual definition.
-- ✨ **Fixed** The .scroll-wrapper now has a max-height set to 40vh, ensuring that larger screens display the scrollbar all the way to the bottom when content exceeds this height.
-- ✨ **Updated** Reduced vertical spacing for metrics that do not have a progress bar displayed.
+- 🔧 **Improved**: Minimum and maximum values for metric thresholds are now automatically calculated based on the severity configuration, eliminating the need for manual definition.
+- 🛠️ **Fixed** The .scroll-wrapper now has a max-height set to 40vh, ensuring that larger screens display the scrollbar all the way to the bottom when content exceeds this height.
+- 🔄 **Updated** Reduced vertical spacing for metrics that do not have a progress bar displayed.
 - ✨ **Added**: Users can now customize the label displayed for each severity level within the editor.
 - ✨ **Added**: Implemented functionality to generate a full YAML configuration based on the defined severity profiles and user inputs.
 
@@ -72,7 +80,7 @@ The bar representation has been replaced with segmented color bars. Please revie
 - 🛠️ **Fixed** alignment and `border-radius` handling based on the presence of `show_toolbar`.
 - 🔧 **Fixed** minor CSS optimizations for button padding and background color management.
 - 🔧 **Fixed** reversed logic to remove content when `stateObj.state === 'ok'` and `data.icon === 'mdi:alert'` than hide rather.
-- ️ 🔧 **Fixed** Issue with Card Display in Section Mode When Sensors Are Unavailable [[#56](https://github.com/dckiller51/lovelace-body-miscale-card/issues/56)]
+- ️🔧 **Fixed** Issue with Card Display in Section Mode When Sensors Are Unavailable [[#56](https://github.com/dckiller51/lovelace-body-miscale-card/issues/56)]
 - ➕ **Added** option to fully hide the card header [[#48](https://github.com/dckiller51/lovelace-body-miscale-card/issues/48)]
 - ➕ **Added** Last measurement time update information (introduced in Bodymiscale component 2025.2.19-beta pre-release).
 - ♻️ **Improved** code compatibility with recent Node.js versions.

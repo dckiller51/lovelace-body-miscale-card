@@ -312,13 +312,13 @@ ha-card {
 }
 
 .scroll-wrapper {
-  max-height: 40vh; /* hauteur max dynamique (viewport height) */
+  max-height: 40vh; ; /* Par défaut pour les petits écrans */
   overflow-y: auto;
   padding-right: 0.5rem; /* espace pour la scrollbar */
   scroll-behavior: smooth;
 }
 
-/* Scrollbar style (discret et joli) */
+/* Scrollbar style */
 .scroll-wrapper::-webkit-scrollbar {
   width: 6px;
 }
@@ -337,6 +337,12 @@ ha-card {
 @media (max-width: 600px) {
   .scroll-wrapper {
     max-height: 50vh;
+  }
+}
+
+@media (min-height: 600px) { /* Pour les écrans plus hauts que 600px */
+  .scroll-wrapper {
+    max-height: 300px; /* Utiliser une hauteur fixe sur les écrans plus grands */
   }
 }
 
