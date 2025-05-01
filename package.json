@@ -54,7 +54,7 @@
     "lint-staged": "^15.4.3",
     "postcss-preset-env": "^10.1.5",
     "prettier": "^3.5.3",
-    "rollup": "^4.38.0",
+    "rollup": "^4.40.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-postcss-lit": "^2.1.0",
     "rollup-plugin-serve": "^3.0.0",
