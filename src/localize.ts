@@ -13,6 +13,7 @@ import * as pt from './translations/pt.json';
 import * as pt_BR from './translations/pt-BR.json';
 import * as ro from './translations/ro.json';
 import * as ru from './translations/ru.json';
+import * as uk from './translations/uk.json';
 import * as vi from './translations/vi.json';
 import * as zh_Hans from './translations/zh-Hans.json';
 import * as zh_Hant from './translations/zh-Hant.json';
@@ -39,6 +40,7 @@ const languages: Record<string, Translations> = {
   pt_BR: pt_BR,
   ro: ro,
   ru: ru,
+  uk: uk,
   vi: vi,
   zh_Hans: zh_Hans,
   zh_Hant: zh_Hant,
