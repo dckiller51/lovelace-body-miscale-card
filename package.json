@@ -1,6 +1,6 @@
 {
   "name": "body-miscale-card",
-  "version": "2025.4.6",
+  "version": "2025.5.0",
   "type": "module",
   "description": "Bodymiscale card for Home Assistant Lovelace UI",
   "scripts": {
@@ -26,18 +26,18 @@
   "license": "MIT",
   "dependencies": {
     "custom-card-helpers": "^1.9.0",
-    "home-assistant-js-websocket": "^9.1.0",
-    "lit": "^3.2.1"
+    "home-assistant-js-websocket": "^9.5.0",
+    "lit": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
     "@babel/plugin-transform-runtime": "^7.27.1",
     "@babel/preset-env": "^7.27.1",
-    "@eslint/js": "^9.25.1",
+    "@eslint/js": "^9.26.0",
     "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "^0.4.4",
     "@semantic-release/git": "^10.0.1",
@@ -45,22 +45,22 @@
     "@types/json-schema": "^7.0.15",
     "@types/resolve": "^1.20.6",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
-    "@typescript-eslint/parser": "^8.31.1",
+    "@typescript-eslint/parser": "^8.32.0",
     "eslint": "^9.26.0",
-    "eslint-config-prettier": "^10.0.2",
+    "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-import": "^2.31.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
+    "lint-staged": "^15.5.2",
     "postcss-preset-env": "^10.1.6",
     "prettier": "^3.5.3",
-    "rollup": "^4.40.1",
+    "rollup": "^4.40.2",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-postcss-lit": "^2.1.0",
+    "rollup-plugin-postcss-lit": "^2.2.0",
     "rollup-plugin-serve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.36.0",
     "semantic-release": "^24.2.3",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "browserslist": [
     "last 2 versions",

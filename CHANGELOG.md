@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.5.0
+
+- ✅ **Added** Ukrainian language support (thank you @MaxStupnitskyi)
+
 ## 2025.4.6
 
 - 🛠️ **Improved** The `.scroll-wrapper`'s `max-height` has been adjusted for better content accessibility across various screen sizes.
