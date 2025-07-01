@@ -52,7 +52,7 @@
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.0",
-    "postcss-preset-env": "^10.2.0",
+    "postcss-preset-env": "^10.2.4",
     "prettier": "^3.5.3",
     "rollup": "^4.41.1",
     "rollup-plugin-postcss": "^4.0.2",
