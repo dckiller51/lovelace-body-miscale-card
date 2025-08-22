@@ -30,7 +30,7 @@
     "lit": "^3.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.28.3",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@babel/preset-env": "^7.27.2",
     "@eslint/js": "^9.32.0",
