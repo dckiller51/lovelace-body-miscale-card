@@ -30,8 +30,8 @@ function buildStyles(config: Partial<BodymiscaleCardConfig>) {
           overflow: hidden;
         `
       : '',
-    icon: `color: ${image ? 'white' : 'var(--paper-item-icon-color)'};`,
-    iconbody: `background-color: ${theme !== false ? 'var(--paper-item-icon-color)' : 'white'};`,
+    icon: `color: ${image ? 'white' : 'var(--state-icon-color)'};`,
+    iconbody: `background-color: ${theme !== false ? 'var(--state-icon-color)' : 'white'};`,
   };
 }
 
