@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.9.0
+
+- ✅ **Added** Danish language support (thank you @Milfeldt).
+
 ## 2025.8.0
 
 - 🛠️ **Fixed** an icon color issue by replacing `--paper-item-icon-color` with `--state-icon-color`. [[#128](https://github.com/dckiller51/lovelace-body-miscale-card/issues/128)]
