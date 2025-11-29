@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2025.11.0
+
+- 🛠️ **Fixed**: Resolved a console warning that appeared for users without a default language set in their Home Assistant profile (thank you @miguelangel-nubla).
+
 ## 2025.9.0
 
 - ✅ **Added** Danish language support (thank you @Milfeldt).

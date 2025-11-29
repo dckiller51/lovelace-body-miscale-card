@@ -60,7 +60,7 @@ export default function localize(
   let langStored: string | null = null;
 
   try {
-    langStored = JSON.parse(localStorage.getItem('selectedLanguage') ?? '');
+    langStored = JSON.parse(localStorage.getItem('selectedLanguage') ?? '""');
   } catch (e) {
     console.warn(e);
     langStored = localStorage.getItem('selectedLanguage');
