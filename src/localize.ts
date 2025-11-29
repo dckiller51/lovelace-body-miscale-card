@@ -1,4 +1,5 @@
 import * as cs from './translations/cs.json';
+import * as da from './translations/da.json';
 import * as de from './translations/de.json';
 import * as en from './translations/en.json';
 import * as es from './translations/es.json';
@@ -26,6 +27,7 @@ interface Translations {
 
 const languages: Record<string, Translations> = {
   cs: cs,
+  da: da,
   de: de,
   en: en,
   es: es,
@@ -58,7 +60,7 @@ export default function localize(
   let langStored: string | null = null;
 
   try {
-    langStored = JSON.parse(localStorage.getItem('selectedLanguage') ?? '');
+    langStored = JSON.parse(localStorage.getItem('selectedLanguage') ?? '""');
   } catch (e) {
     console.warn(e);
     langStored = localStorage.getItem('selectedLanguage');
