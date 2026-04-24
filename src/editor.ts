@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
 import {
   HomeAssistant,
   LovelaceCardConfig,
   LovelaceCardEditor,
   fireEvent,
 } from 'custom-card-helpers';
+import { LitElement, html, nothing } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+
+import { defaultCardConfig, body_kg, body_lb } from './const';
+import styles from './editor.css';
 import localize from './localize';
 import './color-select';
 import {
@@ -15,8 +18,6 @@ import {
   NumericSeverity,
   PositionKeys,
 } from './types';
-import styles from './editor.css';
-import { defaultCardConfig, body_kg, body_lb } from './const';
 
 type ConfigElement = HTMLInputElement & {
   configValue?: keyof BodymiscaleCardConfig;

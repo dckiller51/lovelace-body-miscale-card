@@ -1,7 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CSSResultGroup, LitElement, PropertyValues, html, nothing } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import {
   HomeAssistant,
   hasConfigOrEntityChanged,
@@ -10,14 +7,18 @@ import {
   formatNumber,
   formatTime,
 } from 'custom-card-helpers';
+import { HassEntity } from 'home-assistant-js-websocket';
+import { CSSResultGroup, LitElement, PropertyValues, html, nothing } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+
+import { computeCssColor } from './compute-color';
+import buildConfig from './config';
+import { defaultCardConfig } from './const';
 import { filterByImpedance } from './helpers';
 import localize from './localize';
 import styles from './styles.css';
-import { computeCssColor } from './compute-color';
-import { HassEntity } from 'home-assistant-js-websocket';
 import { Template, BodymiscaleCardConfig, BodymiscaleEntity, NumericSeverity } from './types';
-import buildConfig from './config';
-import { defaultCardConfig } from './const';
 
 // String in the right side will be replaced by Rollup
 const PKG_VERSION = 'PKG_VERSION_VALUE';
@@ -318,17 +319,14 @@ export class BodymiscaleCard extends LitElement {
     const nameBlock = namePosition !== 'off' ? name : nothing;
 
     let minMaxBlock: Template | typeof nothing = nothing;
-    let calculatedMin = 0;
-    let calculatedMax = 100;
 
     if (minMaxPosition !== 'off' && data.severity) {
-      const minMaxValues = this.getMinMaxFromSeverity(data.severity);
-      calculatedMin = minMaxValues.min;
-      calculatedMax = minMaxValues.max;
+      const { min, max } = this.getMinMaxFromSeverity(data.severity);
+      
       minMaxBlock = html`
         <div class="minmax">
           ${localize('editor_body.minmax_label')}
-          <span class="min">${calculatedMin}</span>/<span class="max">${calculatedMax}</span>
+          <span class="min">${min}</span>/<span class="max">${max}</span>
         </div>`;
     }
   
