@@ -1,5 +1,3 @@
-import localize from './localize';
-import { BodymiscaleCardConfig } from './types';
 import {
   states,
   attributes_kg,
@@ -9,6 +7,8 @@ import {
   buttons,
 } from './const';
 import { deepMerge } from './helpers';
+import localize from './localize';
+import { BodymiscaleCardConfig } from './types';
 
 function buildStyles(config: Partial<BodymiscaleCardConfig>) {
   const { image, theme, show_toolbar, show_body } = config;

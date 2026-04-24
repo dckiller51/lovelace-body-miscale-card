@@ -1,17 +1,17 @@
+import * as ca from './translations/ca.json';
 import * as cs from './translations/cs.json';
 import * as da from './translations/da.json';
 import * as de from './translations/de.json';
 import * as en from './translations/en.json';
 import * as es from './translations/es.json';
-import * as ca from './translations/ca.json';
 import * as fr from './translations/fr.json';
 import * as hu from './translations/hu.json';
 import * as it from './translations/it.json';
 import * as ja from './translations/ja.json';
 import * as nl from './translations/nl.json';
 import * as pl from './translations/pl.json';
-import * as pt from './translations/pt.json';
 import * as pt_BR from './translations/pt-BR.json';
+import * as pt from './translations/pt.json';
 import * as ro from './translations/ro.json';
 import * as ru from './translations/ru.json';
 import * as uk from './translations/uk.json';
@@ -26,12 +26,12 @@ interface Translations {
 }
 
 const languages: Record<string, Translations> = {
+  ca: ca,
   cs: cs,
   da: da,
   de: de,
   en: en,
   es: es,
-  ca: ca,
   fr: fr,
   hu: hu,
   it: it,
@@ -57,18 +57,18 @@ export default function localize(
 ): string | undefined {
   const [section, key] = str.toLowerCase().split('.');
 
-  let langStored: string | null = null;
+  let lang: string;
 
   try {
-    langStored = JSON.parse(localStorage.getItem('selectedLanguage') ?? '""');
+    const stored = JSON.parse(localStorage.getItem('selectedLanguage') ?? '""');
+    lang = (stored || navigator.language.split('-')[0] || DEFAULT_LANG)
+      .replace(/['"]+/g, '')
+      .replace('-', '_');
   } catch (e) {
     console.warn(e);
-    langStored = localStorage.getItem('selectedLanguage');
+    const raw = localStorage.getItem('selectedLanguage') || navigator.language.split('-')[0] || DEFAULT_LANG;
+    lang = raw.replace(/['"]+/g, '').replace('-', '_');
   }
-
-  const lang = (langStored || navigator.language.split('-')[0] || DEFAULT_LANG)
-    .replace(/['"]+/g, '')
-    .replace('-', '_');
 
   let translated: string | undefined;
 
@@ -88,7 +88,7 @@ export default function localize(
   }
 
   if (search && replace) {
-    translated = translated?.replace(search, replace);
+    translated = translated.replace(search, replace);
   }
 
   return translated;
