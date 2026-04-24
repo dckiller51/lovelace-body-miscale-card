@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { LitElement, html, css, CSSResultGroup } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { computeCssColor, COLOR_HEX_MAP } from './compute-color'; // Import COLOR_HEX_MAP
+import { computeCssColor, COLOR_HEX_MAP } from './compute-color';
 import localize from './localize';
 
 @customElement('color-select')
@@ -11,12 +10,11 @@ export class ColorSelect extends LitElement {
   @property() public value?: string;
   @property() public configValue = '';
 
-  _selectChanged(event: Event) {
-    const value = (event.target as any).value;
+  private _selectColor(color: string) {
     this.dispatchEvent(
       new CustomEvent('value-changed', {
         detail: {
-          value: value || undefined,
+          value: color || undefined,
         },
       }),
     );
@@ -27,10 +25,8 @@ export class ColorSelect extends LitElement {
       <ha-select
         .icon=${Boolean(this.value)}
         .label=${localize('color_select.color')}
-        .configValue=${this.configValue}
-        @selected=${this._selectChanged}
-        @closed=${(e: Event) => e.stopPropagation()}
         .value=${this.value}
+        @closed=${(e: Event) => e.stopPropagation()}
         fixedMenuPosition
         naturalMenuWidth
       >
@@ -39,9 +35,12 @@ export class ColorSelect extends LitElement {
         </span>
 
         ${Object.keys(COLOR_HEX_MAP).map(
-          // Utiliser les clés de COLOR_HEX_MAP
           (color) => html`
-            <ha-list-item .value=${color} graphic="icon">
+            <ha-list-item 
+              .value=${color} 
+              graphic="icon"
+              @click=${() => this._selectColor(color)}
+            >
               ${localize(`color_select.${color}`) || color}
               <span slot="graphic">${this._renderColorCircle(color)}</span>
             </ha-list-item>

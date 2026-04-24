@@ -105,8 +105,6 @@ export class BodymiscaleCardEditor
       <div class="option">
         <ha-select
           .label=${localize('editor.entity')}
-          @selected=${this.valueChanged}
-          .configValue=${'entity'}
           .value=${config.entity}
           @closed=${(e: Event) => e.stopPropagation()}
           fixedMenuPosition
@@ -116,7 +114,10 @@ export class BodymiscaleCardEditor
         >
           ${entities.map(
             (entity) =>
-              html`<mwc-list-item .value=${entity}>${entity}</mwc-list-item>`,
+              html`<ha-list-item 
+                .value=${entity}
+                @click=${() => this._updateValue('entity', entity)}
+              >${entity}</ha-list-item>`,
           )}
         </ha-select>
       </div>
@@ -279,13 +280,12 @@ export class BodymiscaleCardEditor
     sectionKey: string,
   ) {
     const valueToUse = currentValue ?? '';
+    const configPath = `body.${sectionKey}.positions.${positionKey}`;
 
     return html`
       <div class="option">
         <ha-select
           .label=${localize(`editor_body.${positionKey}_position`)}
-          .configValue=${`body.${sectionKey}.positions.${positionKey}`}
-          @selected=${this.valueChanged}
           .value=${valueToUse}
           @closed=${(e: Event) => e.stopPropagation()}
           fixedMenuPosition
@@ -293,17 +293,20 @@ export class BodymiscaleCardEditor
           class="full"
         >
           ${currentValue === undefined
-            ? html`<mwc-list-item value="" selected disabled></mwc-list-item>`
+            ? html`<ha-list-item value="" selected disabled></ha-list-item>`
             : nothing}
-          <mwc-list-item value="left"
-            >${localize('editor_body.left')}</mwc-list-item
-          >
-          <mwc-list-item value="right"
-            >${localize('editor_body.right')}</mwc-list-item
-          >
-          <mwc-list-item value="off"
-            >${localize('editor_body.off')}</mwc-list-item
-          >
+          <ha-list-item 
+            .value=${'left'}
+            @click=${() => this._updateValue(configPath, 'left')}
+          >${localize('editor_body.left')}</ha-list-item>
+          <ha-list-item 
+            .value=${'right'}
+            @click=${() => this._updateValue(configPath, 'right')}
+          >${localize('editor_body.right')}</ha-list-item>
+          <ha-list-item 
+            .value=${'off'}
+            @click=${() => this._updateValue(configPath, 'off')}
+          >${localize('editor_body.off')}</ha-list-item>
         </ha-select>
       </div>
     `;
@@ -317,27 +320,31 @@ export class BodymiscaleCardEditor
     if (currentValue === null || currentValue === undefined) {
       return nothing;
     }
-  
+
     const value = String(currentValue);
-  
+
     return html`
       <div class="option">
         <ha-select
           .label=${localize(`editor_body.${labelKey}`)}
-          .configValue=${configPath}
           .value=${value}
-          @selected=${this.valueChanged}
           @closed=${(e: Event) => e.stopPropagation()}
           fixedMenuPosition
           naturalMenuWidth
           class="full"
         >
-          <mwc-list-item value="true">${localize('editor_body.on')}</mwc-list-item>
-          <mwc-list-item value="false">${localize('editor_body.off')}</mwc-list-item>
+          <ha-list-item 
+            .value=${'true'}
+            @click=${() => this._updateValue(configPath, 'true')}
+          >${localize('editor_body.on')}</ha-list-item>
+          <ha-list-item 
+            .value=${'false'}
+            @click=${() => this._updateValue(configPath, 'false')}
+          >${localize('editor_body.off')}</ha-list-item>
         </ha-select>
       </div>
     `;
-  }  
+  }
 
   private renderSeverityInputs( 
     severity: NumericSeverity | null | string | undefined,
@@ -507,38 +514,43 @@ export class BodymiscaleCardEditor
       return;
     }
 
-    if (event && event.target) {
-      const target = event.target as ConfigElement;
+    if (event && event.currentTarget) {
+      const target = event.currentTarget as ConfigElement;
 
       if (target.configValue && typeof target.configValue === 'string') {
         const newValue =
           target.checked !== undefined
             ? target.checked
             : target.value || undefined;
-        const path = target.configValue.split('.');
-
-        let currentConfig = { ...this.config };
-        let currentLevel = currentConfig;
-
-        for (let i = 0; i < path.length - 1; i++) {
-          const key = path[i];
-          if (currentLevel[key] === undefined) {
-            currentLevel[key] = {};
-          }
-          currentLevel = currentLevel[key];
-        }
-
-        // Mise à jour de la valeur
-        const lastKey = path[path.length - 1];
-        currentLevel[lastKey] = newValue;
-
-        this.config = currentConfig;
-
-        fireEvent(this, 'config-changed', { config: this.config });
+        
+        this._updateValue(target.configValue, newValue);
       }
     } else {
       fireEvent(this, 'config-changed', { config: this.config });
     }
+  }
+
+  private _updateValue(configPath: string, value: any): void {
+    if (!this.config) return;
+
+    const path = configPath.split('.');
+    const newConfig = { ...this.config };
+    let current = newConfig as any;
+
+    for (let i = 0; i < path.length - 1; i++) {
+      const key = path[i];
+      if (!current[key] || typeof current[key] !== 'object') {
+        current[key] = {};
+      } else {
+        current[key] = { ...current[key] };
+      }
+      current = current[key];
+    }
+
+    current[path[path.length - 1]] = value;
+    this.config = newConfig;
+
+    fireEvent(this, 'config-changed', { config: this.config });
   }
 
   private initialize(): void {

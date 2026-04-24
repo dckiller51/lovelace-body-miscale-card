@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.4.0
+
+- 🛠️ **Fixed**: Resolved an issue where certain values could not be modified or saved in the card editor (improved state management).
+- 🛠️ **Fixed**: Replaced obsolete mwc-list-item components with ha-list-item for better compatibility with the latest Home Assistant versions.
+- 📦 **Dependencies**: Updated all packages and migrated to official Rollup plugins (@rollup/plugin-typescript).
+
 ## 2025.11.0
 
 - 🛠️ **Fixed**: Resolved a console warning that appeared for users without a default language set in their Home Assistant profile (thank you @miguelangel-nubla).

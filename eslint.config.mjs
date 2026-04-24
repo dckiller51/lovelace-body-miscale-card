@@ -6,6 +6,9 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
+    ignores: ["dist/**", "node_modules/**"],
+  },
+  {
     files: ["**/*.{js,mjs,cjs,ts}"],
     languageOptions: {
       parser: tsParser,
@@ -21,9 +24,8 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
       "no-prototype-builtins": "off",
     },
   },
