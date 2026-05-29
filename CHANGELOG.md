@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.5.0
+
+- 🛠️ **Fixed**: Replaced deprecated `ha-textfield` with `ha-input` for compatibility with Home Assistant 2026.5+.
+- 🛠️ **Fixed**: Fixed `image` and `icons_body` fields not visible in the card editor following the `ha-input` migration.
+- 🛠️ **Fixed**: Improved language detection fallback in `localize` to handle regional variants (e.g. `fr-FR` → `fr`).
+- 🎨 **Fixed**: `card-mod` compatibility — `card_mod` property is now correctly passed through `buildConfig`. [[#188](https://github.com/dckiller51/lovelace-body-miscale-card/issues/188)]
+- 🎨 **Fixed**: `.bar-inner` background now uses `var(--disabled-color, lightgray)` for proper theme support.
+- 🔧 **Internal**: Migrated CSS loading to `unsafeCSS` for correct Shadow DOM style injection.
+- ✨ **Added**: Dual impedance support (50 kHz + 250 kHz) with new metrics: `impedance_low`, `impedance_high`, `bcm`, `skeletal_muscle_mass`, `extracellular_water`, `intracellular_water`, `ecw_tbw_ratio`.
+
 ## 2026.4.0
 
 - 🛠️ **Fixed**: Resolved an issue where certain values could not be modified or saved in the card editor (improved state management).
@@ -16,7 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ## 2025.9.0
 
-- ✅ **Added** Danish language support (thank you @Milfeldt).
+- ✨ **Added** Danish language support (thank you @Milfeldt).
 
 ## 2025.8.0
 
@@ -24,7 +34,7 @@ All notable changes to this project will be documented in this file.
 
 ## 2025.5.0
 
-- ✅ **Added** Ukrainian language support (thank you @MaxStupnitskyi)
+- ✨ **Added** Ukrainian language support (thank you @MaxStupnitskyi)
 
 ## 2025.4.6
 
@@ -82,39 +92,39 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## 2025.4.0
 
-- ✅ **Added** Catalan language support (thank you @RmG152)
+- ✨ **Added** Catalan language support (thank you @RmG152)
 
 ## 2025.3.1
 
-- ✅ **Added** Japanese language support (thank you @voidz777)
+- ✨ **Added** Japanese language support (thank you @voidz777)
 - ✨ **Added** ability to switch accounts using buttons in the UI, allowing users to dynamically change the displayed entity.
 - ✨ **Added** page navigation to the editor, allowing users to switch between "Configuration" and "Customization" settings, enhancing the user experience and organization of settings.
 - 🚀 **Refactored** `renderIcon` and `renderIconbody` into a single method `renderIcon(data, type)`, reducing code duplication and improving maintainability.
 - 🔥 **Removed** the need for a service, simplifying the implementation and improving responsiveness.
 - 🔥 **Removed** support for the `up` direction across the application, simplifying the layout and logic to support only the `right` direction.
-- 🔧 **Fixed** icon alignment within toolbar buttons by setting `font-size: 0px` to prevent inherited font sizes from affecting layout.
+- 🛠️ **Fixed** icon alignment within toolbar buttons by setting `font-size: 0px` to prevent inherited font sizes from affecting layout.
 
 ## 2025.3.0
 
-- ➕ **Added** `buildStyles` function to centralize and simplify style logic in `buildConfig`.
-- ➕ **Added** default value management for `image`, `name`, `buttons`, and other configuration options.
+- ✨ **Added** `buildStyles` function to centralize and simplify style logic in `buildConfig`.
+- ✨ **Added** default value management for `image`, `name`, `buttons`, and other configuration options.
 - ♻️ **Improved** refactored `buildConfig` for better readability and maintainability.
 - 🛠️ **Fixed** alignment and `border-radius` handling based on the presence of `show_toolbar`.
-- 🔧 **Fixed** minor CSS optimizations for button padding and background color management.
-- 🔧 **Fixed** reversed logic to remove content when `stateObj.state === 'ok'` and `data.icon === 'mdi:alert'` than hide rather.
-- ️🔧 **Fixed** Issue with Card Display in Section Mode When Sensors Are Unavailable [[#56](https://github.com/dckiller51/lovelace-body-miscale-card/issues/56)]
-- ➕ **Added** option to fully hide the card header [[#48](https://github.com/dckiller51/lovelace-body-miscale-card/issues/48)]
-- ➕ **Added** Last measurement time update information (introduced in Bodymiscale component 2025.2.19-beta pre-release).
+- 🛠️ **Fixed** minor CSS optimizations for button padding and background color management.
+- 🛠️ **Fixed** reversed logic to remove content when `stateObj.state === 'ok'` and `data.icon === 'mdi:alert'` than hide rather.
+- ️🛠️ **Fixed** Issue with Card Display in Section Mode When Sensors Are Unavailable [[#56](https://github.com/dckiller51/lovelace-body-miscale-card/issues/56)]
+- ✨ **Added** option to fully hide the card header [[#48](https://github.com/dckiller51/lovelace-body-miscale-card/issues/48)]
+- ✨ **Added** Last measurement time update information (introduced in Bodymiscale component 2025.2.19-beta pre-release).
 - ♻️ **Improved** code compatibility with recent Node.js versions.
 
 ## 2024.08.0
 
-- ✅ **Added** Vietnamese language support (thank you @ngdaihoc)
-- 🔧 **Fixed** syntax error in Polish (thanks to @kuduacz)
+- ✨ **Added** Vietnamese language support (thank you @ngdaihoc)
+- 🛠️ **Fixed** syntax error in Polish (thanks to @kuduacz)
 
 ## 2023.11.0
 
-- ✅ **Added** Traditional Chinese language support (thank you @yauyauwind)
+- ✨ **Added** Traditional Chinese language support (thank you @yauyauwind)
 - 🔄 **Changed** versioning system to a calendar format (year.month.patch)
 
 ## v5.9.6
@@ -127,24 +137,24 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v5.9.4
 
-- ✅ **Added** Hungarian language support (thank you @v1k70rk4)
+- ✨ **Added** Hungarian language support (thank you @v1k70rk4)
 
 ## v5.9.3
 
-- ➕ **Added** "Always show details" option
+- ✨ **Added** "Always show details" option
 
 ## v5.9.2
 
-- ✅ **Added** Polish language support (thank you @LukaszP2)
+- ✨ **Added** Polish language support (thank you @LukaszP2)
 
 ## v5.9.1
 
-- ✅ **Added** Romanian language support (thank you @18rrs)
+- ✨ **Added** Romanian language support (thank you @18rrs)
 
 ## v5.9.0
 
 - 🎨 **Added** system theme selection (Dark or Light mode)
-- ✅ **Added** Spanish language support (thanks to @luisetex84)
+- ✨ **Added** Spanish language support (thanks to @luisetex84)
 
 ## v5.8.1
 
@@ -156,21 +166,21 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v5.7.1
 
-- 🔧 **Fixed** syntax issues in German and English (thanks to @tispokes)
-- 🔧 **Fixed** syntax error in Russian (thanks to @dmamontov)
+- 🛠️ **Fixed** syntax issues in German and English (thanks to @tispokes)
+- 🛠️ **Fixed** syntax error in Russian (thanks to @dmamontov)
 
 ## v5.7.0
 
-- ✅ **Added** Russian language support (thanks to @BrainFixer)
+- ✨ **Added** Russian language support (thanks to @BrainFixer)
 
 ## v5.6.9
 
-- ✅ **Added** Portuguese language support (thanks to @jonhdimagio)
+- ✨ **Added** Portuguese language support (thanks to @jonhdimagio)
 - 🔄 **Updated** minor correction in Czech translation
 
 ## v5.6.8
 
-- ✅ **Added** Czech language support (thanks to @xpavli44)
+- ✨ **Added** Czech language support (thanks to @xpavli44)
 
 ## v5.6.7
 
@@ -183,7 +193,7 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v5.6.5
 
-- ✅ **Added** Italian language support (thanks to @Altar82)
+- ✨ **Added** Italian language support (thanks to @Altar82)
 
 ## v5.6.4
 
@@ -191,19 +201,19 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v5.6.3
 
-- ✅ **Added** CN language support (thanks to @sasukebinbin)
+- ✨ **Added** CN language support (thanks to @sasukebinbin)
 
 ## v5.6.2
 
-- 🔧 **Fixed** target values for bone mass
+- 🛠️ **Fixed** target values for bone mass
 
 ## v5.6.1
 
-- 🔧 **Fixed** default values for lbs
+- 🛠️ **Fixed** default values for lbs
 
 ## v5.6.0
 
-- ➕ **Added** a switch to convert kg to lbs
+- ✨ **Added** a switch to convert kg to lbs
 
 ## v5.5.0
 
@@ -227,7 +237,7 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v4.6.0
 
-- ✅ **Added** Dutch language support (thanks to @llewy)
+- ✨ **Added** Dutch language support (thanks to @llewy)
 - 🔄 **Updated** UI elements and translations
 - 🔄 **Changed** model selection to a switch (**Important**: If upgrading from 4.5.0, a return trip is required for settings to apply)
 
@@ -235,23 +245,23 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v4.5.0
 
-- ➕ **Added** BMI Label
+- ✨ **Added** BMI Label
 
 ## v4.1.0
 
-- ✅ **Added** German language support
+- ✨ **Added** German language support
 - 🔄 **Updated** icons to official "Mi Fit" icons for the body score
 
 ## v4.0.0
 
 - 🔄 **Changed** attribute names to `snake_case` (thanks to [Pavel Popov](https://github.com/dckiller51/bodymiscale/pull/13))
 - 🔄 **Replaced** custom icons with materialdesignicons
-- ➕ **Added** toolbar for score and service icons
+- ✨ **Added** toolbar for score and service icons
 
 ## v3.1.0
 
 - 🌍 **Fully translated** all card elements
-- ✅ **Added** Portuguese (pt-BR) language support
+- ✨ **Added** Portuguese (pt-BR) language support
 
 ## v3.0.0
 
@@ -270,7 +280,7 @@ The bar representation has been replaced with segmented color bars. Please revie
 
 ## v1.0.1
 
-- ➕ **Added** body score attributes with customization options
+- ✨ **Added** body score attributes with customization options
 
   ```yaml
   body:
@@ -278,7 +288,7 @@ The bar representation has been replaced with segmented color bars. Please revie
       label: 'Water: '
   ```
 
-- ➕ **Added** customizable icons
+- ✨ **Added** customizable icons
 
 ## v1.0.0
 

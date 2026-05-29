@@ -70,6 +70,13 @@ export default function localize(
     lang = raw.replace(/['"]+/g, '').replace('-', '_');
   }
 
+  if (!languages[lang]) {
+    lang = lang.split('_')[0];
+  }
+  if (!languages[lang]) {
+    lang = DEFAULT_LANG;
+  }
+
   let translated: string | undefined;
 
   try {

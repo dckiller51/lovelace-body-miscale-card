@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "重量: ",
     "impedance: ": "阻抗: ",
+    "impedance_low: ": "高频阻抗 50 kHz: ",
+    "impedance_high: ": "高频阻抗 250 kHz: ",
     "height: ": "身高: ",
     "age: ": "年龄: ",
     "gender: ": "性别: "
@@ -49,7 +51,12 @@
     "ideal": "理想体重",
     "basal_metabolism": "基本代谢",
     "body_type": "身体类型",
-    "metabolic_age": "代谢年龄"
+    "metabolic_age": "代谢年龄",
+    "skeletal_muscle_mass": "骨骼肌量",
+    "extracellular_water": "细胞外水分",
+    "intracellular_water": "细胞内水分",
+    "ecw_tbw_ratio": "ECW/TBW 比率",
+    "bcm": "体细胞量"
   },
   "body_value": {
     "skinny": "偏瘦",
@@ -73,10 +80,13 @@
     " years": " 岁"
   },
   "error": {
+    "invalid_config": "Invalid configuration",
     "missing_entity": "Please define an entity.",
     "missing_entity_bodymiscale": "Please define a bodymiscale entity."
   },
   "editor": {
+    "configuration": "Configuration",
+    "customization": "Customization",
     "entity": "Please select an account on the scale (required) !",
     "image": "Background image (optional)",
     "icons_body": "图标路径 (例如：/local/images/bodyscoreIcon)",
@@ -84,9 +94,15 @@
     "model1": "Enable this feature for accurate body composition measurements.",
     "model_aria_label_on": "Enable impedance",
     "model_aria_label_off": "Disable impedance",
+    "dual_impedance": "双频阻抗体重秤 (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "启用双频阻抗",
+    "dual_impedance_aria_label_off": "禁用双频阻抗",
     "unit": "Convert kg to lbs",
     "unit_aria_label_on": "Toggle the conversion on",
     "unit_aria_label_off": "Toggle the conversion off",
+    "theme": "Configure the theme you use.",
+    "theme_aria_label_on": "Toggle theme light on",
+    "theme_aria_label_off": "Toggle theme dark off",
     "show_name": "Show the name of the account as title ?",
     "show_name_aria_label_on": "Toggle display name on",
     "show_name_aria_label_off": "Toggle display name off",
@@ -126,7 +142,6 @@
     "severity_generator_help": "链接到严重程度帮助",
     "showabovelabels": "显示上方标签",
     "showbelowlabels": "显示下方标签",
-    "target": "目标",
     "to": "到",
     "value_position": "值的位置"
   },

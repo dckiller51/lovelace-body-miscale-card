@@ -18,6 +18,8 @@
   "attributes": {
     "weight: ": "Gewicht: ",
     "impedance: ": "Zusammensetzung: ",
+    "impedance_high": "Impedanz 250 kHz: ",
+    "impedance_low": "Impedanz 50 kHz: ",
     "height: ": "Körpergröße: ",
     "age: ": "Alter: ",
     "gender: ": "Geschlecht: "
@@ -40,7 +42,12 @@
     "ideal": "Idealgewicht",
     "basal_metabolism": "Grundumsatz",
     "body_type": "Körperbau",
-    "metabolic_age": "stoffwechselbedingtes Körperalter"
+    "metabolic_age": "stoffwechselbedingtes Körperalter",
+    "skeletal_muscle_mass": "Skelettmuskelmasse",
+    "extracellular_water": "Extrazelluläres Wasser",
+    "intracellular_water": "Intrazelluläres Wasser",
+    "ecw_tbw_ratio": "ECW/TBW-Verhältnis",
+    "bcm": "Körperzellmasse"
   },
   "body_value": {
     "skinny": "schlank",
@@ -75,6 +82,9 @@
     "model1": "Aktivieren Sie diese Funktion für genaue Körperzusammensetzungsmessungen.",
     "model_aria_label_on": "Impedanz aktivieren",
     "model_aria_label_off": "Impedanz deaktivieren",
+    "dual_impedance": "Waage mit doppelter Impedanz (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Doppelte Impedanz aktivieren",
+    "dual_impedance_aria_label_off": "Doppelte Impedanz deaktivieren",
     "unit": "kg in lbs umrechnen",
     "unit_aria_label_on": "Konvertierung einschalten",
     "unit_aria_label_off": "Umwandlung deaktivieren",

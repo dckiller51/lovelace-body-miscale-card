@@ -8,7 +8,7 @@ import {
   formatTime,
 } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
-import { CSSResultGroup, LitElement, PropertyValues, html, nothing } from 'lit';
+import { CSSResultGroup, LitElement, PropertyValues, html, nothing, css, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
@@ -37,7 +37,7 @@ export class BodymiscaleCard extends LitElement {
   @state() open = false;
 
   static get styles(): CSSResultGroup {
-    return styles;
+    return css`${unsafeCSS(styles)}`;
   }
 
   public static async getConfigElement() {
@@ -652,10 +652,12 @@ export class BodymiscaleCard extends LitElement {
     const filteredBodyData = filterByImpedance(
       this.config.body ?? {},
       this.config.model,
+      this.config.dual_impedance,
     );
     const filteredAttributesData = filterByImpedance(
       this.config.attributes ?? {},
       this.config.model,
+      this.config.dual_impedance,
     );
 
     return html`

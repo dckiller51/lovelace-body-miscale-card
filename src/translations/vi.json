@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Weight: ",
     "impedance: ": "Impedance: ",
+    "impedance_low: ": "Impedance 50 kHz: ",
+    "impedance_high: ": "Impedance 250 kHz: ",
     "height: ": "Height: ",
     "age: ": "Age: ",
     "gender: ": "Gender: "
@@ -49,7 +51,12 @@
     "ideal": "Lý tưởng",
     "basal_metabolism": "Trao đổi chất cơ bản",
     "body_type": "Kiểu cơ thể",
-    "metabolic_age": "Tuổi chuyển hóa"
+    "metabolic_age": "Tuổi chuyển hóa",
+    "skeletal_muscle_mass": "Khối lượng cơ xương",
+    "extracellular_water": "Nước ngoại bào",
+    "intracellular_water": "Nước nội bào",
+    "ecw_tbw_ratio": "Tỷ lệ ECW/TBW",
+    "bcm": "Khối lượng tế bào cơ thể"
   },
   "body_value": {
     "skinny": "Gầy",
@@ -73,10 +80,13 @@
     " years": " years"
   },
   "error": {
+    "invalid_config": "Invalid configuration",
     "missing_entity": "Please define an entity.",
     "missing_entity_bodymiscale": "Please define a bodymiscale entity."
   },
   "editor": {
+    "configuration": "Configuration",
+    "customization": "Customization",
     "entity": "Please select an account on the scale (required)!",
     "image": "Background image (optional)",
     "icons_body": "Đường dẫn biểu tượng (ví dụ: /local/images/bodyscoreIcon)",
@@ -84,6 +94,9 @@
     "model1": "Enable this feature for accurate body composition measurements.",
     "model_aria_label_on": "Enable impedance",
     "model_aria_label_off": "Disable impedance",
+    "dual_impedance": "Cân với trở kháng kép (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Bật trở kháng kép",
+    "dual_impedance_aria_label_off": "Tắt trở kháng kép",
     "unit": "Convert kg to lbs",
     "unit_aria_label_on": "Toggle the conversion on",
     "unit_aria_label_off": "Toggle the conversion off",
@@ -129,7 +142,6 @@
     "severity_generator_help": "Liên kết đến Trợ giúp về Mức độ nghiêm trọng",
     "showabovelabels": "Hiển thị nhãn phía trên",
     "showbelowlabels": "Hiển thị nhãn phía dưới",
-    "target": "Mục tiêu",
     "to": "Đến",
     "value_position": "Vị trí giá trị"
   },

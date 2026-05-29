@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Peso: ",
     "impedance: ": "Impedenza: ",
+    "impedance_low: ": "Impedenza 50 kHz: ",
+    "impedance_high: ": "Impedenza 250 kHz: ",
     "height: ": "Altezza: ",
     "age: ": "Età: ",
     "gender: ": "Sesso: "
@@ -49,7 +51,12 @@
     "ideal": "Ideale",
     "basal_metabolism": "Metabolismo base",
     "body_type": "Tipo di corpo",
-    "metabolic_age": "Età metabolica"
+    "metabolic_age": "Età metabolica",
+    "skeletal_muscle_mass": "Massa muscolare scheletrica",
+    "extracellular_water": "Acqua extracellulare",
+    "intracellular_water": "Acqua intracellulare",
+    "ecw_tbw_ratio": "Rapporto ECW/TBW",
+    "bcm": "Massa cellulare corporea"
   },
   "body_value": {
     "skinny": "Magro",
@@ -73,10 +80,13 @@
     " years": " anni"
   },
   "error": {
+    "invalid_config": "Configurazione non valida",
     "missing_entity": "Perfavore definisci un'entità.",
     "missing_entity_bodymiscale": "Perfavore definisci un'entità di tipo bodymiscale."
   },
   "editor": {
+    "configuration": "Configurazione",
+    "customization": "Personalizzazione",
     "entity": "Perfavore seleziona un account sulla bilancia (richiesto) !",
     "image": "Immagine di sfondo (opzionale)",
     "icons_body": "Percorso delle icone (es: /local/images/bodyscoreIcon)",
@@ -84,9 +94,15 @@
     "model1": "Attiva questa funzione per misurazioni accurate della composizione corporea.",
     "model_aria_label_on": "Abilita impedenza",
     "model_aria_label_off": "Disabilita impedenza",
+    "dual_impedance": "Bilancia con doppia impedenza (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Attiva doppia impedenza",
+    "dual_impedance_aria_label_off": "Disattiva doppia impedenza",
     "unit": "Converti da kg a lbs",
     "unit_aria_label_on": "Attiva la conversione",
     "unit_aria_label_off": "Disattiva la conversione",
+    "theme": "Configura il tema che utilizzi.",
+    "theme_aria_label_on": "Attiva tema chiaro",
+    "theme_aria_label_off": "Disattiva tema oscuro",
     "show_name": "Mostrare il nome dell'account come titolo  ?",
     "show_name_aria_label_on": "Attiva la visione del nome",
     "show_name_aria_label_off": "Disattiva la visione del nome",
@@ -126,7 +142,6 @@
     "severity_generator_help": "Link alla guida sulla gravità",
     "showabovelabels": "Mostra etichette sopra",
     "showbelowlabels": "Mostra etichette sotto",
-    "target": "Destinazione",
     "to": "A",
     "value_position": "Posizione valore"
   },

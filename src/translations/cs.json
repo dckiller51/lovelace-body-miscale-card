@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Váha: ",
     "impedance: ": "Impedance: ",
+    "impedance_low: ": "Impedance 50 kHz: ",
+    "impedance_high: ": "Impedance 250 kHz: ",
     "height: ": "Výška: ",
     "age: ": "Věk: ",
     "gender: ": "Pohlaví: "
@@ -49,7 +51,12 @@
     "ideal": "Ideální",
     "basal_metabolism": "Základní metabolismus",
     "body_type": "Tělesný typ",
-    "metabolic_age": "Metabolický věk"
+    "metabolic_age": "Metabolický věk",
+    "skeletal_muscle_mass": "Kosterní svalová hmota",
+    "extracellular_water": "Extracelulární voda",
+    "intracellular_water": "Intracelulární voda",
+    "ecw_tbw_ratio": "Poměr ECW/TBW",
+    "bcm": "Tělesná buněčná hmota"
   },
   "body_value": {
     "skinny": "štíhlý",
@@ -73,10 +80,13 @@
     " years": " let"
   },
   "error": {
+    "invalid_config": "Neplatná konfigurace",
     "missing_entity": "Prosím definujte entitu.",
     "missing_entity_bodymiscale": "Prosím definujte entitu bodymiscale."
   },
   "editor": {
+    "configuration": "Konfigurace",
+    "customization": "Přizpůsobení",
     "entity": "Prosím definujte účet váhy (povinné) !",
     "image": "Obrázek pozadí (volitelné)",
     "icons_body": "Cesta k ikonám (např. /local/images/bodyscoreIcon)",
@@ -84,9 +94,15 @@
     "model1": "Aktivujte tuto funkci pro přesné měření složení těla.",
     "model_aria_label_on": "Aktivovat impedanci",
     "model_aria_label_off": "Deaktivovat impedanci",
+    "dual_impedance": "Váha s dvojitou impedancí (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Aktivovat dvojitou impedanci",
+    "dual_impedance_aria_label_off": "Deaktivovat dvojitou impedanci",
     "unit": "Převést kilogramy na libry",
     "unit_aria_label_on": "Zapnout konverzi",
     "unit_aria_label_off": "Vypnout konverzi",
+    "theme": "Nakonfigurujte téma, které používáte.",
+    "theme_aria_label_on": "Aktivovat světlé téma",
+    "theme_aria_label_off": "Deaktivovat tmavé téma",
     "show_name": "Zobrazovat jméno účtu jako titulek ?",
     "show_name_aria_label_on": "Zapnout zobrazování jména",
     "show_name_aria_label_off": "Vypnout zobrazování jména",

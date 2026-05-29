@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Вага: ",
     "impedance: ": "Імпеданс: ",
+    "impedance_low: ": "Імпеданс 50 kHz: ",
+    "impedance_high: ": "Імпеданс 250 kHz: ",
     "height: ": "Зріст: ",
     "age: ": "Вік: ",
     "gender: ": "Стать: "
@@ -49,7 +51,12 @@
     "ideal": "Ідеал",
     "basal_metabolism": "Базальний метаболізм",
     "body_type": "Тип тіла",
-    "metabolic_age": "Метаболічний вік"
+    "metabolic_age": "Метаболічний вік",
+    "skeletal_muscle_mass": "Скелетна м'язова маса",
+    "extracellular_water": "Позаклітинна вода",
+    "intracellular_water": "Внутрішньоклітинна вода",
+    "ecw_tbw_ratio": "Співвідношення ECW/TBW",
+    "bcm": "Клітинна маса тіла"
   },
   "body_value": {
     "skinny": "Худий",
@@ -87,6 +94,9 @@
     "model1": "Увімкніть цю функцію для точних вимірювань складу тіла.",
     "model_aria_label_on": "Увімкнути імпеданс",
     "model_aria_label_off": "Вимкнути імпеданс",
+    "dual_impedance": "Ваги з подвійним імпедансом (50 кГц + 250 кГц)?",
+    "dual_impedance_aria_label_on": "Увімкнути подвійний імпеданс",
+    "dual_impedance_aria_label_off": "Вимкнути подвійний імпеданс",
     "unit": "Конвертувати кг у фунти",
     "unit_aria_label_on": "Увімкнути конвертацію",
     "unit_aria_label_off": "Вимкнути конвертацію",
@@ -164,5 +174,21 @@
     "royalblue": "Королівський синій",
     "black": "Чорний",
     "white": "Білий"
+  },
+  "label_below": {
+    "balanced": "Збалансовано",
+    "good": "Добре",
+    "increased": "Підвищений",
+    "insufficient": "Недостатньо",
+    "high": "Високий",
+    "low": "Низький",
+    "normal": "Норма",
+    "obese": "Ожиріння",
+    "objective_achieved": "Ціль досягнута",
+    "objective_not_achieved": "Ціль не досягнута",
+    "overweight": "Надмірна вага",
+    "underweight": "Недостатня вага",
+    "very_high": "Дуже високий",
+    "very_low": "Дуже низький"
   }
 }

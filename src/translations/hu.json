@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Súly: ",
     "impedance: ": "Impedancia: ",
+    "impedance_low: ": "Impedancia 50 kHz: ",
+    "impedance_high: ": "Impedancia 250 kHz: ",
     "height: ": "Magasság: ",
     "age: ": "Kor: ",
     "gender: ": "Nem: "
@@ -49,7 +51,12 @@
     "ideal": "Ideális",
     "basal_metabolism": "Alapanyagcsere",
     "body_type": "Testtípus",
-    "metabolic_age": "Anyagcsere kor"
+    "metabolic_age": "Anyagcsere kor",
+    "skeletal_muscle_mass": "Vázizomtömeg",
+    "extracellular_water": "Extracelluláris víz",
+    "intracellular_water": "Intracelluláris víz",
+    "ecw_tbw_ratio": "ECW/TBW arány",
+    "bcm": "Testsejtszömeg"
   },
   "body_value": {
     "skinny": "Sovány",
@@ -77,6 +84,8 @@
     "missing_entity_bodymiscale": "Kérjük, definiáljon egy BodyMiScale entitást."
   },
   "editor": {
+    "configuration": "Konfiguráció",
+    "customization": "Testreszabás",
     "entity": "Kérjük, válasszon egy fiókot a mérlegen (kötelező)!",
     "image": "Háttérkép (opcionális)",
     "icons_body": "Ikonok útvonala (pl.: /local/images/bodyscoreIcon)",
@@ -84,6 +93,9 @@
     "model1": "A pontos testösszetétel mérésekhez aktiválja ezt a funkciót.",
     "model_aria_label_on": "Impedancia engedélyezése",
     "model_aria_label_off": "Impedancia letiltása",
+    "dual_impedance": "Mérleg kettős impedanciával (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Kettős impedancia engedélyezése",
+    "dual_impedance_aria_label_off": "Kettős impedancia letiltása",
     "unit": "Kg átszámítása fonttá",
     "unit_aria_label_on": "Átszámítás bekapcsolása",
     "unit_aria_label_off": "Átszámítás kikapcsolása",

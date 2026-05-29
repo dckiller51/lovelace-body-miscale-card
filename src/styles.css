@@ -241,7 +241,7 @@ ha-card {
   display: flex;
   height: 8px;
   width: 100%;
-  background: lightgray;
+  background: var(--disabled-color, lightgray);
   position: relative;
   border-radius: 8px;
   overflow: visible;

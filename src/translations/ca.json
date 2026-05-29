@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Pes: ",
     "impedance: ": "Impedància: ",
+    "impedance_low: ": "Impedància 50 kHz: ",
+    "impedance_high: ": "Impedància 250 kHz: ",
     "height: ": "Alçada: ",
     "age: ": "Edat: ",
     "gender: ": "Sexe: "
@@ -49,7 +51,12 @@
     "ideal": "Ideal",
     "basal_metabolism": "Metabolisme basal",
     "body_type": "Tipus de cos",
-    "metabolic_age": "Edat metabòlica"
+    "metabolic_age": "Edat metabòlica",
+    "skeletal_muscle_mass": "Massa muscular esquelètica",
+    "extracellular_water": "Aigua extracel·lular",
+    "intracellular_water": "Aigua intracel·lular",
+    "ecw_tbw_ratio": "Ràtio ECW/TBW",
+    "bcm": "Massa cel·lular corporal"
   },
   "body_value": {
     "skinny": "Prim",
@@ -87,6 +94,9 @@
     "model1": "Activeu aquesta funció per a mesures precises de la composició corporal.",
     "model_aria_label_on": "Activar impedància",
     "model_aria_label_off": "Desactivar impedància",
+    "dual_impedance": "Balança amb doble impedància (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Activar doble impedància",
+    "dual_impedance_aria_label_off": "Desactivar doble impedància",
     "unit": "Converteix kg a lbs",
     "unit_aria_label_on": "Activar conversió",
     "unit_aria_label_off": "Desactivar conversió",

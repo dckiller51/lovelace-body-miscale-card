@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Peso: ",
     "impedance: ": "Impedância: ",
+    "impedance_low: ": "Impedância 50 kHz: ",
+    "impedance_high: ": "Impedância 250 kHz: ",
     "height: ": "Altura: ",
     "age: ": "Idade: ",
     "gender: ": "Gênero: "
@@ -49,7 +51,12 @@
     "ideal": "Ideal",
     "basal_metabolism": "Metabolismo basal",
     "body_type": "Tipo de corpo",
-    "metabolic_age": "Idade metabólica"
+    "metabolic_age": "Idade metabólica",
+    "skeletal_muscle_mass": "Massa muscular esquelética",
+    "extracellular_water": "Água extracelular",
+    "intracellular_water": "Água intracelular",
+    "ecw_tbw_ratio": "Razão ECW/TBW",
+    "bcm": "Massa celular corporal"
   },
   "body_value": {
     "skinny": "Magro",
@@ -73,10 +80,13 @@
     " years": " Anos"
   },
   "error": {
+    "invalid_config": "Configuração inválida",
     "missing_entity": "Por favor, defina uma entidade.",
     "missing_entity_bodymiscale": "Por favor, defina uma entidade bodymiscale."
   },
   "editor": {
+    "configuration": "Configuração",
+    "customization": "Personalização",
     "entity": "Por favor, escolha a entidade da balança com o nome da pessoa (obrigatório) !",
     "image": "Imagem de fundo (opcional)",
     "icons_body": "Caminho dos ícones (ex: /local/images/bodyscoreIcon)",
@@ -84,9 +94,15 @@
     "model1": "Ative esta função para medições precisas da composição corporal.",
     "model_aria_label_on": "Ativar impedância",
     "model_aria_label_off": "Desativar impedância",
+    "dual_impedance": "Balança com impedância dupla (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Ativar impedância dupla",
+    "dual_impedance_aria_label_off": "Desativar impedância dupla",
     "unit": "Converter kg em libras",
     "unit_aria_label_on": "Ativar a conversão kg para lbs",
     "unit_aria_label_off": "Desativar a conversão kg para lbs",
+    "theme": "Configure o tema que você utiliza.",
+    "theme_aria_label_on": "Ativar tema claro",
+    "theme_aria_label_off": "Desativar tema escuro",
     "show_name": "Mostrar o nome da conta como título ?",
     "show_name_aria_label_on": "Mostrar o nome como título",
     "show_name_aria_label_off": "Esconder o nome como título",
@@ -126,7 +142,6 @@
     "severity_generator_help": "Link para a ajuda de severidade",
     "showabovelabels": "Mostrar etiquetas acima",
     "showbelowlabels": "Mostrar etiquetas abaixo",
-    "target": "Alvo",
     "to": "Para",
     "value_position": "Posição do valor"
   },

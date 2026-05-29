@@ -46,6 +46,7 @@ export interface RenderAttributeData {
   compute?: (value: any) => any;
   icon?: string;
   impedance_required: boolean;
+  dual_impedance_required?: boolean;
   key: string;
   label?: string;
   unit?: string;
@@ -56,6 +57,7 @@ export interface RenderBodyData {
   compute?: (value: any) => any;
   icon?: string;
   impedance_required: boolean;
+  dual_impedance_required?: boolean;
   key: string;
   label?: string;
   positions?: {
@@ -76,9 +78,12 @@ export interface RenderIconData {
 }
 
 export interface BodymiscaleCardConfig {
+  type: string;
+  card_mod?: unknown;
   entity: string;
   image: string;
   model: boolean;
+  dual_impedance: boolean;
   name?: string;
   theme: boolean;
   show_name: boolean;
