@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Gewicht: ",
     "impedance: ": "Impedantie: ",
+    "impedance_low: ": "Impedantie 50 kHz: ",
+    "impedance_high: ": "Impedantie 250 kHz: ",
     "height: ": "Lengte: ",
     "age: ": "Leeftijd: ",
     "gender: ": "Geslacht: "
@@ -49,7 +51,12 @@
     "ideal": "Ideaal",
     "basal_metabolism": "Basaal metabolisme",
     "body_type": "Lichaamstype",
-    "metabolic_age": "Metabolistische leeftijd"
+    "metabolic_age": "Metabolistische leeftijd",
+    "skeletal_muscle_mass": "Skeletspiermassa",
+    "extracellular_water": "Extracellulair water",
+    "intracellular_water": "Intracellulair water",
+    "ecw_tbw_ratio": "ECW/TBW-ratio",
+    "bcm": "Lichaamscelmassa"
   },
   "body_value": {
     "skinny": "Mager",
@@ -73,10 +80,13 @@
     " years": " jaren"
   },
   "error": {
+    "invalid_config": "Ongeldige configuratie",
     "missing_entity": "Geef een entiteit in.",
     "missing_entity_bodymiscale": "Geef een bodymiscale entiteit in."
   },
   "editor": {
+    "configuration": "Configuratie",
+    "customization": "Aanpassing",
     "entity": "Kies een account op de schaal (verplicht) !",
     "image": "Achtergrondafbeelding (facultatief)",
     "icons_body": "Icoonpad (bijv. /local/images/bodyscoreIcon)",
@@ -84,9 +94,15 @@
     "model1": "Activeer deze functie voor nauwkeurige metingen van de lichaamssamenstelling.",
     "model_aria_label_on": "Impedantie inschakelen",
     "model_aria_label_off": "Impedantie uitschakelen",
+    "dual_impedance": "Weegschaal met dubbele impedantie (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Dubbele impedantie inschakelen",
+    "dual_impedance_aria_label_off": "Dubbele impedantie uitschakelen",
     "unit": "Converteer kg naar lbs",
     "unit_aria_label_on": "Activeer conversie",
     "unit_aria_label_off": "Conversie deactiveren",
+    "theme": "Configureer het thema dat u gebruikt.",
+    "theme_aria_label_on": "Licht thema inschakelen",
+    "theme_aria_label_off": "Donker thema uitschakelen",
     "show_name": "Toon de naam van de rekening als titel ?",
     "show_name_aria_label_on": "Zet naam aan",
     "show_name_aria_label_off": "Zet naam uit",
@@ -126,7 +142,6 @@
     "severity_generator_help": "Link naar de help voor ernst",
     "showabovelabels": "Labels boven weergeven",
     "showbelowlabels": "Labels onder weergeven",
-    "target": "Doel",
     "to": "Naar",
     "value_position": "Waarde Positie"
   },

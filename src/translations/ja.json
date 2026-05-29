@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "体重: ",
     "impedance: ": "インピーダンス: ",
+    "impedance_low: ": "インピーダンス 50 kHz: ",
+    "impedance_high: ": "インピーダンス 250 kHz: ",
     "height: ": "高さ: ",
     "age: ": "年齢: ",
     "gender: ": "性別: "
@@ -49,7 +51,12 @@
     "ideal": "理想",
     "basal_metabolism": "基礎代謝",
     "body_type": "体型",
-    "metabolic_age": "代謝年齢"
+    "metabolic_age": "代謝年齢",
+    "skeletal_muscle_mass": "骨格筋量",
+    "extracellular_water": "細胞外水分",
+    "intracellular_water": "細胞内水分",
+    "ecw_tbw_ratio": "ECW/TBW 比率",
+    "bcm": "体細胞量"
   },
   "body_value": {
     "skinny": "痩せすぎ",
@@ -78,6 +85,8 @@
     "missing_entity_bodymiscale": "bodymiscale エンティティを定義してください。"
   },
   "editor": {
+    "configuration": "設定",
+    "customization": "カスタマイズ",
     "entity": "スケール上のアカウントを選択してください (必須)!",
     "image": "背景画像（オプション）",
     "icons_body": "アイコンのパス (例: /local/images/bodyscoreIcon)",
@@ -85,6 +94,9 @@
     "model1": "正確な体組成測定のためにこの機能を有効にしてください。",
     "model_aria_label_on": "インピーダンスを有効にする",
     "model_aria_label_off": "インピーダンスを無効にする",
+    "dual_impedance": "デュアルインピーダンス対応体重計 (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "デュアルインピーダンスを有効にする",
+    "dual_impedance_aria_label_off": "デュアルインピーダンスを無効にする",
     "unit": "kg を lbs に変換する",
     "unit_aria_label_on": "変換をオンに切り替えます",
     "unit_aria_label_off": "変換をオフに切り替えます",
@@ -130,7 +142,6 @@
     "severity_generator_help": "重症度ヘルプへのリンク",
     "showabovelabels": "ラベルを上に表示",
     "showbelowlabels": "ラベルを下に表示",
-    "target": "ターゲット",
     "to": "へ",
     "value_position": "値の位置"
   },

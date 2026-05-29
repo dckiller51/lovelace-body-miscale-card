@@ -13,16 +13,16 @@
 }
 
 .option ha-select,
-.option ha-textfield {
+.option ha-input {
   width: 100%;
 }
 
 .option ha-select.small,
-.option ha-textfield.small {
+.option ha-input.small {
   width: 120px;
 }
 
-.option ha-textfield.full,
+.option ha-input.full,
 .option ha-select.full {
   flex-grow: 1;
   width: auto;
@@ -74,7 +74,7 @@ ha-form-grid {
   margin-bottom: 0.5rem; /* Ajoute une marge en dessous de chaque bloc .severity-row */
 }
 
-.severity-row ha-textfield {
+.severity-row ha-input {
   margin-right: 0.5rem;
 }
 
@@ -83,7 +83,7 @@ ha-form-grid {
   margin-bottom: 0.5rem; /* Ajustez l'espacement sous la ligne */
 }
 
-.severity-row .input-line ha-textfield {
+.severity-row .input-line ha-input {
   flex: 1; /* Permet aux champs de prendre l'espace disponible de manière égale */
 }
 

@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Greutate: ",
     "impedance: ": "Impedanță: ",
+    "impedance_low: ": "Impedanță 50 kHz: ",
+    "impedance_high: ": "Impedanță 250 kHz: ",
     "height: ": "Înălţime: ",
     "age: ": "Vârstă: ",
     "gender: ": "Gen: "
@@ -49,7 +51,12 @@
     "ideal": "Ideal",
     "basal_metabolism": "Metabolismul bazal",
     "body_type": "Tipul corpului",
-    "metabolic_age": "Vârsta metabolică"
+    "metabolic_age": "Vârsta metabolică",
+    "skeletal_muscle_mass": "Masă musculară scheletică",
+    "extracellular_water": "Apă extracelulară",
+    "intracellular_water": "Apă intracelulară",
+    "ecw_tbw_ratio": "Raport ECW/TBW",
+    "bcm": "Masă celulară corporală"
   },
   "body_value": {
     "skinny": "Slab",
@@ -73,10 +80,13 @@
     " years": " ani"
   },
   "error": {
+    "invalid_config": "Configurație invalidă",
     "missing_entity": "Vă rugăm să definiți o entitate.",
     "missing_entity_bodymiscale": "Definiți o entitate bodymiscale."
   },
   "editor": {
+    "configuration": "Configurare",
+    "customization": "Personalizare",
     "entity": "Vă rugăm să selectați un cont de cântar (obligatoriu)!",
     "image": "Imagine de fundal (opțional)",
     "icons_body": "Calea pictogramelor (ex: /local/images/bodyscoreIcon)",
@@ -84,6 +94,9 @@
     "model1": "Activați această funcție pentru măsurători precise ale compoziției corporale.",
     "model_aria_label_on": "Activare impedanță",
     "model_aria_label_off": "Dezactivare impedanță",
+    "dual_impedance": "Cântar cu impedanță dublă (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Activați impedanța dublă",
+    "dual_impedance_aria_label_off": "Dezactivați impedanța dublă",
     "unit": "Convertiți kg în lbs",
     "unit_aria_label_on": "Activați conversia",
     "unit_aria_label_off": "Dezactivați conversia",
@@ -129,7 +142,6 @@
     "severity_generator_help": "Link către ajutorul pentru severitate",
     "showabovelabels": "Afișează etichetele deasupra",
     "showbelowlabels": "Afișează etichetele dedesubt",
-    "target": "Țintă",
     "to": "La",
     "value_position": "Poziția valorii"
   },

@@ -34,11 +34,22 @@ export function deepMerge(...sources: any[]): Record<string, any> {
   return target;
 }
 
-export function filterByImpedance<T extends { impedance_required?: boolean }>(
+export function filterByImpedance<T extends { 
+  impedance_required?: boolean;
+  dual_impedance_required?: boolean;
+}>(
   data: Record<string, T>,
   model: boolean,
+  dual_impedance?: boolean,
 ): T[] {
-  return Object.values(data).filter(
-    (item) => model || !item.impedance_required,
-  );
+  return Object.values(data).filter((item) => {
+    if (!model) {
+      return !item.impedance_required && !item.dual_impedance_required;
+    }
+    if (!dual_impedance) {
+      return item.dual_impedance_required !== true;
+    }
+    // mode dual
+    return item.dual_impedance_required !== false;
+  });
 }

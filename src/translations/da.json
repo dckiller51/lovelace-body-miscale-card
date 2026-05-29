@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Vægt: ",
     "impedance: ": "Impedans: ",
+    "impedance_low: ": "Impedans 50 kHz: ",
+    "impedance_high: ": "Impedans 250 kHz: ",
     "height: ": "Højde: ",
     "age: ": "Alder: ",
     "gender: ": "Køn: "
@@ -49,7 +51,12 @@
     "ideal": "Ideel",
     "basal_metabolism": "Basal stofskifte",
     "body_type": "Kropstype",
-    "metabolic_age": "Metabolisk alder"
+    "metabolic_age": "Metabolisk alder",
+    "skeletal_muscle_mass": "Skeletmuskelmasse",
+    "extracellular_water": "Ekstracellulært vand",
+    "intracellular_water": "Intracellulært vand",
+    "ecw_tbw_ratio": "ECW/TBW-forhold",
+    "bcm": "Kropscellemasse"
   },
   "body_value": {
     "skinny": "Slank",
@@ -87,6 +94,9 @@
     "model1": "Aktiver denne funktion for præcise kropssammensætnings målinger.",
     "model_aria_label_on": "Aktiver impedans",
     "model_aria_label_off": "Deaktiver impedans",
+    "dual_impedance": "Vægt med dobbelt impedans (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Aktivér dobbelt impedans",
+    "dual_impedance_aria_label_off": "Deaktivér dobbelt impedans",
     "unit": "Omregn kg til lbs",
     "unit_aria_label_on": "Slå konverteringen til",
     "unit_aria_label_off": "Slå konverteringen fra",

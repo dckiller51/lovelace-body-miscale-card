@@ -8,6 +8,7 @@ import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
 import postcssLit from 'rollup-plugin-postcss-lit';
+import { string } from 'rollup-plugin-string';
 import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
@@ -56,19 +57,23 @@ export default {
       declaration: false,
       sourceMap: IS_DEV,
     }),
+    string({
+      include: ['**/styles.css'],
+    }),
     postcss({
       plugins: [
         postcssPresetEnv({
           stage: 1,
-          features: {
-            'nesting-rules': true,
-          },
+          features: { 'nesting-rules': true },
         }),
       ],
       extract: false,
       inject: false,
+      exclude: ['**/styles.css'],
     }),
-    postcssLit(),
+    postcssLit({
+      include: ['**/editor.css'],
+    }),
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',

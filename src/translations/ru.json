@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Вес: ",
     "impedance: ": "Импеданс: ",
+    "impedance_low: ": "Биоимпеданс 50 kHz: ",
+    "impedance_high: ": "Биоимпеданс 250 kHz: ",
     "height: ": "Рост: ",
     "age: ": "Возраст: ",
     "gender: ": "Пол: "
@@ -49,9 +51,13 @@
     "ideal": "Идеальный вес",
     "basal_metabolism": "Базальный метаболизм",
     "body_type": "Тип тела",
-    "metabolic_age": "Метаболический возраст"
+    "metabolic_age": "Метаболический возраст",
+    "skeletal_muscle_mass": "Скелетная мышечная масса",
+    "extracellular_water": "Внеклеточная вода",
+    "intracellular_water": "Внутриклеточная вода",
+    "ecw_tbw_ratio": "Соотношение ECW/TBW",
+    "bcm": "Масса клеток тела"
   },
-
   "body_value": {
     "skinny": "Тощий",
     "balanced_skinny": "Худощавый",
@@ -74,10 +80,13 @@
     " years": " года(лет)"
   },
   "error": {
+    "invalid_config": "Неверная конфигурация",
     "missing_entity": "Определите сущность.",
     "missing_entity_bodymiscale": "Определите сущность BodyMiScale."
   },
   "editor": {
+    "configuration": "Конфигурация",
+    "customization": "Настройка",
     "entity": "Сущность BodyMiScale (обязательно)",
     "image": "Фоновое изображение (опционально)",
     "icons_body": "Путь к иконкам (например: /local/images/bodyscoreIcon)",
@@ -85,9 +94,15 @@
     "model1": "Включите эту функцию для точных измерений состава тела.",
     "model_aria_label_on": "Включить импеданс",
     "model_aria_label_off": "Выключить импеданс",
+    "dual_impedance": "Весы с двойным импедансом (50 кГц + 250 кГц)?",
+    "dual_impedance_aria_label_on": "Включить двойной импеданс",
+    "dual_impedance_aria_label_off": "Отключить двойной импеданс",
     "unit": "Преобразование кг в фунты",
     "unit_aria_label_on": "Преобразовать кг в фунты",
     "unit_aria_label_off": "Не преобразовывать кг в фунты",
+    "theme": "Настройте тему, которую вы используете.",
+    "theme_aria_label_on": "Включить светлую тему",
+    "theme_aria_label_off": "Включить темную тему",
     "show_name": "Отображение имени пользователя",
     "show_name_aria_label_on": "Отображать имя пользователя",
     "show_name_aria_label_off": "Не отображать имя пользователя",
@@ -127,7 +142,6 @@
     "severity_generator_help": "Ссылка на справку по серьезности",
     "showabovelabels": "Показать метки сверху",
     "showbelowlabels": "Показать метки снизу",
-    "target": "Цель",
     "to": "К",
     "value_position": "Позиция значения"
   },

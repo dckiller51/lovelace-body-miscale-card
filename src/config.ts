@@ -52,11 +52,13 @@ export default function buildConfig(
 
   // Fusionner les données et préparer les valeurs par défaut
   return {
+    type: config.type ?? 'custom:body-miscale-card',
+    card_mod: config.card_mod ?? undefined,
     entity: config.entity ?? '',
     image: config.image ?? '',
     icons_body: config.icons_body ?? '',
     model: config.model ?? false,
-    impedance_required: config.impedance_required ?? false,
+    dual_impedance: config.dual_impedance ?? false,
     unit: config.unit ?? false,
     theme: config.theme ?? true,
     show_name: config.show_name ?? true,

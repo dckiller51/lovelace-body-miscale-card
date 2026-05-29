@@ -124,24 +124,26 @@ export class BodymiscaleCardEditor
       </div>
 
       <div class="option">
-        <ha-textfield
+        <ha-input
           .label=${localize('editor.image')}
           .value=${config.image || ''}
           .configValue=${'image'}
           @input=${this.valueChanged}
-        ></ha-textfield>
+        ></ha-input>
       </div>
 
       <div class="option">
-        <ha-textfield
+        <ha-input
           .label=${localize('editor.icons_body')}
           .value=${config.icons_body || ''}
           .configValue=${'icons_body'}
           @input=${this.valueChanged}
-        ></ha-textfield>
+        ></ha-input>
       </div>
 
-      ${this.renderSwitch('model', config)} ${this.renderSwitch('unit', config)}
+      ${this.renderSwitch('model', config)}
+      ${config.model ? this.renderSwitch('dual_impedance', config) : nothing}
+      ${this.renderSwitch('unit', config)}
       ${this.renderSwitch('theme', config)}
 
       <p class="page-title">
@@ -221,16 +223,24 @@ export class BodymiscaleCardEditor
     const bodyData = config.unit === false ? body_kg : body_lb;
     const bodyConfig = config.body ?? {};
 
-    // Filtrage basé sur impedance_required
     const filteredKeys = Object.keys(bodyData).filter((key) => {
       const item = bodyData[key as keyof typeof bodyData];
 
-      // Si model est false, n'inclure que ceux avec impedance_required === false
-      if (config.model === false) {
-        return !item.impedance_required; // Exclure ceux qui ont impedance_required = true
+      // Pas d'impédance : exclure tout ce qui nécessite une impédance
+      if (!config.model) {
+        return !item.impedance_required && !item.dual_impedance_required;
       }
 
-      // Si model est true, inclure tous les éléments
+      // Impédance simple : exclure ce qui nécessite dual
+      if (!config.dual_impedance) {
+        return !item.dual_impedance_required;
+      }
+
+      // Double impédance : exclure l'impédance simple (remplacée par low/high)
+      if (config.dual_impedance) {
+        if (item.impedance_required && item.dual_impedance_required === false) return false;
+      }
+
       return true;
     });
 
@@ -373,7 +383,7 @@ export class BodymiscaleCardEditor
             return html`
               <div class="severity-row">
                 <div class="input-line">
-                  <ha-textfield
+                  <ha-input
                     .label=${localize('editor_body.from')}
                     .value=${String(item.from ?? '')}
                     @input=${(ev: Event) =>
@@ -385,8 +395,8 @@ export class BodymiscaleCardEditor
                       )}
                     type="number"
                     class="from-input"
-                  ></ha-textfield>
-                  <ha-textfield
+                  ></ha-input>
+                  <ha-input
                     .label=${localize('editor_body.to')}
                     .value=${String(item.to ?? '')}
                     @input=${(ev: Event) =>
@@ -398,7 +408,7 @@ export class BodymiscaleCardEditor
                       )}
                     type="number"
                     class="to-input"
-                  ></ha-textfield>
+                  ></ha-input>
                   <div class="color-picker-container">
                     <color-select
                       .value=${item.color ?? ''}
@@ -413,7 +423,7 @@ export class BodymiscaleCardEditor
                   </div>
                 </div>
                 <div class="below-line">
-                  <ha-textfield
+                  <ha-input
                     .label=${localize('editor_body.label_below')}
                     .value=${item.label ?? ''}
                     @input=${(ev: Event) =>
@@ -424,7 +434,7 @@ export class BodymiscaleCardEditor
                         (ev.target as HTMLInputElement).value,
                       )}
                     class="label-input"
-                  ></ha-textfield>
+                  ></ha-input>
                   <div class="severity-icons">
                     <ha-icon-button
                       class="compact-icon"

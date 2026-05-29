@@ -27,6 +27,8 @@
   "attributes": {
     "weight: ": "Waga: ",
     "impedance: ": "Impedancja: ",
+    "impedance_low: ": "Impedancja 50 kHz: ",
+    "impedance_high: ": "Impedancja 250 kHz: ",
     "height: ": "Wzrost: ",
     "age: ": "Wiek: ",
     "gender: ": "Płeć: "
@@ -49,7 +51,12 @@
     "ideal": "Idealna",
     "basal_metabolism": "Metabolizm podstawowy",
     "body_type": "Typ sylwetki",
-    "metabolic_age": "Wiek metaboliczny"
+    "metabolic_age": "Wiek metaboliczny",
+    "skeletal_muscle_mass": "Masa mięśni szkieletowych",
+    "extracellular_water": "Woda zewnątrzkomórkowa",
+    "intracellular_water": "Woda wewnątrzkomórkowa",
+    "ecw_tbw_ratio": "Stosunek ECW/TBW",
+    "bcm": "Masa komórkowa ciała"
   },
   "body_value": {
     "skinny": "Chudy",
@@ -73,10 +80,13 @@
     " years": " lat"
   },
   "error": {
+    "invalid_config": "Nieprawidłowa konfiguracja",
     "missing_entity": "Proszę zdefiniuj encje.",
     "missing_entity_bodymiscale": "Proszę zdefiniuj encję bodymiscale."
   },
   "editor": {
+    "configuration": "Konfiguracja",
+    "customization": "Personalizacja",
     "entity": "Proszę wybierz konto na wadze (wymagane)!",
     "image": "Obraz tła (opcjonalne)",
     "icons_body": "Ścieżka ikon (np. /local/images/bodyscoreIcon)",
@@ -84,6 +94,9 @@
     "model1": "Włącz tę funkcję, aby uzyskać dokładne pomiary składu ciała.",
     "model_aria_label_on": "Włącz impedancję",
     "model_aria_label_off": "Wyłącz impedancję",
+    "dual_impedance": "Waga z podwójną impedancją (50 kHz + 250 kHz)?",
+    "dual_impedance_aria_label_on": "Włącz podwójną impedancję",
+    "dual_impedance_aria_label_off": "Wyłącz podwójną impedancję",
     "unit": "Zamień kg na lbs",
     "unit_aria_label_on": "Włącz opcję konwersji",
     "unit_aria_label_off": "Włącz opcję konwersji",
@@ -129,7 +142,6 @@
     "severity_generator_help": "Link do pomocy dotyczącej ważności",
     "showabovelabels": "Pokaż etykiety powyżej",
     "showbelowlabels": "Pokaż etykiety poniżej",
-    "target": "Cel",
     "to": "Do",
     "value_position": "Pozycja wartości"
   },
