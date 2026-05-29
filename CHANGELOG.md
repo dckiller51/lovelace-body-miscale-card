@@ -9,8 +9,8 @@ All notable changes to this project will be documented in this file.
 - 🛠️ **Fixed**: Replaced deprecated `ha-textfield` with `ha-input` for compatibility with Home Assistant 2026.5+.
 - 🛠️ **Fixed**: Fixed `image` and `icons_body` fields not visible in the card editor following the `ha-input` migration.
 - 🛠️ **Fixed**: Improved language detection fallback in `localize` to handle regional variants (e.g. `fr-FR` → `fr`).
-- 🎨 **Fixed**: `card-mod` compatibility — `card_mod` property is now correctly passed through `buildConfig`.
-- 🎨 **Fixed**: `.bar-inner` background now uses `var(--disabled-color, lightgray)` for proper theme support. [[#188](https://github.com/dckiller51/lovelace-body-miscale-card/issues/188)]
+- 🎨 **Fixed**: `card-mod` compatibility — `card_mod` property is now correctly passed through `buildConfig`. [[#188](https://github.com/dckiller51/lovelace-body-miscale-card/issues/188)]
+- 🎨 **Fixed**: `.bar-inner` background now uses `var(--disabled-color, lightgray)` for proper theme support.
 - 🔧 **Internal**: Migrated CSS loading to `unsafeCSS` for correct Shadow DOM style injection.
 - ✨ **Added**: Dual impedance support (50 kHz + 250 kHz) with new metrics: `impedance_low`, `impedance_high`, `bcm`, `skeletal_muscle_mass`, `extracellular_water`, `intracellular_water`, `ecw_tbw_ratio`.
 
