@@ -47,7 +47,7 @@
     "@types/resolve": "^1.20.6",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.59.1",
-    "eslint": "^10.2.1",
+    "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import-x": "^4.16.2",
     "globals": "^17.5.0",
