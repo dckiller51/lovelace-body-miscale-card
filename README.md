@@ -5,6 +5,7 @@
 [![GH-last-commit](https://img.shields.io/github/last-commit/dckiller51/lovelace-body-miscale-card.svg?style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card/commits/main)
 [![GH-code-size](https://img.shields.io/github/languages/code-size/dckiller51/lovelace-body-miscale-card.svg?color=red&style=flat-square)](https://github.com/dckiller51/lovelace-body-miscale-card)
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=flat-square)](https://github.com/hacs)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Buy_me_a_coffee-F16061?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/dckiller)
 
 Card for data of Bodymiscale component in the Lovelace user interface of Home Assistant
 
@@ -301,3 +302,9 @@ The card is based on the work of Denys Dovhan <https://github.com/denysdovhan/pu
 
 This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Xiaomi Corporation,
 or any of its subsidiaries or its affiliates. The official Xiaomi website can be found at <https://www.mi.com/global/>.
+
+## ☕ Support
+
+If you find **body-miscale-card** useful and want to support its development, you can buy me a coffee!
+
+[![Ko-fi](https://img.shields.io/badge/Buy_me_a_coffee-Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/dckiller)
