@@ -52,8 +52,8 @@ export default function buildConfig(
 
   // Fusionner les données et préparer les valeurs par défaut
   return {
+    ...config,
     type: config.type ?? 'custom:body-miscale-card',
-    card_mod: config.card_mod ?? undefined,
     entity: config.entity ?? '',
     image: config.image ?? '',
     icons_body: config.icons_body ?? '',
@@ -68,14 +68,14 @@ export default function buildConfig(
     show_toolbar: config.show_toolbar ?? true,
     show_body: config.show_body ?? true,
     show_buttons: config.show_buttons ?? false,
-    states: deepMerge(states, config.states),
+    states: deepMerge(config.states ?? {}, states),
     attributes: config.unit
-      ? deepMerge(attributes_lb, config.attributes)
-      : deepMerge(attributes_kg, config.attributes),
+      ? deepMerge(config.attributes ?? {}, attributes_lb)
+      : deepMerge(config.attributes ?? {}, attributes_kg),
     body: config.unit
-      ? deepMerge(body_lb, config.body)
-      : deepMerge(body_kg, config.body),
-    buttons: config.buttons === true ? {} : deepMerge(buttons, config.buttons),
+      ? deepMerge(config.body ?? {}, body_lb)
+      : deepMerge(config.body ?? {}, body_kg),
+    buttons: config.buttons === true ? {} : deepMerge(config.buttons ?? {}, buttons),
     styles: buildStyles(config),
     open: config.open ?? false,
     stats: config.stats ?? {},
@@ -86,8 +86,5 @@ export default function buildConfig(
       minmax: 'off',
       value: 'right',
     },
-    showabovelabels: config.showabovelabels ?? undefined,
-    showbelowlabels: config.showbelowlabels ?? undefined,
-    severity: config.severity ?? null,
   };
 }

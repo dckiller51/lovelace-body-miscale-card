@@ -10,21 +10,17 @@ export function deepMerge(...sources: any[]): Record<string, any> {
     .filter((source) => isObject(source))
     .forEach((source) => {
       Object.keys(source).forEach((key) => {
-        const targetValue = target[key];
         const sourceValue = source[key];
 
-        if (
-          Array.isArray(targetValue) &&
-          Array.isArray(sourceValue) &&
-          overrideArrays.includes(key)
-        ) {
-          // Remplacer le tableau 'severity' (plutôt que de concaténer)
-          target[key] = [...sourceValue];
-        } else if (Array.isArray(targetValue) && Array.isArray(sourceValue) && !overrideArrays.includes(key)) {
-          // Concaténer d'autres tableaux (si ce n'est pas 'severity')
-          target[key] = targetValue.concat(sourceValue);
-        } else if (isObject(targetValue) && isObject(sourceValue)) {
-          target[key] = deepMerge({ ...targetValue }, sourceValue);
+        if (key in target) {
+          const targetValue = target[key];
+
+          if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
+            if (!overrideArrays.includes(key))
+              target[key] = targetValue.concat(sourceValue);
+          } else if (isObject(targetValue) && isObject(sourceValue)) {
+            target[key] = deepMerge({ ...targetValue }, sourceValue);
+          }
         } else {
           target[key] = sourceValue;
         }
