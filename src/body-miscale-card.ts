@@ -116,14 +116,18 @@ export class BodymiscaleCard extends LitElement {
     fireEvent(this, 'config-changed', { config: this.config });
   }
 
-  private moreInfo(): void {
+  private moreInfo(attribute?: string): void {
     if (!this.config?.entity) {
       console.warn('No entity defined in the config.');
       return;
     }
 
+    let entity = this.config?.entity.replace("bodymiscale.", "sensor.") + "_" + attribute;
+    if (!attribute || !(entity in this.hass.states))
+      entity = this.config.entity;
+
     fireEvent(this, 'hass-more-info', {
-      entityId: this.config.entity,
+      entityId: entity,
     });
   }
 
@@ -179,12 +183,12 @@ export class BodymiscaleCard extends LitElement {
 
     const formatValue =
       typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
-    const localizedValue = localize(`states.${value}`) || formatValue;
+    const localizedValue = localize(`states.${value}`) || localize(`attributes_value.${value}`) || localize(`body_value.${value}`) || formatValue;
 
     const attribute =
       stateObj.state === 'ok' && data.icon === 'mdi:alert'
         ? nothing
-        : html` <div class="state-div">
+        : html` <div class="state-div" @click="${() => this.moreInfo(data.key)}">
             <div>${data.icon && this.renderIcon(data, 'default')}</div>
             <div class="state-label">
               ${data.label ?? ''}${localizedValue}${data.unit ?? ''}
@@ -243,7 +247,7 @@ export class BodymiscaleCard extends LitElement {
     const formatValue =
       typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
 
-    const localizedValue = localize(`attributes_value.${value}`) || formatValue;
+    const localizedValue = localize(`attributes_value.${value}`) || localize(`states.${value}`) || localize(`body_value.${value}`) || formatValue;
     const attribute = html`<div>
       ${data.icon && this.renderIcon(data, 'default')}
       ${data.label ?? ''}${localizedValue}${data.unit ?? ''}
@@ -253,7 +257,12 @@ export class BodymiscaleCard extends LitElement {
 
     return hasDropdown && (isValidAttribute || isValidEntityData)
       ? this.renderDropdown(attribute, data.key)
-      : attribute;
+      : html`<div class="attribute-div" @click="${() => this.moreInfo(data.key)}">
+          <div>${data.icon && this.renderIcon(data, 'default')}</div>
+          <div class="attribute-label">
+            ${data.label ?? ''}${localizedValue}${data.unit ?? ''}
+          </div>
+        </div>`;
   }
 
   private renderBody(data: any): Template {
@@ -283,7 +292,13 @@ export class BodymiscaleCard extends LitElement {
       typeof rawValue === 'number'
         ? formatNumber(rawValue, this.hass.locale)
         : rawValue;
-  
+
+    const localizedValue =
+         localize(`body_value.${rawValue}`)
+      || localize(`states.${rawValue}`)
+      || localize(`attributes_value.${rawValue}`)
+      || formattedValue;
+
     const iconUrl = this.getIconUrl(data.icon);
   
     const icon = data.icon
@@ -331,7 +346,7 @@ export class BodymiscaleCard extends LitElement {
     }
   
     const valueBlock = valuePosition !== 'off'
-      ? html`<div class="value">${localize(`body_value.${rawValue}`) || formattedValue}${data.unit || ''}</div>`
+      ? html`<div class="value">${localizedValue}${data.unit || ''}</div>`
       : nothing;
     
     // Contenu gauche / droite
@@ -351,7 +366,7 @@ export class BodymiscaleCard extends LitElement {
     
     return html`
     <div style="display: flex; flex-direction: column; padding: 0.4rem 0 0.4rem; ${!showBar ? 'justify-content: center; align-items: center;' : ''}">
-      <div class="flex-container" style="${!showBar ? 'width: 100%;' : 'justify-content: space-between; width: 100%;'}">
+      <div class="flex-container" style="${!showBar ? 'width: 100%;' : 'justify-content: space-between; width: 100%;'}" @click="${() => this.moreInfo(data.key)}">
         <div style="display: flex; align-items: center; gap: 1rem;">
           ${leftItems.filter(item => item !== nothing)}
         </div>
@@ -436,7 +451,7 @@ export class BodymiscaleCard extends LitElement {
     if (!data.severity || !Array.isArray(data.severity) || range <= 0) {
       return nothing;
     }
-  
+
     const filteredSeverity = data.severity.filter(
       (s: any) => s.color !== 'disabled' && s.from !== null && s.to !== null && s.color !== undefined
     );
@@ -537,7 +552,7 @@ export class BodymiscaleCard extends LitElement {
       <ha-icon
         class="${iconClass}"
         icon="${icon}"
-        style="margin-right: 10px; ${this.config.styles?.icon || ''} ${isProblem
+        style="${this.config.styles?.icon || ''} ${isProblem
           ? 'color: var(--error-color) !important;'
           : ''}"
       ></ha-icon>
@@ -669,14 +684,13 @@ export class BodymiscaleCard extends LitElement {
                 style="${this.config.styles?.background || ''};"
               >
                 ${this.config.show_name
-                  ? html`<div class="title" style="padding: 12px 16px 8px">
+                  ? html`<div class="title" style="padding: 12px 16px 8px" @click="${() => this.moreInfo()}">
                       ${this.renderName(stateObj)}
                     </div>`
                   : ''}
                 <div
                   class="grid"
                   style="padding: 12px 16px 8px"
-                  @click="${this.moreInfo}"
                   tabindex="0"
                 >
                   <div class="grid-left">
