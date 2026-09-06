@@ -79,9 +79,9 @@ export interface RenderIconData {
 
 export interface BodymiscaleCardConfig {
   type: string;
-  card_mod?: unknown;
   entity: string;
   image: string;
+  icons_body: string;
   model: boolean;
   dual_impedance: boolean;
   name?: string;
