@@ -180,8 +180,15 @@ ha-card {
   align-items: start;
 }
 
-.state-label {
+.attribute-div {
+  display: grid;
+  grid-template-columns: minmax(24px, 1fr) auto;
+  align-items: start;
+}
+
+.state-label, .attribute-label {
   padding: 3px 0 0 10px;
+  text-wrap: nowrap;
 }
 
 #score {
