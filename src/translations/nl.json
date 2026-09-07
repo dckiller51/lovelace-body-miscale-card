@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Zet knoppen aan",
     "show_buttons_aria_label_off": "Zet knoppen uit",
     "header_options": "1. Kaart koptekst opties",
-    "body_options": "2. Meer boordopties",
+    "body_options": "Metrieken",
+    "attributes_options": "Profielgegevens",
     "code_only_note": "LET OP: Extra opties zijn alleen beschikbaar in de code editor."
   },
   "editor_body": {

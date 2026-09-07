@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Zapnout zobrazování tlačítek",
     "show_buttons_aria_label_off": "Vypnout zobrazování tlačítek",
     "header_options": "1. Možnosti záhlaví karty",
-    "body_options": "2. Více možností karty",
+    "body_options": "Metriky",
+    "attributes_options": "Profilové údaje",
     "code_only_note": "POZOR: Další možnosti jsou dostupné pouze v editor kódu."
   },
   "editor_body": {

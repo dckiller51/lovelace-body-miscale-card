@@ -111,7 +111,8 @@
     "show_buttons_aria_label_on": "Schaltfläche anzeigen einschalten",
     "show_buttons_aria_label_off": "Schaltfläche anzeigen ausschalten",
     "header_options": "1. Kartenkopf Optionen",
-    "body_options": "2. mehr Kartenoptionen",
+    "body_options": "Metriken",
+    "attributes_options": "Profildaten",
     "code_only_note": "ACHTUNG: Weitere Optionen sind nur im Code Editor verfügbar."
   },
   "editor_body": {

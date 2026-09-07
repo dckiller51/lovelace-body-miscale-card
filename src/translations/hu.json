@@ -125,7 +125,8 @@
     "show_buttons_aria_label_on": "Gombok megjelenítésének bekapcsolása",
     "show_buttons_aria_label_off": "Gombok megjelenítésének kikapcsolása",
     "header_options": "1. Kártya fejléc beállítások",
-    "body_options": "2. További kártya beállítások",
+    "body_options": "Méretek",
+    "attributes_options": "Profiladatok",
     "code_only_note": "FIGYELEM: További beállítások csak a kód szerkesztőben érhetők el."
   },
   "editor_body": {

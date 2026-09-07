@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Activați butoanele afișajului",
     "show_buttons_aria_label_off": "Dezactivați butoanele de afișare",
     "header_options": "1. Opțiuni pentru antetul cardului",
-    "body_options": "2. Mai multe opțiuni de card",
+    "body_options": "Măsurători",
+    "attributes_options": "Datele profilului",
     "code_only_note": "ATENŢIE: Opțiuni suplimentare sunt disponibile numai în editorul de cod."
   },
   "editor_body": {

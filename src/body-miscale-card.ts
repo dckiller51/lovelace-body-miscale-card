@@ -61,6 +61,10 @@ export class BodymiscaleCard extends LitElement {
   }
 
   public setConfig(config: BodymiscaleCardConfig): void {
+    if (!config) {
+      throw new Error('Invalid configuration');
+    }
+
     this.config = buildConfig(config);
   }
 
@@ -675,6 +679,9 @@ export class BodymiscaleCard extends LitElement {
       this.config.dual_impedance,
     );
 
+    const isBodyVisible = (item: any) => !this.config.body?.[item.key]?.show === false;
+    const isAttrVisible = (item: any) => !this.config.attributes?.[item.key]?.show === false;
+
     return html`
       <ha-card>
         ${this.shouldShowBackground()
@@ -704,6 +711,7 @@ export class BodymiscaleCard extends LitElement {
                   <div class="grid-right">
                     ${filteredAttributesData
                       .filter(Boolean)
+                      .filter(isAttrVisible)
                       .map(this.renderAttribute.bind(this))}
                   </div>
                 </div>
@@ -717,7 +725,10 @@ export class BodymiscaleCard extends LitElement {
         <div id="items" ?open=${this.open || this.config.show_always_details}>
           <div id="score" class="card-content">
             <div class="scroll-wrapper">
-              ${filteredBodyData.filter(Boolean).map(this.renderBody.bind(this))}
+              ${filteredBodyData
+                .filter(Boolean)
+                .filter(isBodyVisible)
+                .map(this.renderBody.bind(this))}
             </div>
           </div>
         </div>

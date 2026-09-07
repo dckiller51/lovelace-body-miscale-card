@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import localize from './localize';
-import { BodymiscaleCardConfig, RenderBodyData } from './types';
+import { BodymiscaleCardConfig, RenderAttributeData, RenderBodyData } from './types';
 
 let compute = {
   convertkgtolb: (v: any) => Math.round(Number(v) * 2.20462 * 10) / 10,
@@ -8,23 +8,28 @@ let compute = {
 
 export const states = {
   status: {
+    order: 1,
     key: 'state',
     icon: 'mdi:scale-bathroom',
   },
   problem: {
+    order: 2,
     key: 'problem',
     icon: 'mdi:alert',
   },
   last_measurement_time: {
+    order: 3,
     key: 'last_measurement_time',
     icon: 'mdi:calendar-clock',
   },
 };
 
-export const attributes_kg = {
+export const attributes_kg: Record<string, RenderAttributeData> = {
   weight: {
     key: 'weight',
     label: localize(`attributes.${'weight: '}`),
+    order: 1,
+    show: true,
     unit: ' kg',
   },
   impedance: {
@@ -33,82 +38,109 @@ export const attributes_kg = {
     unit: ' ohm',
     impedance_required: true,
     dual_impedance_required: false,
+    order: 2,
+    show: true,
   },
   impedance_low: {
-  key: 'impedance_low',
-  label: localize(`attributes.${'impedance_low: '}`),
-  unit: ' ohm',
+    order: 2,
+    key: 'impedance_low',
+    label: localize(`attributes.${'impedance_low: '}`),
+    unit: ' ohm',
   impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   impedance_high: {
+    order: 3,
     key: 'impedance_high',
     label: localize(`attributes.${'impedance_high: '}`),
     unit: ' ohm',
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   height: {
+    order: 4,
     key: 'height',
     label: localize(`attributes.${'height: '}`),
     unit: ' cm',
+    show: true,
   },
   age: {
+    order: 5,
     key: 'age',
     label: localize(`attributes.${'age: '}`),
     unit: localize(`unit.${' years'}`),
+    show: true,
   },
   gender: {
+    order: 6,
     key: 'gender',
     label: localize(`attributes.${'gender: '}`),
+    show: true,
   },
 };
 
 export const attributes_lb = {
   weight: {
+    order: 1,
     key: 'weight',
     label: localize(`attributes.${'weight: '}`),
+    show: true,
     unit: ' lbs',
     compute: compute.convertkgtolb,
   },
   impedance: {
+    order: 2,
     key: 'impedance',
     label: localize(`attributes.${'impedance: '}`),
+    show: true,
     unit: ' ohm',
     impedance_required: true,
   },
   impedance_low: {
-  key: 'impedance_low',
-  label: localize(`attributes.${'impedance_low: '}`),
-  unit: ' ohm',
-  impedance_required: true,
-  dual_impedance_required: true,
+    order: 2,
+    key: 'impedance_low',
+    label: localize(`attributes.${'impedance_low: '}`),
+    show: true,
+    unit: ' ohm',
+    impedance_required: true,
+    dual_impedance_required: true,
   },
   impedance_high: {
+    order: 3,
     key: 'impedance_high',
     label: localize(`attributes.${'impedance_high: '}`),
+    show: true,
     unit: ' ohm',
     impedance_required: true,
     dual_impedance_required: true,
   },
   height: {
+    order: 4,
     key: 'height',
     label: localize(`attributes.${'height: '}`),
     unit: ' cm',
+    show: true,
   },
   age: {
+    order: 5,
     key: 'age',
     label: localize(`attributes.${'age: '}`),
     unit: localize(`unit.${' years'}`),
+    show: true,
   },
   gender: {
+    order: 6,
     key: 'gender',
     label: localize(`attributes.${'gender: '}`),
+    show: true,
   },
 };
 
 export const body_kg: Record<string, RenderBodyData> = {
   basal_metabolism: {
+    order: 1,
     key: 'basal_metabolism',
     label: localize(`body.${'basal_metabolism'}`),
     icon: 'basal_metabolism.png',
@@ -127,8 +159,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 1549, to: 3000, color: 'green', label: 'objective_achieved' },
     ],
     impedance_required: false,
+    show: true,
   },
   bcm: {
+    order: 2,
     key: 'bcm',
     label: localize(`body.${'bcm'}`),
     icon: 'mdi:cellphone',
@@ -149,8 +183,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   bmi: {
+    order: 3,
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
     icon: 'bmi.png',
@@ -170,8 +206,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 30.0, to: 36.5, color: 'red', label: 'very_high' },
     ],
     impedance_required: false,
+    show: true,
   },
   bmi_label: {
+    order: 4,
     key: 'bmi_label',
     label: localize(`body.${'bmi_label'}`),
     icon: 'body_type.png',
@@ -186,8 +224,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     showbelowlabels: null,
     severity: null,
     impedance_required: false,
+    show: true,
   },
   body_fat: {
+    order: 5,
     key: 'body_fat',
     label: localize(`body.${'body_fat'}`),
     icon: 'body_fat.png',
@@ -209,8 +249,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 28, to: 35, color: 'red', label: 'high' },
     ],
     impedance_required: true,
+    show: true,
   },
   body_type: {
+    order: 6,
     key: 'body_type',
     label: localize(`body.${'body_type'}`),
     icon: 'body_type.png',
@@ -225,8 +267,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     showbelowlabels: null,
     severity: null,
     impedance_required: true,
+    show: true,
   },
   bone_mass: {
+    order: 7,
     key: 'bone_mass',
     label: localize(`body.${'bone_mass'}`),
     icon: 'bone_mass.png',
@@ -246,8 +290,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 4.20, to: 6.40, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   ecw_tbw_ratio: {
+    order: 8,
     key: 'ecw_tbw_ratio',
     label: localize(`body.${'ecw_tbw_ratio'}`),
     icon: 'mdi:chart-pie',
@@ -269,8 +315,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   extracellular_water: {
+    order: 9,
     key: 'extracellular_water',
     label: localize(`body.${'extracellular_water'}`),
     icon: 'mdi:water-opacity',
@@ -292,8 +340,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   ideal: {
+    order: 10,
     key: 'ideal',
     label: localize(`body.${'ideal'}`),
     icon: 'ideal.png',
@@ -314,8 +364,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 93.30, to: 111.30, color: 'red', label: 'obese' },
     ],
     impedance_required: false,
+    show: true,
   },
   intracellular_water: {
+    order: 11,
     key: 'intracellular_water',
     label: localize(`body.${'intracellular_water'}`),
     icon: 'mdi:water-circle',
@@ -337,8 +389,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   metabolic_age: {
+    order: 12,
     key: 'metabolic_age',
     label: localize(`body.${'metabolic_age'}`),
     icon: 'metabolic_age.png',
@@ -354,8 +408,10 @@ export const body_kg: Record<string, RenderBodyData> = {
     showbelowlabels: null,
     severity: null,
     impedance_required: true,
+    show: true,
   },
   muscle_mass: {
+    order: 13,
     key: 'muscle_mass',
     label: localize(`body.${'muscle_mass'}`),
     icon: 'muscle_mass.png',
@@ -375,8 +431,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 59.50, to: 69.60, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   protein: {
+    order: 14,
     key: 'protein',
     label: localize(`body.${'protein'}`),
     icon: 'protein.png',
@@ -396,8 +454,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 20, to: 24, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   skeletal_muscle_mass: {
+    order: 15,
     key: 'skeletal_muscle_mass',
     label: localize(`body.${'skeletal_muscle_mass'}`),
     icon: 'mdi:arm-flex',
@@ -418,9 +478,11 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 44, to: 55, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
     dual_impedance_required: true,
   },
   visceral_fat: {
+    order: 16,
     key: 'visceral_fat',
     label: localize(`body.${'visceral_fat'}`),
     icon: 'visceral_fat.png',
@@ -439,8 +501,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 15, to: 20, color: 'red', label: 'very_high' },
     ],
     impedance_required: false,
+    show: true,
   },
   water: {
+    order: 17,
     key: 'water',
     label: localize(`body.${'water'}`),
     icon: 'water.png',
@@ -460,8 +524,10 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 65.1, to: 75, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   weight: {
+    order: 18,
     key: 'weight',
     label: localize(`body.${'weight'}`),
     icon: 'ideal.png',
@@ -482,10 +548,12 @@ export const body_kg: Record<string, RenderBodyData> = {
       { from: 93.30, to: 111.30, color: 'red', label: 'obese' },
     ],
     impedance_required: false,
+    show: true,
   },
 };
 export const body_lb: Record<string, RenderBodyData> = {
   basal_metabolism: {
+    order: 1,
     key: 'basal_metabolism',
     label: localize(`body.${'basal_metabolism'}`),
     icon: 'basal_metabolism.png',
@@ -504,8 +572,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 1549, to: 3000, color: 'green', label: 'objective_achieved' },
     ],
     impedance_required: false,
+    show: true,
   },
   bcm: {
+    order: 2,
     key: 'bcm',
     label: localize(`body.${'bcm'}`),
     icon: 'mdi:cellphone',
@@ -527,8 +597,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   bmi: {
+    order: 3,
     key: 'bmi',
     label: localize(`body.${'bmi'}`),
     icon: 'bmi.png',
@@ -548,8 +620,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 30.0, to: 36.5, color: 'red', label: 'very_high' },
     ],
     impedance_required: false,
+    show: true,
   },
   bmi_label: {
+    order: 4,
     key: 'bmi_label',
     label: localize(`body.${'bmi_label'}`),
     icon: 'body_type.png',
@@ -564,8 +638,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     showbelowlabels: null,
     severity: null,
     impedance_required: false,
+    show: true,
   },
   body_fat: {
+    order: 5,
     key: 'body_fat',
     label: localize(`body.${'body_fat'}`),
     icon: 'body_fat.png',
@@ -587,8 +663,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 28, to: 35, color: 'red', label: 'high' },
     ],
     impedance_required: true,
+    show: true,
   },
   body_type: {
+    order: 6,
     key: 'body_type',
     label: localize(`body.${'body_type'}`),
     icon: 'body_type.png',
@@ -603,8 +681,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     showbelowlabels: null,
     severity: null,
     impedance_required: true,
+    show: true,
   },
   bone_mass: {
+    order: 7,
     key: 'bone_mass',
     label: localize(`body.${'bone_mass'}`),
     icon: 'bone_mass.png',
@@ -625,8 +705,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 9.26, to: 14.11, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   ecw_tbw_ratio: {
+    order: 8,
     key: 'ecw_tbw_ratio',
     label: localize(`body.${'ecw_tbw_ratio'}`),
     icon: 'mdi:chart-pie',
@@ -648,8 +730,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   extracellular_water: {
+    order: 9,
     key: 'extracellular_water',
     label: localize(`body.${'extracellular_water'}`),
     icon: 'mdi:water-opacity',
@@ -671,8 +755,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   ideal: {
+    order: 10,
     key: 'ideal',
     label: localize(`body.${'ideal'}`),
     icon: 'ideal.png',
@@ -694,8 +780,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 205.75, to: 245.45, color: 'red', label: 'obese' },
     ],
     impedance_required: false,
+    show: true,
   },
   intracellular_water: {
+    order: 11,
     key: 'intracellular_water',
     label: localize(`body.${'intracellular_water'}`),
     icon: 'mdi:water-circle',
@@ -717,8 +805,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   metabolic_age: {
+    order: 12,
     key: 'metabolic_age',
     label: localize(`body.${'metabolic_age'}`),
     icon: 'metabolic_age.png',
@@ -734,8 +824,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     showbelowlabels: null,
     severity: null,
     impedance_required: true,
+    show: true,
   },
   muscle_mass: {
+    order: 13,
     key: 'muscle_mass',
     label: localize(`body.${'muscle_mass'}`),
     icon: 'muscle_mass.png',
@@ -756,8 +848,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 131.17, to: 153.38, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   protein: {
+    order: 14,
     key: 'protein',
     label: localize(`body.${'protein'}`),
     icon: 'protein.png',
@@ -777,8 +871,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 20, to: 24, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   skeletal_muscle_mass: {
+    order: 15,
     key: 'skeletal_muscle_mass',
     label: localize(`body.${'skeletal_muscle_mass'}`),
     icon: 'mdi:arm-flex',
@@ -801,8 +897,10 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     dual_impedance_required: true,
+    show: true,
   },
   visceral_fat: {
+    order: 16,
     key: 'visceral_fat',
     label: localize(`body.${'visceral_fat'}`),
     icon: 'visceral_fat.png',
@@ -821,8 +919,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 15, to: 20, color: 'red', label: 'very_high' },
     ],
     impedance_required: false,
+    show: true,
   },
   water: {
+    order: 17,
     key: 'water',
     label: localize(`body.${'water'}`),
     icon: 'water.png',
@@ -842,8 +942,10 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 65.1, to: 75, color: 'blue', label: 'good' },
     ],
     impedance_required: true,
+    show: true,
   },
   weight: {
+    order: 18,
     key: 'weight',
     label: localize(`body.${'weight'}`),
     icon: 'ideal.png',
@@ -865,6 +967,7 @@ export const body_lb: Record<string, RenderBodyData> = {
       { from: 205.75, to: 245.45, color: 'red', label: 'obese' },
     ],
     impedance_required: false,
+    show: true,
   },
 };
 
@@ -914,42 +1017,73 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
   show_body: true,
   show_buttons: false,
   attributes: {
+    weight: {
+      order: 1,
+      key: 'weight',
+      show: true,
+    },
     impedance: {
+      order: 2,
       key: 'impedance',
       impedance_required: true,
       dual_impedance_required: false,
+      show: true,
     },
     impedance_low: {
+      order: 2,
       key: 'impedance_low',
       impedance_required: true,
       dual_impedance_required: true,
+      show: true,
     },
     impedance_high: {
+      order: 3,
       key: 'impedance_high',
       impedance_required: true,
       dual_impedance_required: true,
+      show: true,
+    },
+    height: {
+      order: 4,
+      key: 'height',
+      show: true,
+    },
+    age: {
+      order: 5,
+      key: 'age',
+      show: true,
+    },
+    gender: {
+      order: 6,
+      key: 'gender',
+      show: true,
     },
   },
   body: {
     basal_metabolism: {
+      order: 1,
       key: 'basal_metabolism',
       severity: [
         { from: 0, to: 1549, color: 'red', label: 'objective_not_achieved' },
         { from: 1549, to: 3000, color: 'green', label: 'objective_achieved' },
       ],
+      show: true,
       impedance_required: false,
     },
     bcm: {
+      order: 2,
       key: 'bcm',
       severity: [
         { from: 0, to: 25, color: 'red', label: 'low' },
         { from: 25, to: 35, color: 'green', label: 'normal' },
         { from: 35, to: 50, color: 'blue', label: 'good' },
       ],
+      show: true,
       impedance_required: true,
       dual_impedance_required: true,
     },
     bmi: {
+      order: 3,
       key: 'bmi',
       severity: [
         { from: 12, to: 18.5, color: 'blue', label: 'low' },
@@ -957,13 +1091,17 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 25.0, to: 30.0, color: 'orange', label: 'high' },
         { from: 30.0, to: 36.5, color: 'red', label: 'very_high' },
       ],
+      show: true,
       impedance_required: false,
     },
     bmi_label: {
+      order: 4,
       key: 'bmi_label',
+      show: true,
       impedance_required: false,
     },
     body_fat: {
+      order: 5,
       key: 'body_fat',
       severity: [
         { from: 5, to: 12, color: 'royalblue', label: 'very_low' },
@@ -972,22 +1110,28 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 23, to: 28, color: 'orange', label: 'increased' },
         { from: 28, to: 35, color: 'red', label: 'high' },
       ],
+      show: true,
       impedance_required: true,
     },
     body_type: {
+      order: 6,
       key: 'body_type',
+      show: true,
       impedance_required: true,
     },
     bone_mass: {
+      order: 7,
       key: 'bone_mass',
       severity: [
         { from: 0, to: 2.00, color: 'red', label: 'insufficient' },
         { from: 2.00, to: 4.20, color: 'green', label: 'normal' },
         { from: 4.20, to: 6.40, color: 'blue', label: 'good' },
       ],
+      show: true,
       impedance_required: true,
     },
     ecw_tbw_ratio: {
+      order: 8,
       key: 'ecw_tbw_ratio',
       severity: [
         { from: 0, to: 36, color: 'blue', label: 'low' },
@@ -997,8 +1141,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       dual_impedance_required: true,
+      show: true,
     },
     extracellular_water: {
+      order: 9,
       key: 'extracellular_water',
       severity: [
         { from: 0, to: 14, color: 'blue', label: 'low' },
@@ -1008,8 +1154,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       dual_impedance_required: true,
+      show: true,
     },
     ideal: {
+      order: 10,
       key: 'ideal',
       severity: [
         { from: 39.30, to: 57.30, color: 'blue', label: 'underweight' },
@@ -1018,8 +1166,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 93.30, to: 111.30, color: 'red', label: 'obese' },
       ],
       impedance_required: false,
+      show: true,
     },
     intracellular_water: {
+      order: 11,
       key: 'intracellular_water',
       severity: [
         { from: 0, to: 18, color: 'blue', label: 'low' },
@@ -1029,12 +1179,16 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       dual_impedance_required: true,
+      show: true,
     },
     metabolic_age: {
+      order: 12,
       key: 'metabolic_age',
       impedance_required: true,
+      show: true,
     },
     muscle_mass: {
+      order: 13,
       key: 'muscle_mass',
       severity: [
         { from: 39.30, to: 49.40, color: 'red', label: 'insufficient' },
@@ -1042,8 +1196,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 59.50, to: 69.60, color: 'blue', label: 'good' },
       ],
       impedance_required: true,
+      show: true,
     },
     protein: {
+      order: 14,
       key: 'protein',
       severity: [
         { from: 11, to: 16, color: 'red', label: 'insufficient' },
@@ -1051,8 +1207,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 20, to: 24, color: 'blue', label: 'good' },
       ],
       impedance_required: true,
+      show: true,
     },
     skeletal_muscle_mass: {
+      order: 15,
       key: 'skeletal_muscle_mass',
       severity: [
         { from: 0, to: 29, color: 'red', label: 'low' },
@@ -1062,8 +1220,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       dual_impedance_required: true,
+      show: true,
     },
     visceral_fat: {
+      order: 16,
       key: 'visceral_fat',
       severity: [
         { from: 5, to: 10, color: 'green', label: 'normal' },
@@ -1071,8 +1231,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 15, to: 20, color: 'red', label: 'very_high' },
       ],
       impedance_required: false,
+      show: true,
     },
     water: {
+      order: 17,
       key: 'water',
       severity: [
         { from: 45, to: 55, color: 'red', label: 'insufficient' },
@@ -1080,8 +1242,10 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 65.1, to: 75, color: 'blue', label: 'good' },
       ],
       impedance_required: true,
+      show: true,
     },
     weight: {
+      order: 18,
       key: 'weight',
       severity: [
         { from: 39.30, to: 57.30, color: 'blue', label: 'underweight' },
@@ -1090,6 +1254,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
         { from: 93.30, to: 111.30, color: 'red', label: 'obese' },
       ],
       impedance_required: false,
+      show: true,
     },
   },
 };

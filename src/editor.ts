@@ -8,7 +8,13 @@ import {
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { defaultCardConfig, body_kg, body_lb } from './const';
+import {
+  defaultCardConfig,
+  body_kg,
+  body_lb,
+  attributes_kg,
+  attributes_lb,
+} from './const';
 import styles from './editor.css';
 import localize from './localize';
 import './color-select';
@@ -16,6 +22,8 @@ import {
   Template,
   BodymiscaleCardConfig,
   NumericSeverity,
+  RenderAttributeData,
+  RenderBodyData,
   PositionKeys,
 } from './types';
 
@@ -34,6 +42,7 @@ export class BodymiscaleCardEditor
 
   @state() private config: Partial<BodymiscaleCardConfig> = {};
   @state() private helpers: any;
+  @state() private customTab: 'body' | 'attributes' = 'body';
 
   private isInitialized = false;
 
@@ -188,7 +197,25 @@ export class BodymiscaleCardEditor
           </ha-icon-button>
         </div>
       </div>
-      ${this.renderBodyOptions(config)}
+
+      <div class="subpage-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <ha-button
+          .outlined=${this.customTab !== 'body'}
+          @click=${() => (this.customTab = 'body')}
+        >
+          ${localize('editor.body_options') || 'Metrics'}
+        </ha-button>
+        <ha-button
+          .outlined=${this.customTab !== 'attributes'}
+          @click=${() => (this.customTab = 'attributes')}
+        >
+          ${localize('editor.attributes_options') || 'Profile Data'}
+        </ha-button>
+      </div>
+
+      ${this.customTab === 'body'
+        ? this.renderBodyOptions(config)
+        : this.renderAttributeOptions(config)}
     `;
   }
 
@@ -219,67 +246,306 @@ export class BodymiscaleCardEditor
     `;
   }
 
-  private renderBodyOptions(config: Partial<BodymiscaleCardConfig>) {
-    const bodyData = config.unit === false ? body_kg : body_lb;
-    const bodyConfig = config.body ?? {};
-
-    const filteredKeys = Object.keys(bodyData).filter((key) => {
+  private filterBodyKeys(
+    bodyData: typeof body_kg,
+    config: Partial<BodymiscaleCardConfig>,
+  ): string[] {
+    return Object.keys(bodyData).filter((key) => {
       const item = bodyData[key as keyof typeof bodyData];
 
-      // Pas d'impédance : exclure tout ce qui nécessite une impédance
       if (!config.model) {
         return !item.impedance_required && !item.dual_impedance_required;
       }
 
-      // Impédance simple : exclure ce qui nécessite dual
       if (!config.dual_impedance) {
         return !item.dual_impedance_required;
       }
 
-      // Double impédance : exclure l'impédance simple (remplacée par low/high)
       if (config.dual_impedance) {
         if (item.impedance_required && item.dual_impedance_required === false) return false;
       }
 
       return true;
     });
+  }
 
-    return filteredKeys.map((key) => {
-      const item = bodyData[key as keyof typeof bodyData];
-      const positions = bodyConfig[key]?.positions || item.positions || {};
-      const showabovelabels =
-        bodyConfig[key]?.showabovelabels !== undefined && bodyConfig[key]?.showabovelabels !== null
-          ? bodyConfig[key].showabovelabels
-          : item.showabovelabels;
-      const showbelowlabels =
-        bodyConfig[key]?.showbelowlabels !== undefined && bodyConfig[key]?.showbelowlabels !== null
-          ? bodyConfig[key].showbelowlabels
-          : item.showbelowlabels;
-      const severity = bodyConfig[key]?.severity || item.severity;
+  private filterAttributeKeys(
+    attrData: typeof attributes_kg,
+    config: Partial<BodymiscaleCardConfig>,
+  ): string[] {
+    return Object.keys(attrData).filter((key) => {
+      const item = attrData[key as keyof typeof attrData] as RenderAttributeData;
 
-      const label = localize(`body.${key}`);
+      if (!config.model && item.impedance_required) {
+        return false;
+      }
 
-      const positionKeys: PositionKeys[] = ['icon', 'name', 'minmax', 'value'];
+      return true;
+    });
+  }
+
+  private getOrderedBodyKeys(config: Partial<BodymiscaleCardConfig>): string[] {
+    const bodyData = config.unit === false ? body_kg : body_lb;
+    const defaultKeys = this.filterBodyKeys(bodyData, config);
+    const userBodyConfig = this.config?.body ?? {};
+
+    return [...defaultKeys].sort((a, b) => {
+      const itemA = bodyData[a as keyof typeof bodyData] as RenderBodyData | undefined;
+      const itemB = bodyData[b as keyof typeof bodyData] as RenderBodyData | undefined;
+
+      const orderA = userBodyConfig[a]?.order ?? itemA?.order ?? 999;
+      const orderB = userBodyConfig[b]?.order ?? itemB?.order ?? 999;
+
+      return orderA - orderB;
+    });
+  }
+
+  private getOrderedAttributeKeys(config: Partial<BodymiscaleCardConfig>): string[] {
+    const attrData = config.unit === false ? attributes_kg : attributes_lb;
+    const defaultKeys = this.filterAttributeKeys(attrData, config);
+    const userAttrConfig = this.config?.attributes ?? {};
+
+    return [...defaultKeys].sort((a, b) => {
+      const itemA = attrData[a as keyof typeof attrData] as RenderBodyData | undefined;
+      const itemB = attrData[b as keyof typeof attrData] as RenderBodyData | undefined;
+
+      const orderA = userAttrConfig[a]?.order ?? itemA?.order ?? 999;
+      const orderB = userAttrConfig[b]?.order ?? itemB?.order ?? 999;
+
+      return orderA - orderB;
+    });
+  }
+
+  protected _moveBodyItem(key: string, direction: -1 | 1): void {
+    if (!this.config) return;
+
+    const config = { ...defaultCardConfig, ...this.config };
+    const keys = this.getOrderedBodyKeys(config);
+    const index = keys.indexOf(key);
+    const target = index + direction;
+
+    if (index === -1 || target < 0 || target >= keys.length) return;
+
+    [keys[index], keys[target]] = [keys[target], keys[index]];
+
+    const currentBody = this.config.body ?? {};
+    const newBody: Record<string, RenderBodyData> = {};
+
+    keys.forEach((k, idx) => {
+      newBody[k] = {
+        ...(currentBody[k] ?? {}),
+        order: idx + 1,
+      } as RenderBodyData;
+    });
+
+    Object.keys(currentBody).forEach((k) => {
+      if (!(k in newBody)) {
+        newBody[k] = currentBody[k];
+      }
+    });
+
+    this.config = {
+      ...this.config,
+      body: newBody,
+    };
+
+    fireEvent(this, 'config-changed', { config: this.config });
+    this.requestUpdate();
+  }
+
+  protected _moveAttributeItem(key: string, direction: -1 | 1): void {
+    if (!this.config) return;
+
+    const config = { ...defaultCardConfig, ...this.config };
+    const keys = this.getOrderedAttributeKeys(config);
+    const index = keys.indexOf(key);
+    const target = index + direction;
+
+    if (index === -1 || target < 0 || target >= keys.length) return;
+
+    [keys[index], keys[target]] = [keys[target], keys[index]];
+
+    const currentAttr = this.config.attributes ?? {};
+    const newAttributes: Record<string, RenderAttributeData> = {};
+
+    keys.forEach((k, idx) => {
+      newAttributes[k] = {
+        ...(currentAttr[k] ?? {}),
+        order: idx + 1,
+      } as RenderAttributeData;
+    });
+
+    Object.keys(currentAttr).forEach((k) => {
+      if (!(k in newAttributes)) {
+        newAttributes[k] = currentAttr[k];
+      }
+    });
+
+    this.config = {
+      ...this.config,
+      attributes: newAttributes,
+    };
+
+    fireEvent(this, 'config-changed', { config: this.config });
+    this.requestUpdate();
+  }
+
+  protected _toggleBodyOption(key: string, show: boolean): void {
+      if (!this.config) return;
+
+      const currentBody = this.config.body ?? {};
+      const updatedBody = {
+        ...currentBody,
+        [key]: {
+          ...(currentBody[key] ?? {}),
+          show,
+        },
+      };
+
+      this.config = {
+        ...this.config,
+        body: updatedBody,
+      };
+
+      fireEvent(this, 'config-changed', { config: this.config });
+      this.requestUpdate();
+    }
+
+  private renderBodyOptions(config: Partial<BodymiscaleCardConfig>) {
+      const bodyData = config.unit === false ? body_kg : body_lb;
+      const bodyConfig = config.body ?? {};
+      const filteredKeys = this.getOrderedBodyKeys(config);
+
+      return filteredKeys.map((key, index) => {
+        const item = bodyData[key as keyof typeof bodyData];
+        const positions = bodyConfig[key]?.positions || item.positions || {};
+        const showabovelabels =
+          bodyConfig[key]?.showabovelabels !== undefined && bodyConfig[key]?.showabovelabels !== null
+            ? bodyConfig[key].showabovelabels
+            : item.showabovelabels;
+        const showbelowlabels =
+          bodyConfig[key]?.showbelowlabels !== undefined && bodyConfig[key]?.showbelowlabels !== null
+            ? bodyConfig[key].showbelowlabels
+            : item.showbelowlabels;
+        const severity = bodyConfig[key]?.severity || item.severity;
+
+        const label = localize(`body.${key}`);
+        const positionKeys: PositionKeys[] = ['icon', 'name', 'minmax', 'value'];
+        const isShown = bodyConfig[key]?.show ?? true;
+
+        return html`
+          <ha-expansion-panel style="margin-bottom: 8px; border: 1px solid var(--divider-color); border-radius: 4px;">
+            <div slot="header" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding-right: 8px;">
+              <div style="display: flex; align-items: center; gap: 12px;" @click=${(e: Event) => e.stopPropagation()}>
+                <ha-switch
+                  .checked=${isShown}
+                  @change=${(ev: Event) =>
+                    this._toggleBodyOption(key, (ev.target as HTMLInputElement).checked)}
+                ></ha-switch>
+                <span style="font-weight: 500; opacity: ${isShown ? '1' : '0.5'};">${label}</span>
+              </div>
+              <div class="severity-icons" @click=${(e: Event) => e.stopPropagation()}>
+                <ha-icon-button
+                  class="compact-icon"
+                  .disabled=${index === 0}
+                  @click=${() => this._moveBodyItem(key, -1)}
+                >
+                  <ha-icon icon="mdi:arrow-up"></ha-icon>
+                </ha-icon-button>
+                <ha-icon-button
+                  class="compact-icon"
+                  .disabled=${index === filteredKeys.length - 1}
+                  @click=${() => this._moveBodyItem(key, 1)}
+                >
+                  <ha-icon icon="mdi:arrow-down"></ha-icon>
+                </ha-icon-button>
+              </div>
+            </div>
+            <div style="padding: 12px 16px;">
+              <ha-form-grid>
+                ${positionKeys.map((positionKey) =>
+                  this.renderPositionSelect(
+                    positionKey,
+                    positions[positionKey],
+                    `body.${key}.positions.${positionKey}`,
+                  ),
+                )}
+              </ha-form-grid>
+              <ha-form-grid>
+                ${this.renderBooleanSelector('showabovelabels', showabovelabels, `body.${key}.showabovelabels`)}
+                ${this.renderBooleanSelector('showbelowlabels', showbelowlabels, `body.${key}.showbelowlabels`)}
+              </ha-form-grid>
+              <ha-form-grid>
+                ${this.renderSeverityInputs(severity, key)}
+              </ha-form-grid>
+            </div>
+          </ha-expansion-panel>
+        `;
+      });
+    }
+
+  protected _toggleAttributeOption(key: string, show: boolean): void {
+    if (!this.config) return;
+
+    const currentAttr = this.config.attributes ?? {};
+    const updatedAttr = {
+      ...currentAttr,
+      [key]: {
+        ...(currentAttr[key] ?? {}),
+        show,
+      },
+    };
+
+    this.config = {
+      ...this.config,
+      attributes: updatedAttr,
+    };
+
+    fireEvent(this, 'config-changed', { config: this.config });
+    this.requestUpdate();
+  }
+
+  private renderAttributeOptions(config: Partial<BodymiscaleCardConfig>) {
+    const attrData = config.unit === false ? attributes_kg : attributes_lb;
+    const attrConfig = config.attributes ?? {};
+    const filteredKeys = this.getOrderedAttributeKeys(config);
+
+    return filteredKeys.map((key, index) => {
+      const item = attrData[key as keyof typeof attrData];
+      const customLabel = attrConfig[key]?.label;
+      const label = customLabel || (item?.label ? localize(`attributes.${key}`) || item.label : key);
+      const isShown = attrConfig[key]?.show ?? true;
 
       return html`
-        <div>
-          <h3>${label}</h3>
-          <ha-form-grid>
-            ${positionKeys.map((positionKey) => {
-              return this.renderPositionSelect(
-                positionKey,
-                positions[positionKey],
-                key,
-              );
-            })}
-          </ha-form-grid>
-          <ha-form-grid>
-            ${this.renderBooleanSelector('showabovelabels', showabovelabels, `body.${key}.showabovelabels`)}
-            ${this.renderBooleanSelector('showbelowlabels', showbelowlabels, `body.${key}.showbelowlabels`)}
-          </ha-form-grid>
-          <ha-form-grid>
-            ${this.renderSeverityInputs(severity, key)}
-          </ha-form-grid>
+        <div style="margin-bottom: 12px;">
+          <div class="flex-space-between" style="align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <ha-switch
+                .checked=${isShown}
+                @change=${(ev: Event) =>
+                  this._toggleAttributeOption(key, (ev.target as HTMLInputElement).checked)}
+              ></ha-switch>
+              <h3 style="margin: 0; opacity: ${isShown ? '1' : '0.5'};">
+                ${label}
+              </h3>
+            </div>
+            <div class="severity-icons">
+              <ha-icon-button
+                class="compact-icon"
+                .disabled=${index === 0}
+                @click=${() => this._moveAttributeItem(key, -1)}
+              >
+                <ha-icon icon="mdi:arrow-up"></ha-icon>
+              </ha-icon-button>
+              <ha-icon-button
+                class="compact-icon"
+                .disabled=${index === filteredKeys.length - 1}
+                @click=${() => this._moveAttributeItem(key, 1)}
+              >
+                <ha-icon icon="mdi:arrow-down"></ha-icon>
+              </ha-icon-button>
+            </div>
+          </div>
         </div>
       `;
     });
@@ -288,10 +554,9 @@ export class BodymiscaleCardEditor
   private renderPositionSelect(
     positionKey: PositionKeys,
     currentValue: string | undefined,
-    sectionKey: string,
+    configPath: string,
   ) {
     const valueToUse = currentValue ?? '';
-    const configPath = `body.${sectionKey}.positions.${positionKey}`;
 
     return html`
       <div class="option">
@@ -303,19 +568,21 @@ export class BodymiscaleCardEditor
           naturalMenuWidth
           class="full"
         >
-          ${currentValue === undefined
-            ? html`<ha-list-item value="" selected disabled></ha-list-item>`
-            : nothing}
           <ha-list-item 
-            .value=${'left'}
+            value="left"
+            ?selected=${valueToUse === 'left'}
             @click=${() => this._updateValue(configPath, 'left')}
           >${localize('editor_body.left')}</ha-list-item>
+
           <ha-list-item 
-            .value=${'right'}
+            value="right"
+            ?selected=${valueToUse === 'right'}
             @click=${() => this._updateValue(configPath, 'right')}
           >${localize('editor_body.right')}</ha-list-item>
+
           <ha-list-item 
-            .value=${'off'}
+            value="off"
+            ?selected=${valueToUse === 'off'}
             @click=${() => this._updateValue(configPath, 'off')}
           >${localize('editor_body.off')}</ha-list-item>
         </ha-select>
@@ -326,7 +593,7 @@ export class BodymiscaleCardEditor
   private renderBooleanSelector(
     labelKey: string,
     currentValue: string | null | undefined,
-    configPath: string
+    configPath: string,
   ) {
     if (currentValue === null || currentValue === undefined) {
       return nothing;
@@ -364,15 +631,13 @@ export class BodymiscaleCardEditor
     if (severity == null) {
       return nothing;
     }
-  
+
     const severityArray = Array.isArray(severity) ? severity : [];
-  
-    // Assurer qu'il y a toujours au moins une ligne vide pour l'édition
     const itemsToRender =
       severityArray.length > 0
         ? severityArray
         : [{ from: '', to: '', color: '', label: '' }];
-  
+
     return html`
       <div>
         ${itemsToRender.map(
@@ -463,9 +728,9 @@ export class BodymiscaleCardEditor
         )}
       </div>
     `;
-  } 
+  }
 
-  private updateNumericSeverity(
+  protected updateNumericSeverity(
     configKey: string,
     index: number,
     key: 'from' | 'to' | 'color' | 'label',
@@ -473,14 +738,13 @@ export class BodymiscaleCardEditor
   ): void {
     if (this.config && this.config.body) {
       if (!Array.isArray(this.config.body[configKey]?.severity)) {
-        this.config.body[configKey].severity = []; // Initialiser si nécessaire
+        this.config.body[configKey].severity = [];
       }
       const severity = [
         ...(this.config.body[configKey].severity as NumericSeverity),
       ];
       if (severity[index]) {
         severity[index] = { ...severity[index], [key]: value };
-
         this.updateConfig(configKey, severity);
       }
     }
@@ -489,7 +753,7 @@ export class BodymiscaleCardEditor
   private addNumericSeverity(configKey: string): void {
     if (this.config && this.config.body) {
       if (!Array.isArray(this.config.body[configKey]?.severity)) {
-        this.config.body[configKey].severity = []; // Initialiser en tant que tableau si nécessaire
+        this.config.body[configKey].severity = [];
       }
       const severity = [
         ...((this.config.body[configKey]?.severity as NumericSeverity) || []),
@@ -504,7 +768,6 @@ export class BodymiscaleCardEditor
       ...((this.config?.body?.[configKey]?.severity as NumericSeverity) || []),
     ].filter((_, i) => i !== index);
 
-    // Assurer qu'on a toujours au moins une ligne vide
     if (severity.length === 0) {
       severity.push({ from: 0, to: 0, color: '', label: '' });
     }
@@ -515,12 +778,11 @@ export class BodymiscaleCardEditor
   private updateConfig(configKey: string, severity: NumericSeverity): void {
     if (this.config && this.config.body) {
       this.config.body[configKey].severity = severity;
-
       this.valueChanged();
     }
   }
 
-  private valueChanged(event: Event | null = null): void {
+  protected valueChanged(event: Event | null = null): void {
     if (!this.config || !this.hass) {
       return;
     }
@@ -541,7 +803,7 @@ export class BodymiscaleCardEditor
     }
   }
 
-  private _updateValue(configPath: string, value: any): void {
+  protected _updateValue(configPath: string, value: any): void {
     if (!this.config) return;
 
     const path = configPath.split('.');

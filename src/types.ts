@@ -39,17 +39,22 @@ export interface RenderStateData {
   icon: string;
   key: string;
   label: string;
+  order: number;
   unit: string;
 }
 
 export interface RenderAttributeData {
   compute?: (value: any) => any;
+  age?: number;
   icon?: string;
-  impedance_required: boolean;
+  impedance_required?: boolean;
   dual_impedance_required?: boolean;
   key: string;
   label?: string;
+  order: number;
+  show?: boolean;
   unit?: string;
+  weight?: number;
 }
 
 export interface RenderBodyData {
@@ -60,12 +65,14 @@ export interface RenderBodyData {
   dual_impedance_required?: boolean;
   key: string;
   label?: string;
+  order: number;
   positions?: {
     icon?: 'left' | 'right' | 'off' | undefined;
     name?: 'left' | 'right' | 'off' | undefined;
     minmax?: 'left' | 'right' | 'off' | undefined;
     value?: 'left' | 'right' | 'off' | undefined;
   };
+  show?: boolean;
   showabovelabels?: string | null,
   showbelowlabels?: string | null,
   severity?: string | NumericSeverity | null;
