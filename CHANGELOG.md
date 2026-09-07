@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.9.0
+
+- ✨ **Added**: Interactive move up/down controls in the editor to reorder states, attributes, and body elements easily.
+- ✨ **Added**: Toggle options to show or hide individual profile attributes, metrics, and body elements.
+- 🎨 **Improved**: Compact collapsible sections (expansion panels) in the card editor for better readability when configuring options.
+- ✨ **Added**: Allow users to specify custom ordering for state, attribute, and body items. [[#228](https://github.com/dckiller51/lovelace-body-miscale-card/pull/228)]
+- ✨ **Added**: Enable support for user-specific additional configuration keys. [[#228](https://github.com/dckiller51/lovelace-body-miscale-card/pull/228)]
+- 🛠️ **Fixed**: Format attribute columns consistently with state columns. [[#229](https://github.com/dckiller51/lovelace-body-miscale-card/pull/229)]
+- 🛠️ **Fixed**: Open more specific `more-info` dialogs when clicking on attributes, states, or body elements. [[#229](https://github.com/dckiller51/lovelace-body-miscale-card/pull/229)]
+- 🌍 **Fixed**: Translate state values consistently across all views (`states`, `attributes_value`, and `body_value`). [[#229](https://github.com/dckiller51/lovelace-body-miscale-card/pull/229)]
+
+❤️ **Special Thanks**: A huge thanks to **@Triple-S** for introducing the ability to reorder items and thresholds with PRs [#228](https://github.com/dckiller51/lovelace-body-miscale-card/pull/228) and [#229](https://github.com/dckiller51/lovelace-body-miscale-card/pull/229)!
+
 ## 2026.5.0
 
 - 🛠️ **Fixed**: Replaced deprecated `ha-textfield` with `ha-input` for compatibility with Home Assistant 2026.5+.

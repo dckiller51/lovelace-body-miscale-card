@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Отображать кнопки",
     "show_buttons_aria_label_off": "Не отображать кнопки",
     "header_options": "1. Настройки заголовка карточки",
-    "body_options": "2. Дополнительные настройки карточки",
+    "body_options": "Метрики",
+    "attributes_options": "Данные профиля",
     "code_only_note": "ВНИМАНИЕ: Дополнительные настройки отображаются только в редакторе кода."
   },
   "editor_body": {

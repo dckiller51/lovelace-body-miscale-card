@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Alternar botões de exibição",
     "show_buttons_aria_label_off": "Alternar botões de exibição desligados",
     "header_options": "1. Opções do cabeçalho do cartão",
-    "body_options": "2. Mais opções de placas",
+    "body_options": "Métricas",
+    "attributes_options": "Dados do Perfil",
     "code_only_note": "CUIDADO: Opções adicionais estão disponíveis apenas no editor de código."
   },
   "editor_body": {

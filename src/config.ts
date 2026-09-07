@@ -80,11 +80,13 @@ export default function buildConfig(
     open: config.open ?? false,
     stats: config.stats ?? {},
     color: config.color ?? undefined,
+    order: config.order ?? 0,
     positions: config.positions ?? {
       icon: 'left',
       name: 'left',
       minmax: 'off',
       value: 'right',
     },
+    show: config.show ?? true,
   };
 }

@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Увімкнути відображення кнопок",
     "show_buttons_aria_label_off": "Вимкнути відображення кнопок",
     "header_options": "1. Опції заголовка картки",
-    "body_options": "2. Додаткові опції картки",
+    "body_options": "Показники",
+    "attributes_options": "Дані профілю",
     "code_only_note": "УВАГА: Додаткові опції доступні лише в редакторі коду."
   },
   "editor_body": {

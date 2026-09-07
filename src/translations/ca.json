@@ -126,7 +126,8 @@
     "show_buttons_aria_label_on": "Mostrar botons de compte",
     "show_buttons_aria_label_off": "Amagar botons de compte",
     "header_options": "1. Opcions de capçalera de targeta",
-    "body_options": "2. Més opcions de targeta",
+    "body_options": "Mètriques",
+    "attributes_options": "Dades del perfil",
     "code_only_note": "ATENCIÓ: Opcions addicionals només estan disponibles a l'editor de codi."
   },
   "editor_body": {
