@@ -304,9 +304,19 @@ export class BodymiscaleCard extends LitElement {
       || formattedValue;
 
     const iconUrl = this.getIconUrl(data.icon);
-  
-    const icon = data.icon
-      ? html`
+
+    const icon = data.icon ? data.icon.startsWith("mdi:")
+        ? html`
+          <ha-icon
+            icon="${data.icon}"
+            style="
+              --mdc-icon-size: 26px;
+              margin: -1px;
+              ${this.config.styles?.icon || ''}
+            "
+          ></ha-icon>
+        `
+        : html`
           <ha-icon
             class="image"
             style="
@@ -534,7 +544,7 @@ export class BodymiscaleCard extends LitElement {
 
     const iconUrl = this.getIconUrl(data.icon);
 
-    if (type === 'body'&& iconUrl ) {
+    if (type === 'body' && !icon.startsWith("mdi:") && iconUrl) {
       return html`
         <ha-icon
           class="image"
@@ -679,8 +689,8 @@ export class BodymiscaleCard extends LitElement {
       this.config.dual_impedance,
     );
 
-    const isBodyVisible = (item: any) => !this.config.body?.[item.key]?.show === false;
-    const isAttrVisible = (item: any) => !this.config.attributes?.[item.key]?.show === false;
+    const isBodyVisible = (item: any) => this.config.body?.[item.key]?.show !== false;
+    const isAttrVisible = (item: any) => this.config.attributes?.[item.key]?.show !== false;
 
     return html`
       <ha-card>
