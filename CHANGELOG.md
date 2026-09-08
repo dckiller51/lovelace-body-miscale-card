@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.9.1
+
+- 🛠️ **Fixed**: Preserve backward compatibility for attributes and body entries missing the `show` property (displayed by default). [[#231](https://github.com/dckiller51/lovelace-body-miscale-card/pull/231)]
+- ✨ **Added**: Support for standard Home Assistant `mdi:` icons in body elements. [[#231](https://github.com/dckiller51/lovelace-body-miscale-card/pull/231)]
+- 🎨 **Improved**: Unified icon margins and dimensions across custom PNG icons and Home Assistant MDI icons. [[#231](https://github.com/dckiller51/lovelace-body-miscale-card/pull/231)]
+
+❤️ **Special Thanks**: Thanks again to **@Triple-S** for improving backward compatibility and icon flexibility with PR [#231](https://github.com/dckiller51/lovelace-body-miscale-card/pull/231)!
+
 ## 2026.9.0
 
 - ✨ **Added**: Interactive move up/down controls in the editor to reorder states, attributes, and body elements easily.
