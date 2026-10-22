@@ -144,7 +144,9 @@
     "showbelowlabels": "Címkék megjelenítése alul",
     "target": "Cél",
     "to": "Tovább",
-    "value_position": "Érték pozíció"
+    "value_position": "Érték pozíció",
+    "tap_action": "Koppintási művelet",
+    "tap_action_helper": "Alapértelmezett: megnyitja a megfelelő érzékelő további információk párbeszédablakát."
   },
   "color_select": {
     "color": "Szín",

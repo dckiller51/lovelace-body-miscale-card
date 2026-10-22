@@ -6,7 +6,7 @@ import {
   body_lb,
   buttons,
 } from './const';
-import { deepMerge } from './helpers';
+import { deepMerge, resolveBodySeverity } from './helpers';
 import localize from './localize';
 import { BodymiscaleCardConfig } from './types';
 
@@ -33,6 +33,23 @@ function buildStyles(config: Partial<BodymiscaleCardConfig>) {
     icon: `color: ${image ? 'white' : 'var(--state-icon-color)'};`,
     iconbody: `background-color: ${theme !== false ? 'var(--state-icon-color)' : 'white'};`,
   };
+}
+
+function buildBody(config: Partial<BodymiscaleCardConfig>) {
+  const body = config.unit
+    ? deepMerge(config.body ?? {}, body_lb)
+    : deepMerge(config.body ?? {}, body_kg);
+
+  Object.keys(body).forEach((key) => {
+    if (body[key] && 'severity' in body[key]) {
+      body[key] = {
+        ...body[key],
+        severity: resolveBodySeverity(key, body[key].severity, config.unit),
+      };
+    }
+  });
+
+  return body;
 }
 
 export default function buildConfig(
@@ -72,9 +89,7 @@ export default function buildConfig(
     attributes: config.unit
       ? deepMerge(config.attributes ?? {}, attributes_lb)
       : deepMerge(config.attributes ?? {}, attributes_kg),
-    body: config.unit
-      ? deepMerge(config.body ?? {}, body_lb)
-      : deepMerge(config.body ?? {}, body_kg),
+    body: buildBody(config),
     buttons: config.buttons === true ? {} : deepMerge(config.buttons ?? {}, buttons),
     styles: buildStyles(config),
     open: config.open ?? false,

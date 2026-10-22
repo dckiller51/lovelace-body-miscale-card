@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.10.0
+
+- 🛠️ **Fixed**: Color bars (weight, ideal, muscle mass, bone mass, skeletal muscle mass, BCM) used the kg thresholds when the card was switched to lbs, so the marker was outside the bar. Default thresholds now follow the selected unit, custom thresholds are kept, and the editor shows the thresholds of the selected unit. [[#234](https://github.com/dckiller51/lovelace-body-miscale-card/issues/234)]
+- ✨ **Added**: Custom `tap_action` for each state, attribute and body element (navigate, url, perform-action, browser_mod popup, ...). Configurable in the visual editor for body elements and profile data. The more-info dialog stays the default. [[#233](https://github.com/dckiller51/lovelace-body-miscale-card/issues/233)]
+- 🎨 **Improved**: Profile data items in the editor now use collapsible panels, like body elements.
+- 🛠️ **Fixed**: The right-hand column was pushed outside the card on mobile because long values (such as the last measurement date) could no longer wrap. Both columns now keep half of the card width and long values wrap. [[#236](https://github.com/dckiller51/lovelace-body-miscale-card/issues/236)]
+- 🎨 **Improved**: The last measurement date now uses an abbreviated, locale-aware month (e.g. `Sep 30, 2026 9:47 PM`, `30 sept. 2026 21:47`). [[#236](https://github.com/dckiller51/lovelace-body-miscale-card/issues/236)]
+
 ## 2026.9.1
 
 - 🛠️ **Fixed**: Preserve backward compatibility for attributes and body entries missing the `show` property (displayed by default). [[#231](https://github.com/dckiller51/lovelace-body-miscale-card/pull/231)]

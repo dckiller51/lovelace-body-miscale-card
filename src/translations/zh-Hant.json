@@ -144,7 +144,9 @@
     "showabovelabels": "顯示上方標籤",
     "showbelowlabels": "顯示下方標籤",
     "to": "到",
-    "value_position": "數值位置"
+    "value_position": "數值位置",
+    "tap_action": "點擊動作",
+    "tap_action_helper": "預設：開啟對應感測器的詳細資訊對話框。"
   },
   "color_select": {
     "color": "顏色",

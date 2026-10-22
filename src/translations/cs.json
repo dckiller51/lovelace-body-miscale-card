@@ -144,7 +144,9 @@
     "showabovelabels": "Zobrazit štítky nahoře",
     "showbelowlabels": "Zobrazit štítky dole",
     "to": "Do",
-    "value_position": "Pozice hodnoty"
+    "value_position": "Pozice hodnoty",
+    "tap_action": "Akce při klepnutí",
+    "tap_action_helper": "Výchozí: otevře dialog s podrobnostmi odpovídajícího senzoru."
   },
   "color_select": {
     "color": "Barva",

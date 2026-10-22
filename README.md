@@ -50,8 +50,8 @@ to `<config>/www/images/bodyscoreIcon` or configure your own preferred path.
 | type       | string                      | **Required**    | `custom:body-miscale-card`                                             |
 | entity     | string                      | **Required**    | `bodymiscale.name`                                                     |
 | name       | string/bool                 | `friendly_name` | Override friendly name (set to `false` to hide)                        |
-| image      | string/bool                 | `false`         | Set path/filename of background image (e.g., `/local/img/miscale2.jpg`) |
-| icons_body | string                      | Nothing         | Set the path of the icons (e.g., `/local/images/bodyscoreIcon`) |
+| image      | string/bool                 | `false`         | Set path/filename of background image (e.g., `/local/img/miscale2.jpg`)|
+| icons_body | string                      | Nothing         | Set the path of the icons (e.g., `/local/images/bodyscoreIcon`)        |
 | attributes | [Entity Data](#entity data) | _(see below)_   | Set to `false` to hide all attributes                                  |
 | buttons    | [Button Data](#button data) | _(see below)_   | Set to `false` to hide button row                                      |
 
@@ -189,15 +189,58 @@ Add custom bar options (To know the start, destination, color and target values,
 
 ## Options
 
-| Name              | Type    | Default                                            | Description                                                                                 |
-|-------------------|---------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| `color`           | string  | `green`                                            | Color of the bar.                                                                         |
-| `max`             | number  | `100`                                              | Defines maximum value of the bar.                                                          |
-| `min`             | number  | `0`                                                | Defines minimum value of the bar.                                                          |
-| `positions`       | object  | —                                                  | Defines the positions of the card elements. See [Positions Options](#positions-options).   |
-| `showabovelabels` | boolean | `true`                                             | Show the numeric range labels above the color bar.                                         |
-| `showbelowlabels` | boolean | `true`                                             | Show the custom text labels below the color bar.                                           |
-| `severity`        | object  | —                                                  | A list of severity values. See [Severity Options](#severity-options).                      |
+| Name              | Type    | Default     | Description                                                                               |
+|-------------------|---------|-------------|-------------------------------------------------------------------------------------------|
+| `color`           | string  | `green`     | Color of the bar.                                                                         |
+| `max`             | number  | `100`       | Defines maximum value of the bar.                                                         |
+| `min`             | number  | `0`         | Defines minimum value of the bar.                                                         |
+| `positions`       | object  | —           | Defines the positions of the card elements. See [Positions Options](#positions-options).  |
+| `showabovelabels` | boolean | `true`      | Show the numeric range labels above the color bar.                                        |
+| `showbelowlabels` | boolean | `true`      | Show the custom text labels below the color bar.                                          |
+| `severity`        | object  | —           | A list of severity values. See [Severity Options](#severity-options).                     |
+| `tap_action`      | object  | `more-info` | Action when the element is tapped. See [Tap Action](#tap-action).                         |
+
+## Tap Action
+
+By default, tapping a state, an attribute or a body element opens the more-info dialog of the matching sensor (for example `sensor.<name>_weight`), or of the `bodymiscale` entity if there is none.
+
+Each element can define its own `tap_action`, using the [standard Home Assistant actions](https://www.home-assistant.io/dashboards/actions/) (`more-info`, `navigate`, `url`, `perform-action`, `toggle`, `fire-dom-event`, `assist`, `none`). It can be set in the visual editor (Customization page, for body elements and profile data) or in YAML (also for `states`).
+
+```yaml
+type: custom:body-miscale-card
+entity: bodymiscale.aurelien
+attributes:
+  weight:
+    tap_action:
+      action: more-info
+      entity: sensor.aurelien_weight
+  height:
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/health
+body:
+  bmi:
+    tap_action:
+      action: none
+```
+
+Example with [browser_mod](https://github.com/thomasloven/hass-browser_mod): a popup with the 30-day weight history.
+
+```yaml
+attributes:
+  weight:
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          title: Weight - 30 days
+          content:
+            type: history-graph
+            hours_to_show: 720
+            entities:
+              - sensor.aurelien_weight
+```
 
 ## Severity Options
 

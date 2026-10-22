@@ -144,7 +144,9 @@
     "showabovelabels": "ラベルを上に表示",
     "showbelowlabels": "ラベルを下に表示",
     "to": "へ",
-    "value_position": "値の位置"
+    "value_position": "値の位置",
+    "tap_action": "タップ時の動作",
+    "tap_action_helper": "デフォルト: 対応するセンサーの詳細情報ダイアログを開きます。"
   },
   "color_select": {
     "color": "色",

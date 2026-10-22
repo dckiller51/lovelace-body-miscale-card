@@ -144,7 +144,9 @@
     "showabovelabels": "Show labels above",
     "showbelowlabels": "Show labels below",
     "to": "To",
-    "value_position": "Value Position"
+    "value_position": "Value Position",
+    "tap_action": "Tap action",
+    "tap_action_helper": "Default: opens the more-info dialog of the matching sensor."
   },
   "color_select": {
     "color": "Color",

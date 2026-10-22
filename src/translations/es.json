@@ -144,7 +144,9 @@
     "showabovelabels": "Mostrar etiquetas arriba",
     "showbelowlabels": "Mostrar etiquetas abajo",
     "to": "A",
-    "value_position": "Posición del valor"
+    "value_position": "Posición del valor",
+    "tap_action": "Acción al tocar",
+    "tap_action_helper": "Por defecto: abre el diálogo de más información del sensor correspondiente."
   },
   "color_select": {
     "color": "Color",
