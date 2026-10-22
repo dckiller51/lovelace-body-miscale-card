@@ -1,9 +1,21 @@
 name: Release
 
+# Usage:
+#   1. Add a "## 2026.10.0" section to CHANGELOG.md and set "version": "2026.10.0"
+#      in package.json, commit and push.
+#   2. Push the tag:  git tag 2026.10.0 && git push origin 2026.10.0
+# The workflow then builds the card and publishes the release:
+#   - title: the tag (2026.10.0)
+#   - description: the matching section of CHANGELOG.md
+#   - asset: dist/body-miscale-card.js
+
 on:
   push:
     tags:
       - '*'
+
+permissions:
+  contents: write
 
 jobs:
   release:
@@ -13,24 +25,58 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: 'npm'
+
+      - name: Check version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if [ "$PKG_VERSION" != "$TAG" ]; then
+            echo "::error::package.json version ($PKG_VERSION) does not match the tag ($TAG). Update package.json before tagging."
+            exit 1
+          fi
+
+      - name: Extract release notes from CHANGELOG.md
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          # Everything between "## <tag>" and the next "## " heading
+          awk -v tag="$TAG" '
+            $0 ~ "^## " tag "[[:space:]]*$" { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+
+          if [ ! -s release-notes.md ] || ! grep -q '[^[:space:]]' release-notes.md; then
+            echo "::error::No '## $TAG' section found in CHANGELOG.md."
+            exit 1
+          fi
+          cat release-notes.md
+
       - name: Install dependencies
         run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Test
+
+      - name: Lint and build
         run: npm run test
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+
+      - name: Create or update release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            echo "Release $TAG already exists, updating it"
+            gh release edit "$TAG" --title "$TAG" --notes-file release-notes.md
+            gh release upload "$TAG" dist/body-miscale-card.js --clobber
+          else
+            echo "Creating release $TAG"
+            gh release create "$TAG" dist/body-miscale-card.js \
+              --title "$TAG" \
+              --notes-file release-notes.md
+          fi
