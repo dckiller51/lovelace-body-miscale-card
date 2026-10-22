@@ -85,7 +85,9 @@ ha-card {
 .grid {
   cursor: pointer;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* minmax(0, 1fr) keeps both columns at half width even with long values (#236) */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 8px;
 }
 
 .grid-left,
@@ -93,6 +95,7 @@ ha-card {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .grid-left {
@@ -176,19 +179,27 @@ ha-card {
 
 .state-div {
   display: grid;
-  grid-template-columns: 24px 1fr;
+  grid-template-columns: 24px minmax(0, 1fr);
   align-items: start;
 }
 
 .attribute-div {
   display: grid;
-  grid-template-columns: minmax(24px, 1fr) auto;
+  grid-template-columns: minmax(24px, 1fr) minmax(0, auto);
   align-items: start;
 }
 
 .state-label, .attribute-label {
   padding: 3px 0 0 10px;
-  text-wrap: nowrap;
+  min-width: 0;
+  /* Allow wrapping on narrow screens instead of overflowing the card (#236) */
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Keep a value and its unit together (e.g. "82.35 kg") */
+.state-label .value, .attribute-label .value {
+  white-space: nowrap;
 }
 
 #score {

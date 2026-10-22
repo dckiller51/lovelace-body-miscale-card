@@ -144,7 +144,9 @@
     "showabovelabels": "Pokaż etykiety powyżej",
     "showbelowlabels": "Pokaż etykiety poniżej",
     "to": "Do",
-    "value_position": "Pozycja wartości"
+    "value_position": "Pozycja wartości",
+    "tap_action": "Akcja dotknięcia",
+    "tap_action_helper": "Domyślnie: otwiera okno szczegółów odpowiedniego czujnika."
   },
   "color_select": {
     "color": "Kolor",

@@ -144,7 +144,9 @@
     "showabovelabels": "Labels boven weergeven",
     "showbelowlabels": "Labels onder weergeven",
     "to": "Naar",
-    "value_position": "Waarde Positie"
+    "value_position": "Waarde Positie",
+    "tap_action": "Tikactie",
+    "tap_action_helper": "Standaard: opent het meer-info-venster van de bijbehorende sensor."
   },
   "color_select": {
     "color": "Kleur",

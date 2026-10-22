@@ -144,7 +144,9 @@
     "showabovelabels": "Vis 'mærke' ovenover",
     "showbelowlabels": "Vis 'mærke' underneden",
     "to": "To",
-    "value_position": "Position af værdi"
+    "value_position": "Position af værdi",
+    "tap_action": "Tryk-handling",
+    "tap_action_helper": "Standard: åbner dialogen med flere oplysninger for den tilsvarende sensor."
   },
   "color_select": {
     "color": "Farve",

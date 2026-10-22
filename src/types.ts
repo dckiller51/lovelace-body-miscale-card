@@ -35,11 +35,20 @@ export interface BodymiscaleEntity extends HassEntityBase {
   state: BodymiscaleEntityState;
 }
 
+/**
+ * Home Assistant action config (same format as the `tap_action` of built-in cards).
+ */
+export interface ActionConfig {
+  action: string;
+  [key: string]: any;
+}
+
 export interface RenderStateData {
   icon: string;
   key: string;
   label: string;
   order: number;
+  tap_action?: ActionConfig;
   unit: string;
 }
 
@@ -53,6 +62,7 @@ export interface RenderAttributeData {
   label?: string;
   order: number;
   show?: boolean;
+  tap_action?: ActionConfig;
   unit?: string;
   weight?: number;
 }
@@ -76,6 +86,7 @@ export interface RenderBodyData {
   showabovelabels?: string | null,
   showbelowlabels?: string | null,
   severity?: string | NumericSeverity | null;
+  tap_action?: ActionConfig;
   unit?: string;
 }
 

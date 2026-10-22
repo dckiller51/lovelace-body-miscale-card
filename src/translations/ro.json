@@ -144,7 +144,9 @@
     "showabovelabels": "Afișează etichetele deasupra",
     "showbelowlabels": "Afișează etichetele dedesubt",
     "to": "La",
-    "value_position": "Poziția valorii"
+    "value_position": "Poziția valorii",
+    "tap_action": "Acțiune la atingere",
+    "tap_action_helper": "Implicit: deschide fereastra cu mai multe informații a senzorului corespunzător."
   },
   "color_select": {
     "color": "Culoare",

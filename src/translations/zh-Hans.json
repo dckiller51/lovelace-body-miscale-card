@@ -144,7 +144,9 @@
     "showabovelabels": "显示上方标签",
     "showbelowlabels": "显示下方标签",
     "to": "到",
-    "value_position": "值的位置"
+    "value_position": "值的位置",
+    "tap_action": "点击动作",
+    "tap_action_helper": "默认：打开对应传感器的详细信息对话框。"
   },
   "color_select": {
     "color": "颜色",

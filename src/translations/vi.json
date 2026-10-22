@@ -144,7 +144,9 @@
     "showabovelabels": "Hiển thị nhãn phía trên",
     "showbelowlabels": "Hiển thị nhãn phía dưới",
     "to": "Đến",
-    "value_position": "Vị trí giá trị"
+    "value_position": "Vị trí giá trị",
+    "tap_action": "Hành động khi chạm",
+    "tap_action_helper": "Mặc định: mở hộp thoại thông tin chi tiết của cảm biến tương ứng."
   },
   "color_select": {
     "color": "Màu sắc",

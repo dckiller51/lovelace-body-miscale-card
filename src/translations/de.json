@@ -130,7 +130,9 @@
     "showbelowlabels": "Labels unten anzeigen",
     "target": "Ziel",
     "to": "Zu",
-    "value_position": "Wert Position"
+    "value_position": "Wert Position",
+    "tap_action": "Tipp-Aktion",
+    "tap_action_helper": "Standard: öffnet den Mehr-Infos-Dialog des zugehörigen Sensors."
   },
   "color_select": {
     "color": "Farbe",

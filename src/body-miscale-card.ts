@@ -3,9 +3,7 @@ import {
   HomeAssistant,
   hasConfigOrEntityChanged,
   fireEvent,
-  formatDate,
   formatNumber,
-  formatTime,
 } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
 import { CSSResultGroup, LitElement, PropertyValues, html, nothing, css, unsafeCSS } from 'lit';
@@ -15,7 +13,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { computeCssColor } from './compute-color';
 import buildConfig from './config';
 import { defaultCardConfig } from './const';
-import { filterByImpedance } from './helpers';
+import { filterByImpedance, formatMeasurementTime } from './helpers';
 import localize from './localize';
 import styles from './styles.css';
 import { Template, BodymiscaleCardConfig, BodymiscaleEntity, NumericSeverity } from './types';
@@ -135,6 +133,35 @@ export class BodymiscaleCard extends LitElement {
     });
   }
 
+  /**
+   * Tap on a state, attribute or body element.
+   * Uses the item's `tap_action` when one is configured (#233),
+   * otherwise keeps the default behaviour: open the matching more-info dialog.
+   */
+  private handleTap(data: any): void {
+    const tapAction = data?.tap_action;
+
+    if (
+      !tapAction ||
+      !tapAction.action ||
+      (tapAction.action === 'more-info' && !tapAction.entity)
+    ) {
+      this.moreInfo(data?.key);
+      return;
+    }
+
+    if (tapAction.action === 'none') {
+      return;
+    }
+
+    // Let Home Assistant run the action (navigate, url, perform-action,
+    // toggle, fire-dom-event, assist, ...) exactly like the built-in cards.
+    (fireEvent as any)(this, 'hass-action', {
+      config: { entity: this.config.entity, tap_action: tapAction },
+      action: 'tap',
+    });
+  }
+
   private renderName(stateObj: HassEntity): Template {
     if (!this.config.show_name) {
       return nothing;
@@ -173,16 +200,7 @@ export class BodymiscaleCard extends LitElement {
         : this.hass.localize('state.default.unavailable');
 
     if (data.key === 'last_measurement_time' && typeof value === 'string') {
-      try {
-        const parsedDate = new Date(value.replace(' ', 'T'));
-
-        const formattedDate = formatDate(parsedDate, this.hass.locale);
-        const formattedTime = formatTime(parsedDate, this.hass.locale);
-
-        value = `${formattedDate} ${formattedTime}`;
-      } catch {
-        /* empty */
-      }
+      value = formatMeasurementTime(value, this.hass.locale);
     }
 
     const formatValue =
@@ -192,10 +210,12 @@ export class BodymiscaleCard extends LitElement {
     const attribute =
       stateObj.state === 'ok' && data.icon === 'mdi:alert'
         ? nothing
-        : html` <div class="state-div" @click="${() => this.moreInfo(data.key)}">
+        : html` <div class="state-div" @click="${() => this.handleTap(data)}">
             <div>${data.icon && this.renderIcon(data, 'default')}</div>
             <div class="state-label">
-              ${data.label ?? ''}${localizedValue}${data.unit ?? ''}
+              ${data.label ?? ''}${data.unit
+                ? html`<span class="value">${localizedValue}${data.unit}</span>`
+                : localizedValue}
             </div>
           </div>`;
 
@@ -236,16 +256,7 @@ export class BodymiscaleCard extends LitElement {
         : this.hass.localize('state.default.unavailable');
 
     if (data.key === 'last_measurement_time' && typeof value === 'string') {
-      try {
-        const parsedDate = new Date(value.replace(' ', 'T'));
-
-        const formattedDate = formatDate(parsedDate, this.hass.locale);
-        const formattedTime = formatTime(parsedDate, this.hass.locale);
-
-        value = `${formattedDate} ${formattedTime}`;
-      } catch {
-        /* empty */
-      }
+      value = formatMeasurementTime(value, this.hass.locale);
     }
 
     const formatValue =
@@ -261,10 +272,12 @@ export class BodymiscaleCard extends LitElement {
 
     return hasDropdown && (isValidAttribute || isValidEntityData)
       ? this.renderDropdown(attribute, data.key)
-      : html`<div class="attribute-div" @click="${() => this.moreInfo(data.key)}">
+      : html`<div class="attribute-div" @click="${() => this.handleTap(data)}">
           <div>${data.icon && this.renderIcon(data, 'default')}</div>
           <div class="attribute-label">
-            ${data.label ?? ''}${localizedValue}${data.unit ?? ''}
+            ${data.label ?? ''}${data.unit
+              ? html`<span class="value">${localizedValue}${data.unit}</span>`
+              : localizedValue}
           </div>
         </div>`;
   }
@@ -380,7 +393,7 @@ export class BodymiscaleCard extends LitElement {
     
     return html`
     <div style="display: flex; flex-direction: column; padding: 0.4rem 0 0.4rem; ${!showBar ? 'justify-content: center; align-items: center;' : ''}">
-      <div class="flex-container" style="${!showBar ? 'width: 100%;' : 'justify-content: space-between; width: 100%;'}" @click="${() => this.moreInfo(data.key)}">
+      <div class="flex-container" style="${!showBar ? 'width: 100%;' : 'justify-content: space-between; width: 100%;'}" @click="${() => this.handleTap(data)}">
         <div style="display: flex; align-items: center; gap: 1rem;">
           ${leftItems.filter(item => item !== nothing)}
         </div>

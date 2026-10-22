@@ -16,6 +16,7 @@ import {
   attributes_lb,
 } from './const';
 import styles from './editor.css';
+import { resolveBodySeverity } from './helpers';
 import localize from './localize';
 import './color-select';
 import {
@@ -427,7 +428,8 @@ export class BodymiscaleCardEditor
           bodyConfig[key]?.showbelowlabels !== undefined && bodyConfig[key]?.showbelowlabels !== null
             ? bodyConfig[key].showbelowlabels
             : item.showbelowlabels;
-        const severity = bodyConfig[key]?.severity || item.severity;
+        const severity =
+          resolveBodySeverity(key, bodyConfig[key]?.severity, config.unit) || item.severity;
 
         const label = localize(`body.${key}`);
         const positionKeys: PositionKeys[] = ['icon', 'name', 'minmax', 'value'];
@@ -478,6 +480,7 @@ export class BodymiscaleCardEditor
               <ha-form-grid>
                 ${this.renderSeverityInputs(severity, key)}
               </ha-form-grid>
+              ${this.renderTapAction('body', key, bodyConfig[key]?.tap_action)}
             </div>
           </ha-expansion-panel>
         `;
@@ -517,19 +520,17 @@ export class BodymiscaleCardEditor
       const isShown = attrConfig[key]?.show ?? true;
 
       return html`
-        <div style="margin-bottom: 12px;">
-          <div class="flex-space-between" style="align-items: center;">
-            <div style="display: flex; align-items: center; gap: 12px;">
+        <ha-expansion-panel style="margin-bottom: 8px; border: 1px solid var(--divider-color); border-radius: 4px;">
+          <div slot="header" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding-right: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px;" @click=${(e: Event) => e.stopPropagation()}>
               <ha-switch
                 .checked=${isShown}
                 @change=${(ev: Event) =>
                   this._toggleAttributeOption(key, (ev.target as HTMLInputElement).checked)}
               ></ha-switch>
-              <h3 style="margin: 0; opacity: ${isShown ? '1' : '0.5'};">
-                ${label}
-              </h3>
+              <span style="font-weight: 500; opacity: ${isShown ? '1' : '0.5'};">${label}</span>
             </div>
-            <div class="severity-icons">
+            <div class="severity-icons" @click=${(e: Event) => e.stopPropagation()}>
               <ha-icon-button
                 class="compact-icon"
                 .disabled=${index === 0}
@@ -546,7 +547,10 @@ export class BodymiscaleCardEditor
               </ha-icon-button>
             </div>
           </div>
-        </div>
+          <div style="padding: 12px 16px;">
+            ${this.renderTapAction('attributes', key, attrConfig[key]?.tap_action)}
+          </div>
+        </ha-expansion-panel>
       `;
     });
   }
@@ -730,43 +734,39 @@ export class BodymiscaleCardEditor
     `;
   }
 
+  /**
+   * Current severity of a body element, in the selected unit (#234).
+   */
+  private currentSeverity(configKey: string): NumericSeverity {
+    const severity = resolveBodySeverity(
+      configKey,
+      this.config?.body?.[configKey]?.severity,
+      this.config?.unit,
+    );
+    return Array.isArray(severity) ? [...severity] : [];
+  }
+
   protected updateNumericSeverity(
     configKey: string,
     index: number,
     key: 'from' | 'to' | 'color' | 'label',
     value: number | string,
   ): void {
-    if (this.config && this.config.body) {
-      if (!Array.isArray(this.config.body[configKey]?.severity)) {
-        this.config.body[configKey].severity = [];
-      }
-      const severity = [
-        ...(this.config.body[configKey].severity as NumericSeverity),
-      ];
-      if (severity[index]) {
-        severity[index] = { ...severity[index], [key]: value };
-        this.updateConfig(configKey, severity);
-      }
-    }
-  }
-
-  private addNumericSeverity(configKey: string): void {
-    if (this.config && this.config.body) {
-      if (!Array.isArray(this.config.body[configKey]?.severity)) {
-        this.config.body[configKey].severity = [];
-      }
-      const severity = [
-        ...((this.config.body[configKey]?.severity as NumericSeverity) || []),
-      ];
-      severity.push({ from: 0, to: 0, color: '', label: '' });
+    const severity = this.currentSeverity(configKey);
+    if (severity[index]) {
+      severity[index] = { ...severity[index], [key]: value };
       this.updateConfig(configKey, severity);
     }
   }
 
+  private addNumericSeverity(configKey: string): void {
+    const severity = this.currentSeverity(configKey);
+    severity.push({ from: 0, to: 0, color: '', label: '' });
+    this.updateConfig(configKey, severity);
+  }
+
   private removeNumericSeverity(configKey: string, index: number) {
-    const severity = [
-      ...((this.config?.body?.[configKey]?.severity as NumericSeverity) || []),
-    ].filter((_, i) => i !== index);
+    const severity = this.currentSeverity(configKey).filter((_, i) => i !== index);
 
     if (severity.length === 0) {
       severity.push({ from: 0, to: 0, color: '', label: '' });
@@ -776,10 +776,12 @@ export class BodymiscaleCardEditor
   }
 
   private updateConfig(configKey: string, severity: NumericSeverity): void {
-    if (this.config && this.config.body) {
-      this.config.body[configKey].severity = severity;
-      this.valueChanged();
-    }
+    if (!this.config) return;
+
+    const body = { ...(this.config.body ?? {}) };
+    body[configKey] = { ...(body[configKey] ?? {}), severity } as RenderBodyData;
+    this.config = { ...this.config, body };
+    this.valueChanged();
   }
 
   protected valueChanged(event: Event | null = null): void {
@@ -834,6 +836,70 @@ export class BodymiscaleCardEditor
 
   private async loadCardHelpers(): Promise<void> {
     this.helpers = await (window as any).loadCardHelpers();
+    await this.loadHaSelector();
+  }
+
+  /**
+   * `ha-selector` (used for the tap action picker) is lazy-loaded by Home Assistant.
+   * Loading the editor of a built-in card makes sure it is defined.
+   */
+  private async loadHaSelector(): Promise<void> {
+    if (customElements.get('ha-selector')) return;
+    try {
+      const card = await this.helpers?.createCardElement({ type: 'entities', entities: [] });
+      await card?.constructor?.getConfigElement?.();
+    } catch (e) {
+      console.warn('body-miscale-card: unable to load ha-selector', e);
+    }
+    this.requestUpdate();
+  }
+
+  /**
+   * Store (or remove when cleared) the tap action of a body element or attribute (#233).
+   */
+  protected _setTapAction(
+    section: 'body' | 'attributes',
+    key: string,
+    value: any,
+  ): void {
+    if (!this.config) return;
+
+    const current = { ...((this.config[section] as Record<string, any>) ?? {}) };
+    const item = { ...(current[key] ?? {}) };
+
+    if (value && typeof value === 'object' && value.action) {
+      item.tap_action = value;
+    } else {
+      delete item.tap_action;
+    }
+
+    current[key] = item;
+    this.config = { ...this.config, [section]: current };
+
+    fireEvent(this, 'config-changed', { config: this.config });
+    this.requestUpdate();
+  }
+
+  private renderTapAction(
+    section: 'body' | 'attributes',
+    key: string,
+    value: any,
+  ): Template {
+    return html`
+      <div class="option">
+        <ha-selector
+          .hass=${this.hass}
+          .label=${localize('editor_body.tap_action')}
+          .helper=${localize('editor_body.tap_action_helper')}
+          .selector=${{ ui_action: { default_action: 'more-info' } }}
+          .value=${value}
+          @value-changed=${(ev: CustomEvent) => {
+            ev.stopPropagation();
+            this._setTapAction(section, key, ev.detail.value);
+          }}
+        ></ha-selector>
+      </div>
+    `;
   }
 
   static get styles() {
