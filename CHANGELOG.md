@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.10.1
+
+- 🛠️ **Fixed**: The marker of the color bars left the bar when the value was outside the severity range (e.g. weight above the last threshold). It now stays at the edge, with the color of the first or last segment, and the tooltip still shows the real value. [[#73](https://github.com/dckiller51/lovelace-body-miscale-card/issues/73)]
+
 ## 2026.10.0
 
 - 🛠️ **Fixed**: Color bars (weight, ideal, muscle mass, bone mass, skeletal muscle mass, BCM) used the kg thresholds when the card was switched to lbs, so the marker was outside the bar. Default thresholds now follow the selected unit, custom thresholds are kept, and the editor shows the thresholds of the selected unit. [[#234](https://github.com/dckiller51/lovelace-body-miscale-card/issues/234)]

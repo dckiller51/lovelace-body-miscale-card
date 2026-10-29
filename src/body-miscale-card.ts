@@ -469,7 +469,9 @@ export class BodymiscaleCard extends LitElement {
     if (!rangeData || typeof numberValue !== 'number') return 0;
     const range = rangeData.max - rangeData.min;
     if (range <= 0) return 0;
-    return ((numberValue - rangeData.min) / range) * 100;
+    const percent = ((numberValue - rangeData.min) / range) * 100;
+    // Keep the marker on the bar when the value is outside the severity range (#73)
+    return Math.min(100, Math.max(0, percent));
   }
   
   private renderColorBarSegments(data: any, value: number, wrap = true): Template {
@@ -510,15 +512,21 @@ export class BodymiscaleCard extends LitElement {
     });
   
     const markerPercent = this._computePercent({ min: calculatedMin, max: calculatedMax }, value);
-    const activeSegment = filteredSeverity.find(
-      (s: any) => value >= (parseFloat(s.from) || calculatedMin) && value <= (parseFloat(s.to) || calculatedMax)
-    );
+    // Out of range values take the color of the first / last segment (#73)
+    const activeSegment =
+      value < calculatedMin
+        ? filteredSeverity[0]
+        : value > calculatedMax
+          ? filteredSeverity[filteredSeverity.length - 1]
+          : filteredSeverity.find(
+              (s: any) => value >= (parseFloat(s.from) || calculatedMin) && value <= (parseFloat(s.to) || calculatedMax)
+            );
     const markerColor = computeCssColor(activeSegment?.color) || 'var(--primary-color)';
   
     const barHtml = html`
       <div class="bar-inner">
         ${segmentsHtml}
-        <div class="bar-marker-wrapper" style="left: ${markerPercent}%;">
+        <div class="bar-marker-wrapper" style="left: clamp(10px, ${markerPercent}%, calc(100% - 10px));">
           <div class="bar-marker" style="border-color: ${markerColor};"></div>
           <div class="bar-marker-tooltip">${formatNumber(value, this.hass.locale)}${data.unit || ''}</div>
         </div>
