@@ -4,7 +4,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
-import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
 import postcssLit from 'rollup-plugin-postcss-lit';
@@ -73,11 +72,6 @@ export default {
     }),
     postcssLit({
       include: ['**/editor.css'],
-    }),
-    babel({
-      babelHelpers: 'runtime',
-      exclude: 'node_modules/**',
-      extensions: ['.ts', '.js'],
     }),
     IS_DEV && serve(serverOptions),
     !IS_DEV && terser({
