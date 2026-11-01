@@ -37,7 +37,7 @@
     "@rollup/plugin-replace": "^6.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@rollup/wasm-node": "^4.63.0",
+    "@rollup/wasm-node": "^4.66.0",
     "@types/estree": "^1.0.9",
     "@types/json-schema": "^7.0.15",
     "@types/resolve": "^1.20.6",
