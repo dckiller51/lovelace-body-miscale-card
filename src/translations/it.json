@@ -100,6 +100,9 @@
     "unit": "Converti da kg a lbs",
     "unit_aria_label_on": "Attiva la conversione",
     "unit_aria_label_off": "Disattiva la conversione",
+    "auto_severity": "Soglie personali (in base a sesso, età, altezza e peso)",
+    "auto_severity_aria_label_on": "Attiva le soglie personali",
+    "auto_severity_aria_label_off": "Disattiva le soglie personali",
     "theme": "Configura il tema che utilizzi.",
     "theme_aria_label_on": "Attiva tema chiaro",
     "theme_aria_label_off": "Disattiva tema oscuro",
@@ -146,7 +149,8 @@
     "to": "A",
     "value_position": "Posizione valore",
     "tap_action": "Azione al tocco",
-    "tap_action_helper": "Predefinito: apre la finestra di dialogo con maggiori informazioni del sensore corrispondente."
+    "tap_action_helper": "Predefinito: apre la finestra di dialogo con maggiori informazioni del sensore corrispondente.",
+    "auto_severity_note": "Soglie calcolate dal profilo (opzione soglie personali). Disattiva l'opzione per modificarle."
   },
   "color_select": {
     "color": "Colore",
@@ -185,6 +189,7 @@
     "insufficient": "Insufficiente",
     "high": "Alto",
     "low": "Basso",
+    "below_normal": "Sotto la norma",
     "normal": "Normale",
     "obese": "Obeso",
     "objective_achieved": "Obiettivo raggiunto",

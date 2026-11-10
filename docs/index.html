@@ -2,393 +2,570 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Severity Profiles Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Severity Profile Generator · Bodymiscale Card</title>
+  <meta name="description" content="Personal color bar thresholds for the Bodymiscale card for Home Assistant, from your gender, age, height and weight." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --tile: #e9eff1;
+      --glass: #fbfcfd;
+      --ink: #1e2e36;
+      --fog: #5e717b;
+      --rule: #d3dde1;
+      --signal: #0277bd;
+      --signal-ink: #ffffff;
+      --field: #ffffff;
+      --marker-bg: #ffffff;
+      --shadow: 0 1px 2px rgba(30, 46, 54, 0.06), 0 8px 24px rgba(30, 46, 54, 0.06);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --tile: #142027;
+        --glass: #1b2a31;
+        --ink: #e3ebee;
+        --fog: #93a6af;
+        --rule: #2a3b43;
+        --signal: #4fc3f7;
+        --signal-ink: #0c1a20;
+        --field: #142027;
+        --marker-bg: #1b2a31;
+        --shadow: none;
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      padding: 2rem;
-      max-width: 700px;
-      margin: auto;
+      margin: 0;
+      background: var(--tile);
+      color: var(--ink);
+      font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-variant-numeric: tabular-nums;
     }
-    h1 {
-      text-align: center;
-      color: #333;
+
+    a { color: var(--signal); }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--signal);
+      outline-offset: 2px;
     }
-    label {
-      display: block;
-      margin-top: 1rem;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.25rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    .table-container {
-      margin-top: 2rem;
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      text-align: center;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-    }
-    th {
-      background-color: #0077cc;
-      color: white;
-    }
-    td {
-      background-color: #fff;
-    }
-    .color-box {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
+
+    .page {
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
     }
-    .generate-btn {
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      background: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-right: 0.5rem;
+
+    header { max-width: 46rem; }
+    h1 {
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.75rem;
     }
-    .generate-btn:hover {
-      background: #005fa3;
+    .lede { color: var(--fog); font-size: 1.125rem; margin: 0; }
+
+    .tip {
+      margin: 1.5rem 0 2rem;
+      padding: 0.9rem 1.1rem;
+      border-left: 4px solid var(--signal);
+      background: var(--glass);
+      border-radius: 0 10px 10px 0;
+      max-width: 46rem;
     }
-    .yaml-output {
-      margin-top: 2rem;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      border-radius: 6px;
-      background-color: #eee;
+    .tip p { margin: 0; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+      background: var(--tile);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
     }
-    .yaml-output h2 {
-      margin-top: 0;
-      color: #333;
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--glass);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+
+    form.panel { position: sticky; top: 1rem; }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0 0 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .field { margin-bottom: 1rem; }
+    .field > label, fieldset legend {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      padding: 0;
+    }
+    .hint { color: var(--fog); font-size: 0.875rem; margin: 0.3rem 0 0; }
+    fieldset { border: 0; margin: 0 0 1rem; padding: 0; }
+
+    input[type="number"] {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      background: var(--field);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.55rem 0.7rem;
+    }
+    .with-unit { display: flex; align-items: center; gap: 0.5rem; }
+    .with-unit span { color: var(--fog); min-width: 2.2rem; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    /* Segmented controls */
+    .segmented {
+      display: flex;
+      background: var(--tile);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+    }
+    .segmented label {
+      flex: 1;
+      position: relative;
       text-align: center;
+      cursor: pointer;
+    }
+    .segmented input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+    .segmented span {
+      display: block;
+      padding: 0.45rem 0.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.925rem;
+      color: var(--fog);
+      line-height: 1.25;
+    }
+    .segmented input:checked + span { background: var(--glass); color: var(--ink); box-shadow: var(--shadow); }
+    .segmented input:focus-visible + span { outline: 3px solid var(--signal); outline-offset: 1px; }
+    .segmented.stack { flex-direction: column; }
+    .segmented.stack span { text-align: left; padding-left: 0.75rem; }
+
+    /* Bars, drawn like the card */
+    .metrics { padding: 0.25rem 1.25rem; }
+    .group-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin: 1.25rem 0 0;
+      color: var(--fog);
+    }
+    .metric {
+      padding: 1rem 0 3.1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .metric:last-child { border-bottom: 0; }
+    .metric-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .metric-name { font-weight: 600; font-size: 1.05rem; }
+    .metric-unit { color: var(--fog); font-weight: 400; }
+    .metric-value { color: var(--fog); font-size: 0.95rem; text-align: right; }
+    .metric-empty { color: var(--fog); font-size: 0.95rem; margin: -1rem 0 -1.6rem; }
+
+    .bar {
+      position: relative;
+      display: flex;
+      height: 8px;
+      border-radius: 8px;
+      background: var(--rule);
+    }
+    .seg { position: relative; height: 100%; }
+    .seg:first-child { border-radius: 8px 0 0 8px; }
+    .seg:last-child { border-radius: 0 8px 8px 0; }
+    .seg .above, .seg .below {
+      position: absolute;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .seg .above { top: -1.55rem; left: 100%; }
+    .seg .below {
+      top: 0.85rem;
+      left: 50%;
+      width: max(100%, 4.6rem);
+      white-space: normal;
+      text-align: center;
+      line-height: 1.15;
+    }
+    .marker {
+      position: absolute;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--marker-bg);
+      border: 3px solid var(--ink);
+      transform: translate(-50%, -50%);
+      transition: left 200ms ease;
+    }
+    @media (prefers-reduced-motion: reduce) { .marker { transition: none; } }
+
+    /* YAML */
+    .yaml { margin-top: 1.5rem; }
+    .yaml-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .yaml-head h2 { margin: 0; }
+    .yaml p { margin: 0 0 0.75rem; color: var(--fog); max-width: 46rem; }
+    textarea {
+      width: 100%;
+      min-height: 18rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--ink);
+      background: var(--field);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.9rem;
+      resize: vertical;
+    }
+    button.copy {
+      font: inherit;
+      font-weight: 600;
+      color: var(--signal-ink);
+      background: var(--signal);
+      border: 0;
+      border-radius: 8px;
+      padding: 0.55rem 1.1rem;
+      cursor: pointer;
+    }
+    button.copy:hover { filter: brightness(1.08); }
+
+    footer { margin-top: 2.5rem; color: var(--fog); font-size: 0.9rem; max-width: 46rem; }
+
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; }
+      form.panel { position: static; }
+      .page { padding-top: 1.75rem; }
+      .seg .above, .seg .below { font-size: 0.72rem; }
+      /* Bars with many segments: every other label on a second line */
+      .bar.many .seg:nth-child(even) .below { top: 1.95rem; }
+      .metric.many { padding-bottom: 4.1rem; }
     }
   </style>
 </head>
 <body>
-  <h1>⚙️ Severity Profile Generator</h1>
+  <div class="page">
+    <header>
+      <h1>Severity profile generator</h1>
+      <p class="lede">Personal thresholds for the color bars of the Bodymiscale card, from your gender, age, height and weight.</p>
+    </header>
 
-  <form id="profile-form">
-    <label>
-      Age:
-      <input type="number" id="age" required />
-    </label>
+    <div class="tip">
+      <p>Since version 2026.10.2, the card can do this by itself and keep up with your weight: add <code>auto_severity: true</code> to the card, or turn on “Personal thresholds” in the visual editor. Use this page to preview the thresholds, or to set them by hand.</p>
+    </div>
 
-    <label>
-      Gender:
-      <select id="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-    </label>
+    <div class="layout">
+      <form class="panel" id="profile" novalidate>
+        <h2>Your profile</h2>
 
-    <label>
-      Height (cm):
-      <input type="number" id="height" required />
-    </label>
+        <fieldset>
+          <legend>Scale</legend>
+          <div class="segmented stack">
+            <label><input type="radio" name="scale" value="basic" /><span>Weight only</span></label>
+            <label><input type="radio" name="scale" value="impedance" checked /><span>With impedance</span></label>
+            <label><input type="radio" name="scale" value="s400" /><span>S400, two impedances</span></label>
+          </div>
+        </fieldset>
 
-    <label>
-      Weight:
-      <input type="number" id="weight" required />
-    </label>
+        <fieldset>
+          <legend>Gender</legend>
+          <div class="segmented">
+            <label><input type="radio" name="gender" value="male" checked /><span>Male</span></label>
+            <label><input type="radio" name="gender" value="female" /><span>Female</span></label>
+          </div>
+        </fieldset>
 
-    <label>
-      Unit:
-      <select id="unit">
-        <option value="kg" selected>kg</option>
-        <option value="lbs">lbs</option>
-      </select>
-    </label>
+        <fieldset>
+          <legend>Unit</legend>
+          <div class="segmented">
+            <label><input type="radio" name="unit" value="kg" checked /><span>kg</span></label>
+            <label><input type="radio" name="unit" value="lbs" /><span>lbs</span></label>
+          </div>
+        </fieldset>
 
-    <label>
-      Metric:
-      <select id="metric"></select>
-    </label>
+        <div class="split">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" inputmode="numeric" min="6" max="100" value="35" />
+          </div>
+          <div class="field">
+            <label for="height">Height</label>
+            <div class="with-unit"><input type="number" id="height" inputmode="decimal" min="100" max="230" value="175" /><span>cm</span></div>
+          </div>
+        </div>
 
-    <button type="submit" class="generate-btn" id="visualize-btn">Visualize Profile</button>
-    <button type="button" class="generate-btn" id="generate-yaml-btn">Generate Full YAML</button>
-  </form>
+        <div class="field">
+          <label for="weight">Weight</label>
+          <div class="with-unit"><input type="number" id="weight" inputmode="decimal" step="0.1" min="10" value="72" /><span id="weight-unit">kg</span></div>
+        </div>
 
-  <div class="table-container" id="profile-table"></div>
+        <div class="field" id="body-fat-field">
+          <label for="body-fat">Body fat</label>
+          <div class="with-unit"><input type="number" id="body-fat" inputmode="decimal" step="0.1" min="1" max="70" value="22" /><span>%</span></div>
+          <p class="hint">Used for extracellular water, intracellular water and body cell mass.</p>
+        </div>
+      </form>
 
-  <div class="yaml-output">
-    <h2>Generated YAML</h2>
-    <textarea id="yaml-output" rows="15" cols="80" readonly style="width: 100%;"></textarea>
-    <button type="button" class="generate-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+      <section class="panel metrics" aria-live="polite" aria-label="Color bars">
+        <div id="metrics"></div>
+      </section>
+    </div>
+
+    <section class="panel yaml">
+      <div class="yaml-head">
+        <h2>Card configuration</h2>
+        <button type="button" class="copy" id="copy">Copy YAML</button>
+      </div>
+      <p>Paste it in the code editor of the card, then replace <code>bodymiscale.your_name</code> with your entity. The thresholds stay fixed: generate them again when your profile changes.</p>
+      <textarea id="yaml" readonly spellcheck="false" aria-label="Card configuration in YAML"></textarea>
+    </section>
+
+    <footer>
+      <p>Reference values from Zepp Life and, for the S400 metrics, from the <a href="https://github.com/dckiller51/bodymiscale/blob/main/README_S400_UPGRADE.md">bodymiscale integration</a>. They are indicators, not medical advice. <a href="https://github.com/dckiller51/lovelace-body-miscale-card">Bodymiscale card on GitHub</a></p>
+    </footer>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   <script src="severity-data.js"></script>
+  <script src="profiles.js"></script>
   <script>
-    const form = document.getElementById('profile-form');
-    const tableContainer = document.getElementById('profile-table');
-    const yamlOutput = document.getElementById('yaml-output');
-    const metricSelect = document.getElementById('metric');
-    const generateYamlBtn = document.getElementById('generate-yaml-btn');
+    const { computeSeverity, MASS_METRICS, LB } = window.SeverityProfiles;
 
-    if (window.severityData) {
-      const orderedMetrics = Object.keys(window.severityData);
-      orderedMetrics.forEach(metric => {
-        const option = document.createElement('option');
-        option.value = metric;
-        option.textContent = metric.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-        metricSelect.appendChild(option);
-      });
-    }
+    // Order, units and scale requirements as in the card (src/const.ts)
+    const METRICS = [
+      { key: 'weight', name: 'Weight', unit: 'kg', scale: 'basic' },
+      { key: 'ideal', name: 'Ideal', unit: 'kg', scale: 'basic' },
+      { key: 'bmi', name: 'BMI', unit: '', scale: 'basic' },
+      { key: 'basal_metabolism', name: 'Basal metabolism', unit: 'kcal', scale: 'basic' },
+      { key: 'visceral_fat', name: 'Visceral fat', unit: '', scale: 'basic' },
+      { key: 'body_fat', name: 'Body fat', unit: '%', scale: 'impedance' },
+      { key: 'water', name: 'Water', unit: '%', scale: 'impedance' },
+      { key: 'muscle_mass', name: 'Muscle mass', unit: 'kg', scale: 'impedance' },
+      { key: 'bone_mass', name: 'Bone mass', unit: 'kg', scale: 'impedance' },
+      { key: 'protein', name: 'Protein', unit: '%', scale: 'impedance' },
+      { key: 'skeletal_muscle_mass', name: 'Skeletal muscle mass', unit: 'kg', scale: 's400' },
+      { key: 'ecw_tbw_ratio', name: 'Ratio ECW/TBW', unit: '%', scale: 's400' },
+      { key: 'extracellular_water', name: 'Extracellular water', unit: 'L', scale: 's400' },
+      { key: 'intracellular_water', name: 'Intracellular water', unit: 'L', scale: 's400' },
+      { key: 'bcm', name: 'Body cell mass', unit: 'kg', scale: 's400' },
+    ];
+    const SCALE_LEVEL = { basic: 0, impedance: 1, s400: 2 };
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const profileData = getProfileDataFromForm();
-      generateTable(profileData.severityConfig, profileData.unit, profileData.metric);
-    });
+    // Same names and colors as the card (translations/en.json, compute-color.ts)
+    const LABELS = {
+      balanced: 'Balanced', good: 'Good', increased: 'Increased', insufficient: 'Insufficient',
+      high: 'High', low: 'Low', below_normal: 'Below normal', normal: 'Normal', obese: 'Obese',
+      objective_achieved: 'Objective achieved', objective_not_achieved: 'Objective not achieved',
+      overweight: 'Overweight', underweight: 'Underweight', very_high: 'Very high', very_low: 'Very low',
+    };
+    const COLORS = {
+      red: '#f44336', pink: '#e91e63', purple: '#926bc7', indigo: '#3f51b5', blue: '#2196f3',
+      'light-blue': '#03a9f4', cyan: '#00bcd4', teal: '#009688', green: '#4caf50',
+      'light-green': '#8bc34a', lime: '#cddc39', yellow: '#ffeb3b', amber: '#ffc107',
+      orange: '#ff9800', orangered: '#ff4500', 'deep-orange': '#ff6f22', brown: '#795548',
+      grey: '#9e9e9e', 'blue-grey': '#607d8b', darkgreen: '#006400', royalblue: '#4169e1',
+    };
 
-    generateYamlBtn.addEventListener('click', () => {
-      const profileData = getProfileDataFromForm();
-      generateFullYaml(profileData.age, profileData.gender, profileData.weight, profileData.height, profileData.unit);
-    });
+    const form = document.getElementById('profile');
+    const metricsEl = document.getElementById('metrics');
+    const yamlEl = document.getElementById('yaml');
+    const copyBtn = document.getElementById('copy');
 
-    function getProfileDataFromForm() {
-      const age = parseInt(document.getElementById('age').value);
-      const gender = document.getElementById('gender').value;
-      const metric = metricSelect.value;
-      const weight = parseFloat(document.getElementById('weight').value);
-      const height = parseFloat(document.getElementById('height').value);
-      const unit = document.getElementById('unit').value;
+    const radio = (name) => form.querySelector(`input[name="${name}"]:checked`).value;
+    const num = (id) => parseFloat(document.getElementById(id).value);
+    const fmt = (v) => Number(v).toLocaleString('en-US', { maximumFractionDigits: 2 });
+    // Labels on the bar: one decimal at most, the unit is shown next to the name
+    const fmtShort = (v) => Number(v).toLocaleString('en-US', { maximumFractionDigits: 1 });
 
-      let severityConfig = [];
-
-      if (metric === 'basal_metabolism') {
-        severityConfig = generateBasalMetabolismProfile({ gender, age, weight, height });
-      } else if (metric === 'ideal') {
-        const idealProfile = getIdealProfile(height);
-        if (idealProfile) {
-          severityConfig = idealProfile;
-        }
-      } else if (metric === 'weight') {
-        const weightProfile = getWeightProfile(height);
-        if (weightProfile) {
-          severityConfig = weightProfile;
-        }
-      } else {
-        const profileData = getProfileFor(metric, gender, age, weight);
-        if (profileData) {
-          severityConfig = profileData;
-        }
-      }
-
-      return { age, gender, metric, weight, height, unit, severityConfig };
-    }
-
-    function getWeightProfile(height) {
-      const weightData = window.severityData['weight']?.severity; // Accéder à .severity
-      if (!weightData) return [];
-
-      const heights = Object.keys(weightData).map(h => parseInt(h));
-      const closest = heights.reduce((prev, curr) =>
-        Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
-      );
-      return weightData[closest];
-    }
-
-    function getIdealProfile(height) {
-      const ideal = window.severityData['ideal']?.severity; // Accéder à .severity
-      if (!ideal) return undefined;
-      const heights = Object.keys(ideal).map(h => parseInt(h));
-      const closest = heights.reduce((prev, curr) =>
-        Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
-      );
-      return ideal[closest];
-    }
-
-    function getProfileFor(metric, gender, age, weight) {
-      const data = window.severityData[metric];
-      if (!data) return [];
-
-      if (metric === 'bone_mass' || metric === 'muscle_mass' || metric === 'water') {
-        const severityData = data.severity;
-        if (severityData && severityData[gender]) {
-          if (metric === 'bone_mass') {
-            if (weight < 65) return severityData[gender]['-65'];
-            if (weight <= 95) return severityData[gender]['65-95'];
-            return severityData[gender]['95+'];
-          } else if (metric === 'muscle_mass') {
-             if (age < 30) return severityData[gender]['18-29'];
-            if (age < 40) return severityData[gender]['30-39'];
-            if (age < 50) return severityData[gender]['40-49'];
-            if (age < 60) return severityData[gender]['50-59'];
-            if (age < 70) return severityData[gender]['60-69'];
-            if (age < 80) return severityData[gender]['70-79'];
-             return severityData[gender]['80-89'];
-          } else if (metric === 'water') {
-            return severityData[gender];
-          }
-        }
-      } else if (metric === 'body_fat') {
-        const severityData = data.severity;
-        if (severityData && severityData[gender]) {
-          if (age < 40) return severityData[gender]['18-39'];
-          if (age < 60) return severityData[gender]['40-59'];
-          return severityData[gender]['60+'];
-        }
-      } else if (data.severity) {
-        return data.severity;
-      }
-
-      return [];
-    }
-
-    function generateBasalMetabolismProfile({ gender, age, weight, height, activityFactor = 1.9 }) {
-      let bmr;
-
-      if (gender === 'female') {
-        bmr = 864.6 + (10.2036 * weight) - (0.39336 * height) - (6.204 * age);
-        if (bmr > 2996) bmr = 5000;
-      } else {
-        bmr = 877.8 + (14.916 * weight) - (0.726 * height) - (8.976 * age);
-        if (bmr > 2322) bmr = 5000;
-      }
-
-      bmr = Math.min(Math.max(bmr, 500), 5000);
-      const upperBound = Math.round(bmr * activityFactor);
-      const lowerBound = Math.round(bmr);
-      const from = Math.max(Math.round(lowerBound - (upperBound - lowerBound)), 0);
-
-      return [
-        { from, to: lowerBound, color: 'red', label: 'objective_not_achieved' },
-        { from: lowerBound, to: upperBound, color: 'green', label: 'objective_achieved' }
-      ];
-    }
-
-    function generateTable(profileData, unit, metric) {
-      tableContainer.innerHTML = '';
-
-      if (!profileData.length) {
-        tableContainer.innerHTML = '<p>No profile found for this selection.</p>';
-        return;
-      }
-
-      const needsConversion = ['weight', 'ideal', 'bone_mass', 'muscle_mass'].includes(metric);
-
-      const table = document.createElement('table');
-      const headerRow = document.createElement('tr');
-      const headers = ['From', 'To', 'Label', 'Color'];
-      headers.forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
-      });
-      table.appendChild(headerRow);
-
-      profileData.forEach(({ from, to, label, color }) => {
-        const displayFrom = needsConversion ? convertTo(unit, from) : from;
-        const displayTo = needsConversion ? convertTo(unit, to) : to;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${displayFrom}</td>
-          <td>${displayTo}</td>
-          <td>${label}</td>
-          <td><div class="color-box" style="background-color:${color};"></div></td>
-        `;
-        table.appendChild(row);
-      });
-
-      tableContainer.appendChild(table);
-    }
-
-    function convertTo(unit, value) {
-      if (unit === 'lbs') return +(value * 2.20462).toFixed(2);
-      return value;
-    }
-
-    function generateFullYaml(age, gender, weight, height, unit) {
-      const yamlData = {
-        type: "custom:body-miscale-card",
-        model: false,
-        unit: false,
-        theme: true,
-        show_name: true,
-        show_states: true,
-        show_attributes: true,
-        show_always_details: false,
-        show_toolbar: true,
-        show_body: true,
-        show_buttons: false,
-        attributes: {
-          impedance: {
-            key: 'impedance',
-            impedance_required: true
-          }
+    function readProfile() {
+      const unitLb = radio('unit') === 'lbs';
+      const weightInput = num('weight');
+      return {
+        scale: radio('scale'),
+        unitLb,
+        person: {
+          gender: radio('gender'),
+          age: num('age'),
+          height: num('height'),
+          weight: unitLb ? weightInput / LB : weightInput, // always kg for the rules
+          bodyFat: num('body-fat'),
         },
-        body: {},
-        entity: ""
+        weightInput,
       };
+    }
 
-      const metricsWithSeverity = [
-        'basal_metabolism', 'bmi', 'body_fat', 'bone_mass', 'ideal',
-        'muscle_mass', 'protein', 'visceral_fat', 'water', 'weight'
+    function unitFor(metric, unitLb) {
+      return unitLb && MASS_METRICS.includes(metric.key) ? 'lbs' : metric.unit;
+    }
+
+    function renderBar(severity, markerValue) {
+      const min = Math.min(...severity.map((s) => Number(s.from)));
+      const max = Math.max(...severity.map((s) => Number(s.to)));
+      const range = max - min || 1;
+
+      const segs = severity.map((s, i) => {
+        const color = COLORS[s.color] || 'grey';
+        const width = ((Number(s.to) - Number(s.from)) / range) * 100;
+        const above = i < severity.length - 1
+          ? `<span class="above" style="color:${color}">${fmtShort(s.to)}</span>` : '';
+        const below = s.label ? `<span class="below" style="color:${color}">${LABELS[s.label] || s.label}</span>` : '';
+        return `<div class="seg" style="width:${width}%;background:${color}">${above}${below}</div>`;
+      }).join('');
+
+      let marker = '';
+      if (Number.isFinite(markerValue)) {
+        const pct = Math.min(100, Math.max(0, ((markerValue - min) / range) * 100));
+        marker = `<span class="marker" style="left:clamp(9px, ${pct}%, calc(100% - 9px))" aria-hidden="true"></span>`;
+      }
+      return `<div class="bar${severity.length >= 4 ? ' many' : ''}">${segs}${marker}</div>`;
+    }
+
+    function markerFor(key, profile) {
+      const { person, weightInput } = profile;
+      if (key === 'weight') return weightInput;
+      if (key === 'bmi') return person.weight / (person.height / 100) ** 2;
+      if (key === 'body_fat') return person.bodyFat;
+      return undefined;
+    }
+
+    function valueText(key, profile) {
+      const v = markerFor(key, profile);
+      if (!Number.isFinite(v)) return '';
+      if (key === 'weight') return `You: ${fmt(v)} ${profile.unitLb ? 'lbs' : 'kg'}`;
+      if (key === 'bmi') return `You: ${fmt(Math.round(v * 10) / 10)}`;
+      if (key === 'body_fat') return `You: ${fmt(v)} %`;
+      return '';
+    }
+
+    function shownMetrics(scale) {
+      return METRICS.filter((m) => SCALE_LEVEL[m.scale] <= SCALE_LEVEL[scale]);
+    }
+
+    function render() {
+      const profile = readProfile();
+      document.getElementById('weight-unit').textContent = profile.unitLb ? 'lbs' : 'kg';
+      document.getElementById('body-fat-field').hidden = profile.scale === 'basic';
+
+      const groups = [
+        { title: null, items: shownMetrics(profile.scale).filter((m) => m.scale !== 's400') },
+        { title: 'S400 metrics', items: shownMetrics(profile.scale).filter((m) => m.scale === 's400') },
       ];
 
-      for (const metric of Object.keys(window.severityData)) {
-        const bodyItem = {
-          key: window.severityData[metric].key || metric,
-          impedance_required: window.severityData[metric]?.impedance_required || false,
-          positions: {
-            icon: 'left',
-            name: 'left',
-            minmax: 'off',
-            value: 'right'
-          }
-        };
+      const results = {};
+      metricsEl.innerHTML = groups.filter((g) => g.items.length).map((g) => {
+        const rows = g.items.map((m) => {
+          const severity = computeSeverity(m.key, profile.person, profile.unitLb);
+          results[m.key] = severity;
+          const unit = unitFor(m, profile.unitLb);
+          const body = severity
+            ? renderBar(severity, markerFor(m.key, profile))
+            : `<p class="metric-empty">${m.scale === 's400' && m.key !== 'skeletal_muscle_mass' && m.key !== 'ecw_tbw_ratio'
+                ? 'Enter your body fat to see these thresholds.'
+                : 'Enter your age, height and weight to see these thresholds.'}</p>`;
+          return `<div class="metric${severity && severity.length >= 4 ? ' many' : ''}">
+              <div class="metric-head"><span class="metric-name">${m.name}${unit ? ` <span class="metric-unit">(${unit})</span>` : ''}</span><span class="metric-value">${valueText(m.key, profile)}</span></div>
+              ${body}
+            </div>`;
+        }).join('');
+        return (g.title ? `<h3 class="group-title">${g.title}</h3>` : '') + rows;
+      }).join('');
 
-        if (metricsWithSeverity.includes(metric)) {
-          if (metric === 'basal_metabolism') {
-            bodyItem.severity = generateBasalMetabolismProfile({ gender, age, weight, height });
-          } else if (metric === 'ideal') {
-            bodyItem.severity = getIdealProfile(height);
-          } else if (metric === 'weight') {
-            bodyItem.severity = getWeightProfile(height);
-          } else {
-            const profileData = getProfileFor(metric, gender, age, weight);
-            if (profileData) {
-              bodyItem.severity = profileData;
-            }
-          }
-          bodyItem.showabovelabels = "true";
-          bodyItem.showbelowlabels = "true";
-        } else {
-          // Metrics sans severity
-          if (metric === 'bmi_label' || metric === 'body_type' || metric === 'metabolic_age') {
-            bodyItem.positions.minmax = "off";
-          }
-        }
-
-        yamlData.body[metric] = bodyItem;
-      }
-
-      try {
-        const generatedYaml = jsyaml.dump(yamlData, { indent: 2 });
-        yamlOutput.value = generatedYaml;
-      } catch (error) {
-        yamlOutput.value = `Error generating full YAML: ${error}`;
-      }
+      yamlEl.value = buildYaml(profile, results);
     }
+
+    function buildYaml(profile, results) {
+      const lines = [
+        'type: custom:body-miscale-card',
+        'entity: bodymiscale.your_name',
+        `model: ${profile.scale !== 'basic'}`,
+        `dual_impedance: ${profile.scale === 's400'}`,
+        `unit: ${profile.unitLb}`,
+        'body:',
+      ];
+      let count = 0;
+      for (const m of shownMetrics(profile.scale)) {
+        const severity = results[m.key];
+        if (!severity) continue;
+        count++;
+        lines.push(`  ${m.key}:`, '    severity:');
+        for (const s of severity) {
+          lines.push(`      - from: ${s.from}`, `        to: ${s.to}`, `        color: ${s.color}`);
+          if (s.label) lines.push(`        label: ${s.label}`);
+        }
+      }
+      if (!count) lines[lines.length - 1] = 'body: {}';
+      return lines.join('\n') + '\n';
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(yamlEl.value);
+      } catch {
+        yamlEl.select();
+        document.execCommand('copy');
+      }
+      copyBtn.textContent = 'Copied';
+      setTimeout(() => { copyBtn.textContent = 'Copy YAML'; }, 1600);
+    });
+
+    // Keep the same weight when switching the unit
+    let lastUnit = radio('unit');
+    form.querySelectorAll('input[name="unit"]').forEach((el) =>
+      el.addEventListener('change', () => {
+        const unit = radio('unit');
+        const w = document.getElementById('weight');
+        const value = parseFloat(w.value);
+        if (Number.isFinite(value) && unit !== lastUnit) {
+          w.value = Math.round((unit === 'lbs' ? value * LB : value / LB) * 10) / 10;
+        }
+        lastUnit = unit;
+      }),
+    );
+
+    form.addEventListener('input', render);
+    form.addEventListener('change', render);
+    form.addEventListener('submit', (e) => e.preventDefault());
+    render();
   </script>
 </body>
 </html>

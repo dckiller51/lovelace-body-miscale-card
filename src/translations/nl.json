@@ -100,6 +100,9 @@
     "unit": "Converteer kg naar lbs",
     "unit_aria_label_on": "Activeer conversie",
     "unit_aria_label_off": "Conversie deactiveren",
+    "auto_severity": "Persoonlijke drempels (op basis van geslacht, leeftijd, lengte en gewicht)",
+    "auto_severity_aria_label_on": "Persoonlijke drempels inschakelen",
+    "auto_severity_aria_label_off": "Persoonlijke drempels uitschakelen",
     "theme": "Configureer het thema dat u gebruikt.",
     "theme_aria_label_on": "Licht thema inschakelen",
     "theme_aria_label_off": "Donker thema uitschakelen",
@@ -146,7 +149,8 @@
     "to": "Naar",
     "value_position": "Waarde Positie",
     "tap_action": "Tikactie",
-    "tap_action_helper": "Standaard: opent het meer-info-venster van de bijbehorende sensor."
+    "tap_action_helper": "Standaard: opent het meer-info-venster van de bijbehorende sensor.",
+    "auto_severity_note": "Drempels berekend op basis van het profiel (persoonlijke drempels). Schakel de optie uit om ze te bewerken."
   },
   "color_select": {
     "color": "Kleur",
@@ -185,6 +189,7 @@
     "insufficient": "Onvoldoende",
     "high": "Hoog",
     "low": "Laag",
+    "below_normal": "Onder normaal",
     "normal": "Normaal",
     "obese": "Obesitas",
     "objective_achieved": "Doel bereikt",

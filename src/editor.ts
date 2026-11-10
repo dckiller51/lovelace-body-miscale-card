@@ -16,9 +16,10 @@ import {
   attributes_lb,
 } from './const';
 import styles from './editor.css';
-import { resolveBodySeverity } from './helpers';
+import { isDefaultSeverity, resolveBodySeverity } from './helpers';
 import localize from './localize';
 import './color-select';
+import { AUTO_SEVERITY_KEYS } from './severity-profiles';
 import {
   Template,
   BodymiscaleCardConfig,
@@ -154,6 +155,7 @@ export class BodymiscaleCardEditor
       ${this.renderSwitch('model', config)}
       ${config.model ? this.renderSwitch('dual_impedance', config) : nothing}
       ${this.renderSwitch('unit', config)}
+      ${this.renderSwitch('auto_severity', config)}
       ${this.renderSwitch('theme', config)}
 
       <p class="page-title">
@@ -478,7 +480,9 @@ export class BodymiscaleCardEditor
                 ${this.renderBooleanSelector('showbelowlabels', showbelowlabels, `body.${key}.showbelowlabels`)}
               </ha-form-grid>
               <ha-form-grid>
-                ${this.renderSeverityInputs(severity, key)}
+                ${this.isAutoSeverity(config, key, severity)
+                  ? html`<ha-alert alert-type="info">${localize('editor_body.auto_severity_note')}</ha-alert>`
+                  : this.renderSeverityInputs(severity, key)}
               </ha-form-grid>
               ${this.renderTapAction('body', key, bodyConfig[key]?.tap_action)}
             </div>
@@ -553,6 +557,22 @@ export class BodymiscaleCardEditor
         </ha-expansion-panel>
       `;
     });
+  }
+
+  /**
+   * True when the thresholds of this body element are computed from the
+   * profile (`auto_severity` on and thresholds not customized) (#72).
+   */
+  private isAutoSeverity(
+    config: Partial<BodymiscaleCardConfig>,
+    key: string,
+    severity: unknown,
+  ): boolean {
+    return (
+      Boolean(config.auto_severity) &&
+      AUTO_SEVERITY_KEYS.includes(key) &&
+      (severity === undefined || severity === null || isDefaultSeverity(key, severity))
+    );
   }
 
   private renderPositionSelect(

@@ -100,6 +100,9 @@
     "unit": "Converteix kg a lbs",
     "unit_aria_label_on": "Activar conversió",
     "unit_aria_label_off": "Desactivar conversió",
+    "auto_severity": "Llindars personals (segons el sexe, l'edat, l'alçada i el pes)",
+    "auto_severity_aria_label_on": "Activa els llindars personals",
+    "auto_severity_aria_label_off": "Desactiva els llindars personals",
     "theme": "Configureu el tema que utilitzeu.",
     "theme_aria_label_on": "Activa el tema clar",
     "theme_aria_label_off": "Desactiva el tema fosc",
@@ -146,7 +149,8 @@
     "to": "A",
     "value_position": "Posició del valor",
     "tap_action": "Acció en tocar",
-    "tap_action_helper": "Per defecte: obre el diàleg de més informació del sensor corresponent."
+    "tap_action_helper": "Per defecte: obre el diàleg de més informació del sensor corresponent.",
+    "auto_severity_note": "Llindars calculats a partir del perfil (opció de llindars personals). Desactiveu l'opció per modificar-los."
   },
   "color_select": {
     "color": "Color",
@@ -185,6 +189,7 @@
     "insufficient": "Insuficient",
     "high": "Alt",
     "low": "Baix",
+    "below_normal": "Per sota del normal",
     "normal": "Normal",
     "obese": "Obès",
     "objective_achieved": "Objectiu assolit",

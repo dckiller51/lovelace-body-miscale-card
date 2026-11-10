@@ -118,3 +118,34 @@ export function resolveBodySeverity(
 
   return severity;
 }
+
+/**
+ * True when `severity` has the same thresholds as the card defaults
+ * (kg or lbs) for this body element, i.e. the user did not customize it.
+ */
+export function isDefaultSeverity(key: string, severity: any): boolean {
+  if (!Array.isArray(severity)) return false;
+  return [body_kg[key]?.severity, body_lb[key]?.severity].some(
+    (def) => Array.isArray(def) && sameThresholds(severity, def),
+  );
+}
+
+/**
+ * Keep the colors / labels the user changed on default thresholds (#72).
+ * `configured` has the default thresholds (see isDefaultSeverity); when a
+ * segment's color or label differs from the default one, it is applied to the
+ * same segment of `computed` (only when both have the same number of segments).
+ */
+export function keepCustomStyle(key: string, configured: any, computed: any[]): any[] {
+  if (!Array.isArray(configured) || configured.length !== computed.length) return computed;
+  const def = [body_kg[key]?.severity, body_lb[key]?.severity].find(
+    (d) => Array.isArray(d) && sameThresholds(configured, d),
+  ) as any[] | undefined;
+  if (!def) return computed;
+
+  return computed.map((seg, i) => ({
+    ...seg,
+    color: configured[i]?.color && configured[i].color !== def[i]?.color ? configured[i].color : seg.color,
+    label: configured[i]?.label && configured[i].label !== def[i]?.label ? configured[i].label : seg.label,
+  }));
+}

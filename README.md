@@ -54,6 +54,7 @@ to `<config>/www/images/bodyscoreIcon` or configure your own preferred path.
 | icons_body | string                      | Nothing         | Set the path of the icons (e.g., `/local/images/bodyscoreIcon`)        |
 | attributes | [Entity Data](#entity data) | _(see below)_   | Set to `false` to hide all attributes                                  |
 | buttons    | [Button Data](#button data) | _(see below)_   | Set to `false` to hide button row                                      |
+| auto_severity | bool                     | `false`         | Personal color bar thresholds, see [Personal thresholds](#personal-thresholds) |
 
 ### Entity Data
 
@@ -330,6 +331,30 @@ Currently the languages available are `CA`,`CS`,`DE`,`EN`,`ES`,`FR`,`HU`,`IT`,`J
     user2:
       label: Siham
       show: true
+```
+
+## Personal thresholds
+
+With `auto_severity: true` (also available in the visual editor), the color bars use thresholds computed from the person's profile — gender, age, height and weight read from the `bodymiscale` entity — instead of the generic defaults. They are the same thresholds as the [Severity Configuration Helper](https://dckiller51.github.io/lovelace-body-miscale-card/) and follow the profile automatically, for example when the weight changes.
+
+Metrics concerned: basal metabolism, body fat, bone mass, ideal, muscle mass, water and weight (BMI, protein and visceral fat keep the same thresholds for everyone).
+
+S400 (dual-frequency) metrics, with the reference values of the bodymiscale integration ([README_S400_UPGRADE.md](https://github.com/dckiller51/bodymiscale/blob/main/README_S400_UPGRADE.md)):
+
+| Metric | Thresholds |
+| --- | --- |
+| Skeletal muscle mass | Skeletal Muscle Index (SMM / height²) cut-points of Janssen et al. (2004): male 8.51 / 10.75 kg/m², female 5.76 / 6.75 kg/m² |
+| ECW/TBW ratio | Normal from 37 % to 40 % (the integration model cannot exceed 40 %) |
+| Extracellular water, intracellular water, body cell mass | The same partition applied to the total body water, TBW = (1 − body fat % / 100) × 0.73 × weight, and BCM = ICW / 0.73 |
+
+These S400 values are trend indicators, see the integration documentation.
+
+A `severity` set in your configuration always takes precedence, so you can still customize a single metric.
+
+```yaml
+type: custom:body-miscale-card
+entity: bodymiscale.anna
+auto_severity: true
 ```
 
 ## Severity Configuration Helper

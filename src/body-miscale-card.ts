@@ -13,8 +13,9 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { computeCssColor } from './compute-color';
 import buildConfig from './config';
 import { defaultCardConfig } from './const';
-import { filterByImpedance, formatMeasurementTime } from './helpers';
+import { filterByImpedance, formatMeasurementTime, isDefaultSeverity, keepCustomStyle } from './helpers';
 import localize from './localize';
+import { getAutoSeverity } from './severity-profiles';
 import styles from './styles.css';
 import { Template, BodymiscaleCardConfig, BodymiscaleEntity, NumericSeverity } from './types';
 
@@ -282,11 +283,43 @@ export class BodymiscaleCard extends LitElement {
         </div>`;
   }
 
+  /**
+   * With `auto_severity`, replace the default thresholds of a body element by
+   * thresholds computed from the person's profile (gender, age, height, weight),
+   * like the Severity Configuration Helper (#72).
+   * Custom thresholds set by the user are always kept, and so are the colors /
+   * labels changed on default thresholds.
+   */
+  private withAutoSeverity(data: any, stateObj: HassEntity): any {
+    if (!this.config.auto_severity || !data?.key) return data;
+    if (data.severity !== undefined && data.severity !== null && !isDefaultSeverity(data.key, data.severity)) {
+      return data;
+    }
+
+    const attrs = stateObj.attributes ?? {};
+    const severity = getAutoSeverity(
+      data.key,
+      {
+        gender: attrs.gender,
+        age: attrs.age,
+        height: attrs.height,
+        weight: attrs.weight,
+        bodyFat: attrs.body_fat,
+      },
+      this.config.unit,
+    );
+
+    if (!severity) return data;
+    return { ...data, severity: keepCustomStyle(data.key, data.severity, severity) };
+  }
+
   private renderBody(data: any): Template {
     if (!this.hass || !this.config?.entity) return nothing;
   
     const stateObj = this.hass.states?.[this.config.entity];
     if (!stateObj) return html`<div>${this.hass.localize('state.default.unavailable')}</div>`;
+
+    data = this.withAutoSeverity(data, stateObj);
   
     const keyExists = data?.key && stateObj;
   

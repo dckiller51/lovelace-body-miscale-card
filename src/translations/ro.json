@@ -100,6 +100,9 @@
     "unit": "Convertiți kg în lbs",
     "unit_aria_label_on": "Activați conversia",
     "unit_aria_label_off": "Dezactivați conversia",
+    "auto_severity": "Praguri personale (în funcție de sex, vârstă, înălțime și greutate)",
+    "auto_severity_aria_label_on": "Activează pragurile personale",
+    "auto_severity_aria_label_off": "Dezactivează pragurile personale",
     "theme": "Configurați tema pe care o utilizați.",
     "theme_aria_label_on": "Activează lumina temei",
     "theme_aria_label_off": "Dezactivați tema întunecată",
@@ -146,7 +149,8 @@
     "to": "La",
     "value_position": "Poziția valorii",
     "tap_action": "Acțiune la atingere",
-    "tap_action_helper": "Implicit: deschide fereastra cu mai multe informații a senzorului corespunzător."
+    "tap_action_helper": "Implicit: deschide fereastra cu mai multe informații a senzorului corespunzător.",
+    "auto_severity_note": "Praguri calculate din profil (opțiunea praguri personale). Dezactivați opțiunea pentru a le modifica."
   },
   "color_select": {
     "color": "Culoare",
@@ -185,6 +189,7 @@
     "insufficient": "Insuficient",
     "high": "Înalt",
     "low": "Scăzut",
+    "below_normal": "Sub normal",
     "normal": "Normal",
     "obese": "Obez",
     "objective_achieved": "Obiectiv atins",

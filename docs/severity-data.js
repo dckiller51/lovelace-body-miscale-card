@@ -350,7 +350,33 @@ const profiles = {
         { from: 108, to: 145, color: 'red', label: 'obese' }
       ]
     }
-  }
+  },
+  // S400 (dual-frequency) metrics: thresholds computed in index.html (s400Profile)
+  skeletal_muscle_mass: {
+    key: 'skeletal_muscle_mass',
+    impedance_required: true,
+    dual_impedance_required: true,
+  },
+  ecw_tbw_ratio: {
+    key: 'ecw_tbw_ratio',
+    impedance_required: true,
+    dual_impedance_required: true,
+  },
+  extracellular_water: {
+    key: 'extracellular_water',
+    impedance_required: true,
+    dual_impedance_required: true,
+  },
+  intracellular_water: {
+    key: 'intracellular_water',
+    impedance_required: true,
+    dual_impedance_required: true,
+  },
+  bcm: {
+    key: 'bcm',
+    impedance_required: true,
+    dual_impedance_required: true,
+  },
 };
 
 // Attacher `severityData` à l'objet global `window`

@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.11.0
+
+- ✨ **Added**: `auto_severity` option (visual editor: "Personal thresholds"): the color bars use thresholds computed from the person's gender, age, height and weight, the same as the Severity Configuration Helper, and follow the profile automatically. Off by default; a custom `severity` always takes precedence. [[#72](https://github.com/dckiller51/lovelace-body-miscale-card/issues/72)] [[#235](https://github.com/dckiller51/lovelace-body-miscale-card/issues/235)]
+- ✨ **Added**: Personal thresholds for the S400 (dual-frequency) metrics, in the card (`auto_severity`) and in the Severity Configuration Helper: skeletal muscle mass (Janssen 2004 SMI cut-points by gender and height), ECW/TBW ratio (normal 37–40 %), extracellular water, intracellular water and body cell mass (derived from the total body water). The helper has a new optional "Body fat (%)" field for the water metrics. [[#72](https://github.com/dckiller51/lovelace-body-miscale-card/issues/72)]
+- 🎨 **Improved**: With `auto_severity`, the visual editor shows "Thresholds computed from the profile" instead of the threshold fields, and colors or labels changed on default thresholds are kept.
+- 🌍 **Fixed**: The `below_normal` label (skeletal muscle mass) was not translated in any language.
+- 🎨 **Improved**: New Severity Profile Generator page: live color bars drawn like the card for every metric of your scale, markers for your weight, BMI and body fat, light and dark themes, mobile layout, and a shorter YAML with only the thresholds. The weight can now be entered in lbs, and the YAML uses lbs thresholds with `unit: true`.
+- 🛠️ **Fixed**: Severity Configuration Helper: bone mass returned no profile for women (the female weight bands -50 / 50-75 / 75+ were not used).
+
 ## 2026.10.1
 
 - 🛠️ **Fixed**: The marker of the color bars left the bar when the value was outside the severity range (e.g. weight above the last threshold). It now stays at the edge, with the color of the first or last segment, and the tooltip still shows the real value. [[#73](https://github.com/dckiller51/lovelace-body-miscale-card/issues/73)]

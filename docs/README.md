@@ -1,16 +1,13 @@
-# Severity Configuration Helper for Body Metrics
+# Severity Profile Generator
 
-This web tool allows users to configure severity thresholds for various body metrics (BMI, Body Fat, etc.) based on their age and gender. It dynamically generates a table to visualize the severity settings and helps users configure them without the need to write YAML code.
+Web page for the Bodymiscale card: <https://dckiller51.github.io/lovelace-body-miscale-card/>
 
-## Features
+Enter your scale, gender, age, height and weight (and body fat for the S400 water metrics). The page shows the color bars exactly as the card draws them, with your personal thresholds, and gives the YAML to paste in the card.
 
-- Interactive tool to input age and gender.
-- Automatically adjusts severity thresholds based on input.
-- Displays a clean and aesthetic table of severity thresholds with color-coded labels.
-- Ideal for use in fitness, health tracking, or smart home integrations like Home Assistant.
+Since 2026.10.2 the card can compute these thresholds by itself with `auto_severity: true`.
 
-## Usage
+## Files
 
-1. Enter your age and select your gender.
-2. Click the "Generate Severity Table" button to see the severity thresholds for metrics like BMI, Body Fat, etc.
-3. Adjust the thresholds manually if needed.
+- `index.html`: the page
+- `profiles.js`: the rules that turn a profile into thresholds. Same rules as `src/severity-profiles.ts` in the card: keep both in sync.
+- `severity-data.js`: the reference tables (Zepp Life)

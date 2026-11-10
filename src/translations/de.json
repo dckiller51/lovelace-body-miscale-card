@@ -88,6 +88,9 @@
     "unit": "kg in lbs umrechnen",
     "unit_aria_label_on": "Konvertierung einschalten",
     "unit_aria_label_off": "Umwandlung deaktivieren",
+    "auto_severity": "Persönliche Schwellenwerte (nach Geschlecht, Alter, Größe und Gewicht)",
+    "auto_severity_aria_label_on": "Persönliche Schwellenwerte einschalten",
+    "auto_severity_aria_label_off": "Persönliche Schwellenwerte ausschalten",
     "show_name": "Namen des Konto als Titel anzeigen?",
     "show_name_aria_label_on": "Namensanzeige einschalten",
     "show_name_aria_label_off": "Namesanzeige ausschalten",
@@ -132,7 +135,8 @@
     "to": "Zu",
     "value_position": "Wert Position",
     "tap_action": "Tipp-Aktion",
-    "tap_action_helper": "Standard: öffnet den Mehr-Infos-Dialog des zugehörigen Sensors."
+    "tap_action_helper": "Standard: öffnet den Mehr-Infos-Dialog des zugehörigen Sensors.",
+    "auto_severity_note": "Aus dem Profil berechnete Schwellenwerte (persönliche Schwellenwerte). Option ausschalten, um sie zu bearbeiten."
   },
   "color_select": {
     "color": "Farbe",
@@ -171,6 +175,7 @@
     "insufficient": "Unzureichend",
     "high": "Hoch",
     "low": "Niedrig",
+    "below_normal": "Unter normal",
     "normal": "Normal",
     "obese": "fettleibig",
     "objective_achieved": "Ziel erreicht",

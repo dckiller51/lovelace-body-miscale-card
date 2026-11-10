@@ -100,6 +100,9 @@
     "unit": "Convert kg to lbs",
     "unit_aria_label_on": "Toggle the conversion on",
     "unit_aria_label_off": "Toggle the conversion off",
+    "auto_severity": "Ngưỡng cá nhân (theo giới tính, tuổi, chiều cao và cân nặng)",
+    "auto_severity_aria_label_on": "Bật ngưỡng cá nhân",
+    "auto_severity_aria_label_off": "Tắt ngưỡng cá nhân",
     "theme": "Configure the theme you use.",
     "theme_aria_label_on": "Toggle theme light on",
     "theme_aria_label_off": "Toggle theme dark off",
@@ -146,7 +149,8 @@
     "to": "Đến",
     "value_position": "Vị trí giá trị",
     "tap_action": "Hành động khi chạm",
-    "tap_action_helper": "Mặc định: mở hộp thoại thông tin chi tiết của cảm biến tương ứng."
+    "tap_action_helper": "Mặc định: mở hộp thoại thông tin chi tiết của cảm biến tương ứng.",
+    "auto_severity_note": "Ngưỡng được tính từ hồ sơ (tùy chọn ngưỡng cá nhân). Tắt tùy chọn để chỉnh sửa."
   },
   "color_select": {
     "color": "Màu sắc",
@@ -185,6 +189,7 @@
     "insufficient": "Không đủ",
     "high": "Cao",
     "low": "Thấp",
+    "below_normal": "Dưới mức bình thường",
     "normal": "Bình thường",
     "obese": "Béo phì",
     "objective_achieved": "Mục tiêu đạt được",
