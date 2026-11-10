@@ -99,6 +99,9 @@
     "unit": "Kg átszámítása fonttá",
     "unit_aria_label_on": "Átszámítás bekapcsolása",
     "unit_aria_label_off": "Átszámítás kikapcsolása",
+    "auto_severity": "Személyes küszöbértékek (nem, életkor, magasság és testsúly alapján)",
+    "auto_severity_aria_label_on": "Személyes küszöbértékek bekapcsolása",
+    "auto_severity_aria_label_off": "Személyes küszöbértékek kikapcsolása",
     "theme": "Állítsa be a használt témát.",
     "theme_aria_label_on": "Világos téma bekapcsolása",
     "theme_aria_label_off": "Sötét téma kikapcsolása",
@@ -146,7 +149,8 @@
     "to": "Tovább",
     "value_position": "Érték pozíció",
     "tap_action": "Koppintási művelet",
-    "tap_action_helper": "Alapértelmezett: megnyitja a megfelelő érzékelő további információk párbeszédablakát."
+    "tap_action_helper": "Alapértelmezett: megnyitja a megfelelő érzékelő további információk párbeszédablakát.",
+    "auto_severity_note": "A profil alapján számított küszöbértékek (személyes küszöbértékek). A szerkesztéshez kapcsolja ki a beállítást."
   },
   "color_select": {
     "color": "Szín",
@@ -185,6 +189,7 @@
     "insufficient": "Elégtelen",
     "high": "Magas",
     "low": "Alacsony",
+    "below_normal": "Átlag alatti",
     "normal": "Normális",
     "obese": "Kórosan elhízott",
     "objective_achieved": "Cél elérve",

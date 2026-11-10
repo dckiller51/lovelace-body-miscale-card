@@ -100,6 +100,9 @@
     "unit": "Omregn kg til lbs",
     "unit_aria_label_on": "Slå konverteringen til",
     "unit_aria_label_off": "Slå konverteringen fra",
+    "auto_severity": "Personlige grænser (efter køn, alder, højde og vægt)",
+    "auto_severity_aria_label_on": "Slå personlige grænser til",
+    "auto_severity_aria_label_off": "Slå personlige grænser fra",
     "theme": "Konfigurer det tema du bruger.",
     "theme_aria_label_on": "Slå lyst tema til",
     "theme_aria_label_off": "Slå mørkt tema fra",
@@ -146,7 +149,8 @@
     "to": "To",
     "value_position": "Position af værdi",
     "tap_action": "Tryk-handling",
-    "tap_action_helper": "Standard: åbner dialogen med flere oplysninger for den tilsvarende sensor."
+    "tap_action_helper": "Standard: åbner dialogen med flere oplysninger for den tilsvarende sensor.",
+    "auto_severity_note": "Grænser beregnet ud fra profilen (personlige grænser). Slå indstillingen fra for at redigere dem."
   },
   "color_select": {
     "color": "Farve",
@@ -185,6 +189,7 @@
     "insufficient": "Utilstrækkelig",
     "high": "Høj",
     "low": "Lav",
+    "below_normal": "Under normal",
     "normal": "Normal",
     "obese": "Fed",
     "objective_achieved": "Mål nået",

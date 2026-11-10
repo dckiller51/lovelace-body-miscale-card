@@ -1008,6 +1008,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
   model: false,
   dual_impedance: false,
   unit: false,
+  auto_severity: false,
   theme: true,
   show_name: true,
   show_states: true,

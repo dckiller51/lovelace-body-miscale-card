@@ -100,6 +100,9 @@
     "unit": "kg を lbs に変換する",
     "unit_aria_label_on": "変換をオンに切り替えます",
     "unit_aria_label_off": "変換をオフに切り替えます",
+    "auto_severity": "個人用しきい値（性別・年齢・身長・体重に基づく）",
+    "auto_severity_aria_label_on": "個人用しきい値をオンにする",
+    "auto_severity_aria_label_off": "個人用しきい値をオフにする",
     "theme": "使用するテーマを設定します。",
     "theme_aria_label_on": "テーマライトをオンに切り替えます",
     "theme_aria_label_off": "テーマダークをオフに切り替えます",
@@ -146,7 +149,8 @@
     "to": "へ",
     "value_position": "値の位置",
     "tap_action": "タップ時の動作",
-    "tap_action_helper": "デフォルト: 対応するセンサーの詳細情報ダイアログを開きます。"
+    "tap_action_helper": "デフォルト: 対応するセンサーの詳細情報ダイアログを開きます。",
+    "auto_severity_note": "プロフィールから計算されたしきい値です（個人用しきい値）。編集するにはオプションをオフにしてください。"
   },
   "color_select": {
     "color": "色",
@@ -185,6 +189,7 @@
     "insufficient": "不十分",
     "high": "高い",
     "low": "低い",
+    "below_normal": "標準未満",
     "normal": "正常",
     "obese": "肥満",
     "objective_achieved": "目標達成",

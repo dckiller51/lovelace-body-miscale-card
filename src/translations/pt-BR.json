@@ -100,6 +100,9 @@
     "unit": "Converter kg em libras",
     "unit_aria_label_on": "Ativar a conversão",
     "unit_aria_label_off": "Desativar a conversão",
+    "auto_severity": "Limites pessoais (com base em sexo, idade, altura e peso)",
+    "auto_severity_aria_label_on": "Ativar os limites pessoais",
+    "auto_severity_aria_label_off": "Desativar os limites pessoais",
     "theme": "Configure o tema que você utiliza.",
     "theme_aria_label_on": "Ativar tema claro",
     "theme_aria_label_off": "Desativar tema escuro",
@@ -146,7 +149,8 @@
     "to": "Para",
     "value_position": "Posição do valor",
     "tap_action": "Ação ao tocar",
-    "tap_action_helper": "Padrão: abre a caixa de diálogo de mais informações do sensor correspondente."
+    "tap_action_helper": "Padrão: abre a caixa de diálogo de mais informações do sensor correspondente.",
+    "auto_severity_note": "Limites calculados a partir do perfil (opção de limites pessoais). Desative a opção para editá-los."
   },
   "color_select": {
     "color": "Cor",
@@ -185,6 +189,7 @@
     "insufficient": "Insuficiente",
     "high": "Alto",
     "low": "Baixo",
+    "below_normal": "Abaixo do normal",
     "normal": "Normal",
     "obese": "Obeso",
     "objective_achieved": "Objetivo alcançado",

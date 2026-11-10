@@ -100,6 +100,9 @@
     "unit": "Převést kilogramy na libry",
     "unit_aria_label_on": "Zapnout konverzi",
     "unit_aria_label_off": "Vypnout konverzi",
+    "auto_severity": "Osobní prahové hodnoty (podle pohlaví, věku, výšky a hmotnosti)",
+    "auto_severity_aria_label_on": "Zapnout osobní prahové hodnoty",
+    "auto_severity_aria_label_off": "Vypnout osobní prahové hodnoty",
     "theme": "Nakonfigurujte téma, které používáte.",
     "theme_aria_label_on": "Aktivovat světlé téma",
     "theme_aria_label_off": "Deaktivovat tmavé téma",
@@ -146,7 +149,8 @@
     "to": "Do",
     "value_position": "Pozice hodnoty",
     "tap_action": "Akce při klepnutí",
-    "tap_action_helper": "Výchozí: otevře dialog s podrobnostmi odpovídajícího senzoru."
+    "tap_action_helper": "Výchozí: otevře dialog s podrobnostmi odpovídajícího senzoru.",
+    "auto_severity_note": "Prahové hodnoty vypočtené z profilu (volba osobních prahových hodnot). Pro úpravu volbu vypněte."
   },
   "color_select": {
     "color": "Barva",
@@ -185,6 +189,7 @@
     "insufficient": "Nedostatečný",
     "high": "Vysoký",
     "low": "Nízký",
+    "below_normal": "Pod normou",
     "normal": "Normální",
     "obese": "obézní",
     "objective_achieved": "Cíl dosažen",

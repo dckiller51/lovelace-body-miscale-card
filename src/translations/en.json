@@ -100,6 +100,9 @@
     "unit": "Convert kg to lbs",
     "unit_aria_label_on": "Toggle the conversion on",
     "unit_aria_label_off": "Toggle the conversion off",
+    "auto_severity": "Personal thresholds (based on gender, age, height and weight)",
+    "auto_severity_aria_label_on": "Turn personal thresholds on",
+    "auto_severity_aria_label_off": "Turn personal thresholds off",
     "theme": "Configure the theme you use.",
     "theme_aria_label_on": "Toggle theme light on",
     "theme_aria_label_off": "Toggle theme dark off",
@@ -146,7 +149,8 @@
     "to": "To",
     "value_position": "Value Position",
     "tap_action": "Tap action",
-    "tap_action_helper": "Default: opens the more-info dialog of the matching sensor."
+    "tap_action_helper": "Default: opens the more-info dialog of the matching sensor.",
+    "auto_severity_note": "Thresholds computed from the profile (personal thresholds option). Turn the option off to edit them."
   },
   "color_select": {
     "color": "Color",
@@ -185,6 +189,7 @@
     "insufficient": "Insufficient",
     "high": "High",
     "low": "Low",
+    "below_normal": "Below normal",
     "normal": "Normal",
     "obese": "Obese",
     "objective_achieved": "Objective achieved",

@@ -77,6 +77,7 @@ export default function buildConfig(
     model: config.model ?? false,
     dual_impedance: config.dual_impedance ?? false,
     unit: config.unit ?? false,
+    auto_severity: config.auto_severity ?? false,
     theme: config.theme ?? true,
     show_name: config.show_name ?? true,
     show_states: config.show_states ?? true,

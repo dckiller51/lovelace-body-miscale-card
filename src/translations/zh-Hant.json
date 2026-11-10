@@ -100,6 +100,9 @@
     "unit": "Convert kg to lbs",
     "unit_aria_label_on": "Toggle the conversion on",
     "unit_aria_label_off": "Toggle the conversion off",
+    "auto_severity": "個人閾值（依性別、年齡、身高和體重）",
+    "auto_severity_aria_label_on": "開啟個人閾值",
+    "auto_severity_aria_label_off": "關閉個人閾值",
     "theme": "Configure the theme you use.",
     "theme_aria_label_on": "Toggle theme light on",
     "theme_aria_label_off": "Toggle theme dark off",
@@ -146,7 +149,8 @@
     "to": "到",
     "value_position": "數值位置",
     "tap_action": "點擊動作",
-    "tap_action_helper": "預設：開啟對應感測器的詳細資訊對話框。"
+    "tap_action_helper": "預設：開啟對應感測器的詳細資訊對話框。",
+    "auto_severity_note": "閾值依個人資料計算（個人閾值選項）。關閉此選項即可編輯。"
   },
   "color_select": {
     "color": "顏色",
@@ -185,6 +189,7 @@
     "insufficient": "不足",
     "high": "高",
     "low": "低",
+    "below_normal": "低於正常",
     "normal": "正常",
     "obese": "偏胖型",
     "objective_achieved": "目標達成",

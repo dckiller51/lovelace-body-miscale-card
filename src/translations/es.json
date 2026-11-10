@@ -100,6 +100,9 @@
     "unit": "Convertir kg a lbs",
     "unit_aria_label_on": "Activar conversión",
     "unit_aria_label_off": "Desactivar conversión",
+    "auto_severity": "Umbrales personales (según sexo, edad, altura y peso)",
+    "auto_severity_aria_label_on": "Activar los umbrales personales",
+    "auto_severity_aria_label_off": "Desactivar los umbrales personales",
     "theme": "Configure el tema que utiliza.",
     "theme_aria_label_on": "Activar tema claro",
     "theme_aria_label_off": "Desactivar tema oscuro",
@@ -146,7 +149,8 @@
     "to": "A",
     "value_position": "Posición del valor",
     "tap_action": "Acción al tocar",
-    "tap_action_helper": "Por defecto: abre el diálogo de más información del sensor correspondiente."
+    "tap_action_helper": "Por defecto: abre el diálogo de más información del sensor correspondiente.",
+    "auto_severity_note": "Umbrales calculados a partir del perfil (opción de umbrales personales). Desactive la opción para editarlos."
   },
   "color_select": {
     "color": "Color",
@@ -185,6 +189,7 @@
     "insufficient": "Insuficiente",
     "high": "Alto",
     "low": "Bajo",
+    "below_normal": "Por debajo de lo normal",
     "normal": "Normal",
     "obese": "Obeso",
     "objective_achieved": "Objetivo alcanzado",

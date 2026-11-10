@@ -100,6 +100,9 @@
     "unit": "Convert kg to lbs",
     "unit_aria_label_on": "Toggle the conversion on",
     "unit_aria_label_off": "Toggle the conversion off",
+    "auto_severity": "个人阈值（基于性别、年龄、身高和体重）",
+    "auto_severity_aria_label_on": "开启个人阈值",
+    "auto_severity_aria_label_off": "关闭个人阈值",
     "theme": "Configure the theme you use.",
     "theme_aria_label_on": "Toggle theme light on",
     "theme_aria_label_off": "Toggle theme dark off",
@@ -146,7 +149,8 @@
     "to": "到",
     "value_position": "值的位置",
     "tap_action": "点击动作",
-    "tap_action_helper": "默认：打开对应传感器的详细信息对话框。"
+    "tap_action_helper": "默认：打开对应传感器的详细信息对话框。",
+    "auto_severity_note": "阈值根据个人资料计算（个人阈值选项）。关闭该选项即可编辑。"
   },
   "color_select": {
     "color": "颜色",
@@ -185,6 +189,7 @@
     "insufficient": "不足",
     "high": "高",
     "low": "低",
+    "below_normal": "低于正常",
     "normal": "正常",
     "obese": "偏胖型",
     "objective_achieved": "目标达成",

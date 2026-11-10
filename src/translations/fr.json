@@ -100,6 +100,9 @@
     "unit": "Convertir les kg en lbs",
     "unit_aria_label_on": "Activer la conversion",
     "unit_aria_label_off": "Désactiver la conversion",
+    "auto_severity": "Seuils personnalisés (selon le sexe, l'âge, la taille et le poids)",
+    "auto_severity_aria_label_on": "Activer les seuils personnalisés",
+    "auto_severity_aria_label_off": "Désactiver les seuils personnalisés",
     "theme": "Configurer le thème que vous utilisez.",
     "theme_aria_label_on": "Activer thème clair",
     "theme_aria_label_off": "Désactiver thème sombre",
@@ -146,7 +149,8 @@
     "to": "À",
     "value_position": "Position de la valeur",
     "tap_action": "Action au toucher",
-    "tap_action_helper": "Par défaut : ouvre la fenêtre « Plus d'infos » du capteur correspondant."
+    "tap_action_helper": "Par défaut : ouvre la fenêtre « Plus d'infos » du capteur correspondant.",
+    "auto_severity_note": "Seuils calculés à partir du profil (option seuils personnalisés). Désactivez l'option pour les modifier."
   },
   "color_select": {
     "color": "Couleur",
@@ -185,6 +189,7 @@
     "insufficient": "Insuffisant",
     "high": "Élevé",
     "low": "Faible",
+    "below_normal": "Sous la normale",
     "normal": "Normal",
     "obese": "Obèse",
     "objective_achieved": "Objectif atteint",

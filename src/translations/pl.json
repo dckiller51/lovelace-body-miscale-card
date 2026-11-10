@@ -100,6 +100,9 @@
     "unit": "Zamień kg na lbs",
     "unit_aria_label_on": "Włącz opcję konwersji",
     "unit_aria_label_off": "Włącz opcję konwersji",
+    "auto_severity": "Progi osobiste (na podstawie płci, wieku, wzrostu i wagi)",
+    "auto_severity_aria_label_on": "Włącz progi osobiste",
+    "auto_severity_aria_label_off": "Wyłącz progi osobiste",
     "theme": "Wybierz rodza motywu.",
     "theme_aria_label_on": "Włącz jasny motyw",
     "theme_aria_label_off": "Włącz ciemny motyw",
@@ -146,7 +149,8 @@
     "to": "Do",
     "value_position": "Pozycja wartości",
     "tap_action": "Akcja dotknięcia",
-    "tap_action_helper": "Domyślnie: otwiera okno szczegółów odpowiedniego czujnika."
+    "tap_action_helper": "Domyślnie: otwiera okno szczegółów odpowiedniego czujnika.",
+    "auto_severity_note": "Progi obliczone na podstawie profilu (opcja progów osobistych). Wyłącz opcję, aby je edytować."
   },
   "color_select": {
     "color": "Kolor",
@@ -185,6 +189,7 @@
     "insufficient": "Niewystarczający",
     "high": "Wysoki",
     "low": "Niski",
+    "below_normal": "Poniżej normy",
     "normal": "Normalny",
     "obese": "Otyły",
     "objective_achieved": "Cel osiągnięty",

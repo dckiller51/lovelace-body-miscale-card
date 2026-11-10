@@ -129,6 +129,7 @@ export interface BodymiscaleCardConfig {
     iconbody: string;
   };
   unit?: boolean;
+  auto_severity?: boolean;
   color?: string;
   buttons: boolean | Record<string, any>;
   attributes: Record<string, RenderAttributeData>;
