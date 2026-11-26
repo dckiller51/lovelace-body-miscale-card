@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.11.1
+
+- ✨ **Added**: `precision` option to set the number of decimals of each value (states, attributes and body elements), also used in the tooltip of the color bars. Example: `precision: 1` shows `72.4 kg` instead of `72.35 kg`. Thanks [@Triple-S](https://github.com/Triple-S)! [[#252](https://github.com/dckiller51/lovelace-body-miscale-card/pull/252)]
+- 🎨 **Changed**: Values now have a fixed number of decimals by default, e.g. weight `72.40 kg` (`72.4 lbs`), BMI `23.6`, body fat `18.0 %`, impedance `512 ohm`, basal metabolism `1680 kcal`. Set `precision` on an element to change it. [[#252](https://github.com/dckiller51/lovelace-body-miscale-card/pull/252)]
+
 ## 2026.11.0
 
 - ✨ **Added**: `auto_severity` option (visual editor: "Personal thresholds"): the color bars use thresholds computed from the person's gender, age, height and weight, the same as the Severity Configuration Helper, and follow the profile automatically. Off by default; a custom `severity` always takes precedence. [[#72](https://github.com/dckiller51/lovelace-body-miscale-card/issues/72)] [[#235](https://github.com/dckiller51/lovelace-body-miscale-card/issues/235)]
