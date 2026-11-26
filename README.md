@@ -90,12 +90,13 @@ The card displays data in two main sections: "Attributes" (right list) and "Body
 
 **Note:** You can customize which attributes are displayed, their labels, and units using the configuration options. Refer to the [Examples](#examples) section for details.
 
-| Name  | Type   | Default      | Description                         |
-| ----- | ------ | ------------ | ----------------------------------- |
-| key   | string | **Required** | Attribute key on bodymiscale entity |
-| icon  | string |              | Optional icon                       |
-| label | string |              | Optional label text                 |
-| unit  | string |              | Optional unit                       |
+| Name      | Type   | Default      | Description                         |
+| --------- | ------ | ------------ | ----------------------------------- |
+| key       | string | **Required** | Attribute key on bodymiscale entity |
+| icon      | string |              | Optional icon                       |
+| label     | string |              | Optional label text                 |
+| unit      | string |              | Optional unit                       |
+| precision | number |              | Optional decimal precision          |
 
 ### Button Data
 
