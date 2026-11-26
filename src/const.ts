@@ -31,6 +31,7 @@ export const attributes_kg: Record<string, RenderAttributeData> = {
     order: 1,
     show: true,
     unit: ' kg',
+    precision: 2,
   },
   impedance: {
     key: 'impedance',
@@ -40,15 +41,17 @@ export const attributes_kg: Record<string, RenderAttributeData> = {
     dual_impedance_required: false,
     order: 2,
     show: true,
+    precision: 0,
   },
   impedance_low: {
     order: 2,
     key: 'impedance_low',
     label: localize(`attributes.${'impedance_low: '}`),
     unit: ' ohm',
-  impedance_required: true,
+    impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   impedance_high: {
     order: 3,
@@ -58,6 +61,7 @@ export const attributes_kg: Record<string, RenderAttributeData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   height: {
     order: 4,
@@ -65,6 +69,7 @@ export const attributes_kg: Record<string, RenderAttributeData> = {
     label: localize(`attributes.${'height: '}`),
     unit: ' cm',
     show: true,
+    precision: 2,
   },
   age: {
     order: 5,
@@ -72,6 +77,7 @@ export const attributes_kg: Record<string, RenderAttributeData> = {
     label: localize(`attributes.${'age: '}`),
     unit: localize(`unit.${' years'}`),
     show: true,
+    precision: 0,
   },
   gender: {
     order: 6,
@@ -89,6 +95,7 @@ export const attributes_lb = {
     show: true,
     unit: ' lbs',
     compute: compute.convertkgtolb,
+    precision: 1,
   },
   impedance: {
     order: 2,
@@ -97,6 +104,7 @@ export const attributes_lb = {
     show: true,
     unit: ' ohm',
     impedance_required: true,
+    precision: 0,
   },
   impedance_low: {
     order: 2,
@@ -106,6 +114,7 @@ export const attributes_lb = {
     unit: ' ohm',
     impedance_required: true,
     dual_impedance_required: true,
+    precision: 1,
   },
   impedance_high: {
     order: 3,
@@ -115,6 +124,7 @@ export const attributes_lb = {
     unit: ' ohm',
     impedance_required: true,
     dual_impedance_required: true,
+    precision: 1,
   },
   height: {
     order: 4,
@@ -122,6 +132,7 @@ export const attributes_lb = {
     label: localize(`attributes.${'height: '}`),
     unit: ' cm',
     show: true,
+    precision: 2,
   },
   age: {
     order: 5,
@@ -129,6 +140,7 @@ export const attributes_lb = {
     label: localize(`attributes.${'age: '}`),
     unit: localize(`unit.${' years'}`),
     show: true,
+    precision: 0,
   },
   gender: {
     order: 6,
@@ -160,6 +172,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 0,
   },
   bcm: {
     order: 2,
@@ -184,6 +197,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   bmi: {
     order: 3,
@@ -207,6 +221,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 1,
   },
   bmi_label: {
     order: 4,
@@ -250,6 +265,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   body_type: {
     order: 6,
@@ -291,6 +307,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 2,
   },
   ecw_tbw_ratio: {
     order: 8,
@@ -316,6 +333,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   extracellular_water: {
     order: 9,
@@ -341,6 +359,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   ideal: {
     order: 10,
@@ -365,6 +384,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 2,
   },
   intracellular_water: {
     order: 11,
@@ -390,6 +410,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   metabolic_age: {
     order: 12,
@@ -409,6 +430,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     severity: null,
     impedance_required: true,
     show: true,
+    precision: 0,
   },
   muscle_mass: {
     order: 13,
@@ -432,6 +454,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   protein: {
     order: 14,
@@ -455,6 +478,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   skeletal_muscle_mass: {
     order: 15,
@@ -480,6 +504,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     impedance_required: true,
     show: true,
     dual_impedance_required: true,
+    precision: 1,
   },
   visceral_fat: {
     order: 16,
@@ -502,6 +527,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 0,
   },
   water: {
     order: 17,
@@ -525,6 +551,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   weight: {
     order: 18,
@@ -549,6 +576,7 @@ export const body_kg: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 2,
   },
 };
 export const body_lb: Record<string, RenderBodyData> = {
@@ -573,6 +601,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 0,
   },
   bcm: {
     order: 2,
@@ -598,6 +627,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   bmi: {
     order: 3,
@@ -621,6 +651,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 1,
   },
   bmi_label: {
     order: 4,
@@ -664,6 +695,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   body_type: {
     order: 6,
@@ -706,6 +738,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 2,
   },
   ecw_tbw_ratio: {
     order: 8,
@@ -731,6 +764,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   extracellular_water: {
     order: 9,
@@ -756,6 +790,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   ideal: {
     order: 10,
@@ -781,6 +816,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 1,
   },
   intracellular_water: {
     order: 11,
@@ -806,6 +842,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   metabolic_age: {
     order: 12,
@@ -825,6 +862,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     severity: null,
     impedance_required: true,
     show: true,
+    precision: 0,
   },
   muscle_mass: {
     order: 13,
@@ -849,6 +887,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   protein: {
     order: 14,
@@ -872,6 +911,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   skeletal_muscle_mass: {
     order: 15,
@@ -898,6 +938,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     impedance_required: true,
     dual_impedance_required: true,
     show: true,
+    precision: 1,
   },
   visceral_fat: {
     order: 16,
@@ -920,6 +961,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 0,
   },
   water: {
     order: 17,
@@ -943,6 +985,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: true,
     show: true,
+    precision: 1,
   },
   weight: {
     order: 18,
@@ -968,6 +1011,7 @@ export const body_lb: Record<string, RenderBodyData> = {
     ],
     impedance_required: false,
     show: true,
+    precision: 1,
   },
 };
 
@@ -1022,6 +1066,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       order: 1,
       key: 'weight',
       show: true,
+      precision: 2,
     },
     impedance: {
       order: 2,
@@ -1029,6 +1074,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: false,
       show: true,
+      precision: 0,
     },
     impedance_low: {
       order: 2,
@@ -1036,6 +1082,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: true,
       show: true,
+      precision: 1,
     },
     impedance_high: {
       order: 3,
@@ -1043,16 +1090,19 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: true,
       show: true,
+      precision: 1,
     },
     height: {
       order: 4,
       key: 'height',
       show: true,
+      precision: 2,
     },
     age: {
       order: 5,
       key: 'age',
       show: true,
+      precision: 0,
     },
     gender: {
       order: 6,
@@ -1070,6 +1120,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       show: true,
       impedance_required: false,
+      precision: 0,
     },
     bcm: {
       order: 2,
@@ -1082,6 +1133,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       show: true,
       impedance_required: true,
       dual_impedance_required: true,
+      precision: 1,
     },
     bmi: {
       order: 3,
@@ -1094,6 +1146,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       show: true,
       impedance_required: false,
+      precision: 1,
     },
     bmi_label: {
       order: 4,
@@ -1113,6 +1166,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       show: true,
       impedance_required: true,
+      precision: 1,
     },
     body_type: {
       order: 6,
@@ -1130,6 +1184,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       show: true,
       impedance_required: true,
+      precision: 2,
     },
     ecw_tbw_ratio: {
       order: 8,
@@ -1143,6 +1198,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: true,
       show: true,
+      precision: 1,
     },
     extracellular_water: {
       order: 9,
@@ -1156,6 +1212,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: true,
       show: true,
+      precision: 1,
     },
     ideal: {
       order: 10,
@@ -1168,6 +1225,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: false,
       show: true,
+      precision: 2,
     },
     intracellular_water: {
       order: 11,
@@ -1181,12 +1239,14 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: true,
       show: true,
+      precision: 1,
     },
     metabolic_age: {
       order: 12,
       key: 'metabolic_age',
       impedance_required: true,
       show: true,
+      precision: 0,
     },
     muscle_mass: {
       order: 13,
@@ -1198,6 +1258,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       show: true,
+      precision: 1,
     },
     protein: {
       order: 14,
@@ -1209,6 +1270,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       show: true,
+      precision: 1,
     },
     skeletal_muscle_mass: {
       order: 15,
@@ -1222,6 +1284,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       impedance_required: true,
       dual_impedance_required: true,
       show: true,
+      precision: 1,
     },
     visceral_fat: {
       order: 16,
@@ -1233,6 +1296,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: false,
       show: true,
+      precision: 0,
     },
     water: {
       order: 17,
@@ -1244,6 +1308,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: true,
       show: true,
+      precision: 1,
     },
     weight: {
       order: 18,
@@ -1256,6 +1321,7 @@ export const defaultCardConfig: Partial<BodymiscaleCardConfig> = {
       ],
       impedance_required: false,
       show: true,
+      precision: 2,
     },
   },
 };

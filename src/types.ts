@@ -50,6 +50,7 @@ export interface RenderStateData {
   order: number;
   tap_action?: ActionConfig;
   unit: string;
+  precision?: number;
 }
 
 export interface RenderAttributeData {
@@ -65,6 +66,7 @@ export interface RenderAttributeData {
   tap_action?: ActionConfig;
   unit?: string;
   weight?: number;
+  precision?: number;
 }
 
 export interface RenderBodyData {
@@ -88,6 +90,7 @@ export interface RenderBodyData {
   severity?: string | NumericSeverity | null;
   tap_action?: ActionConfig;
   unit?: string;
+  precision?: number;
 }
 
 export interface RenderIconData {

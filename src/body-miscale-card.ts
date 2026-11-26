@@ -200,12 +200,16 @@ export class BodymiscaleCard extends LitElement {
         ? (stateObj as Record<string, any>)[data.key]
         : this.hass.localize('state.default.unavailable');
 
+    const numberFormatOptions: Intl.NumberFormatOptions = data.precision !== undefined
+      ? { minimumFractionDigits: data.precision, maximumFractionDigits: data.precision }
+      : {};
+
     if (data.key === 'last_measurement_time' && typeof value === 'string') {
       value = formatMeasurementTime(value, this.hass.locale);
     }
 
     const formatValue =
-      typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
+      typeof value === 'number' ? formatNumber(value, this.hass.locale, numberFormatOptions) : value;
     const localizedValue = localize(`states.${value}`) || localize(`attributes_value.${value}`) || localize(`body_value.${value}`) || formatValue;
 
     const attribute =
@@ -256,12 +260,16 @@ export class BodymiscaleCard extends LitElement {
         ? computeFunc((stateObj as Record<string, any>)[data.key])
         : this.hass.localize('state.default.unavailable');
 
+    const numberFormatOptions: Intl.NumberFormatOptions = data.precision !== undefined
+      ? { minimumFractionDigits: data.precision, maximumFractionDigits: data.precision }
+      : {};
+
     if (data.key === 'last_measurement_time' && typeof value === 'string') {
       value = formatMeasurementTime(value, this.hass.locale);
     }
 
     const formatValue =
-      typeof value === 'number' ? formatNumber(value, this.hass.locale) : value;
+      typeof value === 'number' ? formatNumber(value, this.hass.locale, numberFormatOptions) : value;
 
     const localizedValue = localize(`attributes_value.${value}`) || localize(`states.${value}`) || localize(`body_value.${value}`) || formatValue;
     const attribute = html`<div>
@@ -337,10 +345,14 @@ export class BodymiscaleCard extends LitElement {
       : isValidEntity
       ? computeFunc((stateObj as Record<string, any>)[data.key])
       : this.hass.localize('state.default.unavailable');
-  
+
+    const numberFormatOptions: Intl.NumberFormatOptions = data.precision !== undefined
+      ? { minimumFractionDigits: data.precision, maximumFractionDigits: data.precision }
+      : {};
+
     const formattedValue =
       typeof rawValue === 'number'
-        ? formatNumber(rawValue, this.hass.locale)
+        ? formatNumber(rawValue, this.hass.locale, numberFormatOptions)
         : rawValue;
 
     const localizedValue =
@@ -381,7 +393,7 @@ export class BodymiscaleCard extends LitElement {
       ? html`<div class="name">${data.label}</div>`
       : nothing;
   
-    const segmentBar = typeof rawValue === 'number' ? this.renderColorBarSegments(data, rawValue, false) : nothing;
+    const segmentBar = typeof rawValue === 'number' ? this.renderColorBarSegments(data, rawValue, numberFormatOptions, false) : nothing;
     const showBar = segmentBar !== nothing;
     const barClass = showBar ? 'bar-container' : 'bar-container compact';
   
@@ -507,7 +519,7 @@ export class BodymiscaleCard extends LitElement {
     return Math.min(100, Math.max(0, percent));
   }
   
-  private renderColorBarSegments(data: any, value: number, wrap = true): Template {
+  private renderColorBarSegments(data: any, value: number, numberFormatOptions: Intl.NumberFormatOptions, wrap = true): Template {
     const { min: calculatedMin, max: calculatedMax } = this.getMinMaxFromSeverity(data.severity || []);
     const range = calculatedMax - calculatedMin;
     if (!data.severity || !Array.isArray(data.severity) || range <= 0) {
@@ -561,7 +573,7 @@ export class BodymiscaleCard extends LitElement {
         ${segmentsHtml}
         <div class="bar-marker-wrapper" style="left: clamp(10px, ${markerPercent}%, calc(100% - 10px));">
           <div class="bar-marker" style="border-color: ${markerColor};"></div>
-          <div class="bar-marker-tooltip">${formatNumber(value, this.hass.locale)}${data.unit || ''}</div>
+          <div class="bar-marker-tooltip">${formatNumber(value, this.hass.locale, numberFormatOptions)}${data.unit || ''}</div>
         </div>
       </div>
     `;
