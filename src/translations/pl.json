@@ -148,6 +148,8 @@
     "showbelowlabels": "Pokaż etykiety poniżej",
     "to": "Do",
     "value_position": "Pozycja wartości",
+    "precision": "Miejsca dziesiętne",
+    "precision_helper": "Domyślnie: {default}. Pozostaw puste, aby użyć wartości domyślnej.",
     "tap_action": "Akcja dotknięcia",
     "tap_action_helper": "Domyślnie: otwiera okno szczegółów odpowiedniego czujnika.",
     "auto_severity_note": "Progi obliczone na podstawie profilu (opcja progów osobistych). Wyłącz opcję, aby je edytować."

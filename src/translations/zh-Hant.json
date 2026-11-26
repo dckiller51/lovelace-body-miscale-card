@@ -148,6 +148,8 @@
     "showbelowlabels": "顯示下方標籤",
     "to": "到",
     "value_position": "數值位置",
+    "precision": "小數位數",
+    "precision_helper": "預設：{default}。留空則使用預設值。",
     "tap_action": "點擊動作",
     "tap_action_helper": "預設：開啟對應感測器的詳細資訊對話框。",
     "auto_severity_note": "閾值依個人資料計算（個人閾值選項）。關閉此選項即可編輯。"

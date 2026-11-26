@@ -148,6 +148,8 @@
     "showbelowlabels": "Zobrazit štítky dole",
     "to": "Do",
     "value_position": "Pozice hodnoty",
+    "precision": "Desetinná místa",
+    "precision_helper": "Výchozí: {default}. Ponechte prázdné pro výchozí hodnotu.",
     "tap_action": "Akce při klepnutí",
     "tap_action_helper": "Výchozí: otevře dialog s podrobnostmi odpovídajícího senzoru.",
     "auto_severity_note": "Prahové hodnoty vypočtené z profilu (volba osobních prahových hodnot). Pro úpravu volbu vypněte."

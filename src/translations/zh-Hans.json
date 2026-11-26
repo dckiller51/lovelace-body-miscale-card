@@ -148,6 +148,8 @@
     "showbelowlabels": "显示下方标签",
     "to": "到",
     "value_position": "值的位置",
+    "precision": "小数位数",
+    "precision_helper": "默认：{default}。留空则使用默认值。",
     "tap_action": "点击动作",
     "tap_action_helper": "默认：打开对应传感器的详细信息对话框。",
     "auto_severity_note": "阈值根据个人资料计算（个人阈值选项）。关闭该选项即可编辑。"

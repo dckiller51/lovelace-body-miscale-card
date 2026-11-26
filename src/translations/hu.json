@@ -148,6 +148,8 @@
     "target": "Cél",
     "to": "Tovább",
     "value_position": "Érték pozíció",
+    "precision": "Tizedesjegyek",
+    "precision_helper": "Alapértelmezett: {default}. Hagyja üresen az alapértelmezett értékhez.",
     "tap_action": "Koppintási művelet",
     "tap_action_helper": "Alapértelmezett: megnyitja a megfelelő érzékelő további információk párbeszédablakát.",
     "auto_severity_note": "A profil alapján számított küszöbértékek (személyes küszöbértékek). A szerkesztéshez kapcsolja ki a beállítást."

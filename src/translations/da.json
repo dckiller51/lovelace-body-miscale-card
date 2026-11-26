@@ -148,6 +148,8 @@
     "showbelowlabels": "Vis 'mærke' underneden",
     "to": "To",
     "value_position": "Position af værdi",
+    "precision": "Decimaler",
+    "precision_helper": "Standard: {default}. Lad feltet være tomt for at bruge standarden.",
     "tap_action": "Tryk-handling",
     "tap_action_helper": "Standard: åbner dialogen med flere oplysninger for den tilsvarende sensor.",
     "auto_severity_note": "Grænser beregnet ud fra profilen (personlige grænser). Slå indstillingen fra for at redigere dem."
