@@ -148,6 +148,8 @@
     "showbelowlabels": "Labels onder weergeven",
     "to": "Naar",
     "value_position": "Waarde Positie",
+    "precision": "Decimalen",
+    "precision_helper": "Standaard: {default}. Leeg laten om de standaardwaarde te gebruiken.",
     "tap_action": "Tikactie",
     "tap_action_helper": "Standaard: opent het meer-info-venster van de bijbehorende sensor.",
     "auto_severity_note": "Drempels berekend op basis van het profiel (persoonlijke drempels). Schakel de optie uit om ze te bewerken."

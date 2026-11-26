@@ -134,6 +134,8 @@
     "target": "Ziel",
     "to": "Zu",
     "value_position": "Wert Position",
+    "precision": "Nachkommastellen",
+    "precision_helper": "Standard: {default}. Leer lassen, um den Standardwert zu verwenden.",
     "tap_action": "Tipp-Aktion",
     "tap_action_helper": "Standard: öffnet den Mehr-Infos-Dialog des zugehörigen Sensors.",
     "auto_severity_note": "Aus dem Profil berechnete Schwellenwerte (persönliche Schwellenwerte). Option ausschalten, um sie zu bearbeiten."

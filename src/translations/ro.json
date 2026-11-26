@@ -148,6 +148,8 @@
     "showbelowlabels": "Afișează etichetele dedesubt",
     "to": "La",
     "value_position": "Poziția valorii",
+    "precision": "Zecimale",
+    "precision_helper": "Implicit: {default}. Lăsați gol pentru valoarea implicită.",
     "tap_action": "Acțiune la atingere",
     "tap_action_helper": "Implicit: deschide fereastra cu mai multe informații a senzorului corespunzător.",
     "auto_severity_note": "Praguri calculate din profil (opțiunea praguri personale). Dezactivați opțiunea pentru a le modifica."

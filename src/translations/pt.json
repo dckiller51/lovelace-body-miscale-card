@@ -148,6 +148,8 @@
     "showbelowlabels": "Mostrar etiquetas abaixo",
     "to": "Para",
     "value_position": "Posição do valor",
+    "precision": "Casas decimais",
+    "precision_helper": "Predefinição: {default}. Deixe vazio para usar a predefinição.",
     "tap_action": "Ação ao tocar",
     "tap_action_helper": "Predefinição: abre a caixa de diálogo de mais informações do sensor correspondente.",
     "auto_severity_note": "Limites calculados a partir do perfil (opção de limites pessoais). Desative a opção para os editar."

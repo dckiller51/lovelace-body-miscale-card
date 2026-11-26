@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## 2026.11.2
+
+- ✨ **Added**: "Decimals" field in the visual editor for each numeric body element and profile data item, to set the `precision` option (0–3) without YAML. The help text shows the default, and clearing the field goes back to it. [[#252](https://github.com/dckiller51/lovelace-body-miscale-card/pull/252)]
+
 ## 2026.11.1
 
 - ✨ **Added**: `precision` option to set the number of decimals of each value (states, attributes and body elements), also used in the tooltip of the color bars. Example: `precision: 1` shows `72.4 kg` instead of `72.35 kg`. Thanks [@Triple-S](https://github.com/Triple-S)! [[#252](https://github.com/dckiller51/lovelace-body-miscale-card/pull/252)]

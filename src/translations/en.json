@@ -148,6 +148,8 @@
     "showbelowlabels": "Show labels below",
     "to": "To",
     "value_position": "Value Position",
+    "precision": "Decimals",
+    "precision_helper": "Default: {default}. Leave empty to use the default.",
     "tap_action": "Tap action",
     "tap_action_helper": "Default: opens the more-info dialog of the matching sensor.",
     "auto_severity_note": "Thresholds computed from the profile (personal thresholds option). Turn the option off to edit them."

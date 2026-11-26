@@ -484,6 +484,7 @@ export class BodymiscaleCardEditor
                   ? html`<ha-alert alert-type="info">${localize('editor_body.auto_severity_note')}</ha-alert>`
                   : this.renderSeverityInputs(severity, key)}
               </ha-form-grid>
+              ${this.renderPrecision('body', key, bodyConfig[key]?.precision, item?.precision)}
               ${this.renderTapAction('body', key, bodyConfig[key]?.tap_action)}
             </div>
           </ha-expansion-panel>
@@ -552,6 +553,7 @@ export class BodymiscaleCardEditor
             </div>
           </div>
           <div style="padding: 12px 16px;">
+            ${this.renderPrecision('attributes', key, attrConfig[key]?.precision, (item as { precision?: number } | undefined)?.precision)}
             ${this.renderTapAction('attributes', key, attrConfig[key]?.tap_action)}
           </div>
         </ha-expansion-panel>
@@ -898,6 +900,57 @@ export class BodymiscaleCardEditor
 
     fireEvent(this, 'config-changed', { config: this.config });
     this.requestUpdate();
+  }
+
+  /**
+   * Store (or remove when cleared) the number of decimals of a body element
+   * or attribute (`precision`, #252). Cleared → back to the card default.
+   */
+  protected _setPrecision(section: 'body' | 'attributes', key: string, value: unknown): void {
+    if (!this.config) return;
+
+    const current = { ...((this.config[section] as Record<string, any>) ?? {}) };
+    const item = { ...(current[key] ?? {}) };
+    const precision = typeof value === 'number' ? value : parseInt(String(value ?? ''), 10);
+
+    if (Number.isInteger(precision) && precision >= 0) {
+      item.precision = precision;
+    } else {
+      delete item.precision;
+    }
+
+    current[key] = item;
+    this.config = { ...this.config, [section]: current };
+
+    fireEvent(this, 'config-changed', { config: this.config });
+    this.requestUpdate();
+  }
+
+  /** Decimals field, only for numeric values (the ones with a default precision). */
+  private renderPrecision(
+    section: 'body' | 'attributes',
+    key: string,
+    value: number | undefined,
+    defaultPrecision: number | undefined,
+  ): Template {
+    if (defaultPrecision === undefined) return nothing;
+
+    return html`
+      <div class="option">
+        <ha-selector
+          .hass=${this.hass}
+          .label=${localize('editor_body.precision')}
+          .helper=${localize('editor_body.precision_helper', '{default}', String(defaultPrecision))}
+          .selector=${{ number: { min: 0, max: 3, step: 1, mode: 'box' } }}
+          .value=${value}
+          .placeholder=${defaultPrecision}
+          @value-changed=${(ev: CustomEvent) => {
+            ev.stopPropagation();
+            this._setPrecision(section, key, ev.detail.value);
+          }}
+        ></ha-selector>
+      </div>
+    `;
   }
 
   private renderTapAction(

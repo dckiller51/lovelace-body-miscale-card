@@ -148,6 +148,8 @@
     "showbelowlabels": "Hiển thị nhãn phía dưới",
     "to": "Đến",
     "value_position": "Vị trí giá trị",
+    "precision": "Số chữ số thập phân",
+    "precision_helper": "Mặc định: {default}. Để trống để dùng giá trị mặc định.",
     "tap_action": "Hành động khi chạm",
     "tap_action_helper": "Mặc định: mở hộp thoại thông tin chi tiết của cảm biến tương ứng.",
     "auto_severity_note": "Ngưỡng được tính từ hồ sơ (tùy chọn ngưỡng cá nhân). Tắt tùy chọn để chỉnh sửa."

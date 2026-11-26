@@ -148,6 +148,8 @@
     "showbelowlabels": "Mostrar etiquetes a sota",
     "to": "A",
     "value_position": "Posició del valor",
+    "precision": "Decimals",
+    "precision_helper": "Per defecte: {default}. Deixeu-ho buit per utilitzar el valor per defecte.",
     "tap_action": "Acció en tocar",
     "tap_action_helper": "Per defecte: obre el diàleg de més informació del sensor corresponent.",
     "auto_severity_note": "Llindars calculats a partir del perfil (opció de llindars personals). Desactiveu l'opció per modificar-los."

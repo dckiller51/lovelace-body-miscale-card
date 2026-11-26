@@ -148,6 +148,8 @@
     "showbelowlabels": "Afficher les labels en dessous",
     "to": "À",
     "value_position": "Position de la valeur",
+    "precision": "Décimales",
+    "precision_helper": "Par défaut : {default}. Laissez vide pour utiliser la valeur par défaut.",
     "tap_action": "Action au toucher",
     "tap_action_helper": "Par défaut : ouvre la fenêtre « Plus d'infos » du capteur correspondant.",
     "auto_severity_note": "Seuils calculés à partir du profil (option seuils personnalisés). Désactivez l'option pour les modifier."

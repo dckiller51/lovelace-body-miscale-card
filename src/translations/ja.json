@@ -148,6 +148,8 @@
     "showbelowlabels": "ラベルを下に表示",
     "to": "へ",
     "value_position": "値の位置",
+    "precision": "小数点以下の桁数",
+    "precision_helper": "デフォルト: {default}。空欄にするとデフォルト値を使用します。",
     "tap_action": "タップ時の動作",
     "tap_action_helper": "デフォルト: 対応するセンサーの詳細情報ダイアログを開きます。",
     "auto_severity_note": "プロフィールから計算されたしきい値です（個人用しきい値）。編集するにはオプションをオフにしてください。"

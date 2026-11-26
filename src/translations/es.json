@@ -148,6 +148,8 @@
     "showbelowlabels": "Mostrar etiquetas abajo",
     "to": "A",
     "value_position": "Posición del valor",
+    "precision": "Decimales",
+    "precision_helper": "Por defecto: {default}. Déjelo vacío para usar el valor por defecto.",
     "tap_action": "Acción al tocar",
     "tap_action_helper": "Por defecto: abre el diálogo de más información del sensor correspondiente.",
     "auto_severity_note": "Umbrales calculados a partir del perfil (opción de umbrales personales). Desactive la opción para editarlos."
